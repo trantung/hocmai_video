@@ -23,4 +23,5 @@ class videos extends Model
         'schoolSubject_id',
         'teacher_id',
     ];
+    
 }

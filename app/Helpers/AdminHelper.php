@@ -1,5 +1,10 @@
 <?php
 
+use App\schoolbock;
+use App\schoolSubjects;
+use App\teachers;
+use App\classs;
+use APV\User;
 use APV\Product\Models\Product;
 use APV\Category\Models\Category;
 use APV\Level\Models\Level;
@@ -93,6 +98,56 @@ function getListRole()
 {
     return Role::pluck('name', 'id')->toArray();
 }
+/* start livestream hoc mai*/
+// class lấy name lớp
+function getListClass(){
+    return classs::pluck('name','id')->toArray();
+}
+// khối 
+function getListKhoi(){
+    return schoolbock::pluck('name','id')->toArray();
+}
+// môn
+function getListMon(){
+    return schoolSubjects::pluck('name','id')->toArray();
+}
+function getListGv(){
+    return teachers::pluck('name','id')->toArray();
+}
+// lấy name
+function getClassNameById($id)
+{
+    $class = classs::find($id);
+    if ($class) {
+        return $class->name;
+    }
+    return null;
+}
+function getMonNameById($id)
+{
+    $class = schoolSubjects::find($id);
+    if ($class) {
+        return $class->name;
+    }
+    return null;
+}
+function getKhoiNameById($id)
+{
+    $class = schoolbock::find($id);
+    if ($class) {
+        return $class->name;
+    }
+    return null;
+}
+function getGvNameById($id)
+{
+    $class = teachers::find($id);
+    if ($class) {
+        return $class->name;
+    }
+    return null;
+}
+ /* end livestream hoc mai*/
 function getRoleNameById($id)
 {
     $role = Role::find($id);

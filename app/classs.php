@@ -1,16 +1,16 @@
 <?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class schoolSubjects extends Model
+class classs extends Model
 {
-    protected $table = 'school_Subjects';
+    protected $table = 'class';
     protected $fillable =[
         'name',
         'desc',
-        'class_id',
-        'teacher_id',
+        'schoolblock_id',
+        'schoolsubjects_id',
     ];
+
 }

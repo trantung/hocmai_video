@@ -1,16 +1,11 @@
 <?php
+namespace APV\Class_\Models;
 
-namespace APV\Classes\Services;
-
-use APV\Classes\Models\Classes;
+use APV\Class_\Models\Class_;
 use Illuminate\Support\Facades\Hash;
 
 class ClassService
 {
-    public function getListClass()
-    {
-        $data = Classes::all();
-        return $data->toArray();
-    }
+    
     
 }

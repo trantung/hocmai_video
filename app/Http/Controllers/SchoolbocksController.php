@@ -38,7 +38,7 @@ class SchoolbocksController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $sizeId = schoolbock::create($input)->id;
+        $schoolbock = schoolbock::create($input)->id;
         return Redirect::action('SchoolbocksController@index');
     }
 
@@ -61,7 +61,8 @@ class SchoolbocksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $schoolbock = schoolbock::find($id);
+        return view('schoolbock.edit')->with(compact('schoolbock'));
     }
 
     /**
@@ -73,7 +74,10 @@ class SchoolbocksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $schoolbock = schoolbock::find($id);
+        $schoolbock->update($input);
+        return Redirect::action('SchoolbocksController@index'); 
     }
 
     /**
@@ -84,6 +88,7 @@ class SchoolbocksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        schoolbock::destroy($id);
+        return Redirect::action('SchoolbocksController@index');
     }
 }

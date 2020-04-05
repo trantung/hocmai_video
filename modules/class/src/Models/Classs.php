@@ -1,13 +1,11 @@
 <?php
-
-namespace APV\Classes\Models;
-
+namespace APV\Classs\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Classes extends Model
+class Classs extends Model
 {
     use SoftDeletes;
 
@@ -25,10 +23,5 @@ class Classes extends Model
         'desc',
         'schoolsubjects_id',
     ];
-    public function parentClass()
-    {
-        return $this->belongsTo(Classes::class, 'schoolsubjects_id');
-    }
-
-    
 }
+

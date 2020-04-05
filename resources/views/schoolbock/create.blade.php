@@ -25,6 +25,12 @@
         </div>
       </div>
       <div class="form-group row">
+        <div class="col-md-6 col-sm-6  form-group has-feedback">
+          <label for=""> Tên Lớp</label>
+        {{ Form::select('class_id', getListClass(), array('class' => 'form-control')) }}
+        </div>
+      </div>
+      <div class="form-group row">
           {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
           {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
       </div>

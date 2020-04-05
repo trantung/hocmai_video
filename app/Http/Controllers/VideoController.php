@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\classs;
+use App\videos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Classes;
 
-class ClassController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $data = classs::all();
-        return view('class.index')->with(compact('data'));
+        $data = videos::all();
+        return view('video.index')->with(compact('data'));
     }
 
     /**
@@ -26,7 +27,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('class.create');
+        return view('video.create');
     }
 
     /**
@@ -38,8 +39,9 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $classId = classs::create($input)->id;
-        return Redirect::action('ClassController@index');
+        $input['url'] = renderQrCode();
+        $userId = videos::create($input)->id;
+        return Redirect::action('VideoController@index');
     }
 
     /**
@@ -61,8 +63,7 @@ class ClassController extends Controller
      */
     public function edit($id)
     {
-        $class = classs::find($id);
-        return view('class.edit')->with(compact('class'));
+        //
     }
 
     /**
@@ -74,10 +75,7 @@ class ClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        $class = classs::find($id);
-        $class->update($input);
-        return Redirect::action('ClassController@index'); 
+        //
     }
 
     /**
@@ -88,7 +86,6 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        classs::destroy($id);
-        return Redirect::action('ClassController@index');
+        //
     }
 }

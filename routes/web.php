@@ -40,13 +40,26 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/level', 'LevelController');
     //Category
     Route::resource('/category', 'CategoryController');
-    //Schoolbocks
+    /* livestream hm */
+    //khối học
     Route::resource('/schoolbock', 'SchoolbocksController');
+    // môn học
+    Route::resource('/schoolSubject', 'SchoolSubjectController');
     //User
     Route::resource('/user', 'UserController');
-    //Class
+    //lớp học
     Route::resource('/class', 'ClassController');
+    // giáo viên
+    Route::resource('/teacher', 'TeacherController');
+    // video
+    Route::resource('/video','VideoController');
+    Route::get('/video_download/{id}', 'ProductToppingController@list');
+    Route::get('/video_download/{id}/create', 'ProductToppingController@create');
+    Route::post('/video_download/{id}/create', 'ProductToppingController@store');
     
+
+    /* end livestream hm */
+
     //Material type: don vi tinh cua nguyen lieu(kg, g...)
     Route::resource('/material_type', 'MaterialTypeController');
     //Material

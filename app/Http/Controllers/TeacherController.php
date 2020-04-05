@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\classs;
+use App\teachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class ClassController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $data = classs::all();
-        return view('class.index')->with(compact('data'));
+        $data = teachers::all();
+        return view('teacher.index')->with(compact('data'));
     }
 
     /**
@@ -26,7 +25,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('class.create');
+        return view('teacher.create');
     }
 
     /**
@@ -38,8 +37,8 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $classId = classs::create($input)->id;
-        return Redirect::action('ClassController@index');
+        $teacher = teachers::create($input)->id;
+        return Redirect::action('TeacherController@index');
     }
 
     /**
@@ -61,8 +60,8 @@ class ClassController extends Controller
      */
     public function edit($id)
     {
-        $class = classs::find($id);
-        return view('class.edit')->with(compact('class'));
+        $teacher = teachers::find($id);
+        return view('teacher.edit')->with(compact('teacher'));
     }
 
     /**
@@ -75,9 +74,9 @@ class ClassController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $class = classs::find($id);
-        $class->update($input);
-        return Redirect::action('ClassController@index'); 
+        $teacher = teachers::find($id);
+        $teacher->update($input);
+        return Redirect::action('TeacherController@index'); 
     }
 
     /**
@@ -88,7 +87,7 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        classs::destroy($id);
-        return Redirect::action('ClassController@index');
+        teachers::destroy($id);
+        return Redirect::action('TeacherController@index');
     }
 }
