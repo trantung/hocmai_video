@@ -12,11 +12,11 @@
           <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-play"></i></i> Livestream Tự động <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-play"></i></i> Livestream nguồn video <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="baiGiangHM.html">Từ bài giảng HOCMAI</a></li>
-          <li><a href="{{action('VideoController@index')}}">Từ video tải lên</a></li>
-          <li><a href="#">Video tải lên</a></li>
+          <li><a href="{{action('VideoController@downloadvideohm')}}">Cấu hình livestream từ HOCMAI</a></li>
+          <li><a href="{{action('VideoController@downloadvideo')}}">Cấu hình livestream từ nguồn khác</a></li>
+          <li><a href="{{action('VideoController@index')}}">Cài đặt nguồn video</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-video-camera"></i> Camera Livestream<span class="fa fa-chevron-down"></span></a>

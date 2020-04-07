@@ -31,7 +31,7 @@
                         <td>{{ getClassNameById($video->class_id) }}</td>
                         <td>{{ getMonNameById($video->schoolSubject_id) }}</td>
                         <td>{{$video->created_at}}</td>
-                        <td>Admin</td>
+                        <td>{{($video->user_id==1 ? 'admin': '')}}</td>
                         </tr>
                         @endforeach
                     </tbody>

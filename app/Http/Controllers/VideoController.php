@@ -39,7 +39,8 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['url'] = renderQrCode();
+        $input['user_id'] = 1;
+        //dd($input);
         $userId = videos::create($input)->id;
         return Redirect::action('VideoController@index');
     }
@@ -54,7 +55,16 @@ class VideoController extends Controller
     {
         //
     }
-
+    // cấu hình livestream học mãi
+    public function downloadvideohm(){
+        $data = videos::all();
+        return view('videohm.index')->with(compact('data'));
+    }
+    // cấu hình livestream nguồn khác
+    public function downloadvideo(){
+        $data = videos::all();
+        return view('downloadvideo.index')->with(compact('data'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,7 +85,7 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

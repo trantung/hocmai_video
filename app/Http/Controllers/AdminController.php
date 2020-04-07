@@ -17,7 +17,6 @@ class AdminController extends Controller
     public function postLogin(Request $request)
     {
         $input = $request->all();
-        //dd('2131', $input);
     	if (!Auth::attempt(['username' => $input['username'], 'password' => $input['password']])) {
             return Redirect::action('AdminController@getLogin');
         }

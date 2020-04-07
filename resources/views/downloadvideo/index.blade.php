@@ -1,8 +1,9 @@
-<div class="right_col" role="main">
+@extends('common.default')
+@section('content')
     <!-- top tiles -->
     <h3>Cài đặt chung Livestream</h3>
     <!-- main -content  -->
-    <div class="col-md-12" style="border: 2px solid; border-radius: 10px;min-height: 600px">
+    <div class="col-md-12">
         <div id="wizard_verticle" class="form_wizard wizard_verticle">
             <ul class="list-unstyled wizard_steps">
                 <li>
@@ -22,19 +23,19 @@
                 </li>
             </ul>
             <div id="step-11">
-                <h2 class="StepTitle">Thêm ID video HOCMAI</h2>
+                <span class="StepTitle">Thêm ID video nguồn khác</span>
                 <form class="form-horizontal form-label-left">
                     <div class="form-group row">
-                        <button class="col-form-label col-md-2 col-sm-2 btn btn-secondary" for="first-name">Load video
-                        </button>
                         <div class="col-md-6 col-sm-6">
                             <input type="text" id="first-name2" required="required" class="form-control">
                         </div>
+                        <button class="col-form-label col-md-2 col-sm-2 btn btn-secondary" for="first-name">Load video
+                        </button>
                     </div>
                     <div class="form-group row">
                         <p>Liên kết video </p><br><br>
                         <div class="col-md-12">
-                            <a href="https://hocmai.vn/">https://hocmai.vn/</a>
+                            <a href="#">https://hocmai.vn/</a>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -227,4 +228,59 @@
             </div>
         </div>
     </div>
-</div>
+    <script>
+            function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imageResult')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(function() {
+        $('#upload').on('change', function() {
+            readURL(input);
+        });
+    });
+
+    function readURL1(input) {
+        if (input1.files && input1.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imageResult1')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input1.files[0]);
+        }
+    }
+    $(function() {
+        $('#upload1').on('change', function() {
+            readURL1(input);
+        });
+    });
+    /*  ==========================================
+        SHOW UPLOADED IMAGE NAME
+    * ========================================== */
+    var input = document.getElementById('upload');
+    var infoArea = document.getElementById('upload-label');
+    var input1 = document.getElementById('upload1');
+    var infoArea1 = document.getElementById('upload-label1');
+
+    input.addEventListener('change', showFileName);
+
+    function showFileName(event) {
+        var input = event.srcElement;
+        var fileName = input.files[0].name;
+        infoArea.textContent = 'File name: ' + fileName;
+    }
+    input1.addEventListener('change', showFileName1);
+
+    function showFileName1(event) {
+        var input1 = event.srcElement;
+        var fileName1 = input1.files[0].name;
+        infoArea1.textContent = 'File name: ' + fileName1;
+    }
+    </script>
+@stop

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClassesTable extends Migration
+class AddSourceToVideos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('videos', function (Blueprint $table) {
+            $table->string('source')->nullable()->after('desc');
+            //nguồn tải lên video
         });
     }
 
@@ -26,6 +26,8 @@ class CreateClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::table('videos', function (Blueprint $table) {
+            $table->dropColumn('source');
+        });
     }
 }

@@ -40,26 +40,6 @@
                   </td>
                   <td><span class="badge badge-success">Đang phát</span></td>
                 </tr>
-                <tr data-status="suspended">
-                  <td>2</td>
-                  <td>a</td>
-                  <td>jacob</td>
-                  <td>jacob@gnail.com</td>
-                  <td>
-                    1132131
-                  </td>
-                  <td><span class="badge badge-warning">Hẹn giờ phát</span></td>
-                </tr>
-                <tr data-status="pending">
-                  <td>3</td>
-                  <td>a</td>
-                  <td>jacob</td>
-                  <td>jacob@gnail.com</td>
-                  <td>
-                    1132131
-                  </td>
-                  <td><span class="badge badge-info">Đã phát xong</span></td>
-                </tr>
               </tbody>
             </table>
           </div>

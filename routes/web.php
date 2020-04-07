@@ -53,9 +53,11 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/teacher', 'TeacherController');
     // video
     Route::resource('/video','VideoController');
-    Route::get('/video_download/{id}', 'ProductToppingController@list');
-    Route::get('/video_download/{id}/create', 'ProductToppingController@create');
-    Route::post('/video_download/{id}/create', 'ProductToppingController@store');
+    Route::get('/downloadvideo', 'VideoController@downloadvideo');
+    Route::get('/downloadvideohm', 'VideoController@downloadvideohm');
+    Route::post('/downloadvideo', 'VideoController@downloadvideo');
+    Route::post('/downloadvideohm', 'VideoController@downloadvideohm');
+    
     
 
     /* end livestream hm */

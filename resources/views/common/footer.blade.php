@@ -1,3 +1,5 @@
+  <!-- js -->
+  <script src="{{url('../../js/video.js')}}"></script>
  <!-- jQuery -->
  <script src="{{url('../../vendor/jquery/dist/jquery.min.js')}}"></script>
   <!-- Bootstrap -->
@@ -54,7 +56,9 @@
   <script src="{{url('../../vendor/jszip/dist/jszip.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/pdfmake.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/vfs_fonts.js')}}"></script>
-
+    <!-- jQuery Smart Wizard -->
+    <script src="{{url('../../vendor/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
+  
   <script>
     $(document).ready(function() {
       $('.star').on('click', function() {

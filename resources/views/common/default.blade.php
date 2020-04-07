@@ -18,7 +18,7 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>Đăng đẹp zai</h2>
+              <h2>Minh Đăng</h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -31,7 +31,7 @@
       @include('common.nav_bar')
       <!-- /top navigation -->
       <!-- page content -->
-      <div class="right_col" role="main">
+      <div class="right_col" role="main" style="height:auto">
         <!-- top tiles -->
         <!-- main -content  -->
         @yield('content')
