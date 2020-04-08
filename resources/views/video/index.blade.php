@@ -4,10 +4,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
-                <div class="pull-left">
-                    <h2>Tải video</h2>
-                </div>
-                <div class="pull-right"><a href="{{action('VideoController@create')}}" class="btn btn-info" id="addVideo"><i class="fa fa-plus"></i>Tải video</a></div>
+                <div class="pull-right"><a href="{{action('VideoController@create')}}" class="btn btn-info" id="addVideo"><i class="fa fa-plus"></i>Thêm mới video</a></div>
                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>

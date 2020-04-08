@@ -57,8 +57,11 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::get('/downloadvideohm', 'VideoController@downloadvideohm');
     Route::post('/downloadvideo', 'VideoController@downloadvideo');
     Route::post('/downloadvideohm', 'VideoController@downloadvideohm');
-    
-    
+    //video_hocmai_videos
+    Route::resource('/hocmaivideo','HocMaiVideoController');
+    Route::resource('/videohocmaivideo','VideoHocMaiVideoController');
+    Route::resource('/videoanothervideo','VideoAnotherVideoController');
+    Route::resource('/videoanother','VideoAnotherController');
 
     /* end livestream hm */
 

@@ -4,7 +4,7 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Quản lý tài khoản người dùng<small><a href="{{ action('SchoolbocksController@create') }}"><i class="fa fa-plus-circle"></i> Thêm mới</a></small></h2>
+        <h2>Quản lý Khối<small><a href="{{ action('SchoolbocksController@create') }}"><i class="fa fa-plus-circle"></i> Thêm mới</a></small></h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
