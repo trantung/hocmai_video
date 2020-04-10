@@ -83,7 +83,26 @@ function getRoleNameById($id)
 
 function getArrayStatus()
 {
-    return [1 => 'Active', 0 => 'Inactive'];
+    return [0 => 'Không đăng nhập', 1 => 'Đăng nhập'];
+}
+
+function getListRepeat()
+{
+    $array = [
+        1 => 'Lặp lại 1 lần',
+        2 => 'Lặp lại 2 lần',
+        3 => 'Lặp lại 3 lần'
+    ];
+    return $array;
+}
+
+function getListTimePublish()
+{
+    $array = [
+        0 => 'Đăng ngay',
+        1 => 'Hẹn giờ',
+    ];
+    return $array;
 }
 
 function renderCodeOrder()

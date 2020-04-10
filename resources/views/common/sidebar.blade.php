@@ -19,7 +19,7 @@
       </li>
       <li><a><i class="fa fa-play"></i></i> Livestream nguồn video <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{action('VideoController@downloadvideohm')}}">Cấu hình livestream từ HOCMAI</a></li>
+          <li><a href="{{action('LivestreamHocmaiVideoController@create')}}">Cấu hình livestream từ HOCMAI</a></li>
           <li><a href="{{action('LivestreamAnotherVideoController@create')}}">Cấu hình livestream từ nguồn khác</a></li>
           <li><a href="{{action('AnotherVideoController@index')}}">Cài đặt nguồn video</a></li>
         </ul>

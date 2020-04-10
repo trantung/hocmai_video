@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Livestream;
 
 class AdminController extends Controller
 {
@@ -53,7 +54,8 @@ class AdminController extends Controller
     
     public function index()
     {
-        return view('admin.index');
+        $data = Livestream::all();
+        return view('admin.index')->with(compact('data'));
     }
 
     

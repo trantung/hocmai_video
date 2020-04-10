@@ -22,7 +22,8 @@ class AjaxController extends Controller
         $response = array(
           'status' => 'success',
           'video_title' => $anotherVideo->title,
-          'video_id' => $anotherVideo->source_id,
+          'source_id' => $anotherVideo->source_id,
+          'video_id' => $anotherVideo->id,
         );
         return response()->json($response); 
         
