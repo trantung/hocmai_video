@@ -5,12 +5,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class HocMaiClass extends Model
 {
-    protected $table = 'class';
+    protected $table = 'classes';
     protected $fillable =[
         'name',
         'desc',
         'schoolblock_id',
-        'schoolsubjects_id',
+        'subject_id',
     ];
 
 }

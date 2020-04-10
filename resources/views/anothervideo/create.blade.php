@@ -3,7 +3,7 @@
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2 class="navbar-left">Thêm mới && <a class="btn btn-danger" href="{{ action('HocMaiVideoController@index') }}">Trở lại</a></h2>
+      <h2 class="navbar-left"><a class="btn btn-danger" href="{{ action('AnotherVideoController@index') }}">Trở lại</a></h2>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -13,40 +13,37 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'POST', 'action' => array('HocMaiVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
+      {{ Form::open(array('method'=>'POST', 'action' => array('AnotherVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label for="">ID Học Mãi</label>
-          {{ Form::number('scorm_id', null, array('class' => 'form-control has-feedback-left')) }}
+          <label class="control-label col-md-3 col-sm-3" for="title"> Tiêu đề</label>
+          {{ Form::text('title', null, array('class' => 'form-control has-feedback-left','id'=>'title')) }}
         </div>
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label for="">Tiêu đề</label>
-          {{ Form::text('title', null, array('class' => 'form-control has-feedback-left')) }}
-        </div>
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label for="">Link video</label>
-          {{ Form::text('url', null, array('class' => 'form-control has-feedback-left')) }}
+        <div class="col-md-8 col-sm-4  form-group has-feedback">
+          <label class="control-label col-md-3 col-sm-3" for="url"> url</label>
+          {{ Form::text('url', null, array('class' => 'form-control has-feedback-left','id'=>'url')) }}
         </div>
       </div>
       <div class="form-group row">
         <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Tên Khối</label>
+          <label class="control-label col-md-3 col-sm-3">Khối</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}
           </div>
         </div>
         <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Tên Lớp</label>
+          <label class="control-label col-md-3 col-sm-3">Lớp</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('class_id', getListClass(), array('class' => 'form-control')) }}
           </div>
         </div>
         <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Tên Môn</label>
+          <label class="control-label col-md-3 col-sm-3">Môn</label>
           <div class="col-md-10 col-sm-10 ">
-            {{ Form::select('schoolsubject_id', getListMon(), array('class' => 'form-control')) }}
+            {{ Form::select('subject_id', getListMon(), array('class' => 'form-control')) }}
           </div>
         </div>
+
       </div>
       <div class="form-group row">
         {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}

@@ -57,7 +57,6 @@
   <script src="{{url('../../vendor/pdfmake/build/pdfmake.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- jQuery Smart Wizard -->
-    <script src="{{url('../../vendor/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
   
   <script>
     $(document).ready(function() {
@@ -78,8 +77,39 @@
           $('.table tr').css('display', 'none').fadeIn('slow');
         }
       });
+      //tung
+      $('#load_video_source').click(function(e) {
+            var video_source_id = $("#video_source_id").val();
+            var csrf = '{{csrf_token()}}';
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/ajax/load_video_source",
+                data: { 
+                    video_source_id: video_source_id, // < note use of 'this' here
+                    _token: '{{csrf_token()}}'
+                },
+                dataType : 'json',
+                success: function(data) {
+                  if (data.status == 'Fail') {
+                    var error_load = '<p style="color:red;">'+ data.msg + '</p>';
+                    $("#error_load_video_source").append(error_load);
+                  }
+                  if (data.status == 'success') {
+                    var text = '<div class="col-md-12">' + '<a href="/admin/preview/video/' + data.video_id + '"' + 'target="_blank">' + 
+                    data.video_title +'</a>' + '</div>';
+                      $("#video_source_detail").append(text);
+                  }
+                },
+                error: function(data) {
+                    alert(data);
+                }
+            });
+        });
+      //end tung
     });
   </script>
+    <script src="{{url('../../vendor/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 
 </body>
 </html>

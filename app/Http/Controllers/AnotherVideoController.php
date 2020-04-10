@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\SchoolBlock;
+use App\AnotherVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class SchoolBlockController extends Controller
+class AnotherVideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class SchoolBlockController extends Controller
      */
     public function index()
     {
-        $data = SchoolBlock::all();
-        return view('schoolblock.index')->with(compact('data'));
+        $data = AnotherVideo::all();
+        return view('anothervideo.index')->with(compact('data'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SchoolBlockController extends Controller
      */
     public function create()
     {
-        return view('schoolblock.create');
+        return view('anothervideo.create');
     }
 
     /**
@@ -38,8 +38,9 @@ class SchoolBlockController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $schoolblock = SchoolBlock::create($input)->id;
-        return Redirect::action('SchoolBlockController@index');
+        $input['source_id'] = getIdFromSourceVideo($input['url']);
+        $id = AnotherVideo::create($input)->id;
+        return Redirect::action('AnotherVideoController@index');
     }
 
     /**
@@ -50,7 +51,8 @@ class SchoolBlockController extends Controller
      */
     public function show($id)
     {
-        //
+        $anothervideo = AnotherVideo::find($id);
+        return view('anothervideo.show',compact('anothervideo'));
     }
 
     /**
@@ -61,8 +63,8 @@ class SchoolBlockController extends Controller
      */
     public function edit($id)
     {
-        $schoolblock = SchoolBlock::find($id);
-        return view('schoolblock.edit')->with(compact('schoolblock'));
+        $anothervideo = AnotherVideo::find($id);
+        return view('anothervideo.edit')->with(compact('anothervideo'));
     }
 
     /**
@@ -75,9 +77,9 @@ class SchoolBlockController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $schoolblock = SchoolBlock::find($id);
-        $schoolblock->update($input);
-        return Redirect::action('SchoolBlockController@index'); 
+        $videoanother = AnotherVideo::find($id);
+        $videoanother->update($input);
+        return Redirect::action('AnotherVideoController@index'); 
     }
 
     /**
@@ -88,7 +90,7 @@ class SchoolBlockController extends Controller
      */
     public function destroy($id)
     {
-        SchoolBlock::destroy($id);
-        return Redirect::action('SchoolBlockController@index');
+        AnotherVideo::destroy($id);
+        return Redirect::action('AnotherVideoController@index');
     }
 }

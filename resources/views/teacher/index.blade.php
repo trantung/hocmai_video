@@ -5,7 +5,11 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Quản lý Giáo viên<small><a href="{{ action('TeacherController@create') }}"><i class="fa fa-plus-circle"></i> Thêm mới</a></small></h2>
+        <h2>Quản lý Giáo viên</h2>
+        <div class="pull-right">
+          <a href="{{action('TeacherController@create')}}" class="btn btn-info" id="addVideo">
+          <i class="fa fa-plus"></i>Thêm mới giáo viên</a>
+        </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -20,8 +24,8 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Tên môn</th>
-                    <th>mô tả</th>
+                    <th>Tên giáo viên</th>
+                    <th>Mô tả</th>
                     <th colspan="2">Hành động</th>
                   </tr>
                 </thead>

@@ -6,7 +6,7 @@
                 <h2>Hiện thị danh sách video</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('hocmaivideo.index') }}"><i class="fa fa-backward" style="color:aliceblue"></i></a>
+                <a class="btn btn-primary" href="{{ route('videoanother.index') }}"><i class="fa fa-backward" style="color:aliceblue"></i></a>
             </div>
         </div>
     </div>
@@ -14,32 +14,32 @@
     <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="form-group">
-                <label>Tiêu đề:</label>
-                {{ $hocmaivideo->title }}
+                <strong>Tiêu đề:</strong>
+                {{ $videoanother->title }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="form-group">
-                <label>url:</label>
-                {{ $hocmaivideo->url }}
+                <strong>url:</strong>
+                {{ $videoanother->url }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="form-group">
-                <label>Khối :</label>
-                {{ getKhoiNameById($hocmaivideo->schoolblock_id) }}
+                <strong>Khối</strong>
+                {{ getKhoiNameById($videoanother->schoolblock_id) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="form-group">
-                <label>Lớp:</label>
-                {{ getClassNameById($hocmaivideo->class_id) }}
+                <strong>Lớp:</strong>
+                {{ getClassNameById($videoanother->class_id) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="form-group">
-                <label>Môn:</label>
-                {{ getMonNameById($hocmaivideo->schoolsubject_id) }}
+                <strong>Môn:</strong>
+                {{ getMonNameById($videoanother->schoolsubject_id) }}
             </div>
         </div>
     </div>

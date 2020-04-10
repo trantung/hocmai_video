@@ -26,12 +26,6 @@
       </div>
       <div class="form-group row">
         <div class="col-md-6 col-sm-6  form-group has-feedback">
-            <label class="control-label col-md-2 col-sm-2">Môn</label>
-            <div class="col-md-11 col-sm-11 ">
-              {{ Form::select('schoolsubjects_id', getListMon(), array('class' => 'form-control')) }}
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
             <label class="control-label col-md-2 col-sm-2">Khối</label>
             <div class="col-md-11 col-sm-11 ">
               {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\SchoolBlock;
+use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class SchoolBlockController extends Controller
+
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class SchoolBlockController extends Controller
      */
     public function index()
     {
-        $data = SchoolBlock::all();
-        return view('schoolblock.index')->with(compact('data'));
+        $data = Subject::all();
+        return view('subject.index')->with(compact('data'));
     }
 
     /**
@@ -26,7 +27,7 @@ class SchoolBlockController extends Controller
      */
     public function create()
     {
-        return view('schoolblock.create');
+        return view('subject.create');
     }
 
     /**
@@ -38,8 +39,8 @@ class SchoolBlockController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $schoolblock = SchoolBlock::create($input)->id;
-        return Redirect::action('SchoolBlockController@index');
+        $subjectid = Subject::create($input)->id;
+        return Redirect::action('SubjectController@index');
     }
 
     /**
@@ -61,8 +62,8 @@ class SchoolBlockController extends Controller
      */
     public function edit($id)
     {
-        $schoolblock = SchoolBlock::find($id);
-        return view('schoolblock.edit')->with(compact('schoolblock'));
+        $subject = Subject::find($id);
+        return view('subject.edit')->with(compact('subject'));
     }
 
     /**
@@ -75,9 +76,9 @@ class SchoolBlockController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $schoolblock = SchoolBlock::find($id);
-        $schoolblock->update($input);
-        return Redirect::action('SchoolBlockController@index'); 
+        $subject = Subject::find($id);
+        $subject->update($input);
+        return Redirect::action('SubjectController@index'); 
     }
 
     /**
@@ -88,7 +89,7 @@ class SchoolBlockController extends Controller
      */
     public function destroy($id)
     {
-        SchoolBlock::destroy($id);
-        return Redirect::action('SchoolBlockController@index');
+        Subject::destroy($id);
+        return Redirect::action('SubjectController@index');
     }
 }

@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HocmaiVideo extends Model
+class AnotherVideo extends Model
 {
-    protected $table = 'hocmai_videos';
+    protected $table = 'another_videos';
     protected $fillable =[
-        'scorm_id',
         'title',
         'url',
         'class_id',
         'schoolblock_id',
         'subject_id',
+        'source_id'
     ];
 }

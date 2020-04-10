@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\SchoolBlock;
+use App\Livestream;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Classes;
 
-class SchoolBlockController extends Controller
+class LivestreamAnotherVideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class SchoolBlockController extends Controller
      */
     public function index()
     {
-        $data = SchoolBlock::all();
-        return view('schoolblock.index')->with(compact('data'));
+        $data = Livestream::all();
+        return view('livestream_another_video.index')->with(compact('data'));
     }
 
     /**
@@ -26,8 +27,8 @@ class SchoolBlockController extends Controller
      */
     public function create()
     {
-        return view('schoolblock.create');
-    }
+        return view('livestream_another_video.create');
+    }   
 
     /**
      * Store a newly created resource in storage.
@@ -38,8 +39,10 @@ class SchoolBlockController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $schoolblock = SchoolBlock::create($input)->id;
-        return Redirect::action('SchoolBlockController@index');
+        $input['user_id'] = 1;
+        //dd($input);
+        $userId = Livestream::create($input)->id;
+        return Redirect::action('LivestreamAnotherVideoController@index');
     }
 
     /**
@@ -52,7 +55,16 @@ class SchoolBlockController extends Controller
     {
         //
     }
-
+    // cấu hình livestream học mãi
+    public function downloadvideohm(){
+        $data = Livestream::all();
+        return view('videohm.index')->with(compact('data'));
+    }
+    // cấu hình livestream nguồn khác
+    public function downloadvideo(){
+        $data = Livestream::all();
+        return view('downloadvideo.index')->with(compact('data'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -61,8 +73,7 @@ class SchoolBlockController extends Controller
      */
     public function edit($id)
     {
-        $schoolblock = SchoolBlock::find($id);
-        return view('schoolblock.edit')->with(compact('schoolblock'));
+        //
     }
 
     /**
@@ -74,10 +85,7 @@ class SchoolBlockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        $schoolblock = SchoolBlock::find($id);
-        $schoolblock->update($input);
-        return Redirect::action('SchoolBlockController@index'); 
+        
     }
 
     /**
@@ -88,7 +96,6 @@ class SchoolBlockController extends Controller
      */
     public function destroy($id)
     {
-        SchoolBlock::destroy($id);
-        return Redirect::action('SchoolBlockController@index');
+        //
     }
 }

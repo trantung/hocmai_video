@@ -13,12 +13,10 @@ class CreateSchoolSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_subjects', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('desc');
-            $table->integer('class_id');
-            $table->integer('teacher_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateSchoolSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_subjects');
+        Schema::dropIfExists('subjects');
     }
 }
