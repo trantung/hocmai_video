@@ -25,20 +25,6 @@
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
-            <label class="control-label col-md-3 col-sm-3">Tên Lớp</label>
-            <div class="col-md-10 col-sm-10 ">
-              {{ Form::select('class_id', getListClass(), array('class' => 'form-control')) }}
-            </div>   
-        </div>
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
-            <label class="control-label col-md-3 col-sm-3">Tên Môn</label>
-            <div class="col-md-10 col-sm-10 ">
-              {{ Form::select('schoolSubjects_id', getListMon(), array('class' => 'form-control')) }}
-            </div>   
-        </div>
-      </div>
-      <div class="form-group row">
           {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
           {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
       </div>

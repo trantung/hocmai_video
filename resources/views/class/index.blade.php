@@ -4,7 +4,11 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Quản lý Lớp<small><a href="{{ action('ClassController@create') }}"><i class="fa fa-plus-circle"></i> Thêm mới</a></small></h2>
+        <h2>Quản lý Lớp</h2>
+        <div class="pull-right">
+          <a href="{{action('ClassController@create')}}" class="btn btn-info" id="addVideo">
+          <i class="fa fa-plus"></i>Thêm mới lớp</a>
+        </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>

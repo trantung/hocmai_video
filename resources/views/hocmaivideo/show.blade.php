@@ -27,7 +27,7 @@
         <div class="col-xs-12 col-sm-3 col-md-3">
             <div class="form-group">
                 <label>Khối :</label>
-                {{ getKhoiNameById($hocmaivideo->schoolbock_id) }}
+                {{ getKhoiNameById($hocmaivideo->schoolblock_id) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3">

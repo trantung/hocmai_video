@@ -38,7 +38,7 @@
         <div class="col-md-4 col-sm-4  form-group has-feedback">
             <label class="control-label col-md-2 col-sm-2">Khối</label>
             <div class="col-md-11 col-sm-11 ">
-              {{ Form::select('schoolbock_id', getListKhoi(),$hocmaivideo->schoolbock_id, array('class' => 'form-control')) }}
+              {{ Form::select('schoolblock_id', getListKhoi(),$hocmaivideo->schoolblock_id, array('class' => 'form-control')) }}
             </div>
         </div>
         <div class="col-md-4 col-sm-4  form-group has-feedback">

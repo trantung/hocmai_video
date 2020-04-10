@@ -16,34 +16,21 @@
       {{ Form::open(array('method'=>'PUT', 'action' => array('TeacherController@update', $teacher->id))) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6  form-group has-feedback">
-        <label class="control-label col-md-2 col-sm-2">Tên lớp</label>
+        <label class="control-label col-md-2 col-sm-2">Tên</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::text('name', $teacher->name, array('class' => 'form-control has-feedback-left','placeholder'=>'Tên lớp')) }}
+            {{ Form::text('name', $teacher->name, array('class' => 'form-control has-feedback-left','placeholder'=>'Tên giáo viên')) }}
             <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
           </div>
         </div>
         <div class="col-md-6 col-sm-6  form-group has-feedback">
           <label class="control-label col-md-2 col-sm-2">Mô tả</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::text('desc', $teacher->desc, array('class' => 'form-control has-feedback-left','placeholder'=>'mô tả')) }}
+            {{ Form::text('desc', $teacher->desc, array('class' => 'form-control has-feedback-left','placeholder'=>'Mô tả')) }}
             <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
           </div>
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
-            <label class="control-label col-md-2 col-sm-2">Lớp</label>
-            <div class="col-md-11 col-sm-11 ">
-              {{ Form::select('class_id', getListClass(),$teacher->class_id, array('class' => 'form-control')) }}
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
-            <label class="control-label col-md-2 col-sm-2">Môn</label>
-            <div class="col-md-11 col-sm-11 ">
-              {{ Form::select('schoolSubjects_id', getListMon(),$teacher->schoolSubjects_id, array('class' => 'form-control')) }}
-            </div>
-        </div>
-      </div>
+      
       <div class="form-group row">
           {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
       </div>

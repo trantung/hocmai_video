@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\hocmai_videos;
+use App\HocmaiVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,7 +15,7 @@ class HocMaiVideoController extends Controller
      */
     public function index()
     {
-        $data = hocmai_videos::all();
+        $data = HocmaiVideo::all();
         return view('hocmaivideo.index')->with(compact('data'));
     }
 
@@ -38,7 +38,7 @@ class HocMaiVideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $classId = hocmai_videos::create($input)->id;
+        $classId = HocmaiVideo::create($input)->id;
         return Redirect::action('HocMaiVideoController@index');
     }
 
@@ -50,7 +50,7 @@ class HocMaiVideoController extends Controller
      */
     public function show($id)
     {
-        $hocmaivideo = hocmai_videos::find($id);
+        $hocmaivideo = HocmaiVideo::find($id);
         return view('hocmaivideo.show')->with(compact('hocmaivideo'));
     }
 
@@ -62,7 +62,7 @@ class HocMaiVideoController extends Controller
      */
     public function edit($id)
     {
-        $hocmaivideo = hocmai_videos::find($id);
+        $hocmaivideo = HocmaiVideo::find($id);
         return view('hocmaivideo.edit')->with(compact('hocmaivideo'));
     }
 
@@ -76,7 +76,7 @@ class HocMaiVideoController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $hocmaivideo = hocmai_videos::find($id);
+        $hocmaivideo = HocmaiVideo::find($id);
         $hocmaivideo->update($input);
         return Redirect::action('HocMaiVideoController@index'); 
     }
@@ -89,7 +89,7 @@ class HocMaiVideoController extends Controller
      */
     public function destroy($id)
     {
-        hocmai_videos::destroy($id);
+        HocmaiVideo::destroy($id);
         return Redirect::action('HocMaiVideoController@index');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\classs;
+use App\HocMaiClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,7 +15,7 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $data = classs::all();
+        $data = HocMaiClass::all();
         return view('class.index')->with(compact('data'));
     }
 
@@ -38,7 +38,7 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $classId = classs::create($input)->id;
+        $classId = HocMaiClass::create($input)->id;
         return Redirect::action('ClassController@index');
     }
 
@@ -61,7 +61,7 @@ class ClassController extends Controller
      */
     public function edit($id)
     {
-        $class = classs::find($id);
+        $class = HocMaiClass::find($id);
         return view('class.edit')->with(compact('class'));
     }
 
@@ -75,7 +75,7 @@ class ClassController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $class = classs::find($id);
+        $class = HocMaiClass::find($id);
         $class->update($input);
         return Redirect::action('ClassController@index'); 
     }
@@ -88,7 +88,7 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        classs::destroy($id);
+        HocMaiClass::destroy($id);
         return Redirect::action('ClassController@index');
     }
 }

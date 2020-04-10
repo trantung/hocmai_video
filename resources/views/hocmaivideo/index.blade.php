@@ -36,7 +36,7 @@
                     <td>{{ $hocmaivideo->scorm_id }}</td>
                     <td>{{ $hocmaivideo->title }}</td>
                     <td>{{ $hocmaivideo->url }}</td>
-                    <td>{{ getKhoiNameById($hocmaivideo->schoolbock_id) }}</td>
+                    <td>{{ getKhoiNameById($hocmaivideo->schoolblock_id) }}</td>
                     <td>{{ getClassNameById($hocmaivideo->class_id) }}</td>
                     <td>{{ getMonNameById($hocmaivideo->schoolsubject_id) }}</td>
                     <td>

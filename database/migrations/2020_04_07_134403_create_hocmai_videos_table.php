@@ -19,8 +19,8 @@ class CreateHocmaiVideosTable extends Migration
             $table->integer('scorm_id');
             $table->string('url');
             $table->integer('class_id');
-            $table->integer('schoolbock_id');
-            $table->integer('schoolsubject_id');
+            $table->integer('schoolblock_id');
+            $table->integer('subject_id');
             $table->timestamps();
         });
     }
