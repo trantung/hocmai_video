@@ -5,6 +5,7 @@ use App\SchoolSubject;
 use App\Teacher;
 use App\HocMaiClass;
 use APV\User;
+use APV\User\Models\Role;
 
 function getNameOfCategoryParent($category)
 {
