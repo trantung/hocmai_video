@@ -6,7 +6,7 @@
       
       <li><a href="#"><i class="fa fa-cog"></i> Quản lý Video <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{action('HocMaiVideoController@index')}}">Quản lý video học mãi</a></li>
+         
         </ul>
       </li>
       <li><a><i class="fa fa-play"></i></i> Livestream nguồn video <span class="fa fa-chevron-down"></span></a>
@@ -14,6 +14,7 @@
           <li><a href="{{action('LivestreamHocmaiVideoController@create')}}">Cấu hình livestream từ HOCMAI</a></li>
           <li><a href="{{action('LivestreamAnotherVideoController@create')}}">Cấu hình livestream từ nguồn khác</a></li>
           <li><a href="{{action('AnotherVideoController@index')}}">Cài đặt nguồn video</a></li>
+          <li><a href="{{action('HocMaiVideoController@index')}}">Cài đặt video học mãi</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-video-camera"></i> Camera Livestream<span class="fa fa-chevron-down"></span></a>

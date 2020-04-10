@@ -5,8 +5,7 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Quản lý môn học</h2>
-        <div class="pull-right">
+        <div class="pull-left">
           <a href="{{action('SubjectController@create')}}" class="btn btn-info" id="addVideo">
           <i class="fa fa-plus"></i>Thêm mới môn</a>
         </div>
