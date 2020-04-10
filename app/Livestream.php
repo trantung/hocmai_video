@@ -9,19 +9,17 @@ class Livestream extends Model
     protected $table = 'livestreams';
     protected $fillable =[
         'name',
-        'desc',
-        'class_id',
-        'type',
         'image_small',
         'image_big',
-        'url',
-        'comment',
-        'DateCreated',
-        'DisplayDate',
-        'user_id',
-        'schoolblock_id',
-        'subject_id',
+        'require_login',
+        'description',
+        'publish_time',
+        'timer_clock',
+        'repeat',
         'teacher_id',
+        'schoolblock_id',
+        'class_id',
+        'schoolblock_id',
     ];
     
 }

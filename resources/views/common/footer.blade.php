@@ -57,6 +57,9 @@
   <script src="{{url('../../vendor/pdfmake/build/pdfmake.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- jQuery Smart Wizard -->
+
+  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+  <script> CKEDITOR.replace('editor1'); </script>
   
   <script>
     $(document).ready(function() {
@@ -96,9 +99,10 @@
                     $("#error_load_video_source").append(error_load);
                   }
                   if (data.status == 'success') {
-                    var text = '<div class="col-md-12">' + '<a href="/admin/preview/video/' + data.video_id + '"' + 'target="_blank">' + 
-                    data.video_title +'</a>' + '</div>';
-                      $("#video_source_detail").append(text);
+                    var hidden = '<input type="hidden" name="video_source_id[]" value="' + data.video_id + '">';
+                    var text = '<div class="col-md-12">' + '<a href="/admin/preview/video/' + data.source_id + '"' + 'target="_blank">' + 
+                    data.video_title +'</a>' + '</div>' + hidden;
+                    $("#video_source_detail").append(text);
                   }
                 },
                 error: function(data) {

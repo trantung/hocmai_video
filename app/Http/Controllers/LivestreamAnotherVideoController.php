@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Livestream;
+use App\LivestreamAnotherVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\Classes;
 
 class LivestreamAnotherVideoController extends Controller
 {
@@ -39,63 +39,25 @@ class LivestreamAnotherVideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['user_id'] = 1;
-        //dd($input);
-        $userId = Livestream::create($input)->id;
-        return Redirect::action('LivestreamAnotherVideoController@index');
-    }
+        $livestreamId = Livestream::create($input)->id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-    // cấu hình livestream học mãi
-    public function downloadvideohm(){
-        $data = Livestream::all();
-        return view('videohm.index')->with(compact('data'));
-    }
-    // cấu hình livestream nguồn khác
-    public function downloadvideo(){
-        $data = Livestream::all();
-        return view('downloadvideo.index')->with(compact('data'));
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $fileSmall = request()->file('file_image_small');
+        $fileNameImage = $fileSmall->getClientOriginalName();
+        $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
+        $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-    }
+        $fileBig = request()->file('file_image_big');
+        $fileNameImage = $fileBig->getClientOriginalName();
+        $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
+        $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
+        //luu vao bang livestream_another_videos
+        foreach ($input['video_source_id'] as $key => $value) {
+            LivestreamAnotherVideo::create(['livestream_id' => $livestreamId, 'another_video_id' => $value]);
+        }
+
+        return Redirect::action('LivestreamAnotherVideoController@create');
     }
+ 
 }

@@ -21,7 +21,7 @@
             <table class="table table-filter table-hover m-b-0" id="datatable">
               <thead>
                 <tr>
-                  <th>STT</th>
+                  <th>Id</th>
                   <th>Tiêu đề</th>
                   <th>Ngày tạo</th>
                   <th>Thời gian phát</th>
@@ -30,16 +30,18 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($data as $value)
                 <tr data-status="approved">
-                  <td>1</td>
-                  <td>a</td>
-                  <td>jacob</td>
+                  <td>{{ $value->id }}</td>
+                  <td>{{ $value->name }}</td>
+                  <td>{{ $value->created_at }}</td>
                   <td>jacob@gnail.com</td>
                   <td>
                     1132131
                   </td>
                   <td><span class="badge badge-success">Đang phát</span></td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
