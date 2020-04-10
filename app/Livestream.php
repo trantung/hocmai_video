@@ -17,6 +17,9 @@ class Livestream extends Model
         'timer_clock',
         'repeat',
         'teacher_id',
+        'schoolblock_id',
+        'class_id',
+        'schoolblock_id',
     ];
     
 }
