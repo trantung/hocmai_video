@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\HocmaiVideo;
+use App\SchoolBlock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class HocMaiVideoController extends Controller
+class SchoolBlockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class HocMaiVideoController extends Controller
      */
     public function index()
     {
-        $data = HocmaiVideo::all();
-        return view('hocmaivideo.index')->with(compact('data'));
+        $data = SchoolBlock::all();
+        return view('schoolbock.index')->with(compact('data'));
     }
 
     /**
@@ -26,7 +26,7 @@ class HocMaiVideoController extends Controller
      */
     public function create()
     {
-        return view('hocmaivideo.create');
+        return view('schoolbock.create');
     }
 
     /**
@@ -38,8 +38,8 @@ class HocMaiVideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $classId = HocmaiVideo::create($input)->id;
-        return Redirect::action('HocMaiVideoController@index');
+        $schoolbock = SchoolBlock::create($input)->id;
+        return Redirect::action('SchoolBlockController@index');
     }
 
     /**
@@ -50,8 +50,7 @@ class HocMaiVideoController extends Controller
      */
     public function show($id)
     {
-        $hocmaivideo = HocmaiVideo::find($id);
-        return view('hocmaivideo.show')->with(compact('hocmaivideo'));
+        //
     }
 
     /**
@@ -62,8 +61,8 @@ class HocMaiVideoController extends Controller
      */
     public function edit($id)
     {
-        $hocmaivideo = HocmaiVideo::find($id);
-        return view('hocmaivideo.edit')->with(compact('hocmaivideo'));
+        $schoolbock = SchoolBlock::find($id);
+        return view('schoolbock.edit')->with(compact('schoolbock'));
     }
 
     /**
@@ -76,9 +75,9 @@ class HocMaiVideoController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $hocmaivideo = HocmaiVideo::find($id);
-        $hocmaivideo->update($input);
-        return Redirect::action('HocMaiVideoController@index'); 
+        $schoolbock = SchoolBlock::find($id);
+        $schoolbock->update($input);
+        return Redirect::action('SchoolBlockController@index'); 
     }
 
     /**
@@ -89,7 +88,7 @@ class HocMaiVideoController extends Controller
      */
     public function destroy($id)
     {
-        HocmaiVideo::destroy($id);
-        return Redirect::action('HocMaiVideoController@index');
+        SchoolBlock::destroy($id);
+        return Redirect::action('SchoolBlockController@index');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\teachers;
+use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,7 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $data = teachers::all();
+        $data = Teacher::all();
         return view('teacher.index')->with(compact('data'));
     }
 
@@ -37,7 +37,7 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $teacher = teachers::create($input)->id;
+        $teacher = Teacher::create($input)->id;
         return Redirect::action('TeacherController@index');
     }
 
@@ -60,7 +60,7 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        $teacher = teachers::find($id);
+        $teacher = Teacher::find($id);
         return view('teacher.edit')->with(compact('teacher'));
     }
 
@@ -74,7 +74,7 @@ class TeacherController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $teacher = teachers::find($id);
+        $teacher = Teacher::find($id);
         $teacher->update($input);
         return Redirect::action('TeacherController@index'); 
     }
@@ -87,7 +87,7 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        teachers::destroy($id);
+        Teacher::destroy($id);
         return Redirect::action('TeacherController@index');
     }
 }

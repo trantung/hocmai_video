@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\schoolSubjects;
+use App\SchoolSubject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,7 +16,7 @@ class SchoolSubjectController extends Controller
      */
     public function index()
     {
-        $data = schoolSubjects::all();
+        $data = SchoolSubject::all();
         return view('schoolSubject.index')->with(compact('data'));
     }
 
@@ -39,7 +39,7 @@ class SchoolSubjectController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $schoolSubjectid = schoolSubjects::create($input)->id;
+        $schoolSubjectid = SchoolSubject::create($input)->id;
         return Redirect::action('SchoolSubjectController@index');
     }
 
@@ -62,7 +62,7 @@ class SchoolSubjectController extends Controller
      */
     public function edit($id)
     {
-        $schoolSubject = schoolSubjects::find($id);
+        $schoolSubject = SchoolSubject::find($id);
         return view('schoolSubject.edit')->with(compact('schoolSubject'));
     }
 
@@ -76,7 +76,7 @@ class SchoolSubjectController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $schoolSubject = schoolSubjects::find($id);
+        $schoolSubject = SchoolSubject::find($id);
         $schoolSubject->update($input);
         return Redirect::action('SchoolSubjectController@index'); 
     }
@@ -89,7 +89,7 @@ class SchoolSubjectController extends Controller
      */
     public function destroy($id)
     {
-        schoolSubjects::destroy($id);
+        SchoolSubject::destroy($id);
         return Redirect::action('SchoolSubjectController@index');
     }
 }

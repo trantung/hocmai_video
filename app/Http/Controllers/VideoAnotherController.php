@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\video_anothers;
+use App\VideoAnother;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,7 +15,7 @@ class VideoAnotherController extends Controller
      */
     public function index()
     {
-        $data = video_anothers::all();
+        $data = VideoAnother::all();
         return view('videoanother.index')->with(compact('data'));
     }
 
@@ -37,7 +37,7 @@ class VideoAnotherController extends Controller
      */
     public function store(Request $request)
     {
-        video_anothers::create($request->all());
+        VideoAnother::create($request->all());
         return Redirect::action('VideoAnotherController@index');
     }
 
@@ -49,7 +49,7 @@ class VideoAnotherController extends Controller
      */
     public function show($id)
     {
-        $videoanother = video_anothers::find($id);
+        $videoanother = VideoAnother::find($id);
         return view('videoanother.show',compact('videoanother'));
     }
 
@@ -61,7 +61,7 @@ class VideoAnotherController extends Controller
      */
     public function edit($id)
     {
-        $videoanother = video_anothers::find($id);
+        $videoanother = VideoAnother::find($id);
         return view('videoanother.edit')->with(compact('videoanother'));
     }
 
@@ -75,7 +75,7 @@ class VideoAnotherController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $videoanother = video_anothers::find($id);
+        $videoanother = VideoAnother::find($id);
         $videoanother->update($input);
         return Redirect::action('VideoAnotherController@index'); 
     }
@@ -88,7 +88,7 @@ class VideoAnotherController extends Controller
      */
     public function destroy($id)
     {
-        video_anothers::destroy($id);
+        VideoAnother::destroy($id);
         return Redirect::action('VideoAnotherController@index');
     }
 }

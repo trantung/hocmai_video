@@ -3,7 +3,7 @@
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2 class="navbar-left">Sửa {{ $schoolbock->name }} && <a href="{{ action('SchoolbocksController@index') }}" style="color:darkred">Trở lại</a></h2>
+      <h2 class="navbar-left">Sửa {{ $schoolbock->name }} && <a href="{{ action('SchoolBlockController@index') }}" style="color:darkred">Trở lại</a></h2>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -13,7 +13,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'PUT', 'action' => array('SchoolbocksController@update', $schoolbock->id))) }}
+      {{ Form::open(array('method'=>'PUT', 'action' => array('SchoolBlockController@update', $schoolbock->id))) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6  form-group has-feedback">
         <label class="control-label col-md-2 col-sm-2">Tên lớp</label>

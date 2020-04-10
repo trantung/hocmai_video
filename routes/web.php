@@ -15,6 +15,9 @@
 use Illuminate\Support\Facades\Route;
 use APV\Order\Models\Order;
 
+Route::get('/testvideo', function(){
+    return view('testvideo');
+});
 Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
 Route::post('/admin/login', ['uses' => 'AdminController@postLogin']);
 Route::post('/admin/logout', ['uses' => 'AdminController@postLogout', 'as' =>'logout']);
@@ -42,7 +45,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/category', 'CategoryController');
     /* livestream hm */
     //khối học
-    Route::resource('/schoolbock', 'SchoolbocksController');
+    Route::resource('/schoolbock', 'SchoolBlockController');
     // môn học
     Route::resource('/schoolSubject', 'SchoolSubjectController');
     //User
