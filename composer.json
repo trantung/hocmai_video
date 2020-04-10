@@ -42,7 +42,7 @@
         "psr-4": {
             "App\\": "app/",
             "APV\\Base\\": "modules/base/src",
-            "APV\\User\\": "modules/user/src",
+            "APV\\User\\": "modules/user/src"
         },
         "classmap": [
             "database/seeds",
