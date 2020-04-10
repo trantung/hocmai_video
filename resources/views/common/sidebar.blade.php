@@ -3,15 +3,7 @@
     <ul class="nav side-menu">
     <li><a href="{{action('AdminController@index')}}"><i class="fa fa-home"></i> LiveStream của tôi</a>
     </li>
-      <li><a href="#"><i class="fa fa-cog"></i> Quản lý Livestream <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li><a href="{{action('UserController@index')}}">Quản lý người dùng</a></li>
-          <li><a href="{{action('ClassController@index')}}">Quản lý lớp</a></li>
-          <li><a href="{{action('SchoolbocksController@index')}}">Quản lý Khối</a></li>
-          <li><a href="{{action('SchoolSubjectController@index')}}">Quản lý Môn</a></li>
-          <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
-        </ul>
-      </li>
+     
       <li><a href="#"><i class="fa fa-cog"></i> Quản lý Video <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{action('HocMaiVideoController@index')}}">Quản lý video học mãi</a></li>
@@ -26,6 +18,15 @@
       </li>
       <li><a><i class="fa fa-video-camera"></i> Camera Livestream<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
+        </ul>
+      </li>
+      <li><a href="#"><i class="fa fa-cog"></i> Quản lý thông tin chung <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="{{action('UserController@index')}}">Quản lý người dùng</a></li>
+          <li><a href="{{action('ClassController@index')}}">Quản lý lớp</a></li>
+          <li><a href="{{action('SchoolbocksController@index')}}">Quản lý Khối</a></li>
+          <li><a href="{{action('SchoolSubjectController@index')}}">Quản lý Môn</a></li>
+          <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
         </ul>
       </li>
     </ul>
