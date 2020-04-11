@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
+      <h2>Quản lý Giáo viên</h2>
       <div class="x_title">
-        <h2>Quản lý Giáo viên</h2>
-        <div class="pull-right">
+        <div class="pull-left">
           <a href="{{action('TeacherController@create')}}" class="btn btn-info" id="addVideo">
-          <i class="fa fa-plus"></i>Thêm mới giáo viên</a>
+          <i class="fa fa-plus-circle"></i>Thêm mới giáo viên</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -26,7 +26,7 @@
                     <th>Id</th>
                     <th>Tên giáo viên</th>
                     <th>Mô tả</th>
-                    <th colspan="2">Hành động</th>
+                    <th>Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,13 +35,13 @@
                     <td>{{ $teacher->id }}</td>
                     <td>{{ $teacher->name }}</td>
                     <td>{{ $teacher->desc }}</td>
-                    <td><a href="{{ action('TeacherController@edit', $teacher->id) }}" title="Sửa"><i class="fa fa-edit" style="color:blue"></i></a></td>
                     <td>
                       <form action="{{ route('teacher.destroy',$teacher->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                          <i class="fa fa-trash" style="color:blue"></i>
+                        <a href="{{ action('TeacherController@edit', $teacher->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                          <i class="fa fa-trash"></i>
                           </a></button>
                       </form>
                     </td>

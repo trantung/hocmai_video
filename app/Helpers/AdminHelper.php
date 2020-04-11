@@ -13,10 +13,6 @@ function getIdFromSourceVideo($url)
     return $sourceId;   
 }
 
-function getListLevel()
-{
-    return Level::pluck('name', 'id')->toArray();
-}
 
 function getListRole()
 {

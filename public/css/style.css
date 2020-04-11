@@ -25,24 +25,86 @@ input[type="password"] {
 
 /* ============================ end login ================================================== */
 
+
+/* ẩn finish */
+
+.wizard_verticle {
+    border: 1px solid #999;
+    border-radius: 10px;
+    box-shadow: 0px 2px 0px 1px #1396e0;
+    margin: 5px 0;
+    padding: 15px 0;
+}
+
+.actionBar .buttonFinish {
+    display: none !important;
+}
+
+.form_wizard .stepContainer {
+    min-height: 780px;
+}
+
+.left_col {
+    background: #1396e0 !important;
+}
+
+.profile {
+    background-color: #1689ca;
+}
+
+.nav.side-menu>li.active>a {
+    background: #1396e0 !important;
+}
+
 .nav.child_menu>li>a {
-    color: blue !important;
+    background: #1396e0 !important;
+    color: #f1f1f1 !important;
 }
 
-.btn {
-    background-color: #f4511e;
+.nav.side-menu>li>a,
+.nav.child_menu>li>a {
+    color: #f1f1f1 !important;
+}
+
+.nav li li.current-page a {
+    background: #1689ca !important;
+}
+
+.nav-md .container.body .col-md-3.left_col {
+    min-height: 1260px !important;
+}
+
+
+/* Style the buttons */
+
+button.btn.btn-simple.btn-sm.btn.btn-filter:focus {
+    background: #006dbf;
+    color: #fff;
+    border: none !important;
+    box-shadow: none;
+}
+
+.filterDiv .btn {
     border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
 }
 
-.btn:hover {
-    opacity: 1
+
+/* Add a light grey background on mouse-over */
+
+.filterDiv .btn:hover {
+    background-color: #ddd;
+}
+
+
+/* Add a dark background to the active button */
+
+.filterDiv .btn.active {
+    background-color: #666;
+    color: white;
 }
 
 .imagePreview {

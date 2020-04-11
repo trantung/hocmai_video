@@ -4,10 +4,11 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
+      <h2>Quản lý môn</h2>
       <div class="x_title">
         <div class="pull-left">
-          <a href="{{action('SubjectController@create')}}" class="btn btn-info" id="addVideo">
-          <i class="fa fa-plus"></i>Thêm mới môn</a>
+          <a href="{{action('SubjectController@create')}}" class="btn btn-info">
+          <i class="fa fa-plus-circle"></i>Thêm mời</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -25,7 +26,7 @@
                     <th>Id</th>
                     <th>Tên môn</th>
                     <th>mô tả</th>
-                    <th colspan="2">Hành động</th>
+                    <th width="280px">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -34,13 +35,13 @@
                     <td>{{ $subject->id }}</td>
                     <td>{{ $subject->name }}</td>
                     <td>{{ $subject->desc }}</td>
-                    <td><a href="{{ action('SubjectController@edit', $subject->id) }}" title="Sửa"><i class="fa fa-edit" style="color:blue"></i></a></td>
                     <td>
                       <form action="{{ action('SubjectController@destroy',$subject->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                          <i class="fa fa-trash" style="color:blue"></i>
+                        <a href="{{ action('SubjectController@edit', $subject->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit" style="color:whilte"></i></a>
+                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                          <i class="fa fa-trash" style="color:whilte"></i>
                           </a></button>
                       </form>
                     </td>

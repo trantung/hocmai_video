@@ -15,7 +15,7 @@
         });
     });
 
-    function readURL1(input) {
+    function readURL1(input1) {
         if (input1.files && input1.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
@@ -27,7 +27,7 @@
     }
     $(function() {
         $('#upload1').on('change', function() {
-            readURL1(input);
+            readURL1(input1);
         });
     });
     /*  ==========================================

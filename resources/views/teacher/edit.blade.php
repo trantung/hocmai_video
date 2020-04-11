@@ -2,8 +2,9 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
+    <h2>Sửa tên: {{ $teacher->name }} </h2>
     <div class="x_title">
-      <h2 class="navbar-left">Sửa {{ $teacher->name }} && <a href="{{ action('TeacherController@index') }}" style="color:darkred">Trở lại</a></h2>
+      <a href="{{ action('TeacherController@index') }}" class="btn btn-danger">Trở lại</a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -15,18 +16,16 @@
       <br>
       {{ Form::open(array('method'=>'PUT', 'action' => array('TeacherController@update', $teacher->id))) }}
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
-        <label class="control-label col-md-2 col-sm-2">Tên</label>
+        <div class="col-md-12 col-sm-12  ">
+        <label class="control-label col-md-2 col-sm-2">Tên Giáo viên</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::text('name', $teacher->name, array('class' => 'form-control has-feedback-left','placeholder'=>'Tên giáo viên')) }}
-            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+            {{ Form::text('name', $teacher->name, array('class' => 'form-control','placeholder'=>'Tên giáo viên')) }}
           </div>
         </div>
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
+        <div class="col-md-12 col-sm-12  ">
           <label class="control-label col-md-2 col-sm-2">Mô tả</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::text('desc', $teacher->desc, array('class' => 'form-control has-feedback-left','placeholder'=>'Mô tả')) }}
-            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+            {{ Form::textarea('desc', $teacher->desc, array('class' => 'form-control','id'=>'editor1')) }}
           </div>
         </div>
       </div>

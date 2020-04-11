@@ -10,11 +10,11 @@
         </div>
         <div class="body">
           <div class="row" style="margin: 5px">
-            <div class="heaher-table">
-              <button type="button" class="btn  btn-simple btn-sm btn-danger btn-filter" data-target="all">Tất cả</button>
-              <button type="button" class="btn  btn-simple btn-sm btn-success btn-filter" data-target="approved">Đang phát</button>
-              <button type="button" class="btn  btn-simple btn-sm btn-warning btn-filter" data-target="suspended">Hẹn giờ phát</button>
-              <button type="button" class="btn  btn-simple btn-sm btn-info btn-filter" data-target="pending">Đã phát xong</button>
+            <div class="heaher-table filterDiv">
+              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="all">Tất cả</button>
+              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="approved">Đang phát</button>
+              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="suspended">Hẹn giờ phát</button>
+              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="pending">Đã phát xong</button>
             </div>
           </div>
           <div class="table-responsive m-t-20">

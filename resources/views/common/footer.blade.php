@@ -1,5 +1,4 @@
-  <!-- js -->
-  <script src="{{url('../../js/video.js')}}"></script>
+  
  <!-- jQuery -->
  <script src="{{url('../../vendor/jquery/dist/jquery.min.js')}}"></script>
   <!-- Bootstrap -->
@@ -17,17 +16,17 @@
   <!-- iCheck -->
   <script src="{{url('../../vendor/iCheck/icheck.min.js')}}"></script>
   <!-- Skycons -->
-  <script src="{{url('../../vendor/skycons/skycons.js')}}"></script>
+  <!-- <script src="{{url('../../vendor/skycons/skycons.js')}}"></script> -->
   <!-- Flot -->
-  <script src="{{url('../../vendor/Flot/jquery.flot.js')}}"></script>
+  <!-- <script src="{{url('../../vendor/Flot/jquery.flot.js')}}"></script>
   <script src="{{url('../../vendor/Flot/jquery.flot.pie.js')}}"></script>
   <script src="{{url('../../vendor/Flot/jquery.flot.time.js')}}"></script>
   <script src="{{url('../../vendor/Flot/jquery.flot.stack.js')}}"></script>
-  <script src="{{url('../../vendor/Flot/jquery.flot.resize.js')}}"></script>
+  <script src="{{url('../../vendor/Flot/jquery.flot.resize.js')}}"></script> -->
   <!-- Flot plugins -->
-  <script src="{{url('../../vendor/flot.orderbars/js/jquery.flot.orderBars.js')}}"></script>
+  <!-- <script src="{{url('../../vendor/flot.orderbars/js/jquery.flot.orderBars.js')}}"></script>
   <script src="{{url('../../vendor/flot-spline/js/jquery.flot.spline.min.js')}}"></script>
-  <script src="{{url('../../vendor/flot.curvedlines/curvedLines.js')}}"></script>
+  <script src="{{url('../../vendor/flot.curvedlines/curvedLines.js')}}"></script> -->
   <!-- DateJS -->
   <script src="{{url('../../vendor/DateJS/build/date.js')}}"></script>
   <!-- JQVMap -->
@@ -57,11 +56,11 @@
   <script src="{{url('../../vendor/pdfmake/build/pdfmake.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- jQuery Smart Wizard -->
-
   <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
   <script> CKEDITOR.replace('editor1'); </script>
   
   <script>
+    $('#input_starttime').pickatime({});
     $(document).ready(function() {
       $('.star').on('click', function() {
         $(this).toggleClass('star-checked');
