@@ -1,4 +1,10 @@
-  
+<!-- js -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script
+<script src="{{url('../../js/video.js')}}"></script>
  <!-- jQuery -->
  <script src="{{url('../../vendor/jquery/dist/jquery.min.js')}}"></script>
   <!-- Bootstrap -->
@@ -16,17 +22,17 @@
   <!-- iCheck -->
   <script src="{{url('../../vendor/iCheck/icheck.min.js')}}"></script>
   <!-- Skycons -->
-  <!-- <script src="{{url('../../vendor/skycons/skycons.js')}}"></script> -->
+  <script src="{{url('../../vendor/skycons/skycons.js')}}"></script>
   <!-- Flot -->
-  <!-- <script src="{{url('../../vendor/Flot/jquery.flot.js')}}"></script>
+  <script src="{{url('../../vendor/Flot/jquery.flot.js')}}"></script>
   <script src="{{url('../../vendor/Flot/jquery.flot.pie.js')}}"></script>
   <script src="{{url('../../vendor/Flot/jquery.flot.time.js')}}"></script>
   <script src="{{url('../../vendor/Flot/jquery.flot.stack.js')}}"></script>
-  <script src="{{url('../../vendor/Flot/jquery.flot.resize.js')}}"></script> -->
+  <script src="{{url('../../vendor/Flot/jquery.flot.resize.js')}}"></script>
   <!-- Flot plugins -->
-  <!-- <script src="{{url('../../vendor/flot.orderbars/js/jquery.flot.orderBars.js')}}"></script>
+  <script src="{{url('../../vendor/flot.orderbars/js/jquery.flot.orderBars.js')}}"></script>
   <script src="{{url('../../vendor/flot-spline/js/jquery.flot.spline.min.js')}}"></script>
-  <script src="{{url('../../vendor/flot.curvedlines/curvedLines.js')}}"></script> -->
+  <script src="{{url('../../vendor/flot.curvedlines/curvedLines.js')}}"></script>
   <!-- DateJS -->
   <script src="{{url('../../vendor/DateJS/build/date.js')}}"></script>
   <!-- JQVMap -->
@@ -56,20 +62,18 @@
   <script src="{{url('../../vendor/pdfmake/build/pdfmake.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- jQuery Smart Wizard -->
+
   <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
   <script> CKEDITOR.replace('editor1'); </script>
   
   <script>
-    $('#input_starttime').pickatime({});
     $(document).ready(function() {
       $('.star').on('click', function() {
         $(this).toggleClass('star-checked');
       });
-
       $('.ckbox label').on('click', function() {
         $(this).parents('tr').toggleClass('selected');
       });
-
       $('.btn-filter').on('click', function() {
         var $target = $(this).data('target');
         if ($target != 'all') {
@@ -79,6 +83,12 @@
           $('.table tr').css('display', 'none').fadeIn('slow');
         }
       });
+      //dang 
+      $('#selectTime').on('change', function() {
+        if ($('#selectTime').val('Hẹn giờ')) {}
+          $('#timeShow').append('<lable class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >'+'<div class="col-md-4 col-sm-4">'+'<input name="timer_clock" type="dateTime-local" class="form-control"></div>');
+      });
+      // end dang
       //tung
       $('#load_video_source').click(function(e) {
             var video_source_id = $("#video_source_id").val();
@@ -113,6 +123,5 @@
     });
   </script>
     <script src="{{url('../../vendor/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
-
 </body>
 </html>

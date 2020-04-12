@@ -118,13 +118,18 @@
                 <div class="form-group row">
                     <label class="control-label col-md-2 col-sm-2 ">Thời điểm đăng Livestream</label>
                     <div class="col-md-4 col-sm-4 ">
-                        {{ Form::select('publish_time', getListTimePublish()) }}
+                        {{ Form::select('publish_time', getListTimePublish(),null,array('class' => 'form-control','id'=>'selectTime')) }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
-                    <div class="col-md-4 col-sm-4 ">
-                        {{ Form::text('timer_clock', null, array('class' => 'form-control timepicker','id'=>'input_starttime','placeholder'=>'Selected time')) }}
+                    <div class="col-md-12">
+                        <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
+                        <div class="col-md-4 col-sm-4 ">
+                        {{ Form::input('dateTime-local', 'timer_clock','null', ['id' => 'input_starttime', 'class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="timeShow">
+                        
                     </div>
                 </div>
             </div>
