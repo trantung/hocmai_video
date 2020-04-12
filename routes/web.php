@@ -62,3 +62,11 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
 
 });
 
+//api cho hocmai video
+Route::group(['prefix' => '/api'], function () {
+    //danh sách các khôi
+    Route::get('/block/list', 'ApiController@index');
+
+
+});
+
