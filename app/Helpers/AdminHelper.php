@@ -92,11 +92,11 @@ function getListRepeat()
     return $array;
 }
 
-function getListTimePublish()
+function getArrayIsPublish()
 {
     $array = [
-        0 => 'Đăng ngay',
-        1 => 'Hẹn giờ',
+        IS_PUBLISH_ACTIVE => 'Đăng ngay',
+        IS_PUBLISH_INACTIVE => 'Hẹn giờ',
     ];
     return $array;
 }

@@ -39,24 +39,38 @@ class LivestreamHocmaiVideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        //check video_id
+        if (empty($input['video_source_id'])) {
+            $message = 'Không tìm thấy video load';
+            Session::flash('message', "Điền id video đúng và click vào load video");
+            return Redirect::back()->withInput();
+            // dd($input);
+            return Redirect::action('LivestreamAnotherVideoController@create')->withInput()->with(compact('message'));
+        }
+        // dd($input);
         $livestreamId = Livestream::create($input)->id;
-
-        $fileSmall = request()->file('file_image_small');
-        $fileNameImage = $fileSmall->getClientOriginalName();
-        $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
-        $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
-
-        $fileBig = request()->file('file_image_big');
-        $fileNameImage = $fileBig->getClientOriginalName();
-        $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
-        $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+        $imageUrlSmall = $imageUrlBig = null;
+        if (request()->file('file_image_small')) {
+            $fileSmall = request()->file('file_image_small');
+            $fileNameImage = $fileSmall->getClientOriginalName();
+            $fileSmall->move(public_path("/uploads/hocmai_video/" . $livestreamId . '/small/'), $fileNameImage);
+            $imageUrlSmall = '/uploads/hocmai_video/' . $livestreamId . '/small/' . $fileNameImage;
+        }
+        
+        if (request()->file('file_image_big')) {
+            $fileBig = request()->file('file_image_big');
+            $fileNameImage = $fileBig->getClientOriginalName();
+            $fileBig->move(public_path("/uploads/hocmai_video/" . $livestreamId . '/big/'), $fileNameImage);
+            $imageUrlBig = '/uploads/hocmai_video/' . $livestreamId . '/big/' . $fileNameImage;
+        }
+        
 
         Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
-        //luu vao bang livestream_hocmai_videos
+        //luu vao bang livestream_another_videos
         foreach ($input['video_source_id'] as $key => $value) {
             LivestreamAnotherVideo::create(['livestream_id' => $livestreamId, 'another_video_id' => $value]);
         }
 
-        return Redirect::action('LivestreamHocmaiVideoController@create');
+        return Redirect::action('LivestreamAnotherVideoController@create');
     }
 }
