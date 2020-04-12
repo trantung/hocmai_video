@@ -39,17 +39,24 @@ class LivestreamAnotherVideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        //check video_id
+        dd($input);
         $livestreamId = Livestream::create($input)->id;
-
-        $fileSmall = request()->file('file_image_small');
-        $fileNameImage = $fileSmall->getClientOriginalName();
-        $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
-        $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
-
-        $fileBig = request()->file('file_image_big');
-        $fileNameImage = $fileBig->getClientOriginalName();
-        $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
-        $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+        $imageUrlSmall = $imageUrlBig = null;
+        if ($fileSmall = request()->file('file_image_small')) {
+            $fileSmall = request()->file('file_image_small');
+            $fileNameImage = $fileSmall->getClientOriginalName();
+            $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
+            $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
+        }
+        
+        if ($fileBig = request()->file('file_image_big')) {
+            $fileBig = request()->file('file_image_big');
+            $fileNameImage = $fileBig->getClientOriginalName();
+            $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
+            $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+        }
+        
 
         Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
         //luu vao bang livestream_another_videos
