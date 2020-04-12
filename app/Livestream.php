@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Livestream extends Model
 {
@@ -17,9 +18,13 @@ class Livestream extends Model
         'timer_clock',
         'repeat',
         'teacher_id',
-        'schoolblock_id',
+        'subject_id',
         'class_id',
         'schoolblock_id',
     ];
-    
+
+    public function setTimerClockAttribute($value)
+    {
+        $this->attributes['timer_clock'] =  Carbon::parse($value);
+    }
 }
