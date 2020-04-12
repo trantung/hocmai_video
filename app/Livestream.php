@@ -19,7 +19,7 @@ class Livestream extends Model
         'teacher_id',
         'schoolblock_id',
         'class_id',
-        'schoolblock_id',
+        'subject_id',
     ];
     
 }

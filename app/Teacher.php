@@ -10,6 +10,7 @@ class Teacher extends Model
     protected $fillable =[
         'name',
         'desc',
+        'avatar',
         'class_id',
         'schoolSubjects_id',
     ];

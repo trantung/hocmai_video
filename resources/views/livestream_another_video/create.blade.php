@@ -97,7 +97,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                     <div class="col-sm-10 col-md-10">
-                        <input type="file" onchange="readURL(this);" name="file_image_small" class="form-control-file" >
+                        <input type="file" onchange="readURL(this);" name="file_image_small" class="form-control-file">
                     </div>
                     <!-- Uploaded image area-->
                     <div class="col-md-12"><img id="imageResult" src="#" alt="" width="200px" height="100px"></div>
@@ -105,7 +105,7 @@
                 <div class="row form-group">
                     <label class="control-label col-md-2 col-sm-2">Cover lớn liveStream</label>
                     <div class="col-sm-10 col-md-10">
-                        <input id="upload1" type="file" name="file_image_big" onchange="readURL1(this);" >
+                        <input id="upload1" type="file" name="file_image_big" onchange="readURL1(this);">
                     </div>
                     <!-- Upload image input-->
                     <div class="col-md-12"><img id="imageResult1" src="#" alt="" width="400px" height="200px"></div>
@@ -118,13 +118,18 @@
                 <div class="form-group row">
                     <label class="control-label col-md-2 col-sm-2 ">Thời điểm đăng Livestream</label>
                     <div class="col-md-4 col-sm-4 ">
-                        {{ Form::select('publish_time', getListTimePublish()) }}
+                        {{ Form::select('publish_time', getListTimePublish(),null,array('class' => 'form-control','id'=>'selectTime')) }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
-                    <div class="col-md-4 col-sm-4 ">
-                        {{ Form::text('timer_clock', null, array('class' => 'form-control timepicker','id'=>'input_starttime','placeholder'=>'Selected time')) }}
+                    <div class="col-md-12">
+                        <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
+                        <div class="col-md-4 col-sm-4 ">
+                        {{ Form::input('dateTime-local', 'timer_clock','null', ['id' => 'input_starttime', 'class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="timeShow">
+                        
                     </div>
                 </div>
             </div>

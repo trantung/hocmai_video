@@ -1,12 +1,14 @@
 <script>
-    $(document).ready(function () {
+    $(function() {
         $('#upload').on('change', function() {
             readURL(input);
         });
         $('#upload1').on('change', function() {
             readURL1(input);
         });
+        
     });
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -17,6 +19,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     function readURL1(input1) {
         if (input1.files && input1.files[0]) {
             var reader = new FileReader();
@@ -49,4 +52,8 @@
         var fileName1 = input1.files[0].name;
         infoArea1.textContent = 'File name: ' + fileName1;
     }
+    // thời gian hiện thị khi hẹn giờ
+    $(function() {
+
+    });
 </script>
