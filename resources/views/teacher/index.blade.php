@@ -26,6 +26,7 @@
                     <th>Id</th>
                     <th>Tên giáo viên</th>
                     <th>Mô tả</th>
+                    <th>Ảnh đại diện</th>
                     <th>Hành động</th>
                   </tr>
                 </thead>
@@ -35,6 +36,7 @@
                     <td>{{ $teacher->id }}</td>
                     <td>{{ $teacher->name }}</td>
                     <td>{{ $teacher->desc }}</td>
+                    <td><img src="{{ $teacher->avatar }}" alt="avatar"width ="100px" height="100px"></td>
                     <td>
                       <form action="{{ route('teacher.destroy',$teacher->id) }}" method="POST">
                         @csrf

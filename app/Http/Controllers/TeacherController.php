@@ -37,7 +37,15 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $teacher = Teacher::create($input)->id;
+        $teacherId = Teacher::create($input)->id;
+       // dd($teacherId);
+        $file = $request->file('avatar');
+        dd($file);
+        $fileNameImage = $file->getClientOriginalName();
+        $file->move(public_path("/uploads/teacher/" . $teacherId . '/avatar/'), $fileNameImage);
+        $imageUrl = '/uploads/teacher/' . $teacherId . '/avatar/' . $fileNameImage;
+        dd($imageUrl);
+        $teacherId->save();
         return Redirect::action('TeacherController@index');
     }
 
@@ -75,6 +83,17 @@ class TeacherController extends Controller
     {
         $input = $request->all();
         $teacher = Teacher::find($id);
+        $imageUrl = $teacher->avatar;
+        $file = request()->file('avatar');
+        // dd($file);
+         if ($file) {
+             $fileNameImage = $file->getClientOriginalName();
+          //  dd($fileNameImage);
+            $file->move(public_path("/uploads/teacher/"),$fileNameImage);
+            $imageUrl = '/uploads/teacher/'.$fileNameImage;
+ 
+         }
+         $input['avatar'] = $imageUrl;
         $teacher->update($input);
         return Redirect::action('TeacherController@index'); 
     }
