@@ -24,7 +24,7 @@ Route::group(['prefix' => 'ajax'], function() {
 
 Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
 Route::post('/admin/login', ['uses' => 'AdminController@postLogin']);
-Route::post('/admin/logout', ['uses' => 'AdminController@postLogout', 'as' =>'logout']);
+Route::get('/admin/logout', ['uses' => 'AdminController@getLogout', 'as' =>'logout']);
 
 Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::get('/dashboard', 'AdminController@index');

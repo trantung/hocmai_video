@@ -19,20 +19,20 @@ class DefaultRoleDatabase extends Migration
             'description' => 'Admin quản trị hệ thống',
         ]);
         Role::create([
-            'name' => 'shop manager',
-            'description' => 'Các quản lý shop',
+            'name' => 'THPT manager',
+            'description' => 'Quản lý THPT',
         ]);
         Role::create([
-            'name' => 'Cashier',
-            'description' => 'Thu ngân',
+            'name' => 'THCS manager',
+            'description' => 'Quản lý THCS',
         ]);
         Role::create([
-            'name' => 'Servicer',
-            'description' => 'Phục vụ',
+            'name' => 'TH manager',
+            'description' => 'Quản lý TH',
         ]);
         Role::create([
-            'name' => 'Kitchen/Bar',
-            'description' => 'Bếp/Bar',
+            'name' => 'Another manager',
+            'description' => 'Quản lý khác',
         ]);
     }
 

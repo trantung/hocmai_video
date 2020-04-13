@@ -7,12 +7,20 @@ use App\HocMaiClass;
 use APV\User;
 use APV\User\Models\Role;
 
+function getInforUser()
+{
+    $userInfo = Auth::user();
+    if ($userInfo) {
+        return $userInfo;
+    }
+    dd('login_error');
+}
+
 function getIdFromSourceVideo($url)
 {
     $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
     return $sourceId;   
 }
-
 
 function getListRole()
 {

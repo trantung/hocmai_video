@@ -25,7 +25,7 @@ class AdminController extends Controller
     	return Redirect::action('AdminController@index');
     }
 
-    public function postLogout()
+    public function getLogout()
     {
     	Auth::logout();
     	return Redirect::action('AdminController@getLogin');
