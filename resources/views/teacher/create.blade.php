@@ -32,7 +32,7 @@
       <div class="form-group row">
         <div class="col-md-12">
           <label for="avatar" class="control-label col-md-3">Ảnh đại diện</label>
-          {{ Form::file('avatar', null, array('id'=>'avatar')) }}
+         <input type="file" name="avatar" id="avatar">
         </div>
       </div>
       <div class="form-group row">

@@ -39,7 +39,7 @@ class TeacherController extends Controller
         $input = $request->all();
         $teacherId = Teacher::create($input)->id;
        // dd($teacherId);
-        $file = $request->file('avatar');
+       $image = $request->file('image');
         dd($file);
         $fileNameImage = $file->getClientOriginalName();
         $file->move(public_path("/uploads/teacher/" . $teacherId . '/avatar/'), $fileNameImage);
