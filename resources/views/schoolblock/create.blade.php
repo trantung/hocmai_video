@@ -13,10 +13,10 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'POST', 'action' => array('SchoolBlockController@store'),'class'=>'form-horizontal form-label-left')) }}
+      {{ Form::open(array('method'=>'POST', 'action' => array('SchoolBlockController@store'),'class'=>'form-horizontal form-label-left','files'=>true)) }}
       <div class="form-group row">
         <div class="col-md-12 col-sm-12 ">
-          <label>Tên khối</label>
+          <label>Tên Kênh</label>
           {{ Form::text('name', null, array('class' => 'form-control has-feedback-left','placeholder'=>'Tên khối')) }}
         </div>
       </div>
@@ -27,7 +27,13 @@
           <!-- {{ Form::textarea('desc', null, array('class' => 'form-control has-feedback-left','id'=>'editor1','placeholder'=>'Mô tả')) }} -->
         </div>
       </div>
-      
+      <div class="form-group row">
+        <div class="col-md-12 col-sm-12">
+          <label>Ảnh đại diện kênh </label>
+          <input type="file" name="avatar">
+          <!-- {{ Form::textarea('desc', null, array('class' => 'form-control has-feedback-left','id'=>'editor1','placeholder'=>'Mô tả')) }} -->
+        </div>
+      </div>
       <div class="form-group row">
         {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
         {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}

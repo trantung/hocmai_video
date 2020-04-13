@@ -14,7 +14,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'PUT', 'action' => array('SchoolBlockController@update', $schoolblock->id))) }}
+      {{ Form::open(array('action' => array('SchoolBlockController@update', $schoolblock->id), 'method' => "PUT", 'files' => true)) }}
       <div class="form-group row">
         <div class="col-md-12 col-sm-12  ">
         <label class="control-label col-md-2 col-sm-2">Tên lớp</label>
@@ -27,6 +27,15 @@
           <div class="col-md-11 col-sm-11">
           <!-- <textarea name="desc" class="form-control " id="editor1"></textarea> -->
             {{ Form::textarea('desc', $schoolblock->desc, array('class' => 'form-control','id'=>'editor1')) }}
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+          <label class="control-label col-md-2 col-sm-2">ảnh đại diện kênh</label>
+          <div class="col-md-11 col-sm-11">
+            <input type="file" name="avatar" class="form-control"><br>
+              @if($schoolblock->avatar)
+                  <img src="{{$schoolblock->avatar }}" width="150px" height="auto"  />
+              @endif
           </div>
         </div>
       </div>

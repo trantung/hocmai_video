@@ -10,6 +10,7 @@ class SchoolBlock extends Model
     protected $fillable =[
         'name',
         'desc',
+        'avatar',
     ];
 
 }

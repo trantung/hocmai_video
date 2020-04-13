@@ -3,8 +3,10 @@
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script
+  crossorigin="anonymous"></script>
 <script src="{{url('../../js/video.js')}}"></script>
+<!-- steps -->
+
  <!-- jQuery -->
  <script src="{{url('../../vendor/jquery/dist/jquery.min.js')}}"></script>
   <!-- Bootstrap -->
@@ -62,7 +64,6 @@
   <script src="{{url('../../vendor/pdfmake/build/pdfmake.min.js')}}"></script>
   <script src="{{url('../../vendor/pdfmake/build/vfs_fonts.js')}}"></script>
     <!-- jQuery Smart Wizard -->
-
   <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
   <script> CKEDITOR.replace('editor1'); </script>
   
@@ -93,6 +94,10 @@
           $('#timer_clock_add').remove();
         }
       });
+      // remove link load video source
+      $(document).on("click", "i.del" , function() {
+          $(this).parent().remove();
+        });
       // end dang
       //tung
       $('#load_video_source').click(function(e) {
@@ -109,13 +114,13 @@
                 dataType : 'json',
                 success: function(data) {
                   if (data.status == 'Fail') {
-                    var error_load = '<p style="color:red;">'+ data.msg + '</p>';
+                    var error_load = '<div class="text-danger">'+ data.msg + '</div>';
                     $("#error_load_video_source").append(error_load);
                   }
                   if (data.status == 'success') {
                     var hidden = '<input type="hidden" name="video_source_id[]" value="' + data.video_id + '">';
-                    var text = '<div class="col-md-12">' + '<a href="/admin/preview/video/' + data.source_id + '"' + 'target="_blank">' + 
-                    data.video_title +'</a>' + '</div>' + hidden;
+                    var text = '<div class="col-md-12">' + '<div class="col-md-2">'+'<a href="/admin/preview/video/' + data.source_id + '"' + 'target="_blank">' + 
+                    data.video_title +'</a>' + '<i class="fa fa-times del"></i></div>' + hidden;
                     $("#video_source_detail").append(text);
                   }
                 },
@@ -127,6 +132,6 @@
       //end tung
     });
   </script>
-    <script src="{{url('../../vendor/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
+  <script src="{{url('../../vendor/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 </body>
 </html>

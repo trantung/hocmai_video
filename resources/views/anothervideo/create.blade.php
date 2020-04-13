@@ -26,7 +26,13 @@
       </div>
       <div class="form-group row">
         <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Khối</label>
+          <label class="control-label col-md-3 col-sm-3">Độ dài video</label>
+          <div class="col-md-10 col-sm-10 ">
+            <input type="time" name="duration" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4  form-group has-feedback">
+          <label class="control-label col-md-3 col-sm-3">Kênh</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}
           </div>

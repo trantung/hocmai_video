@@ -25,23 +25,46 @@ input[type="password"] {
 
 /* ============================ end login ================================================== */
 
+.buttonNext {
+    float: left;
+    margin-left: 100px !important;
+    margin-bottom: -48px !important;
+}
+
 
 /* ẩn finish */
-
-.wizard_verticle {
-    border: 1px solid #999;
-    border-radius: 10px;
-    box-shadow: 0px 2px 0px 1px #1396e0;
-    margin: 5px 0;
-    padding: 15px 0;
-}
 
 .actionBar .buttonFinish {
     display: none !important;
 }
 
+.active a span.fa {
+    margin-right: 0 !important;
+}
+
+.main_menu span.fa {
+    margin-top: 0 !important;
+}
+
 .form_wizard .stepContainer {
     min-height: 780px;
+}
+
+
+/* remove link source video  */
+
+i.del {
+    padding: 8px;
+    margin: -6px 0;
+}
+
+
+/*button submitvideo  */
+
+#submit_video {
+    margin-top: -78px;
+    margin-right: 100px !important;
+    float: left;
 }
 
 .left_col {

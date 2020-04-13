@@ -32,7 +32,7 @@
                     </ul>
                 </div>
             @endif
-            
+            @csrf
             <div class="form-horizontal form-label-left">
                 <div class="form-group row">
                     <div class="col-md-6 col-sm-6">
@@ -43,9 +43,9 @@
                 </div>
                 <div class="form-group row">
                     <p>Liên kết video </p>
-                    <div id="error_load_video_source"></div>
-                    <div id="video_source_detail">
-                    </div>
+                    <div id="error_load_video_source" class="col-md-12"></div>
+                    <div id="video_source_detail" class="col-md-12">
+                        </div>
                 </div>
                 <div class="form-group row">
                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3">Tiêu đề Livestream</label>
@@ -60,27 +60,33 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-md-2 col-sm-2 ">Giáo viên</label>
+                    <label class="control-label col-md-2 col-sm-2 ">Độ dài video</label>
                     <div class="col-md-4 col-sm-4 ">
-                        {{ Form::select('teacher_id', getListGv(), old('teacher_id'), array('class' => 'form-control')) }}
+                        {{ Form::time('duration', old('duration'), array('class' => 'form-control')) }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4">
-                        <label class="control-label col-md-2 col-sm-2">Khối</label>
-                        <div class="col-md-6 col-sm-4 ">
+                    <div class="col-md-3">
+                        <label class="control-label col-md-6 col-sm-6">Giáo viên</label>
+                        <div class="col-md-8 col-sm-8 ">
+                            {{ Form::select('teacher_id', getListGv(), old('teacher_id'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label col-md-6 col-sm-6">Kênh phát</label>
+                        <div class="col-md-8 col-sm-8 ">
                             {{ Form::select('schoolblock_id', getListKhoi(), old('schoolblock_id'), array('class' => 'form-control')) }}
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <label class="control-label col-md-2 col-sm-2">Lớp</label>
-                        <div class="col-md-6 col-sm-4 ">
+                    <div class="col-md-3">
+                        <label class="control-label col-md-6 col-sm-6">Lớp</label>
+                        <div class="col-md-8 col-sm-8 ">
                             {{ Form::select('class_id', getListClass(), old('class_id'),array('class' => 'form-control')) }}
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <label class="control-label col-md-2 col-sm-2">Môn</label>
-                        <div class="col-md-6 col-sm-4 ">
+                    <div class="col-md-3">
+                        <label class="control-label col-md-6 col-sm-6">Môn</label>
+                        <div class="col-md-8 col-sm-8 ">
                             {{ Form::select('subject_id', getListMon(), old('subject_id'),array('class' => 'form-control')) }}
                         </div>
                     </div>

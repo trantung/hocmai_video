@@ -33,7 +33,7 @@
       @include('common.nav_bar')
       <!-- /top navigation -->
       <!-- page content -->
-      <div class="right_col" role="main" style="height:auto">
+      <div class="right_col" role="main" style="height:auto" id="page-wrapper">
         <!-- top tiles -->
         <!-- main -content  -->
         @yield('content')

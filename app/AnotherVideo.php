@@ -10,6 +10,7 @@ class AnotherVideo extends Model
     protected $fillable =[
         'title',
         'url',
+        'duration',
         'class_id',
         'schoolblock_id',
         'subject_id',

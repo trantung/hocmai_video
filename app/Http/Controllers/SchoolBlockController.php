@@ -39,6 +39,13 @@ class SchoolBlockController extends Controller
     {
         $input = $request->all();
         $schoolblock = SchoolBlock::create($input)->id;
+        if (request()->file('avatar')) {
+            $file = $request->file('avatar');
+            $fileNameImage = $file->getClientOriginalName();
+            $file->move(public_path("/uploads/block/" . $schoolblock . '/avatar/'), $fileNameImage);
+            $imageUrl = '/uploads/block/' . $schoolblock . '/avatar/' . $fileNameImage;
+        }
+        SchoolBlock::where('id', $schoolblock)->update(['avatar' => $imageUrl]);
         return Redirect::action('SchoolBlockController@index');
     }
 
@@ -76,6 +83,14 @@ class SchoolBlockController extends Controller
     {
         $input = $request->all();
         $schoolblock = SchoolBlock::find($id);
+        $imageUrl = $schoolblock->avatar;
+        if (request()->file('avatar')) {
+            $file = $request->file('avatar');
+            $fileNameImage = $file->getClientOriginalName();
+            $file->move(public_path("/uploads/block/" . $id . '/avatar/'), $fileNameImage);
+            $imageUrl = '/uploads/block/' . $id . '/avatar/' . $fileNameImage;
+        }
+        $input['avatar'] = $imageUrl;
         $schoolblock->update($input);
         return Redirect::action('SchoolBlockController@index'); 
     }
