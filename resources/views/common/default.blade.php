@@ -18,7 +18,9 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>Minh Đăng</h2>
+              @if($userInfo = getInforUser())
+                <h2>{{ $userInfo->name }}</h2>
+              @endif
             </div>
           </div>
           <!-- /menu profile quick info -->

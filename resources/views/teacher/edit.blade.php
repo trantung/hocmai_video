@@ -14,7 +14,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'PUT', 'action' => array('TeacherController@update', $teacher->id))) }}
+      {{ Form::open(array('action' => array('TeacherController@update', $teacher->id), 'method' => "PUT", 'files' => true)) }}
       <div class="form-group row">
         <div class="col-md-12 col-sm-12  ">
         <label class="control-label col-md-2 col-sm-2">Tên Giáo viên</label>

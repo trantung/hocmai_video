@@ -6,6 +6,7 @@ use App\Livestream;
 use App\LivestreamAnotherVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class LivestreamAnotherVideoController extends Controller
 {
@@ -25,7 +26,7 @@ class LivestreamAnotherVideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('livestream_another_video.create');
     }   
@@ -39,17 +40,31 @@ class LivestreamAnotherVideoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        //check video_id
+        if (empty($input['video_source_id'])) {
+            $message = 'Không tìm thấy video load';
+            Session::flash('message', "Điền id video đúng và click vào load video");
+            return Redirect::back()->withInput();
+            // dd($input);
+            return Redirect::action('LivestreamAnotherVideoController@create')->withInput()->with(compact('message'));
+        }
+        // dd($input);
         $livestreamId = Livestream::create($input)->id;
-
-        $fileSmall = request()->file('file_image_small');
-        $fileNameImage = $fileSmall->getClientOriginalName();
-        $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
-        $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
-
-        $fileBig = request()->file('file_image_big');
-        $fileNameImage = $fileBig->getClientOriginalName();
-        $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
-        $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+        $imageUrlSmall = $imageUrlBig = null;
+        if (request()->file('file_image_small')) {
+            $fileSmall = request()->file('file_image_small');
+            $fileNameImage = $fileSmall->getClientOriginalName();
+            $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
+            $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
+        }
+        
+        if (request()->file('file_image_big')) {
+            $fileBig = request()->file('file_image_big');
+            $fileNameImage = $fileBig->getClientOriginalName();
+            $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
+            $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+        }
+        
 
         Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
         //luu vao bang livestream_another_videos

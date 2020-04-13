@@ -85,8 +85,13 @@
       });
       //dang 
       $('#selectTime').on('change', function() {
-        if ($('#selectTime').val('Hẹn giờ')) {}
-          $('#timeShow').append('<lable class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >'+'<div class="col-md-4 col-sm-4">'+'<input name="timer_clock" type="dateTime-local" class="form-control"></div>');
+        if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
+          $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >'+ '<br/>' +'<div id="timer_clock_add" class="col-md-4 col-sm-4">'+'<input name="timer_clock" type="dateTime-local" class="form-control"></div>');
+        }
+        if($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
+          $('#timer_clock_add_label').remove();
+          $('#timer_clock_add').remove();
+        }
       });
       // end dang
       //tung

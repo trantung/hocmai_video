@@ -38,14 +38,13 @@ class TeacherController extends Controller
     {
         $input = $request->all();
         $teacherId = Teacher::create($input)->id;
-       // dd($teacherId);
-       $image = $request->file('image');
-        dd($file);
-        $fileNameImage = $file->getClientOriginalName();
-        $file->move(public_path("/uploads/teacher/" . $teacherId . '/avatar/'), $fileNameImage);
-        $imageUrl = '/uploads/teacher/' . $teacherId . '/avatar/' . $fileNameImage;
-        dd($imageUrl);
-        $teacherId->save();
+        if (request()->file('avatar')) {
+            $file = $request->file('avatar');
+            $fileNameImage = $file->getClientOriginalName();
+            $file->move(public_path("/uploads/teacher/" . $teacherId . '/avatar/'), $fileNameImage);
+            $imageUrl = '/uploads/teacher/' . $teacherId . '/avatar/' . $fileNameImage;
+        }
+        Teacher::where('id', $teacherId)->update(['avatar' => $imageUrl]);
         return Redirect::action('TeacherController@index');
     }
 
@@ -84,16 +83,13 @@ class TeacherController extends Controller
         $input = $request->all();
         $teacher = Teacher::find($id);
         $imageUrl = $teacher->avatar;
-        $file = request()->file('avatar');
-        // dd($file);
-         if ($file) {
-             $fileNameImage = $file->getClientOriginalName();
-          //  dd($fileNameImage);
-            $file->move(public_path("/uploads/teacher/"),$fileNameImage);
-            $imageUrl = '/uploads/teacher/'.$fileNameImage;
- 
-         }
-         $input['avatar'] = $imageUrl;
+        if (request()->file('avatar')) {
+            $file = $request->file('avatar');
+            $fileNameImage = $file->getClientOriginalName();
+            $file->move(public_path("/uploads/teacher/" . $id . '/avatar/'), $fileNameImage);
+            $imageUrl = '/uploads/teacher/' . $id . '/avatar/' . $fileNameImage;
+        }
+        $input['avatar'] = $imageUrl;
         $teacher->update($input);
         return Redirect::action('TeacherController@index'); 
     }

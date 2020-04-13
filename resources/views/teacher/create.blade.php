@@ -14,7 +14,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'POST', 'action' => array('TeacherController@store'),'class'=>'form-horizontal form-label-left','file'=>true)) }}
+      {{ Form::open(array('action' => array('TeacherController@store'), 'method' => "POST", 'files' => true)) }}
       <div class="form-group row">
         <div class="col-md-12 col-sm-12">
           <label class="control-label col-md-2 col-sm-2">Tên Giáo viên</label>
