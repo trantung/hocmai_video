@@ -5,7 +5,16 @@ use App\Subject;
 use App\Teacher;
 use App\HocMaiClass;
 use APV\User;
+use APV\Livestream;
+use APV\LivestreamAnotherVideo;
+use APV\AnotherVideo;
 use APV\User\Models\Role;
+
+function checkUserRole()
+{
+    $user = getInforUser();
+    return $user->role_id;
+}
 
 function getInforUser()
 {
@@ -16,10 +25,26 @@ function getInforUser()
     dd('login_error');
 }
 
+function getDurationLivestream($livestreamId)
+{
+    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->lists('another_video_id');
+    $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
+    return $result;
+}
+
 function getIdFromSourceVideo($url)
 {
     $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
     return $sourceId;   
+}
+
+function getDurationVideoFromText($str)
+{
+    $data = explode(':', $str);
+    $hour = $data[0];
+    $minute = $data[1];
+    $duration = 60 * $hour + $minute;
+    return $duration;
 }
 
 function getListRole()

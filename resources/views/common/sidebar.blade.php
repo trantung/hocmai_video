@@ -17,10 +17,12 @@
       </li>
       <li><a href="#"><i class="fa fa-cog"></i> Quản lý thông tin chung <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
+          @if(checkUserRole() == ADMIN)
           <li><a href="{{action('UserController@index')}}">Quản lý người dùng</a></li>
           <li><a href="{{action('SchoolBlockController@index')}}">Quản lý Kênh</a></li>
           <li><a href="{{action('SubjectController@index')}}">Quản lý Môn</a></li>
           <li><a href="{{action('ClassController@index')}}">Quản lý lớp</a></li>
+          @endif
           <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
         </ul>
       </li>
