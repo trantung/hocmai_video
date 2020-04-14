@@ -5,4 +5,9 @@ define('IS_PUBLISH_ACTIVE', 0);
 define('IS_PUBLISH_INACTIVE', 1);
 //Role
 define('ADMIN', 1);
+//Livestream
+define('PLAYING', 1); //đang phát
+define('PLAY_TIME_CLOCKER', 2); //hẹn giờ
+define('PLAY_FINISH', 3); //đã phát
+
 

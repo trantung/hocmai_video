@@ -11,10 +11,13 @@
         <div class="body">
           <div class="row" style="margin: 5px">
             <div class="heaher-table filterDiv">
-              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="all">Tất cả</button>
-              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="approved">Đang phát</button>
-              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="suspended">Hẹn giờ phát</button>
-              <button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="pending">Đã phát xong</button>
+              <a href="{{ action('AdminController@index') }}"><button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="all">Tất cả</button></a>
+
+              <a href="{{ action('AdminController@index', PLAYING) }}"><button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="approved">Đang phát</button></a>
+
+              <a href="{{ action('AdminController@index', PLAY_TIME_CLOCKER) }}"><button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="suspended">Hẹn giờ phát</button></a>
+
+              <a href="{{ action('AdminController@index', PLAY_FINISH) }}"><button type="button" class="btn  btn-simple btn-sm  btn-filter" data-target="pending">Đã phát xong</button></a>
             </div>
           </div>
           <div class="table-responsive m-t-20">
@@ -35,11 +38,13 @@
                   <td>{{ $value->id }}</td>
                   <td>{{ $value->name }}</td>
                   <td>{{ $value->created_at }}</td>
-                  <td>jacob@gnail.com</td>
+                  <td>{{ getTimeLivestreamPlay($value) }}</td>
                   <td>
-                    1132131
+                    {{ getKhoiNameById($value->schoolblock_id) }}
                   </td>
-                  <td><span class="badge badge-success">Đang phát</span></td>
+                  <td>
+                      {!! getStatusLivestream($value) !!}
+                  </td>
                 </tr>
                 @endforeach
               </tbody>

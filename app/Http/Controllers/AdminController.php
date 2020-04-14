@@ -7,9 +7,15 @@ use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Livestream;
+use APV\User\Services\UserService;
 
 class AdminController extends Controller
 {
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function getLogin()
     {
     	return view('admin.login');
@@ -52,11 +58,12 @@ class AdminController extends Controller
         return view('admin.register');
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        $data = Livestream::all();
+        $input = $request->all();
+        $playStatus = array_key_first($input);
+        $data = $this->userService->getDashboard($playStatus);
         return view('admin.index')->with(compact('data'));
     }
-
     
 }

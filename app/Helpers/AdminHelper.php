@@ -4,10 +4,10 @@ use App\SchoolBlock;
 use App\Subject;
 use App\Teacher;
 use App\HocMaiClass;
+use App\Livestream;
+use App\LivestreamAnotherVideo;
+use App\AnotherVideo;
 use APV\User;
-use APV\Livestream;
-use APV\LivestreamAnotherVideo;
-use APV\AnotherVideo;
 use APV\User\Models\Role;
 
 function checkUserRole()
@@ -25,9 +25,35 @@ function getInforUser()
     dd('login_error');
 }
 
+function getStatusLivestream($livestream)
+{
+    if ($livestream->livestream_status == PLAYING) {
+        return '<span class="badge badge-primary">Đang phát</span>';
+    }
+    if ($livestream->livestream_status == PLAY_TIME_CLOCKER) {
+        return '<span class="badge badge-danger">Hẹn giờ</span>';
+    }
+    if ($livestream->livestream_status == PLAY_FINISH) {
+        return '<span class="badge badge-success">Phát xong</span>';
+    }
+
+}
+
+function getTimeLivestreamPlay($livestream)
+{
+    if ($livestream->is_publish == IS_PUBLISH_ACTIVE) {
+        $time = $livestream->created_at;
+    }
+    if ($livestream->is_publish == IS_PUBLISH_INACTIVE) {
+        $time = $livestream->timer_clock;
+    }
+    return $time;
+}
+
 function getDurationLivestream($livestreamId)
 {
-    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->lists('another_video_id');
+    // dd($livestreamId);
+    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
     $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
     return $result;
 }
