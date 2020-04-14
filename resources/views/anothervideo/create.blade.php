@@ -34,7 +34,11 @@
         <div class="col-md-4 col-sm-4  form-group has-feedback">
           <label class="control-label col-md-3 col-sm-3">Kênh</label>
           <div class="col-md-10 col-sm-10 ">
+            @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}
+            @else
+            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
+            @endif
           </div>
         </div>
         <div class="col-md-4 col-sm-4  form-group has-feedback">

@@ -15,7 +15,13 @@ class AnotherVideoController extends Controller
      */
     public function index()
     {
-        $data = AnotherVideo::all();
+        $roleId = checkUserRole();
+        if ($roleId == ADMIN) {
+            $data = AnotherVideo::all();
+        } else {
+            $schoolblockId = getSchoolblockByUser();
+            $data = AnotherVideo::where('schoolblock_id', $schoolblockId)->get();
+        }
         return view('anothervideo.index')->with(compact('data'));
     }
 

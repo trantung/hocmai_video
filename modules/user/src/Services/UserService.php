@@ -40,8 +40,15 @@ class UserService
         $now = Carbon::now();
         $now = $now->toDateTimeString();
         $timeNow = strtotime($now);
-        $data = Livestream::where('publish_time', '>=', $now)->get();
-
+        $roleId = checkUserRole();
+        if ($roleId == ADMIN) {
+            $data = Livestream::where('publish_time', '>=', $now)->get();
+        } else {
+            $schoolblockId = getSchoolblockByUser();
+            $data = Livestream::where('schoolblock_id', $schoolblockId)
+                ->where('publish_time', '>=', $now)
+                ->get();
+        }
         $resultPlaying = $resultPlayClock = $resultPlayFinish = [];
         foreach ($data as $key => $value) {
             //tinh thoi gian livestream

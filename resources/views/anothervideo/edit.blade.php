@@ -33,7 +33,11 @@
         <div class="col-md-4 col-sm-4 form-group has-feedback">
             <label class="control-label col-md-2 col-sm-2">Khối</label>
             <div class="col-md-11 col-sm-11 ">
-              {{ Form::select('schoolblock_id', getListKhoi(),$anothervideo->schoolblock_id, array('class' => 'form-control')) }}
+              @if(checkUserRole() == ADMIN)
+                {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control')) }}
+                @else
+                {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
+              @endif
             </div>
         </div>
         <div class="col-md-4 col-sm-4  form-group has-feedback">

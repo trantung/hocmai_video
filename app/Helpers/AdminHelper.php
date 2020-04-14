@@ -80,7 +80,15 @@ function getListRole()
 /* start livestream hoc mai*/
 // class lấy name lớp
 function getListClass(){
-    return HocMaiClass::pluck('name','id')->toArray();
+    $schoolblockId = getSchoolblockByUser();
+    $roleId = checkUserRole();
+    if (!$schoolblockId && $roleId == ADMIN) {
+        return HocMaiClass::pluck('name','id')->toArray();
+    }
+    if (!$schoolblockId && $roleId != ADMIN) {
+        dd('user bi sai quyen');
+    }
+    return HocMaiClass::where('schoolblock_id', $schoolblockId)->pluck('name','id')->toArray();
 }
 // khối 
 function getListKhoi(){
@@ -166,3 +174,23 @@ function renderCodeOrder()
     $randstring = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     return $randstring;
 }
+//phan quyền 
+function getSchoolblockByUser()
+{
+    $roleId = checkUserRole();
+    $blockId = null;
+    if ($roleId == THPT) {
+        $blockId = BLOCK_THPT;
+    }
+    if ($roleId == THCS) {
+        $blockId = BLOCK_THCS;
+    }
+    if ($roleId == TH) {
+        $blockId = BLOCK_TH;
+    }
+    return $blockId;
+
+}
+
+
+

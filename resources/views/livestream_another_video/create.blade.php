@@ -75,7 +75,11 @@
                     <div class="col-md-3">
                         <label class="control-label col-md-6 col-sm-6">Kênh phát</label>
                         <div class="col-md-8 col-sm-8 ">
-                            {{ Form::select('schoolblock_id', getListKhoi(), old('schoolblock_id'), array('class' => 'form-control')) }}
+                            @if(checkUserRole() == ADMIN)
+                                {{ Form::select('schoolblock_id', getListKhoi(), old('schoolblock_id'), array('class' => 'form-control')) }}
+                            @else
+                                {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-3">
