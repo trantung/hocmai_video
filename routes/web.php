@@ -33,6 +33,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::get('/tables', 'AdminController@getTables');
     Route::get('/charts', 'AdminController@getCharts');
     Route::get('/register', 'AdminController@getRegister');
+    Route::get('profile', 'ProfileController@index');
+    Route::patch('profile/{id}', 'ProfileController@update');
     //Role
     Route::resource('/role', 'RoleController');
     /* livestream hm */
