@@ -1,5 +1,5 @@
 <script>
-    $(function() {
+    $(document).ready(function(){
         $('#upload').on('change', function() {
             readURL(input);
         });

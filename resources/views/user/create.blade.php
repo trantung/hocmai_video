@@ -14,7 +14,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'POST', 'action' => array('UserController@store'),'class'=>'form-horizontal form-label-left')) }}
+      {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('UserController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
           <b>Họ và tên</b>
@@ -58,6 +58,12 @@
             <label>Quyền</label>
             <div class="multiselect_div">
               {{ Form::select('role_id', getListRole(), array('class' => 'form-control')) }}
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <label>ảnh đại diện</label>
+            <div class="multiselect_div">
+              <input type="file" name="avatar" id="avatar" class="form-control">
             </div>
         </div>
       </div>

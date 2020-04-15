@@ -5,6 +5,7 @@
 <!-- main -content  -->
 {{ Form::open(array('action' => array('LivestreamAnotherVideoController@store'), 'method' => "POST", 'multiple'=>true,'files' => true)) }}
 <div class="col-md-12">
+
     <div id="wizard_verticle" class="form_wizard wizard_verticle">
         <ul class="list-unstyled wizard_steps">
             <li>
@@ -44,8 +45,9 @@
                 <div class="form-group row">
                     <p>Liên kết video </p>
                     <div id="error_load_video_source" class="col-md-12"></div>
+                    <div class="row clearfix"></div>
                     <div id="video_source_detail" class="col-md-12">
-                        </div>
+                    </div>
                 </div>
                 <div class="form-group row">
                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3">Tiêu đề Livestream</label>
@@ -57,12 +59,6 @@
                     <label class="control-label col-md-2 col-sm-2 ">Yêu cầu đăng nhập</label>
                     <div class="col-md-4 col-sm-4 ">
                         {{ Form::select('require_login', getArrayStatus(), old('require_login'), array('class' => 'form-control')) }}
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="control-label col-md-2 col-sm-2 ">Độ dài video</label>
-                    <div class="col-md-4 col-sm-4 ">
-                        {{ Form::time('duration', old('duration'), array('class' => 'form-control')) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -150,7 +146,6 @@
         </div>
     </div>
 </div>
-{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
 {{ Form::close() }}
 @include('livestream_another_video.script')
 @stop

@@ -31,17 +31,19 @@ $(document).ready(function() {
     // end dang
     //tung
     $('#load_video_source').click(function(e) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         var video_source_id = $("#video_source_id").val();
         var csrf = '{{csrf_token()}}';
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var form = $(this);
+        var url = form.attr('action');
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "/ajax/load_video_source",
+            url: url,
             data: {
                 video_source_id: video_source_id, // < note use of 'this' here
                 _token: '{{csrf_token()}}'
@@ -49,18 +51,18 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 if (data.status == 'Fail') {
-                    var error_load = '<div class="text-danger">' + data.msg + '</div>';
+                    var error_load = '<div class="text-danger col-md-3">' + data.msg + '<i class="fa fa-times del"></i></div><br>';
                     $("#error_load_video_source").append(error_load);
                 }
                 if (data.status == 'success') {
                     var hidden = '<input type="hidden" name="video_source_id[]" value="' + data.video_id + '">';
                     var text = '<div class="col-md-12">' + '<div class="col-md-2">' + '<a href="/admin/preview/video/' + data.source_id + '"' + 'target="_blank">' +
-                        data.video_title + '</a>' + '<i class="fa fa-times del"></i></div>' + hidden;
+                        data.video_title + '</a>' + '<i class="fa fa-times del"></i></div><br>' + hidden;
                     $("#video_source_detail").append(text);
                 }
             },
             error: function(data) {
-                // alert(data);
+
             }
         });
     });

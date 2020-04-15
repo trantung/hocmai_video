@@ -32,7 +32,7 @@
                     <td>{{ $schoolblock->id }}</td>
                     <td>{{ $schoolblock->name }}</td>
                     <td>{{ $schoolblock->desc }}</td>
-                    <td><img src="{{ $schoolblock->avatar }}" alt="avatar" width="150px"></td>
+                    <td><img src="{{ $schoolblock->avatar }}" alt="avatar" width="100px" height="100px"></td>
                     <td>
                       <form action="{{ route('schoolblock.destroy',$schoolblock->id) }}" method="POST">
                         @csrf

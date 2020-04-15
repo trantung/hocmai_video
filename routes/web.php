@@ -42,6 +42,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/subject', 'SubjectController');
     //User
     Route::resource('/user', 'UserController');
+    Route::get('/user/updateprofile','ProfileController@updateAuthUser');
+    Route::post('/user/updateprofile','ProfileController@updateAuthUser');
     //lớp học
     Route::resource('/class', 'ClassController');
     // giáo viên

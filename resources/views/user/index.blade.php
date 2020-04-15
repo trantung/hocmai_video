@@ -24,6 +24,7 @@
                     <th>tên người dùng</th>
                     <th>Email</th>
                     <th>Quyền</th>
+                    <th>Ảnh đại diện</th>
                     <th width="280px">Hành động</th>
                   </tr>
                 </thead>
@@ -35,6 +36,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ getRoleNameById($user->role_id) }}</td>
+                    <td><img src="{{ $user->avatar }}" alt="avatar" width="100px" height="100px"></td>
                     <td>
                       <form action="{{ route('user.destroy',$user->id) }}" method="POST">
                         @csrf
