@@ -44,7 +44,11 @@
         <div class="col-md-4 col-sm-4 col-lg-4">
           <label class="control-label col-md-2 col-sm-2">Kênh</label>
           <div class="col-md-10 col-sm-10 ">
+            @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}
+            @else
+            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
+            @endif
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-lg-4">

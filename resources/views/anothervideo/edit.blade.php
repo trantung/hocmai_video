@@ -4,7 +4,7 @@
   <div class="x_panel">
     <h2>Sửa {{ $anothervideo->title }}</h2>
     <div class="x_title">
-      <a href="{{ action('TeacherController@index') }}" class="btn btn-danger">Trở lại</a>
+      <a href="{{ action('AnotherVideoController@index') }}" class="btn btn-danger">Trở lại</a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -44,7 +44,11 @@
         <div class="col-md-3 col-sm-3 form-group has-feedback">
           <label class="control-label col-md-2 col-sm-2">Khối</label>
           <div class="col-md-10 col-sm-10 ">
-            {{ Form::select('schoolblock_id', getListKhoi(),$anothervideo->schoolblock_id, array('class' => 'form-control')) }}
+              @if(checkUserRole() == ADMIN)
+                {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control')) }}
+                @else
+                {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
+              @endif
           </div>
         </div>
         <div class="col-md-3 col-sm-3  form-group has-feedback">

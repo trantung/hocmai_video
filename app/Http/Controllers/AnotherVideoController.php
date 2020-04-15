@@ -15,7 +15,13 @@ class AnotherVideoController extends Controller
      */
     public function index()
     {
-        $data = AnotherVideo::all();
+        $roleId = checkUserRole();
+        if ($roleId == ADMIN) {
+            $data = AnotherVideo::all();
+        } else {
+            $schoolblockId = getSchoolblockByUser();
+            $data = AnotherVideo::where('schoolblock_id', $schoolblockId)->get();
+        }
         return view('anothervideo.index')->with(compact('data'));
     }
 
@@ -39,6 +45,8 @@ class AnotherVideoController extends Controller
     {
         $input = $request->all();
         $input['source_id'] = getIdFromSourceVideo($input['url']);
+        $duration = getDurationVideoFromText($input['duration']);
+        $input['duration'] = $duration;
         $id = AnotherVideo::create($input)->id;
         return Redirect::action('AnotherVideoController@index');
     }

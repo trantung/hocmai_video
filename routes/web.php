@@ -13,7 +13,7 @@
 
 //use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\CheckPermission;
 // Route::get('/testvideo', function(){
 //     return view('testvideo');
 // });
@@ -37,15 +37,13 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/role', 'RoleController');
     /* livestream hm */
     //khối học
-    Route::resource('/schoolblock', 'SchoolBlockController');
+    Route::resource('/schoolblock', 'SchoolBlockController')->middleware(CheckPermission::class);
     // môn học
-    Route::resource('/subject', 'SubjectController');
+    Route::resource('/subject', 'SubjectController')->middleware(CheckPermission::class);
     //User
-    Route::resource('/user', 'UserController');
-    Route::get('/user/updateprofile','ProfileController@updateAuthUser');
-    Route::post('/user/updateprofile','ProfileController@updateAuthUser');
+    Route::resource('/user', 'UserController')->middleware(CheckPermission::class);
     //lớp học
-    Route::resource('/class', 'ClassController');
+    Route::resource('/class', 'ClassController')->middleware(CheckPermission::class);
     // giáo viên
     Route::resource('/teacher', 'TeacherController');
     // cấu hình livestream từ nguồn khác

@@ -4,102 +4,80 @@ namespace APV\User\Services;
 
 use APV\User\Models\User;
 use APV\User\Models\Role;
-use APV\User\Models\UserShop;
-use APV\Shop\Models\Shop;
-use Illuminate\Support\Facades\Hash;
 use APV\User\Constants\UserDataConst;
+use Carbon\Carbon;
+use App\Livestream;
+use App\AnotherVideo;
 
 class UserService
 {
-    public function create($input)
+    public function getDashboard($playStatus)
     {
-        $userExist = $this->checkUserExist($input);
-        if ($userExist) {
-            return false;
-        }
-        $shopExist = $this->checkShopExist($input['shop_id']);
-        if (!$shopExist) {
-            return false;
-        }
-        $input['password'] = Hash::make($input['password']);
-        $userId = User::create($input)->id;
-        UserShop::create(['user_id' => $userId, 'shop_id' => $input['shop_id']]);
-        if (!$userId) {
-            return false;
-        }
-        return $userId;
+        // $now = Carbon::now();
+        // $now = $now->toDateTimeString();
+        // if (!$playStatus) {
+        //     $data = Livestream::where('publish_time', '>=', $now)->get();
+        //     return $data;
+        // }
+        //status là trạng thái livestream được quy định. Ví dụ livestream dai 60 phút và ở trạng thái hẹn giờ từ 15h-16h, now = 22h thì tức là đã phát xong, nếu now = 15h30 thì tức là đang phát, now = 12h tức là hẹn giờ. Tương tự nếu livestream là ở chế độ đăng ngay thì so sanh now với thời điểm created_at của livestream
+        $data = $this->getPlay($playStatus);
+        return $data;
     }
 
-    public function edit($userId, $input)
+    public function convertData($data)
     {
-        $user = User::find($userId);
-        if (!$user) {
-            return false;
-        }
-        $user->update($input);
-        return true;
+
     }
 
-    public function checkShopExist($shopId)
+    public function getTimePlay($livestream)
     {
-        $shop = Shop::find($shopId);
-        if (!$shop) {
-            return false;
-        }
-        return $shop;
+        $time = getTimeLivestreamPlay($livestream);
+        return strtotime($time);
     }
 
-    public function checkUserExist($input)
+    public function getPlay($playStatus)
     {
-        $data = User::where('username', $input['username'])->first();
-        if ($data) {
-            return true;
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $timeNow = strtotime($now);
+        $roleId = checkUserRole();
+        if ($roleId == ADMIN) {
+            $data = Livestream::where('publish_time', '>=', $now)->get();
+        } else {
+            $schoolblockId = getSchoolblockByUser();
+            $data = Livestream::where('schoolblock_id', $schoolblockId)
+                ->where('publish_time', '>=', $now)
+                ->get();
         }
-        return false;
+        $resultPlaying = $resultPlayClock = $resultPlayFinish = [];
+        foreach ($data as $key => $value) {
+            //tinh thoi gian livestream
+            $duration = getDurationLivestream($value->id);
+            $livestreamStartTime = $this->getTimePlay($value);
+            $livestreamEndTime = $livestreamStartTime + $duration * 60;
+            if ($livestreamStartTime < $timeNow && $timeNow < $livestreamEndTime) {
+                $value->livestream_status = PLAYING;
+                $resultPlaying[$key] = $value;
+            }
+            if ($timeNow < $livestreamStartTime) {
+                $value->livestream_status = PLAY_TIME_CLOCKER;
+                $resultPlayClock[$key] = $value;
+            }
+            if ($timeNow > $livestreamEndTime) {
+                $value->livestream_status = PLAY_FINISH;
+                $resultPlayFinish[$key] = $value;
+            }
+        }
+        if ($playStatus == PLAYING) {
+            return $resultPlaying;
+        }
+        if ($playStatus == PLAY_TIME_CLOCKER) {
+            return $resultPlayClock;
+        }
+        if ($playStatus == PLAY_FINISH) {
+            return $resultPlayFinish;
+        }
+        return $data;
     }
 
-    public function getListRole()
-    {
-        $data = Role::all();
-        return $data->toArray();
-    }
-    public function getListUser()
-    {
-        // $data = User::where('role_id', '!=', UserDataConst::ADMIN)->get();
-        $data = User::all();
-        return $data->toArray();
-    }
-    
-    public function delete($userId)
-    {
-        $user = User::find($userId);
-        if (!$user) {
-            return false;
-        }
-        UserShop::where('user_id', $userId)->delete();
-        User::destroy($userId);
-        return true;
-    }
-
-    public function changePassword($userId, $input)
-    {
-        $user = User::find($userId);
-        if (!$user) {
-            return false;
-        }
-        $password = Hash::make($input['password']);
-        $user->update(['password' => $password]);
-        return true;
-    }
-
-    public function resetPassword($userId)
-    {
-        $user = User::find($userId);
-        if (!$user) {
-            return false;
-        }
-        $password = Hash::make(UserDataConst::PASSWORD_DEFAULT);
-        $user->update(['password' => $password]);
-        return true;
-    }
 }

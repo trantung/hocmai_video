@@ -4,8 +4,17 @@ use App\SchoolBlock;
 use App\Subject;
 use App\Teacher;
 use App\HocMaiClass;
+use App\Livestream;
+use App\LivestreamAnotherVideo;
+use App\AnotherVideo;
 use APV\User;
 use APV\User\Models\Role;
+
+function checkUserRole()
+{
+    $user = getInforUser();
+    return $user->role_id;
+}
 
 function getInforUser()
 {
@@ -16,10 +25,52 @@ function getInforUser()
     dd('login_error');
 }
 
+function getStatusLivestream($livestream)
+{
+    if ($livestream->livestream_status == PLAYING) {
+        return '<span class="badge badge-primary">Đang phát</span>';
+    }
+    if ($livestream->livestream_status == PLAY_TIME_CLOCKER) {
+        return '<span class="badge badge-danger">Hẹn giờ</span>';
+    }
+    if ($livestream->livestream_status == PLAY_FINISH) {
+        return '<span class="badge badge-success">Phát xong</span>';
+    }
+
+}
+
+function getTimeLivestreamPlay($livestream)
+{
+    if ($livestream->is_publish == IS_PUBLISH_ACTIVE) {
+        $time = $livestream->created_at;
+    }
+    if ($livestream->is_publish == IS_PUBLISH_INACTIVE) {
+        $time = $livestream->timer_clock;
+    }
+    return $time;
+}
+
+function getDurationLivestream($livestreamId)
+{
+    // dd($livestreamId);
+    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
+    $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
+    return $result;
+}
+
 function getIdFromSourceVideo($url)
 {
     $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
     return $sourceId;   
+}
+
+function getDurationVideoFromText($str)
+{
+    $data = explode(':', $str);
+    $hour = $data[0];
+    $minute = $data[1];
+    $duration = 60 * $hour + $minute;
+    return $duration;
 }
 
 function getListRole()
@@ -29,7 +80,15 @@ function getListRole()
 /* start livestream hoc mai*/
 // class lấy name lớp
 function getListClass(){
-    return HocMaiClass::pluck('name','id')->toArray();
+    $schoolblockId = getSchoolblockByUser();
+    $roleId = checkUserRole();
+    if (!$schoolblockId && $roleId == ADMIN) {
+        return HocMaiClass::pluck('name','id')->toArray();
+    }
+    if (!$schoolblockId && $roleId != ADMIN) {
+        dd('user bi sai quyen');
+    }
+    return HocMaiClass::where('schoolblock_id', $schoolblockId)->pluck('name','id')->toArray();
 }
 // khối 
 function getListKhoi(){
@@ -115,3 +174,23 @@ function renderCodeOrder()
     $randstring = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     return $randstring;
 }
+//phan quyền 
+function getSchoolblockByUser()
+{
+    $roleId = checkUserRole();
+    $blockId = null;
+    if ($roleId == THPT) {
+        $blockId = BLOCK_THPT;
+    }
+    if ($roleId == THCS) {
+        $blockId = BLOCK_THCS;
+    }
+    if ($roleId == TH) {
+        $blockId = BLOCK_TH;
+    }
+    return $blockId;
+
+}
+
+
+
