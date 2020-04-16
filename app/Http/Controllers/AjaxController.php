@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AnotherVideo;
-
+use App\HocMaiClass;
 class AjaxController extends Controller
 {
     public function loadVideoSource(Request $request)
