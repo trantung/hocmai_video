@@ -15,7 +15,7 @@ class UserController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = User::all();
         return view('user.index')->with(compact('data'));
