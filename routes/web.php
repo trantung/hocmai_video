@@ -14,9 +14,10 @@
 //use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckPermission;
-// Route::get('/testvideo', function(){
-//     return view('testvideo');
-// });
+
+Route::get('/test/install_package', function(){
+    echo phpinfo();
+});
 
 Route::group(['prefix' => 'ajax'], function() {
     Route::post('load_video_source', 'AjaxController@loadVideoSource');
