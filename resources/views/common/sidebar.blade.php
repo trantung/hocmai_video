@@ -1,21 +1,21 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
   <div class="menu_section">
     <ul class="nav side-menu">
-      <li><a href="{{action('AdminController@index')}}"><i class="fa fa-home"></i> LiveStream của tôi</a>
+      <li><a class="tab-content" href="{{action('AdminController@index')}}"><i class="fa fa-home"></i> LiveStream của tôi</a>
       </li>
       <li><a><i class="fa fa-play"></i></i> Livestream nguồn video <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{action('LivestreamHocmaiVideoController@create')}}">Cấu hình livestream từ HOCMAI</a></li>
-          <li><a href="{{action('LivestreamAnotherVideoController@create')}}">Cấu hình livestream từ nguồn khác</a></li>
-          <li><a href="{{action('AnotherVideoController@index')}}">Cài đặt nguồn video</a></li>
-          <li><a href="{{action('HocMaiVideoController@index')}}">Cài đặt video học mãi</a></li>
+          <li><a class="tab-content" href="{{action('LivestreamHocmaiVideoController@create')}}">Cấu hình livestream từ HOCMAI</a></li>
+          <li><a class="tab-content" href="{{action('LivestreamAnotherVideoController@create')}}">Cấu hình livestream từ nguồn khác</a></li>
+          <li><a class="tab-content" href="{{action('AnotherVideoController@index')}}">Cài đặt nguồn video</a></li>
+          <li><a class="tab-content" href="{{action('HocMaiVideoController@index')}}">Cài đặt video học mãi</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-video-camera"></i> Camera Livestream<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
         </ul>
       </li>
-      <li><a href="#"><i class="fa fa-cog"></i> Quản lý thông tin chung <span class="fa fa-chevron-down"></span></a>
+      <li><a class="tab-content" href="#"><i class="fa fa-cog"></i> Quản lý thông tin chung <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           @if(checkUserRole() == ADMIN)
           <li><a href="{{action('UserController@index')}}">Quản lý người dùng</a></li>

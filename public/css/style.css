@@ -25,29 +25,71 @@ input[type="password"] {
 
 /* ============================ end login ================================================== */
 
-.buttonNext {
+
+/* .buttonNext {
     float: left;
     margin-left: 100px !important;
     margin-bottom: -48px !important;
-}
+} */
 
 
 /* ẩn finish */
 
-.actionBar .buttonFinish {
-    display: none !important;
+h3 {
+    font-family: "Poppins-SemiBold" !important;
+    font-size: 35px !important;
+    color: #3377c0 !important;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600 !important;
+    letter-spacing: 3px;
+    margin-bottom: 32px !important;
+}
+
+input {
+    height: auto !important;
+}
+
+.stepContainer {
+    height: auto !important;
+}
+
+.actionBar {
+    min-height: 300px !important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+div.actionBar.buttonDisabled {
+    margin-bottom: 0px !important;
+}
+
+
+/* menu top dropdown */
+
+.dropdown-menu.show {
+    transform: translate3d(-84px, 22px, 0px) !important;
+    ;
+}
+
+.input-append .add-on {
+    height: 30px !important;
+}
+
+
+/* //button */
+
+.input-sumbit {
+    margin-bottom: none !important;
 }
 
 .active a span.fa {
     margin-right: 0 !important;
+    margin-top: 6px !important;
 }
 
 .main_menu span.fa {
     margin-top: 0 !important;
-}
-
-.form_wizard .stepContainer {
-    min-height: 780px;
 }
 
 
@@ -282,4 +324,17 @@ button.btn.btn-simple.btn-sm.btn.btn-filter:focus {
 
 .panel-body {
     padding: 15px;
+}
+
+
+/* //error input load_video */
+
+.error {
+    display: none;
+    margin-left: 10px;
+}
+
+.error_show {
+    color: red;
+    margin-left: 10px;
 }

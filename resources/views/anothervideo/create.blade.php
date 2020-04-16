@@ -15,24 +15,34 @@
       <br>
       {{ Form::open(array('method'=>'POST', 'action' => array('AnotherVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
+        <div class="col-md-4 col-sm-4">
           <label class="control-label col-md-3 col-sm-3" for="title"> Tiêu đề</label>
-          {{ Form::text('title', null, array('class' => 'form-control has-feedback-left','id'=>'title')) }}
+          <div class="col-md-9">
+            {{ Form::text('title', null, array('class' => 'form-control has-feedback-left','id'=>'title')) }}
+          </div>
         </div>
-        <div class="col-md-8 col-sm-4  form-group has-feedback">
+        <div class="col-md-4 col-sm-4">
           <label class="control-label col-md-3 col-sm-3" for="url"> url</label>
-          {{ Form::text('url', null, array('class' => 'form-control has-feedback-left','id'=>'url')) }}
+          <div class="col-md-9">
+            {{ Form::text('url', null, array('class' => 'form-control has-feedback-left','id'=>'url')) }}
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <label class="control-label col-md-3 col-sm-3" for="url">Độ dài video</label>
+          <div class="col-md-9">
+            <div id="datetimepicker3" class="input-append">
+              <input data-format="hh:mm:ss" type="text" name="duration"></input>
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Độ dài video</label>
-          <div class="col-md-10 col-sm-10 ">
-            <input type="time" name="duration" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Kênh</label>
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label col-md-2 col-sm-2">Kênh</label>
           <div class="col-md-10 col-sm-10 ">
             @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}
@@ -41,14 +51,14 @@
             @endif
           </div>
         </div>
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Lớp</label>
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label col-md-2 col-sm-2">Lớp</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('class_id', getListClass(), array('class' => 'form-control')) }}
           </div>
         </div>
-        <div class="col-md-4 col-sm-4  form-group has-feedback">
-          <label class="control-label col-md-3 col-sm-3">Môn</label>
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label col-md-2 col-sm-2">Môn</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('subject_id', getListMon(), array('class' => 'form-control')) }}
           </div>

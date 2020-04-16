@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<?php 
+  $userInfo = getInforUser();
+?>
 @include('common.header')
 <body class="nav-md">
   <div class="container body">
@@ -14,7 +17,7 @@
           <!-- avatar -->
           <div class="profile clearfix">
             <div class="profile_pic">
-              <img src="{{url('../../images/img.jpg')}}" alt="..." class="img-circle profile_img">
+              <img src="{{$userInfo->avatar}}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -33,11 +36,11 @@
       @include('common.nav_bar')
       <!-- /top navigation -->
       <!-- page content -->
-      <div class="right_col" role="main" style="height:auto" id="page-wrapper">
+      <div id="page-wrapper" class="right_col" role="main" style="height:auto">
+            @yield('content')
+      </div>
         <!-- top tiles -->
         <!-- main -content  -->
-        @yield('content')
-      </div>
     </div>
     <!-- /top tiles -->
     <!-- footer content -->
