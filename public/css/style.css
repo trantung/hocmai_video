@@ -35,15 +35,66 @@ input[type="password"] {
 
 /* ẩn finish */
 
-h3 {
-    font-family: "Poppins-SemiBold" !important;
-    font-size: 35px !important;
-    color: #3377c0 !important;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: 600 !important;
-    letter-spacing: 3px;
-    margin-bottom: 32px !important;
+input[type=text],
+select {
+    width: 100% !important;
+    padding: 0px 5px !important;
+    margin: 0 !important;
+    display: inline-block !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    box-sizing: border-box;
+    font-size: 14px !important;
+    line-height: 40px !important;
+    color: #555;
+    vertical-align: middle !important;
+}
+
+button {
+    border: none !important;
+    color: white !important;
+    padding: 13px 18px 10px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    font-size: 16px !important;
+    margin: 0px !important;
+    cursor: pointer !important;
+}
+
+.button:hover {
+    background-color: #fff;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.button:active {
+    background-color: #58257b !important;
+    box-shadow: 0 5px #666 !important;
+    transform: translateY(4px) !important;
+}
+
+
+/* // icon time  */
+
+.icon-time {
+    background-position: -40px -24px !important;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    display: inline-block;
+    width: 20px !important;
+    height: 20px !important;
+    margin-top: 8px !important;
+    margin-right: 5px !important;
+    line-height: 14px;
+    vertical-align: text-bottom !important;
+}
+
+.input-append .add-on {
+    height: 42px !important;
 }
 
 input {
@@ -72,12 +123,21 @@ div.actionBar.buttonDisabled {
     ;
 }
 
-.input-append .add-on {
-    height: 30px !important;
+
+/* StepTitle */
+
+.StepTitle {
+    padding: 10px 12px;
 }
 
 
 /* //button */
+
+#load_video_source {
+    background-color: blue !important;
+    border-radius: 5px;
+    height: 40px;
+}
 
 .input-sumbit {
     margin-bottom: none !important;
@@ -142,9 +202,18 @@ i.del {
 
 /* Style the buttons */
 
-button.btn.btn-simple.btn-sm.btn.btn-filter:focus {
-    background: #006dbf;
-    color: #fff;
+.filterDiv a button {
+    color: #006dbf !important;
+}
+
+.filterDiv a button:focus {
+    background: brown !important;
+    color: white !important;
+}
+
+button.btn.btn-simple.btn-sm.btn.btn-filter a:focus {
+    background: #006dbf !important;
+    color: #fff !important;
     border: none !important;
     box-shadow: none;
 }
@@ -153,7 +222,7 @@ button.btn.btn-simple.btn-sm.btn.btn-filter:focus {
     border: none;
     outline: none;
     padding: 12px 16px;
-    background-color: #f1f1f1;
+    background-color: rgb(155, 150, 150);
     cursor: pointer;
 }
 
@@ -161,14 +230,14 @@ button.btn.btn-simple.btn-sm.btn.btn-filter:focus {
 /* Add a light grey background on mouse-over */
 
 .filterDiv .btn:hover {
-    background-color: #ddd;
+    background: #ddd;
 }
 
 
 /* Add a dark background to the active button */
 
 .filterDiv .btn.active {
-    background-color: #666;
+    background-color: blue;
     color: white;
 }
 

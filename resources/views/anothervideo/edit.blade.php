@@ -16,49 +16,53 @@
       <br>
       {{ Form::open(array('method'=>'PUT', 'action' => array('AnotherVideoController@update', $anothervideo->id))) }}
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
+        <div class="col-md-4 col-sm-4 col-lg-4">
           <label class="control-label col-md-2 col-sm-2">Tiêu đề</label>
           <div class="col-md-11 col-sm-11">
             {{ Form::text('title', $anothervideo->title, array('class' => 'form-control has-feedback-left','placeholder'=>'')) }}
           </div>
         </div>
-        <div class="col-md-6 col-sm-6  form-group has-feedback">
+        <div class="col-md-4 col-sm-4 col-lg-4">
           <label class="control-label col-md-2 col-sm-2">url</label>
           <div class="col-md-11 col-sm-11">
             {{ Form::text('url', $anothervideo->url, array('class' => 'form-control has-feedback-left','placeholder'=>'')) }}
 
           </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-md-3 col-sm-3  form-group has-feedback">
-          <label class="control-label col-md-4 col-sm-4">Độ dài video</label>
-          <div id="datetimepicker3" class="col-md-8 col-sm-8 input-append">
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="col-lg-4 col-md-4 col-sm-4">Độ dài video</label>
+          <div id="datetimepicker3" class="col-md-10 col-sm-10 input-append">
             <input data-format="hh:mm:ss" type="text" name="duration" class="form-control"></input>
             <span class="add-on">
-              <i data-time-icon="icon-time" data-date-icon="icon-calendar" >
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
               </i>
             </span>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3 form-group has-feedback">
-          <label class="control-label col-md-2 col-sm-2">Khối</label>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-4 col-sm-4 ">
+          <label class="col-lg-6 col-md-6 col-sm-6">Kênh</label>
           <div class="col-md-10 col-sm-10 ">
-              @if(checkUserRole() == ADMIN)
-                {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control')) }}
-                @else
-                {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
-              @endif
+            @if(checkUserRole() == ADMIN)
+            {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control','id'=>'schoolblock_id')) }}
+            @else
+            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
+            @endif
           </div>
         </div>
-        <div class="col-md-3 col-sm-3  form-group has-feedback">
-          <label class="control-label col-md-2 col-sm-2">Lớp</label>
-          <div class="col-md-10 col-sm-10 ">
-            {{ Form::select('class_id', getListClass(),$anothervideo->class_id, array('class' => 'form-control')) }}
+        <div class="col-md-4 col-sm-4" id="class_id">
+          <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+          <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+            <select class="form-control" name="class_id">
+              <option value="1">Lớp 12</option>
+              <option value="2">Lớp 10</option>
+              <option value="3">Lớp 11</option>
+            </select>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3  form-group has-feedback">
-          <label class="control-label col-md-2 col-sm-2">Môn</label>
+        <div class="col-md-4 col-sm-4">
+          <label class="col-lg-6 col-md-6 col-sm-6">Môn</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('subject_id', getListMon(),$anothervideo->subject_id, array('class' => 'form-control')) }}
           </div>

@@ -2,6 +2,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="{{asset('js/video.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/class.js')}}" type="text/javascript"></script>
 <!-- steps -->
 
 <!-- jQuery -->
