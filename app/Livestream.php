@@ -25,7 +25,7 @@ class Livestream extends Model
         'schoolblock_id'
     ];
 
-    public function setPublishTimeAttribute($value)
+    public function setEndTimeAttribute($value)
     {
         $this->attributes['end_time'] =  Carbon::parse($value);
     }
