@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\SchoolBlock;
 use App\HocMaiClass;
 use App\Livestream;
+use App\AnotherVideo;
+use App\LivestreamAnotherVideo;
 use Carbon\Carbon;
 
 class ApiController extends Controller
@@ -37,11 +39,23 @@ class ApiController extends Controller
         return null;
     }
 
+    public function getVideoUrlByLivestream($livestreamId)
+    {
+        $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
+        $data = AnotherVideo::whereIn('id', $listId)->get();
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result[$key]['video_url'] = getLivestreamUrl($value->source_id);
+        }
+        return $result;
+    }
+
     public function commonFormatGetLivestream($data)
     {
         $result = [];
         foreach ($data as $key => $value) {
             $result[$value->id]['livestream_id'] = $value->id;
+            $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
             $result[$value->id]['avatar'] = $value->image_small;
             $result[$value->id]['name'] = $value->name;
             $result[$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
