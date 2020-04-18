@@ -41,10 +41,10 @@ function getStatusLivestream($livestream)
 
 function getTimeLivestreamPlay($livestream)
 {
-    if ($livestream->is_publish == IS_PUBLISH_ACTIVE) {
+    if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
         $time = $livestream->created_at;
     }
-    if ($livestream->is_publish == IS_PUBLISH_INACTIVE) {
+    if ($livestream->status_time == IS_PUBLISH_INACTIVE) {
         $time = $livestream->timer_clock;
     }
     return $time;

@@ -66,10 +66,19 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
 });
 
 //api cho hocmai video
-Route::group(['prefix' => '/api'], function () {
+Route::group(['prefix' => '/api_hocmai'], function () {
     //danh sách các khôi
     Route::get('/block/list', 'ApiController@index');
+    //chi tiet
+    Route::post('/block/detail', 'ApiController@detail');
 
+    //api dang phat livestream: lấy toàn bộ livestream khi có 
+    //end_time >= now
+    //nếu livestream có status_time = IS_PUBLISH_ACTIVE tức là đăng ngay thì dk thêm là created_at =< $now =< thời điểm kết thúc livestream(created_at + duration) trong đó duration = getDurationLivestream($livestreamId) tính theo phút
+    //nêwus livestream có status_time = IS_PUBLISH_INACTIVE tương tự nhưng là clocker_time
 
+    // api lich phát là api lấy thông tin của livestream có status_time = IS_PUBLISH_INACTIVE
+    
+    //api chi tiết 1 livestream
 });
 

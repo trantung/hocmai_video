@@ -128,14 +128,14 @@
                 <div class="form-group row">
                     <label class="control-label col-md-2 col-sm-2 ">Thời điểm đăng Livestream</label>
                     <div class="col-md-4 col-sm-4 ">
-                        {{ Form::select('is_publish', getArrayIsPublish(), old('is_publish'),array('class' => 'form-control','id'=>'selectTime')) }}
+                        {{ Form::select('status_time', getArrayIsPublish(), old('is_publish'),array('class' => 'form-control','id'=>'selectTime')) }}
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
                         <div class="col-md-4 col-sm-4 ">
-                        <input type="dateTime-local" name="publish_time" id="input_publish_time" class="form-control">
+                        <input type="dateTime-local" name="end_time" id="input_publish_time" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-12" id="timeShow">

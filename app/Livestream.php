@@ -14,8 +14,8 @@ class Livestream extends Model
         'image_big',
         'require_login',
         'description',
-        'is_publish',
-        'publish_time',
+        'status_time',
+        'end_time',
         'timer_clock',
         'repeat',
         'teacher_id',
@@ -27,7 +27,7 @@ class Livestream extends Model
 
     public function setPublishTimeAttribute($value)
     {
-        $this->attributes['publish_time'] =  Carbon::parse($value);
+        $this->attributes['end_time'] =  Carbon::parse($value);
     }
 
     public function setTimerClockAttribute($value)
