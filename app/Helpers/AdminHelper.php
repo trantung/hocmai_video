@@ -194,7 +194,9 @@ function getSchoolblockByUser()
 
 function getLivestreamUrl($sourceId)
 {
-    $url = 'https://www.googleapis.com/drive/v3/files/' . $sourceId .'?alt=media&key=' . GOOGLE_API_KEY;
+    // $url = 'https://www.googleapis.com/drive/v3/files/' . $sourceId .'?alt=media&key=' . GOOGLE_API_KEY;
+    $url = 'https://drive.google.com/uc?export=download&id=' . $sourceId;
+
     return $url;
 }
 
