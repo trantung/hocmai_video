@@ -8,6 +8,7 @@ use App\SchoolBlock;
 use App\HocMaiClass;
 use App\Livestream;
 use App\AnotherVideo;
+use App\Teacher;
 use App\LivestreamAnotherVideo;
 use APV\User\Services\UserService;
 use Carbon\Carbon;
@@ -227,4 +228,41 @@ class ApiController extends Controller
         }
         return $this->getLivestreamCalendarByAll($input);
     }
+    public function getTeacherId($teacher_id){
+        $listId = Livestream::where('teacher_id', $teacher_id)->pluck('teacher_id');
+        $data = Teacher::whereIn('id', $listId)->get();
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result[$key]['name'] = $value->name;
+            $result[$key]['desc'] = $value->desc;
+            $result[$key]['avatar'] = $value->avatar;
+        }
+        return $result;
+    }
+    // chi tiêt video
+    public function livestreamDetail(Request $request){
+        $input= $request->all();
+        $id = $input['id'];
+        $livestreamDetail = Livestream::where('id', $id)->get();
+        dd($livestreamDetail);
+        $listLivesteam = [];
+        foreach ($livestreamDetail as $key => $value) {
+            $listLivesteam[$key]['subject_id'] = getMonNameById($value->subject_id);
+            $listLivesteam[$key]['class_id'] = getClassNameById($value->class_id);
+            $listLivesteam[$key]['description'] = $value->description;
+        }
+        $result = array(
+            'time_start' => $this->getLivestreamCalendarByDate($input),
+            'general_information' => [
+                $content =>$listLivesteam,
+                $teacher => $this->getTeacherId($id)
+            ]
+        )
+        $response = array(
+            'status' => 'success',
+            'data' => $result
+        );
+        return response()->json($response);
+    }
+
 }

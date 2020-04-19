@@ -80,5 +80,6 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     // api lich phát là api lấy thông tin của livestream có status_time = IS_PUBLISH_INACTIVE
     Route::post('/livestream/calendar', 'ApiController@livestreamCalendar');
     //api chi tiết 1 livestream
+    Route::post('/livestream/detail','ApiController@livestreamDetail');
 });
 
