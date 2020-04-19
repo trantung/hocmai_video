@@ -232,11 +232,11 @@ class ApiController extends Controller
         $listId = Livestream::where('teacher_id', $teacher_id)->pluck('teacher_id');
         $data = Teacher::whereIn('id', $listId)->get();
         $result = [];
-        foreach ($data as $key => $value) {
-            $result[$key]['name'] = $value->name;
-            $result[$key]['desc'] = $value->desc;
-            $result[$key]['avatar'] = $value->avatar;
-        }
+        
+            $result['name'] = $data->name;
+            $result['desc'] = $data->desc;
+            $result['avatar'] = $data->avatar;
+        
         return $result;
     }
     // chi tiêt video
@@ -244,7 +244,6 @@ class ApiController extends Controller
         $input= $request->all();
         $id = $input['id'];
         $livestreamDetail = Livestream::where('id', $id)->get();
-        dd($livestreamDetail);
         $listLivesteam = [];
         foreach ($livestreamDetail as $key => $value) {
             $listLivesteam[$key]['subject_id'] = getMonNameById($value->subject_id);
@@ -254,8 +253,8 @@ class ApiController extends Controller
         $result = array(
             'time_start' => $this->getLivestreamCalendarByDate($input),
             'general_information' => [
-                $content =>$listLivesteam,
-                $teacher => $this->getTeacherId($id)
+                'content' =>$listLivesteam,
+                'Teacher' => $this->getTeacherId($id)
             ]
         )
         $response = array(
