@@ -228,41 +228,35 @@ class ApiController extends Controller
         }
         return $this->getLivestreamCalendarByAll($input);
     }
-    public function getTeacherId($teacher_id){
-        $listId = Livestream::where('teacher_id', $teacher_id)->pluck('teacher_id');
-        $data = Teacher::whereIn('id', $listId)->get();
+    public function getTeacherInfo($teacherId){
         $result = [];
-        foreach ($data as $key => $value) {
-            $result[$key]['name'] = $value->name;
-            $result[$key]['desc'] = $value->desc;
-            $result[$key]['avatar'] = $value->avatar;
+        $teacher = Teacher::find($teacherId);
+        if (!$teacher) {
+            return $result;
         }
+        $result['name'] = $teacher->name;
+        $result['desc'] = $teacher->desc;
+        $result['avatar'] = $teacher->avatar;
         return $result;
     }
     // chi tiêt video
     public function livestreamDetail(Request $request){
         $input= $request->all();
         $id = $input['id'];
-        $livestreamDetail = Livestream::where('id', $id)->get();
-        dd($livestreamDetail);
-        $listLivesteam = [];
-        foreach ($livestreamDetail as $key => $value) {
-            $listLivesteam[$key]['subject_id'] = getMonNameById($value->subject_id);
-            $listLivesteam[$key]['class_id'] = getClassNameById($value->class_id);
-            $listLivesteam[$key]['description'] = $value->description;
-        }
+        $livestreamDetail = Livestream::find($id);
+        // dd($livestreamDetail);
+        $livstreamDes = [];
+        $livstreamDes['subject_id'] = getMonNameById($livestreamDetail->subject_id);
+        $livstreamDes['subject_id'] = $livestreamDetail->subject_id;
+        $livstreamDes['class_name'] = getClassNameById($livestreamDetail->class_id);
+        $livstreamDes['class_id'] = $livestreamDetail->class_id;
+        $livstreamDes['description'] = $livestreamDetail->description;
         $result = array(
-            'time_start' => $this->getLivestreamCalendarByDate($input),
-            'general_information' => [
-                $content =>$listLivesteam,
-                $teacher => $this->getTeacherId($id)
-            ]
-        )
-        $response = array(
-            'status' => 'success',
-            'data' => $result
+            'time_start' => date('H:i', strtotime($livestreamDetail->timer_clock)),
+            'livestream_detail' => $livstreamDes,
+            'teacher' => $this->getTeacherInfo($livestreamDetail->teacher_id)
         );
-        return response()->json($response);
+        return $this->responseSuccess($result);
     }
 
 }
