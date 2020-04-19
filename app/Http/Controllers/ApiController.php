@@ -246,7 +246,7 @@ class ApiController extends Controller
         $livestreamDetail = Livestream::find($id);
         // dd($livestreamDetail);
         $livstreamDes = [];
-        $livstreamDes['subject_id'] = getMonNameById($livestreamDetail->subject_id);
+        $livstreamDes['subject_name'] = getMonNameById($livestreamDetail->subject_id);
         $livstreamDes['subject_id'] = $livestreamDetail->subject_id;
         $livstreamDes['class_name'] = getClassNameById($livestreamDetail->class_id);
         $livstreamDes['class_id'] = $livestreamDetail->class_id;
