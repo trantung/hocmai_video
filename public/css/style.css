@@ -137,6 +137,7 @@ div.actionBar.buttonDisabled {
     background-color: blue !important;
     border-radius: 5px;
     height: 40px;
+    padding: 5px !important;
 }
 
 .input-sumbit {

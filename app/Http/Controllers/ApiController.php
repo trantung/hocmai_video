@@ -15,7 +15,7 @@ class ApiController extends Controller
 {
     public function index()
     {
-        $data = SchoolBlock::all();
+		$data = SchoolBlock::all();
         $result = [];
         foreach ($data as $key => $value) {
             $result[$key]['school_block_id'] = $value->id;
@@ -94,19 +94,17 @@ class ApiController extends Controller
     public function detail(Request $request)
     {
         $classId = null;
-        $input = $request->all();
-        if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
+		$input = $request->all();
+        if (!isset($input[' ']) || empty($input['schoolblock_id'])) {
             $response = array(
                 'status' => 'Fail',
                 'data' => []
             );
             return response()->json($response);
         }
-
         if (isset($input['class_id'])) {
             $classId = $input['class_id'];
         }
-
         $id = $input['schoolblock_id'];
         $hocmaiClass = HocMaiClass::where('schoolblock_id', $id)->get();
 
@@ -135,6 +133,5 @@ class ApiController extends Controller
             'data' => $result
         );
         return response()->json($response);
-    }
-        
+	}
 }
