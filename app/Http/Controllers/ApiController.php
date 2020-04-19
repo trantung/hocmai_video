@@ -242,7 +242,7 @@ class ApiController extends Controller
     // chi tiêt video
     public function livestreamDetail(Request $request){
         $input= $request->all();
-        $id = $input['id'];
+        $id = $input['livestream_id'];
         $livestreamDetail = Livestream::find($id);
         // dd($livestreamDetail);
         $livstreamDes = [];
