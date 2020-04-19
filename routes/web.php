@@ -76,9 +76,9 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     //end_time >= now
     //nếu livestream có status_time = IS_PUBLISH_ACTIVE tức là đăng ngay thì dk thêm là created_at =< $now =< thời điểm kết thúc livestream(created_at + duration) trong đó duration = getDurationLivestream($livestreamId) tính theo phút
     //nêwus livestream có status_time = IS_PUBLISH_INACTIVE tương tự nhưng là clocker_time
-
+    Route::post('/livestream/play/current', 'ApiController@livestreamPlayCurrent');
     // api lich phát là api lấy thông tin của livestream có status_time = IS_PUBLISH_INACTIVE
-    
+    Route::post('/livestream/calendar', 'ApiController@livestreamCalendar');
     //api chi tiết 1 livestream
 });
 
