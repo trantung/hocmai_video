@@ -9,10 +9,16 @@ use App\HocMaiClass;
 use App\Livestream;
 use App\AnotherVideo;
 use App\LivestreamAnotherVideo;
+use APV\User\Services\UserService;
 use Carbon\Carbon;
 
 class ApiController extends Controller
 {
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function index()
     {
         $data = SchoolBlock::all();
@@ -50,17 +56,29 @@ class ApiController extends Controller
         return $result;
     }
 
-    public function commonFormatGetLivestream($data)
+    public function commonFormatGetLivestream($data, $filter = null)
     {
         $result = [];
+
         foreach ($data as $key => $value) {
-            $result[$value->id]['livestream_id'] = $value->id;
-            $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-            $result[$value->id]['avatar'] = $value->image_small;
-            $result[$value->id]['name'] = $value->name;
-            $result[$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
-            $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
-            $result[$value->id]['view_number'] = $this->getViewNumber($value->id);
+            if ($filter) {
+                $keyHour = date('H:i', strtotime($value->timer_clock));
+                $result[$keyHour][$value->id]['livestream_id'] = $value->id;
+                $result[$keyHour][$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
+                $result[$keyHour][$value->id]['avatar'] = $value->image_small;
+                $result[$keyHour][$value->id]['name'] = $value->name;
+                $result[$keyHour][$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
+                $result[$keyHour][$value->id]['like_number'] = $this->getLikeNumber($value->id);
+                $result[$keyHour][$value->id]['view_number'] = $this->getViewNumber($value->id);
+            } else {
+                $result[$value->id]['livestream_id'] = $value->id;
+                $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
+                $result[$value->id]['avatar'] = $value->image_small;
+                $result[$value->id]['name'] = $value->name;
+                $result[$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
+                $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
+                $result[$value->id]['view_number'] = $this->getViewNumber($value->id);
+            }
         }
         return $result;
     }
@@ -136,5 +154,80 @@ class ApiController extends Controller
         );
         return response()->json($response);
     }
-        
+
+    public function responseSuccess($result)
+    {
+        $response = array(
+            'status' => 'success',
+            'data' => $result
+        );
+        return response()->json($response);
+    }
+
+    public function livestreamPlayCurrent(Request $request)
+    {
+        $input = $request->all();
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $timeNow = strtotime($now);
+        $data = Livestream::where('end_time', '>=', $now);
+        if (isset($input['class_id'])) {
+            $data = $data->where('class_id', $input['class_id']);
+        }
+        if (isset($input['schoolblock_id'])) {
+            $data = $data->where('schoolblock_id', $input['schoolblock_id']);
+        }
+        $data = $data->get();
+        $result = [];
+        foreach ($data as $key => $value) {
+            //thoi gian ket thuc livestream
+            $duration = getDurationLivestream($value->id);
+            $livestreamStartTime = $this->userService->getTimePlay($value);
+            $livestreamEndTime = $livestreamStartTime + $duration * 60;
+            if ($livestreamStartTime < $timeNow && $timeNow < $livestreamEndTime) {
+                $result[] = $value;
+            }
+        }
+        $result = $this->commonFormatGetLivestream($result);
+
+        return $this->responseSuccess($result);
+    }
+
+    public function getLivestreamCalendarByDate($input)
+    {
+        $day = $input['date_time_day'];
+        $date = date('Y-m-d', strtotime($day));
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $timeNow = strtotime($now);
+
+        $data = Livestream::where('status_time', IS_PUBLISH_INACTIVE)
+            ->whereDate('timer_clock', $date)
+            ->where('timer_clock', '>', $timeNow)
+            ->where('end_time', '>=', $now)
+            ->get();
+        $result = $this->commonFormatGetLivestream($data, 'hour');
+        return $this->responseSuccess($result);
+    }
+
+    public function getLivestreamCalendarByAll($input)
+    {
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $data = Livestream::where('end_time', '>=', $now)
+            ->where('status_time', IS_PUBLISH_INACTIVE)
+            ->get();
+        $result = $this->commonFormatGetLivestream($data);
+        return $this->responseSuccess($result);
+    }
+
+    public function livestreamCalendar(Request $request)
+    {
+        $input = $request->all();
+        if (isset($input['date_time_day'])) {
+            return $this->getLivestreamCalendarByDate($input);
+        }
+        return $this->getLivestreamCalendarByAll($input);
+    }
+
 }
