@@ -114,7 +114,7 @@ class ApiController extends Controller
     {
         $classId = null;
 		$input = $request->all();
-        if (!isset($input[' ']) || empty($input['schoolblock_id'])) {
+        if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
             $response = array(
                 'status' => 'Fail',
                 'data' => []
