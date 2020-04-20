@@ -38,14 +38,9 @@
                     <td>{{ getRoleNameById($user->role_id) }}</td>
                     <td><img src="{{ $user->avatar }}" alt="avatar" width="100px" height="100px"></td>
                     <td>
-                      <form action="{{ route('user.destroy',$user->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
                         <a href="{{ action('UserController@edit', $user->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit" style="color:while"></i></a>
-                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                          <i class="fa fa-trash" style="color:while"></i>
-                          </a></button>
-                      </form>
+                        <a href="{{ route('user.destroy', $user->id) }}" 
+                        class="btn btn-danger" data-method="DELETE" data-confirm="Bạn có chắc muốn xóa?"> Xóa</a>
                     </td>
                   </tr>
                   @endforeach

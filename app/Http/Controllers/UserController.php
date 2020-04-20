@@ -42,6 +42,7 @@ class UserController extends AdminController
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $userId = User::create($input)->id;
+        
         if (request()->file('avatar')) {
             $file = $request->file('avatar');
             $fileNameImage = $file->getClientOriginalName();
@@ -83,26 +84,26 @@ class UserController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request ,$id)
     {
-        $input = $request->all();
+        $input = $request -> all();
         $user = User::find($id);
         $imageUrl = $user->avatar;
-        if (request()->file('avatar')) {
-            $file = $request->file('avatar');
+        //dd($imageUrl);
+        $file = request()->file('avatar');
+        if ($file) {
             $fileNameImage = $file->getClientOriginalName();
-            $file->move(public_path("/uploads/admin/" . $id . '/avatar/'), $fileNameImage);
-            $imageUrl = '/uploads/admin/' . $id . '/avatar/' . $fileNameImage;
+           $file->move(public_path("/uploads/admin/"),$fileNameImage);
+           $imageUrl = '/uploads/admin/'.$fileNameImage;
         }
-        $input['avatar'] = $imageUrl;
-        if ($input['password']) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            unset($input['password']);
-        }
-        
-        $user->update($input);
-        // dd($user);
+        $password = Hash::make($input['password']);
+        $user->name = request('name');
+        $user->username = request('username');
+        $user->email = request('email');
+        $user->password = $password;
+        $user->avatar = $imageUrl;
+        $user->role_id = request('role_id');
+        $user->save();
         return Redirect::action('UserController@index'); 
     }
     

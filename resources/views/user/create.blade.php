@@ -17,19 +17,17 @@
       {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('UserController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <b>Họ và tên</b>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <span class="input-group-text"><i class="fa fa-user">Họ và tên</i></span>
             </div>
             {{ Form::text('name', null, array('class' => 'form-control name','placeholder'=>'họ & tên')) }}
           </div>
         </div>
         <div class="col-md-6 col-sm-6">
-          <b>Email Address</b>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                <span class="input-group-text"><i class="fa fa-envelope-o">Email Address</i></span>
             </div>
             {{ Form::text('email', null, array('class' => 'form-control email','placeholder'=>'Ex: example@example.com')) }}
           </div>
@@ -37,18 +35,18 @@
       </div>
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <b>Tên đăng nhập</b>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <span class="input-group-text"><i class="fa fa-user">Tên đăng nhập</i></span>
             </div>
             {{ Form::text('username', null, array('class' => 'form-control username','placeholder'=>'username')) }}
           </div>
         </div>
         <div class="col-md-6 col-sm-6">
-          <b>Mật khẩu</b>
-          <br>
           <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Mật khẩu</span>
+            </div>
             {{ Form::password('password', null, array('class' => 'form-control password_get_info','placeholder'=>'nhập mật khẩu')) }}
           </div>
         </div>
