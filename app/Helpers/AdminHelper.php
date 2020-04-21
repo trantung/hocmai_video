@@ -203,7 +203,7 @@ function getLivestreamUrl($sourceId)
 function getUrlFull($path)
 {
     $url = url($path);
-    dd($url);
+    return $url;
 }
 
 
