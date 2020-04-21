@@ -22,10 +22,11 @@
           <li><a href="{{action('SchoolBlockController@index')}}">Quản lý Kênh</a></li>
           <li><a href="{{action('SubjectController@index')}}">Quản lý Môn</a></li>
           <li><a href="{{action('ClassController@index')}}">Quản lý lớp</a></li>
+           <li><a href="{{action('HeaderController@index')}}">Quản lý header</a></li>
+          <li><a href="{{action('FooterController@index')}}">Quản lý footer</a></li>
           @endif
           <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
-          <li><a href="{{action('HeaderController@index')}}">Quản lý header</a></li>
-          <li><a href="{{action('FooterController@index')}}">Quản lý footer</a></li>
+         
         </ul>
       </li>
     </ul>
