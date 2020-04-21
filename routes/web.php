@@ -14,9 +14,23 @@
 //use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckPermission;
+use APV\User\Models\User;
 
 Route::get('/test/install_package', function(){
-    echo phpinfo();
+    User::create([
+        'name' => 'Admin',
+        'username' => 'super_admin',
+        'role_id' => 1,
+        'email' => 'trantunghn196@gmail.com',
+        'password' => Hash::make(123456),
+    ]);
+    dd(11);
+});
+
+Route::get('/test/livestream', function(){
+    $path = public_path('livestream/test.mp4');
+    // dd($path);
+    VideoStreamer::streamFile($path);
 });
 
 Route::group(['prefix' => 'ajax'], function() {
