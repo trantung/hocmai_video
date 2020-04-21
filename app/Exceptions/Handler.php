@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        dd('Lỗi serve errror 500');
+        // dd('Lỗi serve errror 500');
         return parent::render($request, $exception);
     }
 }

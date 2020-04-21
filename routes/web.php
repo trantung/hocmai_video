@@ -100,5 +100,7 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     //api cho header va footer
     Route::get('/header','ApiController@getHeader');
     Route::get('/footer','ApiController@getFooter');
+    //api nhan du lieu tu client day len
+    Route::post('/livestream/data','ApiController@dataLivestream');
 });
 

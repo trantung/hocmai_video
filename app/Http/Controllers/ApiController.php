@@ -13,6 +13,7 @@ use App\LivestreamAnotherVideo;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
 use APV\User\Services\UserService;
+use APV\LivestreamDetail;
 use Carbon\Carbon;
 
 class ApiController extends Controller
@@ -59,33 +60,63 @@ class ApiController extends Controller
         return $result;
     }
 
+    public function formatLivestream($value)
+    {
+        $result = [];
+
+        $teacher = $this->getTeacherInfo($value->teacher_id);
+        $result['livestream_id'] = $value->id;
+        $result['name'] = $value->name;
+        $result['video_url'] = $this->getVideoUrlByLivestream($value->id);
+        $result['small_cover'] = getUrlFull($value->image_small);
+        $result['big_cover'] = getUrlFull($value->image_big);
+        $result['subject_id'] = $value->subject_id;
+        $result['subject_name'] = getMonNameById($value->subject_id);
+        $result['class_id'] = $value->class_id;
+        $result['class_name'] = getClassNameById($value->class_id);
+        $result['description'] = $value->description;
+        $result['teacher_name'] = $teacher['name'];
+        $result['teacher_image'] = $teacher['avatar'];
+        $result['like_number'] = $this->getLikeNumber($value->id);
+        $result['view_number'] = $this->getViewNumber($value->id);
+
+        return $result;
+    }
+
     public function commonFormatGetLivestream($data, $filter = null)
     {
         $result = [];
+        // $livstreamDes['subject_name'] = getMonNameById($value->subject_id);
+        // $livstreamDes['subject_id'] = $value->subject_id;
+        // $livstreamDes['class_name'] = getClassNameById($value->class_id);
+        // $livstreamDes['class_id'] = $value->class_id;
+        // $livstreamDes['description'] = $value->description;
 
         foreach ($data as $key => $value) {
             $teacher = $this->getTeacherInfo($value->teacher_id);
             if ($filter) {
                 $keyHour = date('H:i', strtotime($value->timer_clock));
-                $result[$keyHour][$value->id]['livestream_id'] = $value->id;
-                $result[$keyHour][$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                $result[$keyHour][$value->id]['small_cover'] = getUrlFull($value->image_small);
-                $result[$keyHour][$value->id]['big_cover'] = getUrlFull($value->image_big);
-                $result[$keyHour][$value->id]['name'] = $value->name;
-                $result[$keyHour][$value->id]['teacher_name'] = $teacher['name'];
-                $result[$keyHour][$value->id]['teacher_image'] = $teacher['avatar'];
-                $result[$keyHour][$value->id]['like_number'] = $this->getLikeNumber($value->id);
-                $result[$keyHour][$value->id]['view_number'] = $this->getViewNumber($value->id);
+                $result[$keyHour][$value->id] = $this->formatLivestream($value);
+                // $result[$keyHour][$value->id]['livestream_id'] = $value->id;
+                // $result[$keyHour][$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
+                // $result[$keyHour][$value->id]['small_cover'] = getUrlFull($value->image_small);
+                // $result[$keyHour][$value->id]['big_cover'] = getUrlFull($value->image_big);
+                // $result[$keyHour][$value->id]['name'] = $value->name;
+                // $result[$keyHour][$value->id]['teacher_name'] = $teacher['name'];
+                // $result[$keyHour][$value->id]['teacher_image'] = $teacher['avatar'];
+                // $result[$keyHour][$value->id]['like_number'] = $this->getLikeNumber($value->id);
+                // $result[$keyHour][$value->id]['view_number'] = $this->getViewNumber($value->id);
             } else {
-                $result[$value->id]['livestream_id'] = $value->id;
-                $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                $result[$value->id]['small_cover'] = getUrlFull($value->image_small);
-                $result[$value->id]['big_cover'] = getUrlFull($value->image_big);
-                $result[$value->id]['name'] = $value->name;
-                $result[$value->id]['teacher_name'] = $teacher['name'];
-                $result[$value->id]['teacher_image'] = $teacher['avatar'];
-                $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
-                $result[$value->id]['view_number'] = $this->getViewNumber($value->id);
+                $result[$value->id] = $this->formatLivestream($value);
+                // $result[$value->id]['livestream_id'] = $value->id;
+                // $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
+                // $result[$value->id]['small_cover'] = getUrlFull($value->image_small);
+                // $result[$value->id]['big_cover'] = getUrlFull($value->image_big);
+                // $result[$value->id]['name'] = $value->name;
+                // $result[$value->id]['teacher_name'] = $teacher['name'];
+                // $result[$value->id]['teacher_image'] = $teacher['avatar'];
+                // $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
+                // $result[$value->id]['view_number'] = $this->getViewNumber($value->id);
             }
         }
         return $result;
@@ -218,6 +249,7 @@ class ApiController extends Controller
             $date = date('Y-m-d', strtotime($day));
             $data = $data->whereDate('timer_clock', $date)->get();
             $result = $this->commonFormatGetLivestream($data, 'hour');
+            return $this->responseSuccess($result);
         }
         $data = $data->get();
         $result = $this->commonFormatGetLivestream($data);
@@ -280,5 +312,14 @@ class ApiController extends Controller
             $result[$key]['footer_end_time'] = $value->end_time;
         }
         return $this->responseSuccess($result);
+    }
+
+    public function dataLivestream(Request $request)
+    {
+        $input = $request->all();
+        $livestreamId = $input['livestream_id'];
+        $data = $input['data'];
+        $id = LivestreamDetail::create(['livestream_id' => $livestreamId, 'data' => $data])->id;
+        return $this->responseSuccess($id);
     }
 }
