@@ -123,14 +123,19 @@ class ApiController extends Controller
         }
         if (isset($input['class_id'])) {
             $classId = $input['class_id'];
+            $listClassId = HocMaiClass::find($classId);
         }
         $id = $input['schoolblock_id'];
         $hocmaiClass = HocMaiClass::where('schoolblock_id', $id)->get();
-
         $listClass = [];
-        foreach ($hocmaiClass as $key => $value) {
-            $listClass[$key]['class_id'] = $value->id;
-            $listClass[$key]['class_name'] = $value->name;
+        if(!isset($input['class_id'])){
+            foreach ($hocmaiClass as $key => $value) {
+                $listClass[$key]['class_id'] = $value->id;
+                $listClass[$key]['class_name'] = $value->name;
+            }
+        }else{
+            $listClass['class_id'] = $listClassId->id;
+            $listClass['class_name'] = $listClassId->name;
         }
         $now = date('Y/m/d');
         $timeNow = date('Y-m-d');
@@ -141,7 +146,7 @@ class ApiController extends Controller
         $listLivestreamCurrent = $this->getLivestreamShort($timeNow);
 
         $result = array(
-            'list_class' => $listClass,
+            'list_class' =>$listClass,
             'list_livestream' => [
                 $currentTitle => $this->getLivestreamShort($timeNow, $classId),
                 $yesterday => $this->getLivestreamShort($timeYesterday, $classId)
@@ -162,7 +167,7 @@ class ApiController extends Controller
         );
         return response()->json($response);
     }
-
+// api đang phát
     public function livestreamPlayCurrent(Request $request)
     {
         $input = $request->all();

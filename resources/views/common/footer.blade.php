@@ -162,9 +162,17 @@
 </script>
 <script type="text/javascript">
   $(function() {
+    //header
     $('#datetimepicker3').datetimepicker({
       pickDate: false
     });
+    $('.datetimepicker3').datetimepicker({
+      pickDate: false
+    });
+    $('.datetimepicker4').datetimepicker({
+      pickDate: false
+    });
+    //footer
     $('#datetimepicker1').datetimepicker({
       language: 'pt-BR'
     });

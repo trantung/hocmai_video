@@ -79,9 +79,14 @@ button {
 /* // icon time  */
 
 .icon-time {
-    background-position: -40px -24px !important;
+    background-position: -44px -24px !important;
 }
-
+.datetimepicker3 ,.datetimepicker4{
+    display: inline-flex;
+    margin-bottom: 0;
+    vertical-align: middle;
+    zoom: 1;
+}
 [class^="icon-"],
 [class*=" icon-"] {
     display: inline-block;
@@ -92,7 +97,24 @@ button {
     line-height: 14px;
     vertical-align: text-bottom !important;
 }
-
+span.add-on{
+    margin-left: -1px;
+    -webkit-border-radius: 0 4px 4px 0;
+    vertical-align: -1px;
+    display: inline-block;
+    width: auto;
+    height: 42px;
+    min-width: 16px;
+    padding: 4px 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    white-space: normal;
+}
 .input-append .add-on {
     height: 42px !important;
 }

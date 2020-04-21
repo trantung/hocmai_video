@@ -49,6 +49,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/class', 'ClassController')->middleware(CheckPermission::class);
     // giáo viên
     Route::resource('/teacher', 'TeacherController');
+    Route::resource('/header', 'HeaderController');
+    Route::resource('/footer', 'FooterController');
     // cấu hình livestream từ nguồn khác
     Route::get('/livestream/another_video', 'LivestreamAnotherVideoController@create');
     Route::post('/livestream/another_video', 'LivestreamAnotherVideoController@store');

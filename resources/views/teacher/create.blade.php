@@ -2,9 +2,9 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
-    <h2>Thêm mới</h2>
+    <h2>Thêm mới Giáo viên</h2>
     <div class="x_title">
-      <a href="{{ action('TeacherController@index') }}"class="btn btn-danger">Trở lại</a>
+      <a href="{{ action('TeacherController@index') }}" class="btn btn-danger" title="Trở lại">Trở lại</a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -14,25 +14,27 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('action' => array('TeacherController@store'), 'method' => "POST", 'files' => true)) }}
+      {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('TeacherController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
-        <div class="col-md-12 col-sm-12">
-          <label class="control-label col-md-2 col-sm-2">Tên Giáo viên</label>
-          {{ Form::text('name', null, array('class' => 'form-control','placeholder'=>'tên giáo viên')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <label class="col-md-4 col-sm-4 col-lg-4">Tên giáo viên</label>
+            <div class="col-md-11 col-sm-11 "> 
+              {{ Form::text('name', null, array('class' => 'form-control name','placeholder'=>'họ & tên')) }}
+            </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-md-12 col-sm-12">
-          <label class="control-label col-md-2 col-sm-2">mô tả</label>
-          <div class="col-md-12">
-            {{ Form::textarea('desc', null, array('class' => 'form-control','id'=>'editor1')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-md-2 col-sm-2 col-lg-4">Mô tả</label>
+          <div class="col-md-11 col-sm-11 ">
+            {{ Form::text('desc', null, array('class' => 'form-control email')) }}
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-12">
-          <label for="avatar" class="control-label col-md-3">Ảnh đại diện</label>
-         <input type="file" name="avatar" id="avatar">
+        <div class="col-lg-6 col-md-12">
+            <label>ảnh đại diện</label>
+            <div class="multiselect_div">
+              <input type="file" name="avatar" id="avatar" class="form-control">
+            </div>
         </div>
       </div>
       <div class="form-group row">
