@@ -10,6 +10,8 @@ use App\Livestream;
 use App\AnotherVideo;
 use App\Teacher;
 use App\LivestreamAnotherVideo;
+use App\HocmaiHeader;
+use App\HocmaiFooter;
 use APV\User\Services\UserService;
 use Carbon\Carbon;
 
@@ -27,7 +29,7 @@ class ApiController extends Controller
         foreach ($data as $key => $value) {
             $result[$key]['school_block_id'] = $value->id;
             $result[$key]['school_block_name'] = $value->name;
-            $result[$key]['school_block_avatar'] = $value->avatar;
+            $result[$key]['school_block_avatar'] = getUrlFull($value->avatar);
         }
         $response = array(
             'status' => 'success',
@@ -66,7 +68,7 @@ class ApiController extends Controller
                 $keyHour = date('H:i', strtotime($value->timer_clock));
                 $result[$keyHour][$value->id]['livestream_id'] = $value->id;
                 $result[$keyHour][$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                $result[$keyHour][$value->id]['avatar'] = $value->image_small;
+                $result[$keyHour][$value->id]['avatar'] = getUrlFull($value->image_small);
                 $result[$keyHour][$value->id]['name'] = $value->name;
                 $result[$keyHour][$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
                 $result[$keyHour][$value->id]['like_number'] = $this->getLikeNumber($value->id);
@@ -74,7 +76,7 @@ class ApiController extends Controller
             } else {
                 $result[$value->id]['livestream_id'] = $value->id;
                 $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                $result[$value->id]['avatar'] = $value->image_small;
+                $result[$value->id]['avatar'] = getUrlFull($value->image_small);
                 $result[$value->id]['name'] = $value->name;
                 $result[$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
                 $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
@@ -197,41 +199,24 @@ class ApiController extends Controller
         return $this->responseSuccess($result);
     }
 
-    public function getLivestreamCalendarByDate($input)
-    {
-        $day = $input['date_time_day'];
-        $date = date('Y-m-d', strtotime($day));
-        $now = Carbon::now();
-        $now = $now->toDateTimeString();
-        $timeNow = strtotime($now);
-
-        $data = Livestream::where('status_time', IS_PUBLISH_INACTIVE)
-            ->whereDate('timer_clock', $date)
-            ->where('timer_clock', '>', $timeNow)
-            ->where('end_time', '>=', $now)
-            ->get();
-        $result = $this->commonFormatGetLivestream($data, 'hour');
-        return $this->responseSuccess($result);
-    }
-
-    public function getLivestreamCalendarByAll($input)
-    {
-        $now = Carbon::now();
-        $now = $now->toDateTimeString();
-        $data = Livestream::where('end_time', '>=', $now)
-            ->where('status_time', IS_PUBLISH_INACTIVE)
-            ->get();
-        $result = $this->commonFormatGetLivestream($data);
-        return $this->responseSuccess($result);
-    }
-
     public function livestreamCalendar(Request $request)
     {
         $input = $request->all();
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $data = Livestream::where('status_time', IS_PUBLISH_INACTIVE)
+            ->where('timer_clock', '>', $now)
+            ->where('end_time', '>=', $now);
+
         if (isset($input['date_time_day'])) {
-            return $this->getLivestreamCalendarByDate($input);
+            $day = $input['date_time_day'];
+            $date = date('Y-m-d', strtotime($day));
+            $data = $data->whereDate('timer_clock', $date)->get();
+            $result = $this->commonFormatGetLivestream($data, 'hour');
         }
-        return $this->getLivestreamCalendarByAll($input);
+        $data = $data->get();
+        $result = $this->commonFormatGetLivestream($data);
+        return $this->responseSuccess($result);
     }
     public function getTeacherInfo($teacherId){
         $result = [];
@@ -241,7 +226,7 @@ class ApiController extends Controller
         }
         $result['name'] = $teacher->name;
         $result['desc'] = $teacher->desc;
-        $result['avatar'] = $teacher->avatar;
+        $result['avatar'] = getUrlFull($teacher->avatar);
         return $result;
     }
     // chi tiêt video
@@ -264,4 +249,31 @@ class ApiController extends Controller
         return $this->responseSuccess($result);
     }
 
+    public function getHeader()
+    {
+        $result = [];
+
+        $data = HocmaiHeader::all();
+        foreach ($data as $key => $value) {
+            $result[$key]['header_id'] = $value->id;
+            $result[$key]['header_desc'] = $value->desc;
+            $result[$key]['header_image'] = getUrlFull($value->image);
+            $result[$key]['header_start_time'] = $value->start_time;
+            $result[$key]['header_end_time'] = $value->end_time;
+        }
+        return $this->responseSuccess($result);
+    }
+    public function getFooter()
+    {
+        $result = [];
+        $data = HocmaiFooter::all();
+        foreach ($data as $key => $value) {
+            $result[$key]['footer_id'] = $value->id;
+            $result[$key]['footer_desc'] = $value->desc;
+            $result[$key]['footer_image'] = getUrlFull($value->image);
+            $result[$key]['footer_start_time'] = $value->start_time;
+            $result[$key]['footer_end_time'] = $value->end_time;
+        }
+        return $this->responseSuccess($result);
+    }
 }

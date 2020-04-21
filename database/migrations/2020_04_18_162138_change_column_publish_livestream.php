@@ -14,7 +14,9 @@ class ChangeColumnPublishLivestream extends Migration
     public function up()
     {
         Schema::table('livestreams', function (Blueprint $table) {
-            $table->renameColumn('publish_time', 'end_time');
+            if (Schema::hasColumn('livestreams', 'publish_time')) {
+                $table->renameColumn('publish_time', 'end_time');
+            }
         });
     }
 

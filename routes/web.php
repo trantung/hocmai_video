@@ -83,5 +83,8 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     Route::post('/livestream/calendar', 'ApiController@livestreamCalendar');
     //api chi tiết 1 livestream
     Route::post('/livestream/detail','ApiController@livestreamDetail');
+    //api cho header va footer
+    Route::get('/header','ApiController@getHeader');
+    Route::get('/footer','ApiController@getFooter');
 });
 
