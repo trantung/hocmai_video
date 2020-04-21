@@ -2,7 +2,6 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
-    <h2>Sửa tên: {{ $footer->name }} </h2>
     <div class="x_title">
       <a href="{{ action('FooterController@index') }}" class="btn btn-danger">Trở lại</a>
       <ul class="nav navbar-right panel_toolbox">

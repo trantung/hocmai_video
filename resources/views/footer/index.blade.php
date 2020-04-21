@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
-      <h2>Quản lý Giáo viên</h2>
+      <h2>Quản lý footer</h2>
       <div class="x_title">
         <div class="pull-left">
           <a href="{{action('FooterController@create')}}" class="btn btn-info" id="addVideo">
-          <i class="fa fa-plus-circle"></i>Thêm mới giáo viên</a>
+          <i class="fa fa-plus-circle"></i>Thêm mới footer</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
