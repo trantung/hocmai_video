@@ -68,7 +68,8 @@ class ApiController extends Controller
                 $keyHour = date('H:i', strtotime($value->timer_clock));
                 $result[$keyHour][$value->id]['livestream_id'] = $value->id;
                 $result[$keyHour][$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                $result[$keyHour][$value->id]['avatar'] = getUrlFull($value->image_small);
+                $result[$keyHour][$value->id]['small_cover'] = getUrlFull($value->image_small);
+                $result[$keyHour][$value->id]['big_cover'] = getUrlFull($value->image_big);
                 $result[$keyHour][$value->id]['name'] = $value->name;
                 $result[$keyHour][$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
                 $result[$keyHour][$value->id]['like_number'] = $this->getLikeNumber($value->id);
@@ -76,7 +77,8 @@ class ApiController extends Controller
             } else {
                 $result[$value->id]['livestream_id'] = $value->id;
                 $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                $result[$value->id]['avatar'] = getUrlFull($value->image_small);
+                $result[$value->id]['small_cover'] = getUrlFull($value->image_small);
+                $result[$value->id]['big_cover'] = getUrlFull($value->image_big);
                 $result[$value->id]['name'] = $value->name;
                 $result[$value->id]['teacher_name'] = getGvNameById($value->teacher_id);
                 $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
