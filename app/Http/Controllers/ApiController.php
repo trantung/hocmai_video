@@ -63,8 +63,15 @@ class ApiController extends Controller
     public function formatLivestream($value)
     {
         $result = [];
+        $startTime = getTimeLivestreamPlay($value);
+        $duration = getDurationLivestream($value->id);
+        $livestreamStartTime = $this->userService->getTimePlay($value);
+        $livestreamEndTime = $livestreamStartTime + $duration * 60;
+        $endTime = date('Y-m-d H:i:s', $livestreamEndTime);
+        $status = apiStatusLivestream($livestreamStartTime, $livestreamEndTime);
 
         $teacher = $this->getTeacherInfo($value->teacher_id);
+
         $result['livestream_id'] = $value->id;
         $result['name'] = $value->name;
         $result['video_url'] = $this->getVideoUrlByLivestream($value->id);
@@ -75,6 +82,12 @@ class ApiController extends Controller
         $result['class_id'] = $value->class_id;
         $result['class_name'] = getClassNameById($value->class_id);
         $result['description'] = $value->description;
+        $result['start_time'] = Carbon::createFromFormat('Y-m-d H:i:s', $startTime)->toDateTimeString();
+        $result['end_time'] = $endTime;
+        $result['expire_date'] = $value->end_time;
+        $result['livestream_status'] = $status['livestream_status'];
+        $result['livestream_status_name'] = $status['livestream_status_name'];
+
         $result['teacher_name'] = $teacher['name'];
         $result['teacher_image'] = $teacher['avatar'];
         $result['like_number'] = $this->getLikeNumber($value->id);
@@ -86,37 +99,18 @@ class ApiController extends Controller
     public function commonFormatGetLivestream($data, $filter = null)
     {
         $result = [];
-        // $livstreamDes['subject_name'] = getMonNameById($value->subject_id);
-        // $livstreamDes['subject_id'] = $value->subject_id;
-        // $livstreamDes['class_name'] = getClassNameById($value->class_id);
-        // $livstreamDes['class_id'] = $value->class_id;
-        // $livstreamDes['description'] = $value->description;
 
         foreach ($data as $key => $value) {
-            $teacher = $this->getTeacherInfo($value->teacher_id);
-            if ($filter) {
+            if (!$filter) {
+                $result[$value->id] = $this->formatLivestream($value);
+            }
+            if ($filter == FILTER_DAY) {
+                $keyDay = date('m/d', strtotime($value->timer_clock));
+                $result[$keyDay][$value->id] = $this->formatLivestream($value);
+            }
+            if ($filter == FILTER_HOUR) {
                 $keyHour = date('H:i', strtotime($value->timer_clock));
                 $result[$keyHour][$value->id] = $this->formatLivestream($value);
-                // $result[$keyHour][$value->id]['livestream_id'] = $value->id;
-                // $result[$keyHour][$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                // $result[$keyHour][$value->id]['small_cover'] = getUrlFull($value->image_small);
-                // $result[$keyHour][$value->id]['big_cover'] = getUrlFull($value->image_big);
-                // $result[$keyHour][$value->id]['name'] = $value->name;
-                // $result[$keyHour][$value->id]['teacher_name'] = $teacher['name'];
-                // $result[$keyHour][$value->id]['teacher_image'] = $teacher['avatar'];
-                // $result[$keyHour][$value->id]['like_number'] = $this->getLikeNumber($value->id);
-                // $result[$keyHour][$value->id]['view_number'] = $this->getViewNumber($value->id);
-            } else {
-                $result[$value->id] = $this->formatLivestream($value);
-                // $result[$value->id]['livestream_id'] = $value->id;
-                // $result[$value->id]['video_url'] = $this->getVideoUrlByLivestream($value->id);
-                // $result[$value->id]['small_cover'] = getUrlFull($value->image_small);
-                // $result[$value->id]['big_cover'] = getUrlFull($value->image_big);
-                // $result[$value->id]['name'] = $value->name;
-                // $result[$value->id]['teacher_name'] = $teacher['name'];
-                // $result[$value->id]['teacher_image'] = $teacher['avatar'];
-                // $result[$value->id]['like_number'] = $this->getLikeNumber($value->id);
-                // $result[$value->id]['view_number'] = $this->getViewNumber($value->id);
             }
         }
         return $result;
@@ -248,11 +242,11 @@ class ApiController extends Controller
             $day = $input['date_time_day'];
             $date = date('Y-m-d', strtotime($day));
             $data = $data->whereDate('timer_clock', $date)->get();
-            $result = $this->commonFormatGetLivestream($data, 'hour');
+            $result = $this->commonFormatGetLivestream($data, FILTER_HOUR);
             return $this->responseSuccess($result);
         }
         $data = $data->get();
-        $result = $this->commonFormatGetLivestream($data);
+        $result = $this->commonFormatGetLivestream($data, FILTER_DAY);
         return $this->responseSuccess($result);
     }
     public function getTeacherInfo($teacherId){
@@ -272,12 +266,7 @@ class ApiController extends Controller
         $id = $input['livestream_id'];
         $livestreamDetail = Livestream::find($id);
         // dd($livestreamDetail);
-        $livstreamDes = [];
-        $livstreamDes['subject_name'] = getMonNameById($livestreamDetail->subject_id);
-        $livstreamDes['subject_id'] = $livestreamDetail->subject_id;
-        $livstreamDes['class_name'] = getClassNameById($livestreamDetail->class_id);
-        $livstreamDes['class_id'] = $livestreamDetail->class_id;
-        $livstreamDes['description'] = $livestreamDetail->description;
+        $livstreamDes = $this->formatLivestream($livestreamDetail);
         $result = array(
             'time_start' => date('H:i', strtotime($livestreamDetail->timer_clock)),
             'livestream_detail' => $livstreamDes,

@@ -9,6 +9,7 @@ use App\LivestreamAnotherVideo;
 use App\AnotherVideo;
 use APV\User;
 use APV\User\Models\Role;
+use Carbon\Carbon;
 
 function checkUserRole()
 {
@@ -206,4 +207,24 @@ function getUrlFull($path)
     return $url;
 }
 
+function apiStatusLivestream($livestreamStartTime, $livestreamEndTime)
+{
+    $now = Carbon::now();
+    $now = $now->toDateTimeString();
+    $timeNow = strtotime($now);
+    $data = [];
+    if ($livestreamStartTime < $timeNow && $timeNow < $livestreamEndTime) {
+        $data['livestream_status'] = PLAYING;
+        $data['livestream_status_name'] = 'Đang phát';
+    }
+    if ($timeNow < $livestreamStartTime) {
+        $data['livestream_status'] = PLAY_TIME_CLOCKER;
+        $data['livestream_status_name'] = 'Đang chờ';
+    }
+    if ($timeNow > $livestreamEndTime) {
+        $data['livestream_status'] = PLAY_FINISH;
+        $data['livestream_status_name'] = 'Phát xong';
+    }
+    return $data;
+}
 

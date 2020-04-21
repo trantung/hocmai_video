@@ -18,6 +18,9 @@ define('BLOCK_THPT', 1);
 define('BLOCK_THCS', 2);
 define('BLOCK_TH', 3);
 define('BLOCK_FULL', 4);
+//api
+define('FILTER_HOUR', 1);
+define('FILTER_DAY', 2);
 
 
 
