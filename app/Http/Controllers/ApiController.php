@@ -256,6 +256,7 @@ class ApiController extends Controller
         $data = HocmaiHeader::all();
         foreach ($data as $key => $value) {
             $result[$key]['header_id'] = $value->id;
+            $result[$key]['header_desc'] = $value->desc;
             $result[$key]['header_image'] = getUrlFull($value->image);
             $result[$key]['header_start_time'] = $value->start_time;
             $result[$key]['header_end_time'] = $value->end_time;
@@ -268,6 +269,7 @@ class ApiController extends Controller
         $data = HocmaiFooter::all();
         foreach ($data as $key => $value) {
             $result[$key]['footer_id'] = $value->id;
+            $result[$key]['footer_desc'] = $value->desc;
             $result[$key]['footer_image'] = getUrlFull($value->image);
             $result[$key]['footer_start_time'] = $value->start_time;
             $result[$key]['footer_end_time'] = $value->end_time;
