@@ -18,17 +18,24 @@
       <div class="form-group row">
         <label>Câu chào buổi sáng</label>
         <div class="col-lg-12">
-          {{ Form::textarea('desc', null, array('class' => 'form-control','id'=>'editor1')) }}
+          {{ Form::textarea('desc', old('desc'), array('class' => 'form-control','id'=>'editor1')) }}
         </div>
       </div>
       <h2>Thời gian hiển thị trong ngày</h2>
+      @if (Session::has('message'))
+      <div class="alert alert-danger">
+          <ul>
+              <li>{{ Session::get('message') }}</li>
+          </ul>
+      </div>
+      @endif
       <div class="form-group row">
         <div class="col-lg-12 col-md-12">
           <div class="col-lg-3 col-md-3 col-sm-3">
             <div class="multiselect_div">
               <label>Từ giờ</label>
               <div class="datetimepicker3" class="input-append">
-                <input data-format="hh:mm" type="text" name="start_time"></input>
+                <input data-format="hh:mm" type="text" name="start_time" value="{{old('start_time')}}"></input>
                 <span class="add-on">
                   <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                   </i>
@@ -40,7 +47,7 @@
             <div class="multiselect_div">
               <label>Đến giờ</label>
               <div class="datetimepicker4" class="input-append">
-                <input data-format="hh:mm" type="text" name="end_time"></input>
+                <input data-format="hh:mm" type="text" name="end_time" value="{{old('end_time')}}"></input>
                 <span class="add-on">
                   <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                   </i>

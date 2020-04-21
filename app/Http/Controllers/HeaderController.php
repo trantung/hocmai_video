@@ -39,7 +39,17 @@ class HeaderController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        //kiem tra start_time so voi end_time cua record truoc
+        $startTime = $input['start_time'];
+        $lastRecord = HocMaiHeader::orderBy('id', 'DESC')->first();
+        $lastRecordEndTime = $lastRecord->end_time;
+        if ($startTime < $lastRecordEndTime || $startTime > $input['end_time']) {
+            $message = 'Thời gian hiển thị trong ngày bị sai';
+            return Redirect::action('HeaderController@create')->withInput()->with(compact('message'));
+        }
+
         $headerId = HocMaiHeader::create($input)->id;
+        $imageUrl = null;
         if (request()->file('image')) {
             $file = $request->file('image');
             $fileNameImage = $file->getClientOriginalName();
