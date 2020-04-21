@@ -200,4 +200,10 @@ function getLivestreamUrl($sourceId)
     return $url;
 }
 
+function getUrlFull($path)
+{
+    $url = url($path);
+    dd($url);
+}
+
 
