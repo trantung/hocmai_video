@@ -105,7 +105,7 @@ class ApiController extends Controller
                 $result[$value->id] = $this->formatLivestream($value);
             }
             if ($filter == FILTER_DAY) {
-                $keyDay = date('m/d', strtotime($value->timer_clock));
+                $keyDay = date('Y/m/d', strtotime($value->timer_clock));
                 $result[$keyDay][$value->id] = $this->formatLivestream($value);
             }
             if ($filter == FILTER_HOUR) {
