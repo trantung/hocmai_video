@@ -141,10 +141,10 @@ class ApiController extends Controller
 
         return $result;
     }
-    public function getListClassByParam($input, $schoolblockId = null)
+    public function getListClassByParam($input)
     {
         $listClass = [];
-        if ($schoolblockId) {
+        if (!$input['schoolblock_id']) {
             $hocmaiClass = HocMaiClass::where('schoolblock_id', $schoolblockId)->get();
         } else {
             $hocmaiClass = HocMaiClass::all();
@@ -179,7 +179,7 @@ class ApiController extends Controller
         }
         $id = $input['schoolblock_id'];
         
-        $listClass = $this->getListClassByParam($input, $input['schoolblock_id']);
+        $listClass = $this->getListClassByParam($input);
         $now = date('Y/m/d');
         $timeNow = date('Y-m-d');
         $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
