@@ -195,8 +195,10 @@ function getSchoolblockByUser()
 
 function getLivestreamUrl($sourceId)
 {
+    // https://drive.google.com/open?id=1R9qK03Ls3EClByk0FLj3mgJFweM7Klnj
     // $url = 'https://www.googleapis.com/drive/v3/files/' . $sourceId .'?alt=media&key=' . GOOGLE_API_KEY;
-    $url = 'https://drive.google.com/uc?export=download&id=' . $sourceId;
+    // $url = 'https://drive.google.com/uc?export=download&id=' . $sourceId;
+    $url = 'https://www.dropbox.com/s/bo8ipyxgxxicqgz/test.mp4?dl=1';
 
     return $url;
 }
