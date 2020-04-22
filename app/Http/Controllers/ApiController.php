@@ -141,6 +141,26 @@ class ApiController extends Controller
 
         return $result;
     }
+    public function getListClassByParam($input, $schoolblockId = null)
+    {
+        $listClass = [];
+        if ($schoolblockId) {
+            $hocmaiClass = HocMaiClass::where('schoolblock_id', $schoolblockId)->get();
+        } else {
+            $hocmaiClass = HocMaiClass::all();
+        }
+        
+        if(!isset($input['class_id'])){
+            foreach ($hocmaiClass as $key => $value) {
+                $listClass[$key]['class_id'] = $value->id;
+                $listClass[$key]['class_name'] = $value->name;
+            }
+        }else{
+            $listClass['class_id'] = $listClassId->id;
+            $listClass['class_name'] = $listClassId->name;
+        }
+        return $listClass;
+    }
 
     public function detail(Request $request)
     {
@@ -158,17 +178,8 @@ class ApiController extends Controller
             $listClassId = HocMaiClass::find($classId);
         }
         $id = $input['schoolblock_id'];
-        $hocmaiClass = HocMaiClass::where('schoolblock_id', $id)->get();
-        $listClass = [];
-        if(!isset($input['class_id'])){
-            foreach ($hocmaiClass as $key => $value) {
-                $listClass[$key]['class_id'] = $value->id;
-                $listClass[$key]['class_name'] = $value->name;
-            }
-        }else{
-            $listClass['class_id'] = $listClassId->id;
-            $listClass['class_name'] = $listClassId->name;
-        }
+        
+        $listClass = $this->getListClassByParam($input, $input['schoolblock_id']);
         $now = date('Y/m/d');
         $timeNow = date('Y-m-d');
         $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
@@ -193,11 +204,11 @@ class ApiController extends Controller
 
     public function responseSuccess($result)
     {
-        $response = array(
+        $data = array(
             'status' => 'success',
             'data' => $result
         );
-        return response()->json($response);
+        return response($data, 200);
     }
 // api đang phát
     public function livestreamPlayCurrent(Request $request)
@@ -224,9 +235,13 @@ class ApiController extends Controller
                 $result[] = $value;
             }
         }
-        $result = $this->commonFormatGetLivestream($result);
+        $listClass = $this->getListClassByParam($input);
+        $data = array(
+            'list_class' =>$listClass,
+            'list_livestream' => $this->commonFormatGetLivestream($result),
+        );
 
-        return $this->responseSuccess($result);
+        return $this->responseSuccess($data);
     }
 
     public function livestreamCalendar(Request $request)
