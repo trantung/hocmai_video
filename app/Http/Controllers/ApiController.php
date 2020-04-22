@@ -263,7 +263,7 @@ class ApiController extends Controller
         $listClass = $this->getListClassByParam($input);
         $result = array(
             'list_class' =>$listClass,
-            'list_livestream' => $this->commonFormatGetLivestream($data, FILTER_DAY);
+            'list_livestream' => $this->commonFormatGetLivestream($data, FILTER_DAY),
         );
         return $this->responseSuccess($result);
     }
