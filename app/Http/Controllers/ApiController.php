@@ -260,8 +260,11 @@ class ApiController extends Controller
             $result = $this->commonFormatGetLivestream($data, FILTER_HOUR);
             return $this->responseSuccess($result);
         }
-        $data = $data->get();
-        $result = $this->commonFormatGetLivestream($data, FILTER_DAY);
+        $listClass = $this->getListClassByParam($input);
+        $result = array(
+            'list_class' =>$listClass,
+            'list_livestream' => $this->commonFormatGetLivestream($data, FILTER_DAY);
+        );
         return $this->responseSuccess($result);
     }
     public function getTeacherInfo($teacherId){
