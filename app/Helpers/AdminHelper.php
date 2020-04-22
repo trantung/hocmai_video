@@ -197,9 +197,11 @@ function getLivestreamUrl($sourceId)
 {
     // https://drive.google.com/open?id=1R9qK03Ls3EClByk0FLj3mgJFweM7Klnj
     // $url = 'https://www.googleapis.com/drive/v3/files/' . $sourceId .'?alt=media&key=' . GOOGLE_API_KEY;
-    // $url = 'https://drive.google.com/uc?export=download&id=' . $sourceId;
-    $url = 'https://www.dropbox.com/s/bo8ipyxgxxicqgz/test.mp4?dl=1';
-
+    $url = 'https://drive.google.com/uc?export=download&id=' . $sourceId;
+    
+    //dropbox: 'https://www.dropbox.com/s/bo8ipyxgxxicqgz/test.mp4?dl=1';
+    //onedriver: https://onedrive.live.com/download?cid=646D0ECD2EF1B420&resid=646D0ECD2EF1B420%21361&authkey=ACIkwJZL1v05dos
+    //googldriver: 'https://drive.google.com/uc?export=download&id=' . $sourceId;
     return $url;
 }
 
