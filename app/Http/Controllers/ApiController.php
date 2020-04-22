@@ -145,7 +145,7 @@ class ApiController extends Controller
     {
         $listClass = [];
         if (isset($input['schoolblock_id'])) {
-            $hocmaiClass = HocMaiClass::where('schoolblock_id', $schoolblockId)->get();
+            $hocmaiClass = HocMaiClass::where('schoolblock_id', $input['schoolblock_id'])->get();
         } else {
             $hocmaiClass = HocMaiClass::all();
         }
