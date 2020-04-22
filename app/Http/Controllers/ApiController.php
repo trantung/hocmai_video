@@ -260,6 +260,7 @@ class ApiController extends Controller
             $result = $this->commonFormatGetLivestream($data, FILTER_HOUR);
             return $this->responseSuccess($result);
         }
+        $data = $data->get();
         $listClass = $this->getListClassByParam($input);
         $result = array(
             'list_class' =>$listClass,
