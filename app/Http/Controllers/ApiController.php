@@ -125,12 +125,15 @@ class ApiController extends Controller
         return $result;
     }
 
-    public function getLivestreamShort($time, $classId = null)
+    public function getLivestreamShort($time, $schoolblockId = null, $classId = null)
     {
         $result = [];
         $livestreamStart = Livestream::where('end_time', '>=', $time);
         if ($classId) {
             $livestreamStart = $livestreamStart->where('class_id', $classId);
+        }
+        if ($schoolblockId) {
+            $livestreamStart = $livestreamStart->where('schoolblock_id', $schoolblockId);
         }
         //danh sach livestream dang ngay
         $livestreamStart = $livestreamStart->where('status_time', IS_PUBLISH_ACTIVE)
@@ -140,6 +143,9 @@ class ApiController extends Controller
         $livestreamClocker = Livestream::where('end_time', '>=', $time);
         if ($classId) {
             $livestreamClocker = $livestreamClocker->where('class_id', $classId);
+        }
+        if ($schoolblockId) {
+            $livestreamClocker = $livestreamClocker->where('schoolblock_id', $schoolblockId);
         }
         $livestreamClocker = $livestreamClocker->where('status_time', IS_PUBLISH_INACTIVE)
             ->whereDate('timer_clock', $time)
@@ -186,7 +192,7 @@ class ApiController extends Controller
         if (isset($input['class_id'])) {
             $classId = $input['class_id'];
         }
-        
+
         $listClass = $this->getListClassByParam($input);
         $now = date('Y/m/d');
         $timeNow = date('Y-m-d');
@@ -198,8 +204,8 @@ class ApiController extends Controller
         $result = array(
             'list_class' => $listClass,
             'list_livestream' => [
-                $currentTitle => $this->getLivestreamShort($timeNow, $classId),
-                $yesterday => $this->getLivestreamShort($timeYesterday, $classId)
+                $currentTitle => $this->getLivestreamShort($timeNow, $input['schoolblock_id'], $classId),
+                $yesterday => $this->getLivestreamShort($timeYesterday, $input['schoolblock_id'], $classId)
             ]
         );
         $response = array(
