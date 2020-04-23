@@ -185,9 +185,7 @@ class ApiController extends Controller
         }
         if (isset($input['class_id'])) {
             $classId = $input['class_id'];
-            $listClassId = HocMaiClass::find($classId);
         }
-        $id = $input['schoolblock_id'];
         
         $listClass = $this->getListClassByParam($input);
         $now = date('Y/m/d');
@@ -196,10 +194,9 @@ class ApiController extends Controller
         $yesterday = date('Y/m/d', strtotime( '-1 days' ) );
         $currentTitle = 'Hôm nay (' . $now .')';
         $yesterdayTitle = $yesterday;
-        $listLivestreamCurrent = $this->getLivestreamShort($timeNow);
 
         $result = array(
-            'list_class' =>$listClass,
+            'list_class' => $listClass,
             'list_livestream' => [
                 $currentTitle => $this->getLivestreamShort($timeNow, $classId),
                 $yesterday => $this->getLivestreamShort($timeYesterday, $classId)
