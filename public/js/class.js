@@ -52,3 +52,54 @@ $("#schoolblock_id").change(function() {
         $('#class3').remove();
     }
 });
+// start_time end_time in header and footer
+/** header */
+$(function() {
+    $('#start_time').change(function(e) {
+        var csrf = '{{csrf_token()}}';
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        e.preventDefault();
+        var start_time = $("input[name='start_time']").val();
+        $.ajax({
+            type: "GET",
+            url: "/ajax/loadHeader",
+            dataType: 'json',
+            success: function(data) {
+                data.sort(function(a, b) {
+                    if (a > b) {
+                        return -1;
+                    }
+                    if (a < b) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                var max_time_end = data[0];
+                if (start_time > max_time_end) {
+                    return 1;
+
+                } else {
+                    $('#error_time').append('điền thời gian sai');
+                }
+            },
+            error: function(data) {
+                var errors = data.responseJSON;
+            }
+        });
+
+    });
+    $('.form_time').validate({ // initialize plugin
+        ignore: ":not(:visible)",
+        rules: {
+            desc: "required",
+            image: "required",
+            start_time: "required",
+            end_time: 'required',
+        }
+    });
+});

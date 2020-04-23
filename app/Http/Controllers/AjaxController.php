@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AnotherVideo;
 use App\HocMaiClass;
+use App\HocMaiFooter;
+use App\HocMaiHeader;
 class AjaxController extends Controller
 {
     public function loadVideoSource(Request $request)
@@ -27,5 +29,16 @@ class AjaxController extends Controller
         );
         return response()->json($response); 
         
+    } 
+    // lấy toàn bộ end_time trong header
+    public function loadHeader(){
+
+        $end_time = HocMaiHeader::pluck('end_time');
+        return response()->json($end_time);
+    }
+     // lấy toàn bộ end_time trong footer
+    public function loadFooter(Request $request){
+        $end_time = HocMaiHeader::pluck('end_time');
+        return response()->json($end_time);
     }
 }

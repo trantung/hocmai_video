@@ -101,6 +101,19 @@ button {
     vertical-align: text-bottom !important;
 }
 
+
+/* icon time_start end in footer and header  */
+
+#icon_time_start,
+#icon_time_end {
+    -webkit-border-radius: 4px 0px 0px 4px;
+    margin-right: -1px;
+}
+
+label {
+    margin: 5px 0;
+}
+
 span.add-on {
     margin-left: -1px;
     -webkit-border-radius: 0 4px 4px 0;
