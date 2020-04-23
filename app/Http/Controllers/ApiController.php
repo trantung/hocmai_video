@@ -75,7 +75,7 @@ class ApiController extends Controller
         $livestreamStartTime = $this->userService->getTimePlay($value);
         $livestreamEndTime = $livestreamStartTime + $duration * 60;
         $endTime = date('Y-m-d H:i:s', $livestreamEndTime);
-        $status = apiStatusLivxestream($livestreamStartTime, $livestreamEndTime);
+        $status = apiStatusLivestream($livestreamStartTime, $livestreamEndTime);
         $startTimeFormat = Carbon::createFromFormat('Y-m-d H:i:s', $startTime)->toDateTimeString();
 
         $teacher = $this->getTeacherInfo($value->teacher_id);
