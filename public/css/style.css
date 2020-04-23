@@ -105,7 +105,9 @@ button {
 /* icon time_start end in footer and header  */
 
 #icon_time_start,
-#icon_time_end {
+#icon_time_end,
+#icon_start_footer,
+#icon_end_footer {
     -webkit-border-radius: 4px 0px 0px 4px;
     margin-right: -1px;
 }
