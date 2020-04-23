@@ -49,13 +49,20 @@ class ApiController extends Controller
         return null;
     }
 
-    public function getVideoUrlByLivestream($livestreamId)
+    public function getVideoUrlByLivestream($livestreamId, $time = null)
     {
         $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
         $data = AnotherVideo::whereIn('id', $listId)->get();
+        $start = $end = null;
+        if ($time) {
+            $start = $time['start_time'];
+            $end = $time['end_time'];
+        }
         $result = [];
         foreach ($data as $key => $value) {
             $result[$key]['video_url'] = getLivestreamUrl($value->source_id);
+            $result[$key]['video_start_time'] = $start;
+            $result[$key]['video_end_time'] = $end;
         }
         return $result;
     }
@@ -68,13 +75,14 @@ class ApiController extends Controller
         $livestreamStartTime = $this->userService->getTimePlay($value);
         $livestreamEndTime = $livestreamStartTime + $duration * 60;
         $endTime = date('Y-m-d H:i:s', $livestreamEndTime);
-        $status = apiStatusLivestream($livestreamStartTime, $livestreamEndTime);
+        $status = apiStatusLivxestream($livestreamStartTime, $livestreamEndTime);
+        $startTimeFormat = Carbon::createFromFormat('Y-m-d H:i:s', $startTime)->toDateTimeString();
 
         $teacher = $this->getTeacherInfo($value->teacher_id);
 
         $result['livestream_id'] = $value->id;
         $result['name'] = $value->name;
-        $result['video_url'] = $this->getVideoUrlByLivestream($value->id);
+        $result['video_url'] = $this->getVideoUrlByLivestream($value->id, ['start_time' => $startTimeFormat, 'end_time' => $endTime]);
         $result['small_cover'] = getUrlFull($value->image_small);
         $result['big_cover'] = getUrlFull($value->image_big);
         $result['subject_id'] = $value->subject_id;
@@ -82,9 +90,10 @@ class ApiController extends Controller
         $result['class_id'] = $value->class_id;
         $result['class_name'] = getClassNameById($value->class_id);
         $result['description'] = $value->description;
-        $result['start_time'] = Carbon::createFromFormat('Y-m-d H:i:s', $startTime)->toDateTimeString();
+        $result['start_time'] = $startTimeFormat;
         $result['end_time'] = $endTime;
         $result['expire_date'] = $value->end_time;
+        $result['repeat'] = $value->repeat;
         $result['livestream_status'] = $status['livestream_status'];
         $result['livestream_status_name'] = $status['livestream_status_name'];
 
@@ -149,15 +158,16 @@ class ApiController extends Controller
         } else {
             $hocmaiClass = HocMaiClass::all();
         }
-        
+
         if(!isset($input['class_id'])){
             foreach ($hocmaiClass as $key => $value) {
                 $listClass[$key]['class_id'] = $value->id;
                 $listClass[$key]['class_name'] = $value->name;
             }
         }else{
-            $listClass['class_id'] = $listClassId->id;
-            $listClass['class_name'] = $listClassId->name;
+            $class = HocMaiClass::find($input['class_id']);
+            $listClass['class_id'] = $input['class_id'];
+            $listClass['class_name'] = $class->name;
         }
         return $listClass;
     }
