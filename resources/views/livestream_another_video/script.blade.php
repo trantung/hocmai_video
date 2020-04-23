@@ -52,8 +52,4 @@
         var fileName1 = input1.files[0].name;
         infoArea1.textContent = 'File name: ' + fileName1;
     }
-    // thời gian hiện thị khi hẹn giờ
-    $(function() {
-
-    });
 </script>

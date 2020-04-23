@@ -52,9 +52,10 @@ function SmartWizard(target, options) {
         $this.elmStepContainer.append(allDivs);
         elmActionBar.append($this.loader);
         $this.target.append($this.elmStepContainer);
-        elmActionBar.append($this.buttons.finish)
+        elmActionBar
+            .append($this.buttons.previous)
             .append($this.buttons.next)
-            .append($this.buttons.previous);
+            .append($this.buttons.finish);
         $this.target.append(elmActionBar);
         this.contentWidth = $this.elmStepContainer.width();
 
@@ -252,7 +253,7 @@ function SmartWizard(target, options) {
         }
         if ($this.options.noForwardJumping) {
             // +2 == +1 (for index to step num) +1 (for next step)
-            for (var i = $this.curStepIdx + 2; i <= $this.steps.length; i++) {
+            for (var i = $this.curStepIdx + 1; i <= $this.steps.length; i++) {
                 $this.disableStep(i);
             }
         }
@@ -279,7 +280,7 @@ function SmartWizard(target, options) {
             } else {
                 $($this.buttons.next).removeClass("buttonDisabled");
                 if ($this.options.hideButtonsOnDisabled) {
-                    $($this.buttons.next).show();
+                    $($this.buttons.next).hide();
                 }
             }
         }
@@ -393,9 +394,6 @@ function SmartWizard(target, options) {
 
     _init(this);
 };
-
-
-
 (function($) {
 
     $.fn.smartWizard = function(method) {

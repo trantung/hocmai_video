@@ -86,6 +86,8 @@ class AnotherVideoController extends Controller
     {
         $input = $request->all();
         $videoanother = AnotherVideo::find($id);
+        $duration = getDurationVideoFromText($input['duration']);
+        $input['duration'] = $duration;
         $videoanother->update($input);
         return Redirect::action('AnotherVideoController@index'); 
     }

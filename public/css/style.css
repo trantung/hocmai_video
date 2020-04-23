@@ -81,12 +81,15 @@ button {
 .icon-time {
     background-position: -44px -24px !important;
 }
-.datetimepicker3 ,.datetimepicker4{
+
+.datetimepicker3,
+.datetimepicker4 {
     display: inline-flex;
     margin-bottom: 0;
     vertical-align: middle;
     zoom: 1;
 }
+
 [class^="icon-"],
 [class*=" icon-"] {
     display: inline-block;
@@ -97,7 +100,8 @@ button {
     line-height: 14px;
     vertical-align: text-bottom !important;
 }
-span.add-on{
+
+span.add-on {
     margin-left: -1px;
     -webkit-border-radius: 0 4px 4px 0;
     vertical-align: -1px;
@@ -115,9 +119,50 @@ span.add-on{
     border: 1px solid #ccc;
     white-space: normal;
 }
+
 .input-append .add-on {
     height: 42px !important;
 }
+
+
+/*  end .icon-time */
+
+
+/* Multi Step Form Wizard validation  */
+
+.previous {
+    background-color: #bbbbbb;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+
+.step {
+    height: auto;
+    width: 100%;
+    cursor: pointer;
+    margin: 0 2px;
+    color: #000;
+    border: none;
+    border: 1px solid #666;
+    border-radius: 10px;
+    display: inline-block;
+    opacity: 0.8;
+    padding: 5px
+}
+
+.pull-right .action {
+    background: #1396e0;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px !important;
+    font-size: 17px !important;
+    cursor: pointer !important;
+    margin: 5px !important;
+}
+
+
+/* end  */
 
 input {
     height: auto !important;
@@ -149,7 +194,11 @@ div.actionBar.buttonDisabled {
 /* StepTitle */
 
 .StepTitle {
-    padding: 10px 12px;
+    padding: 10px 20px;
+}
+
+.error {
+    color: #f00;
 }
 
 
@@ -181,6 +230,8 @@ div.actionBar.buttonDisabled {
 i.del {
     padding: 8px;
     margin: -6px 0;
+    color: #f00;
+    font-size: 16px;
 }
 
 
