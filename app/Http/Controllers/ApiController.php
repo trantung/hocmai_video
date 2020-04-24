@@ -14,8 +14,6 @@ use App\HocmaiHeader;
 use App\HocmaiFooter;
 use APV\User\Services\UserService;
 use APV\LivestreamDetail;
-use App\HocMaiHeader;
-use App\HocMaiFooter;
 use Carbon\Carbon;
 
 class ApiController extends Controller

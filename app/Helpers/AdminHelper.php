@@ -9,6 +9,8 @@ use App\LivestreamAnotherVideo;
 use App\AnotherVideo;
 use APV\User;
 use APV\User\Models\Role;
+use App\HocmaiHeader;
+use App\HocmaiFooter;
 use Carbon\Carbon;
 
 function checkUserRole()
