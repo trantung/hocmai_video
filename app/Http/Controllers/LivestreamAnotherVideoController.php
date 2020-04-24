@@ -7,6 +7,7 @@ use App\LivestreamAnotherVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use Carbon\Carbon;
 
 class LivestreamAnotherVideoController extends Controller
 {
@@ -45,10 +46,19 @@ class LivestreamAnotherVideoController extends Controller
             $message = 'Không tìm thấy video load';
             Session::flash('message', "Điền id video đúng và click vào load video");
             return Redirect::back()->withInput();
-            // dd($input);
-            return Redirect::action('LivestreamAnotherVideoController@create')->withInput()->with(compact('message'));
         }
-        // dd($input);
+        $timeClock = null;
+        if (isset($input['time_clock'])) {
+            $timeClock = str_replace('/', '-', $input['time_clock']);
+            $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
+        }
+        // dd($input['end_time']);
+        // time_clock
+        $endTime = str_replace('/', '-', $input['end_time']);
+        $endTime = date('Y/m/d H:i:s', strtotime($endTime));
+        $input['end_time'] = $endTime;
+        $input['time_clock'] = $timeClock;
+
         $livestreamId = Livestream::create($input)->id;
         $imageUrlSmall = $imageUrlBig = null;
         if (request()->file('file_image_small')) {
