@@ -31,8 +31,8 @@
         </div>
         <div class="col-md-4 col-sm-4 col-lg-4">
           <label class="col-lg-4 col-md-4 col-sm-4">Độ dài video</label>
-          <div class="col-md-10 col-sm-10 ">
-            <input type="time" class="form-control" name="duration" value="00:10:10" step="1"/>
+          <div class="col-md-10 col-sm-10">
+            <input type="time" name="duration" value="{{gmdate('H:i:s', $anothervideo->duration)}}" step="1"/>
           </div>
         </div>
       </div>

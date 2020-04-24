@@ -10,8 +10,8 @@ use App\Livestream;
 use App\AnotherVideo;
 use App\Teacher;
 use App\LivestreamAnotherVideo;
-use App\HocmaiHeader;
-use App\HocmaiFooter;
+use App\HocMaiHeader;
+use App\HocMaiFooter;
 use APV\User\Services\UserService;
 use APV\LivestreamDetail;
 use Carbon\Carbon;
@@ -22,15 +22,25 @@ class ApiController extends Controller
     {
         $this->userService = $userService;
     }
-
+    public function formatClassByBlock($data)
+    {
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result[$key]['class_id'] = $value->id;
+            $result[$key]['class_name'] = $value->name;
+        }
+        return $result;
+    }
     public function index()
     {
 		$data = SchoolBlock::all();
         $result = [];
         foreach ($data as $key => $value) {
+            $listClass = getListClassByBlock($value->id);
             $result[$key]['school_block_id'] = $value->id;
             $result[$key]['school_block_name'] = $value->name;
             $result[$key]['school_block_avatar'] = getUrlFull($value->avatar);
+            $result[$key]['school_block_list_class'] = $this->formatClassByBlock($listClass);
         }
         $response = array(
             'status' => 'success',
@@ -71,9 +81,10 @@ class ApiController extends Controller
     {
         $result = [];
         $startTime = getTimeLivestreamPlay($value);
-        $duration = getDurationLivestream($value->id);
-        $livestreamStartTime = $this->userService->getTimePlay($value);
-        $livestreamEndTime = $livestreamStartTime + $duration * 60;
+
+        $livestreamStartTime = getTimePlayLivestream($value);
+        $livestreamEndTime = getEndTimeLivestream($value);
+
         $endTime = date('Y-m-d H:i:s', $livestreamEndTime);
         $status = apiStatusLivestream($livestreamStartTime, $livestreamEndTime);
         $startTimeFormat = Carbon::createFromFormat('Y-m-d H:i:s', $startTime)->toDateTimeString();
@@ -105,55 +116,83 @@ class ApiController extends Controller
         return $result;
     }
 
-    public function commonFormatGetLivestream($data, $filter = null)
+    public function commonFormatGetLivestream($data, $input = null)
     {
         $result = [];
 
         foreach ($data as $key => $value) {
-            if (!$filter) {
+            if (!$input) {
+                //api dang phat: livestream dang phat
                 $result[$value->id] = $this->formatLivestream($value);
             }
-            if ($filter == FILTER_DAY) {
+            if (isset($input['date_time']) && !empty($input['date_time'])) {
                 $keyDay = date('Y/m/d', strtotime($value->timer_clock));
-                $result[$keyDay][$value->id] = $this->formatLivestream($value);
-            }
-            if ($filter == FILTER_HOUR) {
                 $keyHour = date('H:i', strtotime($value->timer_clock));
-                $result[$keyHour][$value->id] = $this->formatLivestream($value);
+                if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
+                    $result[$keyDay][$keyHour][$value->id] = $this->formatLivestream($value);
+                } else {
+                    $result[$keyDay][$value->id] = $this->formatLivestream($value);
+                }
+
             }
         }
         return $result;
     }
-
-    public function getLivestreamShort($time, $schoolblockId = null, $classId = null)
+    public function getDataPlayFinish($data, $input)
     {
         $result = [];
-        $livestreamStart = Livestream::where('end_time', '>=', $time);
-        if ($classId) {
-            $livestreamStart = $livestreamStart->where('class_id', $classId);
-        }
-        if ($schoolblockId) {
-            $livestreamStart = $livestreamStart->where('schoolblock_id', $schoolblockId);
-        }
-        //danh sach livestream dang ngay
-        $livestreamStart = $livestreamStart->where('status_time', IS_PUBLISH_ACTIVE)
-            ->whereDate('created_at', $time)
-            ->get();
-        //danh sach livestream hen gio
-        $livestreamClocker = Livestream::where('end_time', '>=', $time);
-        if ($classId) {
-            $livestreamClocker = $livestreamClocker->where('class_id', $classId);
-        }
-        if ($schoolblockId) {
-            $livestreamClocker = $livestreamClocker->where('schoolblock_id', $schoolblockId);
-        }
-        $livestreamClocker = $livestreamClocker->where('status_time', IS_PUBLISH_INACTIVE)
-            ->whereDate('timer_clock', $time)
-            ->get();
-        $start = $this->commonFormatGetLivestream($livestreamStart);
-        $clocker = $this->commonFormatGetLivestream($livestreamClocker);
-        $result = array_merge($start, $clocker);
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $timeNow = strtotime($now);
+        foreach ($data as $key => $value) {
+            $livestreamStartTime = getTimePlayLivestream($value);
+            $livestreamEndTime = getEndTimeLivestream($value);
+            $keyDay = date('Y/m/d', strtotime($value->timer_clock));
+            $keyHour = date('H:i', strtotime($value->timer_clock));
+            if ($timeNow > $livestreamEndTime) {
+                if (isset($input['date_time']) && !empty($input['date_time'])) {
+                    if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
+                        $result[$keyDay][$keyHour][$value->id] = $this->formatLivestream($value);
+                    } else {
+                        $result[$keyDay][$value->id] = $this->formatLivestream($value);
+                    }
+                } 
+            }
 
+        }
+        return $result;
+    }
+    public function getLivestreamShort($time, $input)
+    {
+        $result = [];
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $timeNow = strtotime($now);
+        //danh sach livestream dang ngay
+        $data = Livestream::where('end_time', '>=', $time);
+        if (isset($input['class_id'])) {
+            $data = $data->where('class_id', $input['class_id']);
+        }
+        if (isset($input['schoolblock_id'])) {
+            $data = $data->where('schoolblock_id', $input['schoolblock_id']);
+        }
+
+        if (isset($input['date_time']) && !empty($input['date_time'])) {
+            $day = $input['date_time'];
+            $date = date('Y-m-d', strtotime($day));
+            $data = $data->whereDate('timer_clock', $date)->get();
+            $result = $this->getDataPlayFinish($data, $input);
+            return $result;
+        }
+        $data = $data->whereDate('timer_clock', $time)->get();
+        foreach ($data as $key => $value) {
+            $livestreamStartTime = getTimePlayLivestream($value);
+            $livestreamEndTime = getEndTimeLivestream($value);
+            if ($timeNow > $livestreamEndTime) {
+                $result[$value->id] = $this->formatLivestream($value);
+            }
+
+        }
         return $result;
     }
     public function getListClassByParam($input)
@@ -181,6 +220,9 @@ class ApiController extends Controller
     public function detail(Request $request)
     {
         $classId = null;
+        $result = [];
+        $now = date('Y/m/d');
+        $timeNow = date('Y-m-d');
 		$input = $request->all();
         if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
             $response = array(
@@ -192,22 +234,39 @@ class ApiController extends Controller
         if (isset($input['class_id'])) {
             $classId = $input['class_id'];
         }
-
+        $date_time_day = $date_time = null;
+        if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
+            $date_time_day = $input['date_time_day'];
+        }
+        if (isset($input['date_time']) && !empty($input['date_time'])) {
+            $date_time = $input['date_time'];
+        }
+        $input['date_time'] = $date_time;
+        $input['date_time_day'] = $date_time_day;
+        // dd($input);
+        $listLivestreamDate = null;
+        if (isset($input['date_time']) && !empty($input['date_time'])) {
+            $listLivestreamDate = $this->getLivestreamShort($timeNow, $input);
+        }
+        // dd($result['list_livestream_date']);
+        unset($input['date_time']);
+        unset($input['date_time_day']);
+        $input['class_id'] = $classId;
         $listClass = $this->getListClassByParam($input);
-        $now = date('Y/m/d');
-        $timeNow = date('Y-m-d');
         $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
         $yesterday = date('Y/m/d', strtotime( '-1 days' ) );
         $currentTitle = 'Hôm nay (' . $now .')';
         $yesterdayTitle = $yesterday;
-
         $result = array(
             'list_class' => $listClass,
             'list_livestream' => [
-                $currentTitle => $this->getLivestreamShort($timeNow, $input['schoolblock_id'], $classId),
-                $yesterday => $this->getLivestreamShort($timeYesterday, $input['schoolblock_id'], $classId)
+                $currentTitle => $this->getLivestreamShort($timeNow, $input),
+                $yesterday => $this->getLivestreamShort($timeYesterday, $input),
             ]
         );
+        if ($listLivestreamDate) {
+            $result['list_livestream_date'] = $listLivestreamDate;
+        }
         $response = array(
             'status' => 'success',
             'data' => $result
@@ -223,7 +282,8 @@ class ApiController extends Controller
         );
         return response($data, 200);
     }
-// api đang phát
+
+    // api đang phát
     public function livestreamPlayCurrent(Request $request)
     {
         $input = $request->all();
@@ -241,43 +301,46 @@ class ApiController extends Controller
         $result = [];
         foreach ($data as $key => $value) {
             //thoi gian ket thuc livestream
-            $duration = getDurationLivestream($value->id);
-            $livestreamStartTime = $this->userService->getTimePlay($value);
-            $livestreamEndTime = $livestreamStartTime + $duration * 60;
+            $livestreamStartTime = getTimePlayLivestream($value);
+            $livestreamEndTime = getEndTimeLivestream($value);
             if ($livestreamStartTime < $timeNow && $timeNow < $livestreamEndTime) {
-                $result[] = $value;
+                $result[$key] = $value;
             }
         }
         $listClass = $this->getListClassByParam($input);
         $data = array(
-            'list_class' =>$listClass,
+            'list_class' => $listClass,
             'list_livestream' => $this->commonFormatGetLivestream($result),
         );
 
         return $this->responseSuccess($data);
     }
-
+    //api lich phat
     public function livestreamCalendar(Request $request)
     {
         $input = $request->all();
         $now = Carbon::now();
         $now = $now->toDateTimeString();
-        $data = Livestream::where('status_time', IS_PUBLISH_INACTIVE)
-            ->where('timer_clock', '>', $now)
-            ->where('end_time', '>=', $now);
-
+        $dateNow = date('Y-m-d');
+        $data = Livestream::where('end_time', '>=', $now);
+        $listClass = $this->getListClassByParam($input);
+        $input['date_time'] = FILTER_DAY;
+        //hiển thị là group theo giờ
         if (isset($input['date_time_day'])) {
             $day = $input['date_time_day'];
             $date = date('Y-m-d', strtotime($day));
             $data = $data->whereDate('timer_clock', $date)->get();
-            $result = $this->commonFormatGetLivestream($data, FILTER_HOUR);
+            $result = array(
+                'list_class' => $listClass,
+                'list_livestream' => $this->commonFormatGetLivestream($data, $input),
+            );
             return $this->responseSuccess($result);
         }
-        $data = $data->get();
-        $listClass = $this->getListClassByParam($input);
+        //hiển thị group theo ngaỳ
+        $data = $data->whereDate('timer_clock', '>=', $dateNow)->get();
         $result = array(
-            'list_class' =>$listClass,
-            'list_livestream' => $this->commonFormatGetLivestream($data, FILTER_DAY),
+            'list_class' => $listClass,
+            'list_livestream' => $this->commonFormatGetLivestream($data, $input),
         );
         return $this->responseSuccess($result);
     }
@@ -307,36 +370,11 @@ class ApiController extends Controller
         return $this->responseSuccess($result);
     }
 
-    /**
-     * @api {get} /header/ Request Header information
-     * @apiName GetHeader
-     * @apiGroup Header
-     *
-     * @apiParam {Number} id Headers unique ID.
-     *
-     * @apiSuccess {String} firstname Firstname of the Header.
-     * @apiSuccess {String} lastname  Lastname of the Header.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *       "firstname": "John",
-     *       "lastname": "Doe"
-     *     }
-     *
-     * @apiError HeaderNotFound The id of the Header was not found.
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 404 Not Found
-     *     {
-     *       "error": "UserNotFound"
-     *     }
-     */
     public function getHeader()
     {
         $result = [];
 
-        $data = HocmaiHeader::all();
+        $data = HocMaiHeader::all();
         foreach ($data as $key => $value) {
             $result[$key]['header_id'] = $value->id;
             $result[$key]['header_desc'] = $value->desc;
@@ -349,7 +387,7 @@ class ApiController extends Controller
     public function getFooter()
     {
         $result = [];
-        $data = HocmaiFooter::all();
+        $data = HocMaiFooter::all();
         foreach ($data as $key => $value) {
             $result[$key]['footer_id'] = $value->id;
             $result[$key]['footer_desc'] = $value->desc;

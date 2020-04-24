@@ -26,7 +26,7 @@
         <div class="col-lg-12 col-sm-12">
           <div class="col-lg-3 col-md-3">
             <label>Từ giờ</label>
-            <input type="time" name="start_time" value="{{$footer->start_time}}"/>
+            <input type="time" name="start_time" value="{{$footer->start_time}}" step="1"/>
           </div>
           <div class="col-lg-3 col-md-3">
             <label>Đến giờ</label>

@@ -36,7 +36,7 @@
                     <td>{{ $sourceVideo->id }}</td>
                     <td>{{ $sourceVideo->title }}</td>
                     <td>{{ $sourceVideo->url }}</td>
-                    <td>{{gmdate("H:i:s",$sourceVideo->duration)}}</td>
+                    <td>{{gmdate('H:i:s', $sourceVideo->duration)}}</td>
                     <td>{{ getKhoiNameById($sourceVideo->schoolblock_id) }}</td>
                     <td>{{ getClassNameById($sourceVideo->class_id) }}</td>
                     <td>{{ getMonNameById($sourceVideo->subject_id) }}</td>
