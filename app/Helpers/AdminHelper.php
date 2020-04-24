@@ -192,6 +192,13 @@ function getSchoolblockByUser()
     return $blockId;
 
 }
+function getStatusHeaderFooter()
+{
+    return [
+        1 => 'Active',
+        0 => 'Deactive',
+    ];
+}
 
 function getLivestreamUrl($sourceId)
 {

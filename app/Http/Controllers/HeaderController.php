@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\HocMaiHeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use Session;
 
 class HeaderController extends Controller
 {
@@ -30,6 +30,7 @@ class HeaderController extends Controller
          return view('header.create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,7 +40,22 @@ class HeaderController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $validateTime = $this->validateTime($input, 'App\HocMaiHeader');
+        if ($validateTime == TIME_ERROR_1) {
+            return $this->sendBackWithError('thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+        }
+        if ($validateTime == TIME_ERROR_2) {
+            return $this->sendBackWithError('thời gian bắt đầu nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_3) {
+            return $this->sendBackWithError('thời gian kết thúc nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_4) {
+            return $this->sendBackWithError('thời gian bắt đầu và kết thúc bị sai');
+        }
+            
         $headerId = HocMaiHeader::create($input)->id;
+        
         if (request()->file('image')) {
             $file = $request->file('image');
             $fileNameImage = $file->getClientOriginalName();
@@ -83,6 +99,20 @@ class HeaderController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $validateTime = $this->validateTime($input, 'App\HocMaiHeader', $id);
+        if ($validateTime == TIME_ERROR_1) {
+            return $this->sendBackWithError('thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+        }
+        if ($validateTime == TIME_ERROR_2) {
+            return $this->sendBackWithError('thời gian bắt đầu nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_3) {
+            return $this->sendBackWithError('thời gian kết thúc nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_4) {
+            return $this->sendBackWithError('thời gian bắt đầu và kết thúc bị sai');
+        }
+
         $header = HocMaiHeader::find($id);
         $imageUrl = $header->image;
         if (request()->file('image')) {

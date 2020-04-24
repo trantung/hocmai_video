@@ -24,34 +24,26 @@
       </div>
       <div class="row form-group">
         <h2>Thời gian hiển thị</h2>
+        @if (Session::has('message'))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{{ Session::get('message') }}</li>
+            </ul>
+        </div>
+        @endif
         <div class="col-lg-12">
           <div class="col-lg-3 col-md-3 float-left">
             <label>Từ giờ</label>
-            <div class="datetimepicker3" class="input-append">
-              <input data-format="hh:mm" type="text" name="start_time" value="{{$header->start_time}}"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>
+            <input type="time" name="start_time" value="{{$header->start_time}}"/>
           </div>
           <div class="col-lg-3 col-md-3 ">
             <label>Đến giờ</label>
-            <div class="datetimepicker4" class="input-append">
-              <input data-format="hh:mm" type="text" name="end_time" value="{{$header->end_time}}"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>
+            <input type="time" name="end_time" value="{{$header->end_time}}"/>
           </div>
           <div class="col-md-6 col-lg-6 ">
-            <label class="control-label col-md-2 col-sm-2">Trạng thái</label>
+            <label class="control-label col-md-2 col-sm-2">Status</label>
             <div class="col-md-10 col-sm-10">
-              <select class="form-control" name="status">
-                <option value="0">deactivate</option>
-                <option value="1">active</option>
-              </select>
+              {{ Form::select('status', getStatusHeaderFooter(), $header->status, array('class' => 'form-control')) }}
             </div>
           </div>
         </div>
