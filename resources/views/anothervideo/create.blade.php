@@ -15,43 +15,38 @@
       <br>
       {{ Form::open(array('method'=>'POST', 'action' => array('AnotherVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4">
-          <label class="control-label col-md-3 col-sm-3" for="title"> Tiêu đề</label>
-          <div class="col-md-9">
-            {{ Form::text('title', null, array('class' => 'form-control has-feedback-left','id'=>'title')) }}
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label col-md-2 col-sm-2">Title</label>
+          <div class="col-md-11 col-sm-11">
+            {{ Form::text('title', null, array('class' => 'form-control has-feedback-left', 'required'=> true)) }}
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
-          <label class="control-label col-md-3 col-sm-3" for="url"> url</label>
-          <div class="col-md-9">
-            {{ Form::text('url', null, array('class' => 'form-control has-feedback-left','id'=>'url')) }}
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label col-md-2 col-sm-2">url</label>
+          <div class="col-md-11 col-sm-11">
+            {{ Form::text('url', null, array('class' => 'form-control has-feedback-left', 'required'=> true)) }}
+
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
-          <label class="control-label col-md-3 col-sm-3" for="url">Độ dài video</label>
-          <div class="col-md-9">
-            <div id="datetimepicker3" class="input-append">
-              <input data-format="hh:mm:ss" type="text" name="duration"></input>
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                </i>
-              </span>
-            </div>
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <label class="col-lg-4 col-md-4 col-sm-4">Độ dài video</label>
+          <div class="col-md-10 col-sm-10">
+            <input type="time" name="duration" step="1"/>
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class=" col-md-3 col-sm-3 col-lg-3">Kênh</label>
+        <div class="col-md-4 col-sm-4 ">
+          <label class="col-lg-6 col-md-6 col-sm-6">Kênh</label>
           <div class="col-md-10 col-sm-10 ">
             @if(checkUserRole() == ADMIN)
-            {{ Form::select('schoolblock_id', getListKhoi(),null, array('class' => 'form-control','id'=>'schoolblock_id')) }}
+            {{ Form::select('schoolblock_id', getListKhoi(), null, array('class' => 'form-control','id'=>'schoolblock_id')) }}
             @else
-            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
+            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
             @endif
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-lg-4" id="class_id">
+        <div class="col-md-4 col-sm-4" id="class_id">
           <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
           <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
             <select class="form-control" name="class_id">
@@ -61,17 +56,15 @@
             </select>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="col-md-3 col-sm-3 col-lg-3">Môn</label>
+        <div class="col-md-4 col-sm-4">
+          <label class="col-lg-6 col-md-6 col-sm-6">Môn</label>
           <div class="col-md-10 col-sm-10 ">
             {{ Form::select('subject_id', getListMon(), array('class' => 'form-control')) }}
           </div>
         </div>
-
       </div>
       <div class="form-group row">
         {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
-        {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
       </div>
       {{ Form::close() }}
     </div>

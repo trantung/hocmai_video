@@ -370,31 +370,6 @@ class ApiController extends Controller
         return $this->responseSuccess($result);
     }
 
-    /**
-     * @api {get} /header/ Request Header information
-     * @apiName GetHeader
-     * @apiGroup Header
-     *
-     * @apiParam {Number} id Headers unique ID.
-     *
-     * @apiSuccess {String} firstname Firstname of the Header.
-     * @apiSuccess {String} lastname  Lastname of the Header.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *       "firstname": "John",
-     *       "lastname": "Doe"
-     *     }
-     *
-     * @apiError HeaderNotFound The id of the Header was not found.
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 404 Not Found
-     *     {
-     *       "error": "UserNotFound"
-     *     }
-     */
     public function getHeader()
     {
         $result = [];
