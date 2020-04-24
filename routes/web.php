@@ -19,12 +19,12 @@ use App\Livestream;
 
 Route::get('/format_db', function(){
     $data = Livestream::all();
+    $timeEnd = date('Y-m-d', strtotime( '+14 days' ) );
     foreach ($data as $key => $value) {
         if ($value->status_time == IS_PUBLISH_ACTIVE) {
-            $value->update(['timer_clock' => $value->created_at]);
+            $value->update(['timer_clock' => $value->created_at, 'end_time' => $timeEnd]);
         }
     }
-    dd(11);
 });
 
 Route::get('/test/livestream', function(){

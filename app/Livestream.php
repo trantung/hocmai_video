@@ -22,7 +22,7 @@ class Livestream extends Model
         'subject_id',
         'class_id',
         'subject_id',
-        'schoolblock_id'
+        'schoolblock_id',
     ];
 
     public function setEndTimeAttribute($value)
