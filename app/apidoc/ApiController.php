@@ -1,23 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use App\SchoolBlock;
-use App\HocMaiClass;
-use App\Livestream;
-use App\AnotherVideo;
-use App\Teacher;
-use App\LivestreamAnotherVideo;
-use App\HocmaiHeader;
-use App\HocmaiFooter;
-use APV\User\Services\UserService;
-use APV\LivestreamDetail;
-use App\HocMaiHeader;
-use App\HocMaiFooter;
-use Carbon\Carbon;
-
 class ApiController extends Controller
 {
     public function __construct(UserService $userService)
