@@ -67,12 +67,15 @@ class LivestreamAnotherVideoController extends Controller
         }
 
         $input['end_time'] = $endTime;
-        $input['time_clock'] = $timeClock;
+        $input['timer_clock'] = $timeClock;
         if (!isset($input['repeat'])) {
             $input['repeat'] = REPEAT_DEFAULT;
         }
         $livestreamId = Livestream::create($input)->id;
-
+        $livestream = Livestream::find($livestreamId);
+        if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
+            $livestream->update(['timer_clock' => $livestream->created_at]);
+        }
         $imageUrlSmall = $imageUrlBig = null;
         if (request()->file('file_image_small')) {
             $fileSmall = request()->file('file_image_small');
@@ -87,7 +90,6 @@ class LivestreamAnotherVideoController extends Controller
             $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
             $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
         }
-        
 
         Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
         //luu vao bang livestream_another_videos

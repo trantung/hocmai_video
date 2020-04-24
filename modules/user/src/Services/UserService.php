@@ -52,9 +52,9 @@ class UserService
         $resultPlaying = $resultPlayClock = $resultPlayFinish = [];
         foreach ($data as $key => $value) {
             //tinh thoi gian livestream
-            $duration = getDurationLivestream($value->id);
-            $livestreamStartTime = $this->getTimePlay($value);
-            $livestreamEndTime = $livestreamStartTime + $duration * 60;
+            $livestreamStartTime = getTimePlayLivestream($value);
+            $livestreamEndTime = getEndTimeLivestream($value);
+            
             if ($livestreamStartTime < $timeNow && $timeNow < $livestreamEndTime) {
                 $value->livestream_status = PLAYING;
                 $resultPlaying[$key] = $value;

@@ -40,25 +40,6 @@ function getStatusLivestream($livestream)
 
 }
 
-function getTimeLivestreamPlay($livestream)
-{
-    if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
-        $time = $livestream->created_at;
-    }
-    if ($livestream->status_time == IS_PUBLISH_INACTIVE) {
-        $time = $livestream->timer_clock;
-    }
-    return $time;
-}
-
-function getDurationLivestream($livestreamId)
-{
-    // dd($livestreamId);
-    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
-    $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
-    return $result;
-}
-
 function getIdFromSourceVideo($url)
 {
     // $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
@@ -240,3 +221,34 @@ function apiStatusLivestream($livestreamStartTime, $livestreamEndTime)
     return $data;
 }
 
+function getDurationLivestream($livestreamId)
+{
+    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
+    $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
+    return $result;
+}
+
+function getTimeLivestreamPlay($livestream)
+{
+    if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
+        $time = $livestream->created_at;
+    }
+    if ($livestream->status_time == IS_PUBLISH_INACTIVE) {
+        $time = $livestream->timer_clock;
+    }
+    return $time;
+}
+
+function getTimePlayLivestream($livestream)
+{
+    $time = getTimeLivestreamPlay($livestream);
+    return strtotime($time);
+}
+
+function getEndTimeLivestream($value)
+{
+    $duration = getDurationLivestream($value->id);
+    $livestreamStartTime = getTimePlayLivestream($value);
+    $livestreamEndTime = $livestreamStartTime + $duration * 60;
+    return $livestreamEndTime;
+}
