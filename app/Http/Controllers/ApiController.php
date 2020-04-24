@@ -22,15 +22,25 @@ class ApiController extends Controller
     {
         $this->userService = $userService;
     }
-
+    public function formatClassByBlock($data)
+    {
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result[$key]['class_id'] = $value->id;
+            $result[$key]['class_name'] = $value->name;
+        }
+        return $result;
+    }
     public function index()
     {
 		$data = SchoolBlock::all();
         $result = [];
         foreach ($data as $key => $value) {
+            $listClass = getListClassByBlock($value->id);
             $result[$key]['school_block_id'] = $value->id;
             $result[$key]['school_block_name'] = $value->name;
             $result[$key]['school_block_avatar'] = getUrlFull($value->avatar);
+            $result[$key]['school_block_list_class'] = $this->formatClassByBlock($listClass);
         }
         $response = array(
             'status' => 'success',
@@ -234,6 +244,7 @@ class ApiController extends Controller
         $input['date_time'] = $date_time;
         $input['date_time_day'] = $date_time_day;
         // dd($input);
+        $listLivestreamDate = null;
         if (isset($input['date_time']) && !empty($input['date_time'])) {
             $listLivestreamDate = $this->getLivestreamShort($timeNow, $input);
         }
@@ -253,7 +264,9 @@ class ApiController extends Controller
                 $yesterday => $this->getLivestreamShort($timeYesterday, $input),
             ]
         );
-        $result['list_livestream_date'] = $listLivestreamDate;
+        if ($listLivestreamDate) {
+            $result['list_livestream_date'] = $listLivestreamDate;
+        }
         $response = array(
             'status' => 'success',
             'data' => $result

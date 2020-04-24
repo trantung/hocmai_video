@@ -61,7 +61,8 @@ function getListRole()
 }
 /* start livestream hoc mai*/
 // class lấy name lớp
-function getListClass(){
+function getListClass()
+{
     $schoolblockId = getSchoolblockByUser();
     $roleId = checkUserRole();
     if (!$schoolblockId && $roleId == ADMIN) {
@@ -75,6 +76,12 @@ function getListClass(){
 // khối 
 function getListKhoi(){
     return SchoolBlock::pluck('name','id')->toArray();
+}
+
+function getListClassByBlock($id)
+{
+    $data = HocMaiClass::where('schoolblock_id', $id)->get();
+    return $data;
 }
 // môn
 function getListMon(){
