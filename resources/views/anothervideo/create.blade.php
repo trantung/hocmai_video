@@ -43,7 +43,7 @@
       <div class="form-group row">
         <div class="col-md-4 col-sm-4 col-lg-4">
           <label class=" col-md-3 col-sm-3 col-lg-3">Kênh</label>
-          <div class="col-md-10 col-sm-10 ">
+          <div class="col-md-9 col-sm-9 ">
             @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(),null, array('class' => 'form-control','id'=>'schoolblock_id')) }}
             @else
@@ -52,8 +52,8 @@
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-lg-4" id="class_id">
-          <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
-          <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+          <label id="label_class1" class="col-lg-3 col-md-3 col-sm-3">Lớp</label>
+          <div id="class1" class="col-md-9 col-sm-9 col-lg-9">
             <select class="form-control" name="class_id">
               <option value="1">Lớp 12</option>
               <option value="2">Lớp 10</option>
@@ -63,7 +63,7 @@
         </div>
         <div class="col-md-4 col-sm-4 col-lg-4">
           <label class="col-md-3 col-sm-3 col-lg-3">Môn</label>
-          <div class="col-md-10 col-sm-10 ">
+          <div class="col-md-9 col-sm-9 ">
             {{ Form::select('subject_id', getListMon(), array('class' => 'form-control')) }}
           </div>
         </div>

@@ -30,7 +30,9 @@
           </div>
           <div class="col-lg-3 col-md-3">
             <label>Đến giờ</label>
-              <input type="time" name="end_time" value="{{$footer->end_time}}"/>
+              <!-- <input type="time" name="end_time" value="{{$footer->end_time}}"/> -->
+            <input type="time" class="form-control" name="duration" value="00:10:10" step="1"/>
+
           </div>
 
           <div class="col-md-6 col-lg-6">
