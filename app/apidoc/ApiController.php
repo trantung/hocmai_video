@@ -2,45 +2,89 @@
 
 class ApiController extends Controller
 {
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
-    }
-    public function formatClassByBlock($data)
-    {
-        $result = [];
-        foreach ($data as $key => $value) {
-            $result[$key]['class_id'] = $value->id;
-            $result[$key]['class_name'] = $value->name;
+/**
+ * @api {get} /block/list
+ * @apiName GetBlockList
+ * @apiGroup Kênh
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+{
+    "status": "success",
+    "data": [
+        {
+            "school_block_id": 1,
+            "school_block_name": "THPT",
+            "school_block_avatar": "http://hocmaivideo.tk/uploads/block/1/avatar/THPT.png",
+            "school_block_list_class": [
+                {
+                    "class_id": 1,
+                    "class_name": "Lớp 12"
+                },
+                {
+                    "class_id": 2,
+                    "class_name": "Lớp 11"
+                },
+                {
+                    "class_id": 3,
+                    "class_name": "Lớp 10"
+                }
+            ]
+        },
+        {
+            "school_block_id": 2,
+            "school_block_name": "THCS",
+            "school_block_avatar": "http://hocmaivideo.tk/uploads/block/2/avatar/THCS.png",
+            "school_block_list_class": [
+                {
+                    "class_id": 4,
+                    "class_name": "Lớp 9"
+                },
+                {
+                    "class_id": 5,
+                    "class_name": "Lớp 8"
+                },
+                {
+                    "class_id": 6,
+                    "class_name": "Lớp 7"
+                },
+                {
+                    "class_id": 7,
+                    "class_name": "Lớp 6"
+                }
+            ]
+        },
+        {
+            "school_block_id": 3,
+            "school_block_name": "TH",
+            "school_block_avatar": "http://hocmaivideo.tk/uploads/block/3/avatar/Tiểu học.png",
+            "school_block_list_class": [
+                {
+                    "class_id": 8,
+                    "class_name": "Lớp 5"
+                },
+                {
+                    "class_id": 9,
+                    "class_name": "Lớp 4"
+                },
+                {
+                    "class_id": 10,
+                    "class_name": "Lớp 3"
+                },
+                {
+                    "class_id": 11,
+                    "class_name": "Lớp 2"
+                },
+                {
+                    "class_id": 12,
+                    "class_name": "Lớp 1"
+                }
+            ]
         }
-        return $result;
-    }
+    ]
+}
+*/
     public function index()
     {
-		$data = SchoolBlock::all();
-        $result = [];
-        foreach ($data as $key => $value) {
-            $listClass = getListClassByBlock($value->id);
-            $result[$key]['school_block_id'] = $value->id;
-            $result[$key]['school_block_name'] = $value->name;
-            $result[$key]['school_block_avatar'] = getUrlFull($value->avatar);
-            $result[$key]['school_block_list_class'] = $this->formatClassByBlock($listClass);
-        }
-        $response = array(
-            'status' => 'success',
-            'data' => $result
-        );
-        return response()->json($response);
-    }
-
-    public function getLikeNumber($livestreamId)
-    {
-        return null;
-    }
-
-    public function getViewNumber($livestreamId)
-    {
-        return null;
     }
 
     public function getVideoUrlByLivestream($livestreamId, $time = null)
@@ -200,62 +244,203 @@ class ApiController extends Controller
         }
         return $listClass;
     }
+/**
+ * @api {post} /block/detail Request danh sách livestream xem lại theo kênh không lọc
+ * @apiName PostBlockDetail
+ * @apiGroup Livestream
+ *
+ * @apiParam {Number} schoolblock_id
+ *
+ * @apiParam {Number} schoolblock_id id của kênh(required)
+ * @apiParam {Number} class_id id của lớp có thể không truyền
+ * @apiParam {DateTime} date_time  Ngày xem lại các livestream nếu có theo format: Y/m/d hoặc NULL
+ * @apiParam {DateTime} date_time_day  Ngày xem lại các livestream theo group giờ(bắt buộc nếu có date_time)
+ *
+ * @apiSuccessExample Success-Response:
+{
+    "status": "success",
+    "data": {
+        "list_class": [
+            {
+                "class_id": 1,
+                "class_name": "Lớp 12"
+            },
+            {
+                "class_id": 2,
+                "class_name": "Lớp 11"
+            },
+            {
+                "class_id": 3,
+                "class_name": "Lớp 10"
+            }
+        ],
+        "list_livestream": {
+            "Hôm nay (2020/04/24)": {
+                "36": {
+                    "livestream_id": 36,
+                    "name": "dssa",
+                    "video_url": [
+                        {
+                            "video_url": "https://stream2.hocmai.vn/live/Lesson_2_Where_my_book.mp4/index.m3u8",
+                            "video_start_time": "2020-04-24 09:15:25",
+                            "video_end_time": "2020-04-24 09:28:25"
+                        }
+                    ],
+                    "small_cover": "http://hocmaivideo.tk/uploads/another_video/36/small/6c340324836779392076.jpg",
+                    "big_cover": "http://hocmaivideo.tk/uploads/another_video/36/big/a4ea0057ec2716794f36.jpg",
+                    "subject_id": 1,
+                    "subject_name": "Toán",
+                    "class_id": 1,
+                    "class_name": "Lớp 12",
+                    "description": "<p>dsa</p>",
+                    "start_time": "2020-04-24 09:15:25",
+                    "end_time": "2020-04-24 09:28:25",
+                    "expire_date": "2020-05-08 00:00:00",
+                    "repeat": 1,
+                    "livestream_status": 3,
+                    "livestream_status_name": "Phát xong",
+                    "teacher_name": "Lê Bá Khá",
+                    "teacher_image": "http://hocmaivideo.tk/uploads/teacher/1/avatar/modern-man-smiling_1194-11653.jpg",
+                    "like_number": null,
+                    "view_number": null
+                }
+            },
+            "2020/04/23": {
+                "28": {
+                    "livestream_id": 28,
+                    "name": "Video của thầy Tuấn",
+                    "video_url": [
+                        {
+                            "video_url": "https://stream2.hocmai.vn/live/Lesson_2_Where_my_book.mp4/index.m3u8",
+                            "video_start_time": "2020-04-23 21:03:30",
+                            "video_end_time": "2020-04-23 21:16:30"
+                        }
+                    ],
+                    "small_cover": "http://hocmaivideo.tk/uploads/another_video/28/small/87449570_2145660542255856_3117446160046882816_o.jpg",
+                    "big_cover": "http://hocmaivideo.tk/uploads/another_video/28/big/87765454_2145660568922520_6848875860905164800_o.jpg",
+                    "subject_id": 1,
+                    "subject_name": "Toán",
+                    "class_id": 1,
+                    "class_name": "Lớp 12",
+                    "description": "<p>Video của thầy Tuấn</p><p>Video của thầy Tuấn</p><p>Video của thầy Tuấn</p><ul>\t<li>Video của thầy Tuấn</li>\t<li>Video của thầy TuấnVideo của thầy Tuấn</li>\t<li>Video của thầy Tuấn</li></ul><p>&nbsp;</p>",
+                    "start_time": "2020-04-23 21:03:30",
+                    "end_time": "2020-04-23 21:16:30",
+                    "expire_date": "2020-05-08 00:00:00",
+                    "repeat": 1,
+                    "livestream_status": 3,
+                    "livestream_status_name": "Phát xong",
+                    "teacher_name": "Đặng Bá Đạo",
+                    "teacher_image": "http://hocmaivideo.tk/uploads/teacher/3/avatar/rn1se5zkikkz.png",
+                    "like_number": null,
+                    "view_number": null
+                }
+            }
+        }
+    }
+}
+ */
 
-    public function detail(Request $request)
+/**
+ * @api {post} /block/detail Request danh sách livestream xem lại theo kênh có lọc theo ngày
+ * @apiName PostBlockDetailWithDay
+ * @apiGroup Livestream
+ *
+ * @apiParam {Number} schoolblock_id
+ *
+ * @apiParam {Number} schoolblock_id id của kênh(required)
+ * @apiParam {Number} class_id id của lớp có thể không truyền
+ * @apiParam {DateTime} date_time  Ngày xem lại các livestream nếu có theo format: Y/m/d hoặc NULL
+ * @apiParam {DateTime} date_time_day  Ngày xem lại các livestream theo group giờ(bắt buộc nếu có date_time)
+ *
+ * @apiSuccessExample Success-Response:
+{
+    "status": "success",
+    "data": {
+        "list_class": [
+            {
+                "class_id": 1,
+                "class_name": "Lớp 12"
+            },
+            {
+                "class_id": 2,
+                "class_name": "Lớp 11"
+            },
+            {
+                "class_id": 3,
+                "class_name": "Lớp 10"
+            }
+        ],
+        "list_livestream": {
+            "Hôm nay (2020/04/24)": {
+                "36": {
+                    "livestream_id": 36,
+                    "name": "dssa",
+                    "video_url": [
+                        {
+                            "video_url": "https://stream2.hocmai.vn/live/Lesson_2_Where_my_book.mp4/index.m3u8",
+                            "video_start_time": "2020-04-24 09:15:25",
+                            "video_end_time": "2020-04-24 09:28:25"
+                        }
+                    ],
+                    "small_cover": "http://hocmaivideo.tk/uploads/another_video/36/small/6c340324836779392076.jpg",
+                    "big_cover": "http://hocmaivideo.tk/uploads/another_video/36/big/a4ea0057ec2716794f36.jpg",
+                    "subject_id": 1,
+                    "subject_name": "Toán",
+                    "class_id": 1,
+                    "class_name": "Lớp 12",
+                    "description": "<p>dsa</p>",
+                    "start_time": "2020-04-24 09:15:25",
+                    "end_time": "2020-04-24 09:28:25",
+                    "expire_date": "2020-05-08 00:00:00",
+                    "repeat": 1,
+                    "livestream_status": 3,
+                    "livestream_status_name": "Phát xong",
+                    "teacher_name": "Lê Bá Khá",
+                    "teacher_image": "http://hocmaivideo.tk/uploads/teacher/1/avatar/modern-man-smiling_1194-11653.jpg",
+                    "like_number": null,
+                    "view_number": null
+                }
+            },
+            "2020/04/23": {
+                "28": {
+                    "livestream_id": 28,
+                    "name": "Video của thầy Tuấn",
+                    "video_url": [
+                        {
+                            "video_url": "https://stream2.hocmai.vn/live/Lesson_2_Where_my_book.mp4/index.m3u8",
+                            "video_start_time": "2020-04-23 21:03:30",
+                            "video_end_time": "2020-04-23 21:16:30"
+                        }
+                    ],
+                    "small_cover": "http://hocmaivideo.tk/uploads/another_video/28/small/87449570_2145660542255856_3117446160046882816_o.jpg",
+                    "big_cover": "http://hocmaivideo.tk/uploads/another_video/28/big/87765454_2145660568922520_6848875860905164800_o.jpg",
+                    "subject_id": 1,
+                    "subject_name": "Toán",
+                    "class_id": 1,
+                    "class_name": "Lớp 12",
+                    "description": "<p>Video của thầy Tuấn</p><p>Video của thầy Tuấn</p><p>Video của thầy Tuấn</p><ul>\t<li>Video của thầy Tuấn</li>\t<li>Video của thầy TuấnVideo của thầy Tuấn</li>\t<li>Video của thầy Tuấn</li></ul><p>&nbsp;</p>",
+                    "start_time": "2020-04-23 21:03:30",
+                    "end_time": "2020-04-23 21:16:30",
+                    "expire_date": "2020-05-08 00:00:00",
+                    "repeat": 1,
+                    "livestream_status": 3,
+                    "livestream_status_name": "Phát xong",
+                    "teacher_name": "Đặng Bá Đạo",
+                    "teacher_image": "http://hocmaivideo.tk/uploads/teacher/3/avatar/rn1se5zkikkz.png",
+                    "like_number": null,
+                    "view_number": null
+                }
+            }
+        }
+    }
+}
+ */
+public function detail(Request $request)
+{
+}
+
+    public function getDetail(Request $request)
     {
-        $classId = null;
-        $result = [];
-        $now = date('Y/m/d');
-        $timeNow = date('Y-m-d');
-		$input = $request->all();
-        if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
-            $response = array(
-                'status' => 'Fail',
-                'data' => []
-            );
-            return response()->json($response);
-        }
-        if (isset($input['class_id'])) {
-            $classId = $input['class_id'];
-        }
-        $date_time_day = $date_time = null;
-        if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
-            $date_time_day = $input['date_time_day'];
-        }
-        if (isset($input['date_time']) && !empty($input['date_time'])) {
-            $date_time = $input['date_time'];
-        }
-        $input['date_time'] = $date_time;
-        $input['date_time_day'] = $date_time_day;
-        // dd($input);
-        $listLivestreamDate = null;
-        if (isset($input['date_time']) && !empty($input['date_time'])) {
-            $listLivestreamDate = $this->getLivestreamShort($timeNow, $input);
-        }
-        // dd($result['list_livestream_date']);
-        unset($input['date_time']);
-        unset($input['date_time_day']);
-        $input['class_id'] = $classId;
-        $listClass = $this->getListClassByParam($input);
-        $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
-        $yesterday = date('Y/m/d', strtotime( '-1 days' ) );
-        $currentTitle = 'Hôm nay (' . $now .')';
-        $yesterdayTitle = $yesterday;
-        $result = array(
-            'list_class' => $listClass,
-            'list_livestream' => [
-                $currentTitle => $this->getLivestreamShort($timeNow, $input),
-                $yesterday => $this->getLivestreamShort($timeYesterday, $input),
-            ]
-        );
-        if ($listLivestreamDate) {
-            $result['list_livestream_date'] = $listLivestreamDate;
-        }
-        $response = array(
-            'status' => 'success',
-            'data' => $result
-        );
-        return response()->json($response);
     }
 
     public function responseSuccess($result)
@@ -355,56 +540,65 @@ class ApiController extends Controller
     }
 
     /**
-     * @api {get} /header/ Request Header information
+     * @api {get} /header
      * @apiName GetHeader
      * @apiGroup Header
      *
-     * @apiParam {Number} id Headers unique ID.
-     *
-     * @apiSuccess {String} firstname Firstname of the Header.
-     * @apiSuccess {String} lastname  Lastname of the Header.
-     *
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *       "firstname": "John",
-     *       "lastname": "Doe"
-     *     }
-     *
-     * @apiError HeaderNotFound The id of the Header was not found.
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 404 Not Found
-     *     {
-     *       "error": "UserNotFound"
-     *     }
+     *  HTTP/1.1 200 OK
+        {
+            "status": "success",
+            "data": [
+                {
+                    "header_id": 1,
+                    "header_desc": "<p>Ch&agrave;o buổi s&aacute;ng,</p>",
+                    "header_image": "http://hocmaivideo.tk/uploads/admin/header/1/image/Chào buổi sáng.png",
+                    "header_start_time": "05:00",
+                    "header_end_time": "11:59"
+                },
+                {
+                    "header_id": 2,
+                    "header_desc": "<p>Ch&agrave;o buổi chiều,</p>",
+                    "header_image": "http://hocmaivideo.tk/uploads/admin/header/2/image/Chào buổi chiều.png",
+                    "header_start_time": "12:00",
+                    "header_end_time": "17:59"
+                }
+            ]
+        }
      */
     public function getHeader()
     {
-        $result = [];
-
-        $data = HocmaiHeader::all();
-        foreach ($data as $key => $value) {
-            $result[$key]['header_id'] = $value->id;
-            $result[$key]['header_desc'] = $value->desc;
-            $result[$key]['header_image'] = getUrlFull($value->image);
-            $result[$key]['header_start_time'] = $value->start_time;
-            $result[$key]['header_end_time'] = $value->end_time;
-        }
-        return $this->responseSuccess($result);
     }
+
+    /**
+     * @api {get} /footer
+     * @apiName GetFooter
+     * @apiGroup Footer
+     *
+     * @apiSuccessExample Success-Response:
+     *  HTTP/1.1 200 OK
+        {
+            "status": "success",
+            "data": [
+                {
+                    "footer_id": 1,
+                    "footer_desc": "<p>Ch&agrave;o buổi s&aacute;ng,</p>",
+                    "footer_image": "http://hocmaivideo.tk/uploads/admin/footer/1/image/Chào buổi sáng.png",
+                    "footer_start_time": "05:00",
+                    "footer_end_time": "11:59"
+                },
+                {
+                    "footer_id": 2,
+                    "footer_desc": "<p>Ch&agrave;o buổi chiều,</p>",
+                    "footer_image": "http://hocmaivideo.tk/uploads/admin/footer/2/image/Chào buổi chiều.png",
+                    "footer_start_time": "12:00",
+                    "footer_end_time": "17:59"
+                }
+            ]
+        }
+     */
     public function getFooter()
     {
-        $result = [];
-        $data = HocmaiFooter::all();
-        foreach ($data as $key => $value) {
-            $result[$key]['footer_id'] = $value->id;
-            $result[$key]['footer_desc'] = $value->desc;
-            $result[$key]['footer_image'] = getUrlFull($value->image);
-            $result[$key]['footer_start_time'] = $value->start_time;
-            $result[$key]['footer_end_time'] = $value->end_time;
-        }
-        return $this->responseSuccess($result);
     }
 
     public function dataLivestream(Request $request)
