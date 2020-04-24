@@ -164,7 +164,7 @@ class ApiController extends Controller
         //danh sach livestream dang ngay
         $data = Livestream::where('end_time', '>=', $time);
         if (isset($input['class_id'])) {
-            $data = $data->where('class_id', $input['class_id']));
+            $data = $data->where('class_id', $input['class_id']);
         }
         if (isset($input['schoolblock_id'])) {
             $data = $data->where('schoolblock_id', $input['schoolblock_id']);
