@@ -16,7 +16,7 @@
       <br>
       {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('FooterController@store'),'class'=>'form-horizontal form-label-left')) }}
       <h2>Thời gian hiển thị trong ngày</h2>
-      @if (Session::has('message'))
+        @if (Session::has('message'))
         <div class="alert alert-danger">
             <ul>
                 <li>{{ Session::get('message') }}</li>

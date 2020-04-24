@@ -14,7 +14,6 @@
     <div class="x_content">
       <br>
       {{ Form::open(array('action' => array('FooterController@update', $footer->id), 'method' => "PUT", 'files' => true)) }}
-      <div class="row form-group">
         <h2>Thời gian hiển thị</h2>
         @if (Session::has('message'))
         <div class="alert alert-danger">
@@ -23,6 +22,7 @@
             </ul>
         </div>
         @endif
+      <div class="row form-group">
         <div class="col-lg-12 col-sm-12">
           <div class="col-lg-3 col-md-3">
             <label>Từ giờ</label>
