@@ -1,9 +1,10 @@
-<!-- js -->
+js
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="{{asset('build/js/jquery-3.4.1.min.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="{{asset('js/video.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/class.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/time.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/site.js')}}" type="text/javascript"></script>
 <!-- validation  -->
 <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
@@ -86,16 +87,18 @@
     });
     //dang 
     $('#selectTime').on('change', function() {
-      if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
-        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >'
-         + '<div id="timer_clock_add" class="col-md-4 col-sm-4">' + 
-         '<input type="text" class="form-control" data-inputmask="\'alias\':\'datetime\'" name="time_clock" id="time_clock">');
-      }
-      if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
+    if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
+        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >' +
+            '<div id="timer_clock_add" class="col-md-4 col-sm-4">' +
+            '<input type="text" class="js-date" maxlength="16" id="time_clock" name="time_clock" placeholder="dd/mm/yyyy hh:mm" />');
+
+    }
+    if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
         $('#timer_clock_add_label').remove();
         $('#timer_clock_add').remove();
-      }
-    });
+    }
+});
+    //input mask
     // remove link load video source
     $(document).on("click", "i.del", function() {
       $(this).parent().remove();
@@ -160,10 +163,10 @@
   });
 </script>
 <!-- //time -->
-<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+<!-- <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
 </script>
 <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script>
+</script> -->
 <script type="text/javascript">
     jQuery(document).ready(function() {
     
@@ -172,7 +175,7 @@
 });
 </script>
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(function() {
     $('#datetimepicker').datetimepicker({
       format: 'dd/MM/yyyy hh:mm:ss',
@@ -193,7 +196,7 @@
       language: 'pt-BR'
     });
   });
-</script>
+</script> -->
 </body>
 
 </html>

@@ -22,19 +22,17 @@
               {{ Form::text('name', null, array('class' => 'form-control name','placeholder'=>'họ & tên')) }}
             </div>
         </div>
-        <div class="col-md-6 col-sm-6 col-lg-6">
-          <label class="col-md-2 col-sm-2 col-lg-4">Mô tả</label>
-          <div class="col-md-11 col-sm-11 ">
-            {{ Form::text('desc', null, array('class' => 'form-control email')) }}
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
         <div class="col-lg-6 col-md-12">
             <label>ảnh đại diện</label>
             <div class="multiselect_div">
               <input type="file" name="avatar" id="avatar" class="form-control">
             </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-sm-2 col-lg-4">Mô tả</label>
+        <div class="col-md-11 col-sm-11 ">
+          {{ Form::text('desc', null, array('class' => 'form-control','id'=>'editor1')) }}
         </div>
       </div>
       <div class="form-group row">
