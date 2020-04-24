@@ -89,7 +89,7 @@
       if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
         $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >'
          + '<div id="timer_clock_add" class="col-md-4 col-sm-4">' + 
-         '<input type="text" class="form-control pull-right datepicker"   data-inputmask="\'alias\':\'datetime\'" name="time_clock" id="time_clock" data-mask placeholder="dd/mm/yyyy hh:mm">');
+         '<input type="text" class="form-control" data-inputmask="\'alias\':\'datetime\'" name="time_clock" id="time_clock">');
       }
       if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
         $('#timer_clock_add_label').remove();

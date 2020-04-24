@@ -14,7 +14,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('FooterController@store'),'class'=>'form-horizontal form-label-left')) }}
+      {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('FooterController@store'),'class'=>'form-horizontal form_footer')) }}
       <h2>Thời gian hiển thị trong ngày</h2>
         @if (Session::has('message'))
         <div class="alert alert-danger">
@@ -26,6 +26,7 @@
       <div class="form-group row">
         <div class="col-lg-6 col-md-12">
           <div class="col-lg-6">
+
             <div class="multiselect_div">
               <label class="col-lg-6 col-md-6">Từ giờ</label>
                 <input type="time" name="start_time" value="{{old('start_time')}}"/>

@@ -36,6 +36,7 @@ Route::get('/test/livestream', function(){
 Route::group(['prefix' => 'ajax'], function() {
     Route::post('load_video_source', 'AjaxController@loadVideoSource');
     Route::get('loadHeader','AjaxController@loadHeader');
+    Route::get('loadFooter','AjaxController@loadFooter');
 });
 
 Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
