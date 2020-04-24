@@ -243,12 +243,11 @@ class ApiController extends Controller
         }
         $input['date_time'] = $date_time;
         $input['date_time_day'] = $date_time_day;
-        // dd($input);
-        $listLivestreamDate = null;
+        $listLivestreamDate = [];
         if (isset($input['date_time']) && !empty($input['date_time'])) {
             $listLivestreamDate = $this->getLivestreamShort($timeNow, $input);
         }
-        // dd($result['list_livestream_date']);
+
         unset($input['date_time']);
         unset($input['date_time_day']);
         $input['class_id'] = $classId;
@@ -264,7 +263,7 @@ class ApiController extends Controller
                 $yesterday => $this->getLivestreamShort($timeYesterday, $input),
             ]
         );
-        if ($listLivestreamDate) {
+        if (isset($date_time_day)) {
             $result['list_livestream_date'] = $listLivestreamDate;
         }
         $response = array(
