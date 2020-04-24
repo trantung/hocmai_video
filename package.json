@@ -30,6 +30,8 @@
             "title": "Custom apiDoc browser title"
         },
         "order": [
+            "Header",
+            "Footer",
             "GetHeader",
             "GetFooter",
             "GetBlockList",
