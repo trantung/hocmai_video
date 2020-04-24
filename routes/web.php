@@ -26,6 +26,13 @@ Route::get('/format_db', function(){
         }
     }
 });
+Route::get('/format_endtime', function(){
+    $data = Livestream::all();
+    $timeEnd = date('Y-m-d', strtotime( '+14 days' ) );
+    foreach ($data as $key => $value) {
+        $value->update(['end_time' => $timeEnd]);
+    }
+});
 
 Route::get('/test/livestream', function(){
     $path = public_path('livestream/test.mp4');
