@@ -125,10 +125,6 @@ class ApiController extends Controller
                 }
 
             }
-            // if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
-            //     $keyHour = date('H:i', strtotime($value->timer_clock));
-            //     $result[$keyHour][$value->id] = $this->formatLivestream($value);
-            // }
         }
         return $result;
     }
@@ -141,6 +137,8 @@ class ApiController extends Controller
         foreach ($data as $key => $value) {
             $livestreamStartTime = getTimePlayLivestream($value);
             $livestreamEndTime = getEndTimeLivestream($value);
+            $keyDay = date('Y/m/d', strtotime($value->timer_clock));
+            $keyHour = date('H:i', strtotime($value->timer_clock));
             if ($timeNow > $livestreamEndTime) {
                 if (isset($input['date_time']) && !empty($input['date_time'])) {
                     if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
@@ -149,7 +147,6 @@ class ApiController extends Controller
                         $result[$keyDay][$value->id] = $this->formatLivestream($value);
                     }
                 } 
-                
             }
 
         }
@@ -169,42 +166,15 @@ class ApiController extends Controller
         if (isset($input['schoolblock_id'])) {
             $data = $data->where('schoolblock_id', $input['schoolblock_id']);
         }
-        // if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
-        //     $day = $input['date_time_day'];
-        //     $date = date('Y-m-d', strtotime($day));
-        //     $data = $data->whereDate('timer_clock', $date)->get();
-        //     if (isset($input['date_time']) && !empty($input['date_time'])) {
-        //     }
-        //     $result = $this->getDataPlayFinish($data, $input);
-        //     return $result;
-        // }
+
         if (isset($input['date_time']) && !empty($input['date_time'])) {
             $day = $input['date_time'];
             $date = date('Y-m-d', strtotime($day));
             $data = $data->whereDate('timer_clock', $date)->get();
-            // if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
-            // }
             $result = $this->getDataPlayFinish($data, $input);
             return $result;
         }
-        // $livestreamStart = $livestreamStart->where('status_time', IS_PUBLISH_ACTIVE)
-        //     ->whereDate('created_at', $time)
-        //     ->get();
-
-        // //danh sach livestream hen gio
-        // $livestreamClocker = Livestream::where('end_time', '>=', $time);
-        // if (isset($input['class_id'])) {
-        //     $livestreamClocker = $livestreamClocker->where('class_id', $input['class_id']));
-        // }
-        // if (isset($input['schoolblock_id'])) {
-        //     $livestreamClocker = $livestreamClocker->where('schoolblock_id', $input['schoolblock_id']);
-        // }
-        // $livestreamClocker = $livestreamClocker->where('status_time', IS_PUBLISH_INACTIVE)
-        //     ->whereDate('timer_clock', $time)
-        //     ->get();
         $data = $data->whereDate('timer_clock', $time)->get();
-        
-
         foreach ($data as $key => $value) {
             $livestreamStartTime = getTimePlayLivestream($value);
             $livestreamEndTime = getEndTimeLivestream($value);
@@ -213,10 +183,6 @@ class ApiController extends Controller
             }
 
         }
-        // $start = $this->commonFormatGetLivestream($livestreamStart, $input);
-        // $clocker = $this->commonFormatGetLivestream($livestreamClocker, $input);
-        // $result = array_merge($start, $clocker);
-
         return $result;
     }
     public function getListClassByParam($input)
@@ -244,6 +210,9 @@ class ApiController extends Controller
     public function detail(Request $request)
     {
         $classId = null;
+        $result = [];
+        $now = date('Y/m/d');
+        $timeNow = date('Y-m-d');
 		$input = $request->all();
         if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
             $response = array(
@@ -255,31 +224,36 @@ class ApiController extends Controller
         if (isset($input['class_id'])) {
             $classId = $input['class_id'];
         }
+        $date_time_day = $date_time = null;
+        if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
+            $date_time_day = $input['date_time_day'];
+        }
+        if (isset($input['date_time']) && !empty($input['date_time'])) {
+            $date_time = $input['date_time'];
+        }
+        $input['date_time'] = $date_time;
+        $input['date_time_day'] = $date_time_day;
+        // dd($input);
+        if (isset($input['date_time']) && !empty($input['date_time'])) {
+            $listLivestreamDate = $this->getLivestreamShort($timeNow, $input);
+        }
+        // dd($result['list_livestream_date']);
+        unset($input['date_time']);
+        unset($input['date_time_day']);
         $input['class_id'] = $classId;
-
         $listClass = $this->getListClassByParam($input);
-        $now = date('Y/m/d');
-        $timeNow = date('Y-m-d');
         $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
         $yesterday = date('Y/m/d', strtotime( '-1 days' ) );
         $currentTitle = 'Hôm nay (' . $now .')';
         $yesterdayTitle = $yesterday;
-        $date_time_day = $date_time = null;
-        if (isset($input['date_time_day'])) {
-            $date_time_day = $input['date_time_day'];
-        }
-        if (isset($input['date_time'])) {
-            $date_time = FILTER_DAY;
-        }
-        $input['date_time'] = $date_time;
-        $input['date_time_day'] = $date_time_day;
         $result = array(
             'list_class' => $listClass,
             'list_livestream' => [
                 $currentTitle => $this->getLivestreamShort($timeNow, $input),
-                $yesterday => $this->getLivestreamShort($timeYesterday, $input)
+                $yesterday => $this->getLivestreamShort($timeYesterday, $input),
             ]
         );
+        $result['list_livestream_date'] = $listLivestreamDate;
         $response = array(
             'status' => 'success',
             'data' => $result
