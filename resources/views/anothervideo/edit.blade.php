@@ -32,7 +32,7 @@
         <div class="col-md-4 col-sm-4 col-lg-4">
           <label class="col-lg-4 col-md-4 col-sm-4">Độ dài video</label>
           <div id="datetimepicker3" class="col-md-10 col-sm-10 input-append">
-            <input data-format="hh:mm:ss" type="text" name="duration" class="form-control"></input>
+            <input data-format="hh:mm:ss" type="text" name="duration" class="form-control" value="{{$anothervideo->duration}}"></input>
             <span class="add-on">
               <i data-time-icon="icon-time" data-date-icon="icon-calendar">
               </i>

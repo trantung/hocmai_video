@@ -21,6 +21,17 @@ define('BLOCK_FULL', 4);
 //api
 define('FILTER_HOUR', 1);
 define('FILTER_DAY', 2);
-
-
+//repeat
+define('REPEAT_DEFAULT', 1);
+//validate time_start va time_end cho header footer
+//start >= end
+define('TIME_ERROR_1', 1);
+//start nam trong khoang start_time va end_time cua ban ghi trong db
+define('TIME_ERROR_2', 2);
+//end nam trong khoang start_time va end_time cua ban ghi trong db
+define('TIME_ERROR_3', 3);
+//start < start_time va end > end_time ban ghi trong db
+define('TIME_ERROR_4', 4);
+//SUCCESS
+define('TIME_DEFAULT', 'success');
 

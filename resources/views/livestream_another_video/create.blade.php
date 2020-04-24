@@ -90,12 +90,7 @@
     <div class="step">
         <h2 class="StepTitle">Cấu hình VideoStream</h2>
         <div class="form-horizontal form-label-left">
-            <div class="row form-group">
-                <label class="control-label col-md-2 col-sm-2 ">Lặp lại VideoStream</label>
-                <div class="col-md-4 col-sm-4 ">
-                    {{ Form::select('repeat', getListRepeat(), old('repeat'),array('class' => 'form-control')) }}
-                </div>
-            </div>
+            
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">

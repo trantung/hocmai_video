@@ -38,6 +38,19 @@ class FooterController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $validateTime = $this->validateTime($input, 'App\HocMaiFooter');
+        if ($validateTime == TIME_ERROR_1) {
+            return $this->sendBackWithError('thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+        }
+        if ($validateTime == TIME_ERROR_2) {
+            return $this->sendBackWithError('thời gian bắt đầu nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_3) {
+            return $this->sendBackWithError('thời gian kết thúc nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_4) {
+            return $this->sendBackWithError('thời gian bắt đầu và kết thúc bị sai');
+        }
         $footerId = HocMaiFooter::create($input)->id;
         if (request()->file('image')) {
             $file = $request->file('image');
@@ -82,6 +95,20 @@ class FooterController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $validateTime = $this->validateTime($input, 'App\HocMaiFooter', $id);
+        // dd($validateTime);
+        if ($validateTime == TIME_ERROR_1) {
+            return $this->sendBackWithError('thời gian bắt đầu phải nhỏ hơn thời gian kết thúc');
+        }
+        if ($validateTime == TIME_ERROR_2) {
+            return $this->sendBackWithError('thời gian bắt đầu nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_3) {
+            return $this->sendBackWithError('thời gian kết thúc nằm trong khoảng thời gian đã có');
+        }
+        if ($validateTime == TIME_ERROR_4) {
+            return $this->sendBackWithError('thời gian bắt đầu và kết thúc bị sai');
+        }
         $footer = HocMaiFooter::find($id);
         $imageUrl = $footer->image;
         if (request()->file('image')) {

@@ -144,7 +144,7 @@
           // }
           if (data.status == 'success') {
             var hidden = '<input type="hidden" name="video_source_id[]" value="' + data.video_id + '">';
-            var text = '<div class="col-md-12">' + '<div class="col-md-2">' + '<a href="/admin/preview/video/' + data.source_id + '"' + 'target="_blank">' +
+            var text = '<div class="col-md-12">' + '<div class="col-md-2">' + '<a href="/admin/preview/video/' + data.video_id + '"' + 'target="_blank">' +
               data.video_title + '</a>' + '<i class="fa fa-times del"></i></div><br>' + hidden;
             $("#video_source_detail").append(text);
           } else {

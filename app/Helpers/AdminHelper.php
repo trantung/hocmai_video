@@ -61,8 +61,8 @@ function getDurationLivestream($livestreamId)
 
 function getIdFromSourceVideo($url)
 {
-    $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
-    return $sourceId;   
+    // $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
+    return $url;   
 }
 
 function getDurationVideoFromText($str)
@@ -192,9 +192,17 @@ function getSchoolblockByUser()
     return $blockId;
 
 }
+function getStatusHeaderFooter()
+{
+    return [
+        1 => 'Active',
+        0 => 'Deactive',
+    ];
+}
 
 function getLivestreamUrl($sourceId)
 {
+    return url($sourceId);
     // https://drive.google.com/open?id=1R9qK03Ls3EClByk0FLj3mgJFweM7Klnj
     // $url = 'https://www.googleapis.com/drive/v3/files/' . $sourceId .'?alt=media&key=' . GOOGLE_API_KEY;
     $url = 'https://drive.google.com/uc?export=download&id=' . $sourceId;
