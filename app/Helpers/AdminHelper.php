@@ -53,11 +53,7 @@ function getDurationVideoFromText($str)
     $data = explode(':', $str);
     $hour = $data[0];
     $minute = $data[1];
-<<<<<<< HEAD
     $second = $data[2]; 
-=======
-    $second = $data[2];
->>>>>>> be70449abafcf980b16b0cace550c394ef448055
     $duration = 3600 * $hour + 60 * $minute + $second;
     return $duration;
 }
