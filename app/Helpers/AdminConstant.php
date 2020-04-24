@@ -21,6 +21,7 @@ define('BLOCK_FULL', 4);
 //api
 define('FILTER_HOUR', 1);
 define('FILTER_DAY', 2);
-
+//repeat
+define('REPEAT_DEFAULT', 1);
 
 

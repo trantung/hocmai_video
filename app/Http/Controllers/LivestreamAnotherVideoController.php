@@ -47,19 +47,32 @@ class LivestreamAnotherVideoController extends Controller
             Session::flash('message', "Điền id video đúng và click vào load video");
             return Redirect::back()->withInput();
         }
-        $timeClock = null;
+        //neu lon hon 2 video-->fail
+        if (count($input['video_source_id']) > 1) {
+            $message = 'Video không thể nhiều hơn 1';
+            Session::flash('message', "Không thể có nhiều hơn 1 video");
+            return Redirect::back()->withInput();
+        }
+
+        $timeClock = $endTime = null;
         if (isset($input['time_clock'])) {
             $timeClock = str_replace('/', '-', $input['time_clock']);
-            $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
+            if (date('Y/m/d H:i:s', strtotime($timeClock))) {
+                $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
+            }
         }
-        // dd($input['end_time']);
-        // time_clock
-        $endTime = str_replace('/', '-', $input['end_time']);
-        $endTime = date('Y/m/d H:i:s', strtotime($endTime));
+        $endTimeFormat = str_replace('/', '-', $input['end_time']);
+        if (date('Y/m/d H:i:s', strtotime($endTimeFormat))) {
+            $endTime = date('Y/m/d H:i:s', strtotime($endTimeFormat));
+        }
+
         $input['end_time'] = $endTime;
         $input['time_clock'] = $timeClock;
-
+        if (!isset($input['repeat'])) {
+            $input['repeat'] = REPEAT_DEFAULT;
+        }
         $livestreamId = Livestream::create($input)->id;
+
         $imageUrlSmall = $imageUrlBig = null;
         if (request()->file('file_image_small')) {
             $fileSmall = request()->file('file_image_small');
