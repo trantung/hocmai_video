@@ -10,8 +10,8 @@ use App\Livestream;
 use App\AnotherVideo;
 use App\Teacher;
 use App\LivestreamAnotherVideo;
-use App\HocmaiHeader;
-use App\HocmaiFooter;
+use App\HocMaiHeader;
+use App\HocMaiFooter;
 use APV\User\Services\UserService;
 use APV\LivestreamDetail;
 use Carbon\Carbon;
@@ -399,7 +399,7 @@ class ApiController extends Controller
     {
         $result = [];
 
-        $data = HocmaiHeader::all();
+        $data = HocMaiHeader::all();
         foreach ($data as $key => $value) {
             $result[$key]['header_id'] = $value->id;
             $result[$key]['header_desc'] = $value->desc;
@@ -412,7 +412,7 @@ class ApiController extends Controller
     public function getFooter()
     {
         $result = [];
-        $data = HocmaiFooter::all();
+        $data = HocMaiFooter::all();
         foreach ($data as $key => $value) {
             $result[$key]['footer_id'] = $value->id;
             $result[$key]['footer_desc'] = $value->desc;
