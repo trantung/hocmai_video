@@ -24,14 +24,14 @@
       <div class="form-group row">
         <div class="col-md-12 col-sm-12">
           <label>Mô tả</label>
-          <textarea name="desc" class="form-control" id="editor1"></textarea>
+          <textarea name="desc" class="form-control" id="editor1" required></textarea>
           <!-- {{ Form::textarea('desc', null, array('class' => 'form-control has-feedback-left','id'=>'editor1','placeholder'=>'Mô tả')) }} -->
         </div>
       </div>
       <div class="form-group row">
         <div class="col-md-12 col-sm-12">
           <label>Ảnh đại diện kênh </label>
-          <input type="file" name="avatar">
+          <input type="file" name="avatar" required>
           <!-- {{ Form::textarea('desc', null, array('class' => 'form-control has-feedback-left','id'=>'editor1','placeholder'=>'Mô tả')) }} -->
         </div>
       </div>
