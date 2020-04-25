@@ -14,6 +14,11 @@
             </ul>
         </div>
         @endif
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         @csrf
         <div class="form-horizontal form-label-left">
             <div class="form-group row">
