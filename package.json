@@ -23,12 +23,28 @@
         "vue": "^2.5.17"
     },
     "apidoc":{
-        "name": "example",
+        "name": "API hocmai livestream",
         "version": "0.1.0",
-        "description": "apiDoc basic example",
+        "description": "Api cho hocmai livestream",
         "apidoc": {
-            "title": "Custom apiDoc browser title",
-            "url" : "https://api.github.com/v1"
+            "title": "Custom apiDoc browser title"
+        },
+        "order": [
+            "Header",
+            "Footer",
+            "GetHeader",
+            "GetFooter",
+            "GetBlockList",
+            "PostBlockDetail",
+            "PostBlockDetailWithDay",
+            "PostPlayCurrent",
+            "PostLivestreamCalendarAll",
+            "PostLivestreamCalendarFilterDay",
+            "PostLivestreamDetail"
+        ],
+        "template": {
+            "withCompare": true,
+            "withGenerator": true
         }
     }
 }
