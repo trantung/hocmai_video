@@ -19,21 +19,21 @@
         <div class="col-md-6 col-sm-6  ">
         <label class="control-label col-md-2 col-sm-2">Tên lớp</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::text('name', $class->name, array('class' => 'form-control','placeholder'=>'Tên lớp')) }}
+            <input type="text" name="name" id="name" value="{{$class->name}}" required data-errormessage-value-missing="Please input something" placeholder ="tên lớp" >
           </div>
         </div>
         <div class="col-md-6 col-sm-6  ">
-          <label class="control-label col-md-2 col-sm-2">Khối</label>
-          <div class="col-md-11 col-sm-11 ">
+          <label class="col-md-3 col-sm-3">Khối</label>
+          <div class="col-md-10 col-sm-10 ">
           {{ Form::select('schoolblock_id', getListKhoi(),$class->schoolblock_id, array('class' => 'form-control')) }}
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-12 col-sm-12  ">
-          <label class="control-label col-md-2 col-sm-2">Mô tả</label>
+        <div class="col-md-12 col-sm-12">
+          <label class="col-md-3 col-sm-3">Mô tả</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::textarea('desc', $class->desc, array('class' => 'form-control','id'=>'editor1')) }}
+            {{ Form::textarea('desc', old($class->desc), array('class' => 'form-control','id'=>'editor1')) }}
           </div>
         </div>
       </div>

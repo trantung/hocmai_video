@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\AdminController;
 use APV\User\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class UserController extends AdminController
 {
@@ -106,16 +107,6 @@ class UserController extends AdminController
         $user->save();
         return Redirect::action('UserController@index'); 
     }
-    
-    public function updateProfile(Request $request, $id)
-    {
-        $input = User::all();
-        $profile = User::find($id);
-        $profile->update($input);
-        // dd($user);
-        return Redirect::action('AdminController@index'); 
-    }
-
     /**
      * Remove the specified resource from storage.
      *

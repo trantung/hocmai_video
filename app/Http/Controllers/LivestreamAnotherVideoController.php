@@ -97,7 +97,7 @@ class LivestreamAnotherVideoController extends Controller
             LivestreamAnotherVideo::create(['livestream_id' => $livestreamId, 'another_video_id' => $value]);
         }
 
-        return Redirect::action('LivestreamAnotherVideoController@create');
+        return Redirect::action('LivestreamAnotherVideoController@create')->compact("Tạo thành công video");
     }
     public function edit($id){
         $livestream = Livestream::find($id);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 
 class SubjectController extends Controller
@@ -39,6 +40,10 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        if (empty($input['name'])) {
+            Session::flash('message', "Quý khách vui lòng điền tên môn !");
+            return Redirect::back()->withInput();
+        }
         $subjectid = Subject::create($input)->id;
         return Redirect::action('SubjectController@index');
     }
@@ -76,6 +81,10 @@ class SubjectController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        if (empty($input['name'])) {
+            Session::flash('message', "Quý khách vui lòng điền tên môn !");
+            return Redirect::back()->withInput();
+        }
         $subject = Subject::find($id);
         $subject->update($input);
         return Redirect::action('SubjectController@index'); 

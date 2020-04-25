@@ -16,57 +16,51 @@
       <br>
       {{ Form::open(array('action' => array('UserController@update', $user->id), 'method' => "PUT", 'files' => true,'id'=>'upload_form')) }}
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-user">Họ và tên</i></span>
-            </div>
-            {{ Form::text('name', $user->name, array('class' => 'form-control has-feedback-left','placeholder'=>'họ & tên')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="name" class="col-md-3 col-lg-3"> Họ và tên</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="text" class="form-control" required data-errormessage-value-missing="Please input something" name="name" id="name" value="{{$user->name}}">
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-envelope-o">Email Address</i></span>
-            </div>
-            {{ Form::text('email', $user->email, array('class' => 'form-control has-feedback-left','placeholder'=>'email')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="email"class="col-md-3 col-lg-3">Email Address</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="email" class="form-control" required data-errormessage-value-missing="Please input something" name="email" id="email" value="{{$user->email}}">
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-user">Tên đăng nhập</i></span>
-            </div>
-            {{ Form::text('username', $user->username, array('class' => 'form-control has-feedback-left','placeholder'=>'username')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="username" class="col-md-3 col-lg-3">Tên đăng nhập</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="text" class="form-control" required data-errormessage-value-missing="Please input something" name="username" id="username" value="{{$user->username}}">
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-          <label for="">Mật khẩu</label>
-          <div class="input-group mb-3">
-            {{ Form::password('password', null, array('class' => 'form-control','placeholder'=>'nhập mật khẩu')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="" class="col-md-3 col-lg-3">Mật khẩu</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="password" class="form-control" required data-errormessage-value-missing="Please input something" name="password" id="password" value="{{$user->password}}">
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-lg-6 col-md-12">
-          <label>Quyền</label>
-          <div class="multiselect_div">
+        <div class="col-lg-6 col-md-6">
+          <label class="col-md-3 col-lg-3">Quyền</label>
+          <div class="col-md-9 col-col-lg-9">
             {{ Form::select('role_id', getListRole(),$user->role_id, array('class' => 'form-control')) }}
           </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-          <label>Ảnh đại diện</label>
-          <div class="col-lg-12">
-            <div class="multiselect_div">
-              <input type="file" name="avatar" id="avatar" class="form-control">
-            </div>
-            <div class="clearfix row">
-              @if($user->avatar)
-              <img src="{{$user->avatar }}" width="150px" height="auto" />
-              @endif
-            </div>
+        <div class="col-lg-6 col-md-6">
+          <label class="col-md-3 col-lg-3">Ảnh đại diện</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="file" name="avatar" id="avatar" class="form-control" required data-errormessage-value-missing="Please input something">
+          </div>
+          <div class="clearfix row">
+            <br>
+            <br>
+            @if($user->avatar)
+            <img src="{{$user->avatar }}" width="150px" height="auto" style="margin: 10px 0" />
+            @endif
           </div>
         </div>
       </div>

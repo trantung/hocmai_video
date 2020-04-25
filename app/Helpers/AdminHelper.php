@@ -9,8 +9,6 @@ use App\LivestreamAnotherVideo;
 use App\AnotherVideo;
 use APV\User;
 use APV\User\Models\Role;
-use App\HocmaiHeader;
-use App\HocmaiFooter;
 use Carbon\Carbon;
 
 function checkUserRole()
@@ -42,6 +40,24 @@ function getStatusLivestream($livestream)
 
 }
 
+function getTimeLivestreamPlay($livestream)
+{
+    if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
+        $time = $livestream->created_at;
+    }
+    if ($livestream->status_time == IS_PUBLISH_INACTIVE) {
+        $time = $livestream->timer_clock;
+    }
+    return $time;
+}
+
+function getDurationLivestream($livestreamId)
+{
+    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
+    $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
+    return $result;
+}
+
 function getIdFromSourceVideo($url)
 {
     // $sourceId = substr($url, strpos($url, "id=") + NUMBER_SPLIT_ID);
@@ -53,23 +69,18 @@ function getDurationVideoFromText($str)
     $data = explode(':', $str);
     $hour = $data[0];
     $minute = $data[1];
-<<<<<<< HEAD
     $second = $data[2]; 
-=======
-    $second = $data[2];
->>>>>>> be70449abafcf980b16b0cace550c394ef448055
     $duration = 3600 * $hour + 60 * $minute + $second;
     return $duration;
 }
-
+// hàm time hour, minute,second
 function getListRole()
 {
     return Role::pluck('name', 'id')->toArray();
 }
 /* start livestream hoc mai*/
 // class lấy name lớp
-function getListClass()
-{
+function getListClass(){
     $schoolblockId = getSchoolblockByUser();
     $roleId = checkUserRole();
     if (!$schoolblockId && $roleId == ADMIN) {
@@ -83,12 +94,6 @@ function getListClass()
 // khối 
 function getListKhoi(){
     return SchoolBlock::pluck('name','id')->toArray();
-}
-
-function getListClassByBlock($id)
-{
-    $data = HocMaiClass::where('schoolblock_id', $id)->get();
-    return $data;
 }
 // môn
 function getListMon(){
@@ -235,34 +240,3 @@ function apiStatusLivestream($livestreamStartTime, $livestreamEndTime)
     return $data;
 }
 
-function getDurationLivestream($livestreamId)
-{
-    $listId = LivestreamAnotherVideo::where('livestream_id', $livestreamId)->pluck('another_video_id');
-    $result = AnotherVideo::whereIn('id', $listId)->sum('duration');
-    return $result;
-}
-
-function getTimeLivestreamPlay($livestream)
-{
-    if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
-        $time = $livestream->created_at;
-    }
-    if ($livestream->status_time == IS_PUBLISH_INACTIVE) {
-        $time = $livestream->timer_clock;
-    }
-    return $time;
-}
-
-function getTimePlayLivestream($livestream)
-{
-    $time = getTimeLivestreamPlay($livestream);
-    return strtotime($time);
-}
-
-function getEndTimeLivestream($value)
-{
-    $duration = getDurationLivestream($value->id);
-    $livestreamStartTime = getTimePlayLivestream($value);
-    $livestreamEndTime = $livestreamStartTime + $duration;
-    return $livestreamEndTime;
-}

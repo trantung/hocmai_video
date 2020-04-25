@@ -31,7 +31,7 @@
             <th>Tiêu đề</th>
             <th>Ngày tạo</th>
             <th>Thời gian phát</th>
-            <th>Khối</th>
+            <th>Kênh</th>
             <th>Trạng thái</th>
           </tr>
         </thead>

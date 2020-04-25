@@ -8,7 +8,7 @@
       <div class="x_title">
         <div class="pull-left">
           <a href="{{action('SubjectController@create')}}" class="btn btn-info">
-          <i class="fa fa-plus-circle"></i>Thêm mời</a>
+          <i class="fa fa-plus-circle"></i>Thêm mới</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

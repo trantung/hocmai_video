@@ -1,16 +1,15 @@
 js
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script src="{{asset('build/js/jquery.validate.min.js')}}"></script>
 <script src="{{asset('build/js/jquery-3.4.1.min.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="{{asset('build/js/ajax-jquery.min.js')}}"></script>
 <script src="{{asset('js/video.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/class.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/time.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/site.js')}}" type="text/javascript"></script>
 <!-- validation  -->
 <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.validate.js')}}" type="text/javascript"></script>
 <!-- steps -->
-<script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+<script type='text/javascript' src="{{asset('build/js/jquery.inputmask.bundle.js')}}"></script>
 <!-- jQuery -->
 <!-- <script src="{{asset('vendor/jquery/dist/jquery.min.js')}}" type="text/javascript"></script> -->
 <!-- Bootstrap -->
@@ -67,8 +66,7 @@ js
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script>
   CKEDITOR.replace('editor1');
-</script>
-<script>
+  window.onbeforeunload = function() {window.scrollTo(0,0);}
   $(document).ready(function() {
     $('.star').on('click', function() {
       $(this).toggleClass('star-checked');
@@ -88,9 +86,9 @@ js
     //dang 
     $('#selectTime').on('change', function() {
     if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
-        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hiện thị hẹn giờ</lable >' +
+        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</lable >' +
             '<div id="timer_clock_add" class="col-md-4 col-sm-4">' +
-            '<input type="text" class="js-date" maxlength="16" id="time_clock" name="time_clock" placeholder="dd/mm/yyyy hh:mm" />');
+            '<input type="datetime-local" class="js-date" maxlength="16" id="time_clock" name="time_clock" placeholder="dd/mm/yyyy hh:mm" />');
 
     }
     if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
@@ -162,41 +160,6 @@ js
     //end tung
   });
 </script>
-<!-- //time -->
-<!-- <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-</script>
-<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script> -->
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-    
-    jQuery('body').animate({scrollTop: +400}, 1000);
-    
-});
-</script>
-</script>
-<!-- <script type="text/javascript">
-  $(function() {
-    $('#datetimepicker').datetimepicker({
-      format: 'dd/MM/yyyy hh:mm:ss',
-      language: 'pt-BR'
-    });
-    //header
-    $('#datetimepicker3').datetimepicker({
-      pickDate: false
-    });
-    $('.datetimepicker3').datetimepicker({
-      pickDate: false
-    });
-    $('.datetimepicker4').datetimepicker({
-      pickDate: false
-    });
-    //footer
-    $('#datetimepicker1').datetimepicker({
-      language: 'pt-BR'
-    });
-  });
-</script> -->
 </body>
 
 </html>

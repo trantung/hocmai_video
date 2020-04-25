@@ -17,13 +17,14 @@
       <div class="form-group row">
         <div class="col-md-12 col-sm-12 ">
           <label>Tên Kênh</label>
-          {{ Form::text('name', null, array('class' => 'form-control has-feedback-left','placeholder'=>'Tên khối')) }}
+          {{ Form::text('name', old('name'), array('class' => 'form-control has-feedback-left','placeholder'=>'Tên khối')) }}
+          @if(Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span> @endif     
         </div>
       </div>
       <div class="form-group row">
         <div class="col-md-12 col-sm-12">
           <label>Mô tả</label>
-          <textarea name="desc" class="form-control " id="editor1"></textarea>
+          <textarea name="desc" class="form-control" id="editor1"></textarea>
           <!-- {{ Form::textarea('desc', null, array('class' => 'form-control has-feedback-left','id'=>'editor1','placeholder'=>'Mô tả')) }} -->
         </div>
       </div>

@@ -17,57 +17,50 @@
       {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('UserController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user">Họ và tên</i></span>
-            </div>
-            {{ Form::text('name', null, array('class' => 'form-control name','placeholder'=>'họ & tên')) }}
+          <label class="col-lg-2 col-md-2" for="username">Tên đăng nhập</label>
+          <div class="col-md-10 col-lg-10">
+            <input type="text" class="form-control" minlength="6" required data-errormessage-value-missing="Please input something" name="password" id="password">
           </div>
         </div>
+
         <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-envelope-o">Email Address</i></span>
-            </div>
-            {{ Form::text('email', null, array('class' => 'form-control email','placeholder'=>'Ex: example@example.com')) }}
+          <label class="col-lg-2 col-md-2" for="name">Họ & tên</label>
+          <div class="col-md-10 col-lg-10">
+            <input type="text" class="form-control" required data-errormessage-value-missing="Please input something" name="name" id="name">
           </div>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user">Tên đăng nhập</i></span>
-            </div>
-            {{ Form::text('username', null, array('class' => 'form-control username','placeholder'=>'username')) }}
+          <label class="col-lg-2 col-md-2" for="email">Email</label>
+          <div class="col-md-10 col-lg-10">
+            <input type="email" class="form-control" required data-errormessage-value-missing="Please input something" name="email" id="email">
           </div>
         </div>
         <div class="col-md-6 col-sm-6">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Mật khẩu</span>
-            </div>
-            {{ Form::password('password', null, array('class' => 'form-control password_get_info','placeholder'=>'nhập mật khẩu')) }}
+          <label class="col-lg-2 col-md-2" for="password">Mật khẩu</label>
+          <div class="col-md-10 col-lg-10">
+            <input type="password" class="form-control" required data-errormessage-value-missing="Please input something" name="password" id="password">
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-lg-6 col-md-12">
-            <label>Quyền</label>
-            <div class="multiselect_div">
-              {{ Form::select('role_id', getListRole(), array('class' => 'form-control')) }}
-            </div>
+        <div class="col-lg-6 col-md-6">
+          <label class="col-lg-2">Quyền</label>
+          <div class="col-lg-10">
+            {{ Form::select('role_id', getListRole(), array('class' => 'form-control')) }}
+          </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-            <label>ảnh đại diện</label>
-            <div class="multiselect_div">
-              <input type="file" name="avatar" id="avatar" class="form-control">
-            </div>
+        <div class="col-lg-6 col-md-6">
+          <label class="col-lg-2">ảnh đại diện</label>
+          <div class="col-lg-10">
+            <input type="file" name="avatar" id="avatar" class="form-control" required data-errormessage-value-missing="Please input something">
+          </div>
         </div>
       </div>
       <div class="form-group row">
-          {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
-          {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
+        {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
+        {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
       </div>
       {{ Form::close() }}
     </div>
