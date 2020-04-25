@@ -66,7 +66,7 @@ js
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script>
   CKEDITOR.replace('editor1');
-  window.onbeforeunload = function() {window.scrollTo(0,0);}
+  
   $(document).ready(function() {
     $('.star').on('click', function() {
       $(this).toggleClass('star-checked');
@@ -83,12 +83,14 @@ js
         $('.table tr').css('display', 'none').fadeIn('slow');
       }
     });
+    // loading top div 
+    $('#page-wrapper').scrollTop($('#page-wrapper')[0].scrollHeight);
     //dang 
     $('#selectTime').on('change', function() {
     if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
         $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</lable >' +
             '<div id="timer_clock_add" class="col-md-4 col-sm-4">' +
-            '<input type="datetime-local" class="js-date" maxlength="16" id="time_clock" name="time_clock" placeholder="dd/mm/yyyy hh:mm" />');
+            '<input type="datetime-local" class="js-date" maxlength="16" id="time_clock" name="time_clock" placeholder="dd/mm/yyyy hh:mm" style="width:100%;"/>');
 
     }
     if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {

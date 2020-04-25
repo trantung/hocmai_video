@@ -316,6 +316,28 @@ a:active {
 }
 
 
+/* thanh cuộn trang */
+
+#back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 60px;
+    z-index: 9999;
+}
+
+#back-to-top a {
+    text-decoration: none;
+}
+
+#back-to-top i {
+    border: 1px solid;
+    border-radius: 50%;
+    font-size: 30px;
+    background: blue;
+    color: #f1f1f1;
+}
+
+
 /* Add a dark background to the active button */
 
 .imagePreview {
