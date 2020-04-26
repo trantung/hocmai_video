@@ -43,13 +43,13 @@
                     <td>{{ $sourceVideo->created_at }}</td>
                     <td>
                       <form action="{{ action('AnotherVideoController@destroy',$sourceVideo->id) }}" method="POST">
-                        <a href="{{ action('AnotherVideoController@edit',$sourceVideo->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                        <a href="{{ action('AnotherVideoController@edit',$sourceVideo->id) }}" title="Sửa"><i class="fa fa-edit"></i></a>
+                        <a href="{{ action('AnotherVideoController@show',$sourceVideo->id) }}" title="xem chi tiết"><i class="fa fa-eye"></i></a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                            <i class="fa fa-trash"></i>
-                          </a></button>
-                        <a href="{{ action('AnotherVideoController@show',$sourceVideo->id) }}" title="xem chi tiết" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                        <button class="text-danger" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                          <i class="fa fa-trash"></i>
+                        </button>
                       </form>
                     </td>
                   </tr>

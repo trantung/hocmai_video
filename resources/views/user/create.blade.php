@@ -2,9 +2,8 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
-    <h2>Thêm mới người dùng</h2>
     <div class="x_title">
-      <a href="{{ action('UserController@index') }}" class="btn btn-danger" title="Trở lại">Trở lại</a>
+      <a href="{{ action('UserController@index') }}" class="text-danger" title="Trở lại"><i class="fa fa-backward"></i></a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

@@ -3,7 +3,7 @@
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2 class="navbar-left"><a class="btn btn-danger" href="{{ action('AnotherVideoController@index') }}">Trở lại</a></h2>
+      <h2 class="navbar-left"><a class="text-danger" href="{{ action('AnotherVideoController@index') }}" title="trở lại"><i class="fa fa-backward"></i></a></h2>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -15,29 +15,23 @@
       <br>
       {{ Form::open(array('method'=>'POST', 'action' => array('AnotherVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="control-label col-md-2 col-sm-2">Title</label>
-          <div class="col-md-11 col-sm-11">
-            {{ Form::text('title', null, array('class' => 'form-control has-feedback-left', 'required'=> true)) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-lg-3">Tiêu đề</label>
+          <div class="col-lg-9">
+            <input type="text" name="title" id="title" class="form-control" required>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="control-label col-md-2 col-sm-2">url</label>
-          <div class="col-md-11 col-sm-11">
-            {{ Form::text('url', null, array('class' => 'form-control has-feedback-left', 'required'=> true)) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-lg-3">url</label>
+          <div class="col-lg-9">
+            <input type="text" name="url" id="url" class="form-control" required>
+          </div>
+        </div>
 
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="col-lg-4 col-md-4 col-sm-4">Độ dài video</label>
-          <div class="col-md-10 col-sm-10">
-            <input type="time" name="duration" step="1"/>
-          </div>
-        </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class=" col-md-3 col-sm-3 col-lg-3">Kênh</label>
+        <div class="col-lg-6">
+          <label class="col-md-3 col-sm-3 col-lg-3">Kênh</label>
           <div class="col-md-9 col-sm-9 ">
             @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), null, array('class' => 'form-control','id'=>'schoolblock_id')) }}
@@ -46,7 +40,7 @@
             @endif
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-lg-4" id="class_id">
+        <div class="col-lg-6" id="class_id">
           <label id="label_class1" class="col-lg-3 col-md-3 col-sm-3">Lớp</label>
           <div id="class1" class="col-md-9 col-sm-9 col-lg-9">
             <select class="form-control" name="class_id">
@@ -56,10 +50,18 @@
             </select>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-lg-4">
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
           <label class="col-md-3 col-sm-3 col-lg-3">Môn</label>
           <div class="col-md-9 col-sm-9 ">
             {{ Form::select('subject_id', getListMon(), array('class' => 'form-control')) }}
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <label class="col-lg-3 col-md-4 col-sm-3">Độ dài video</label>
+          <div class="col-md-9 col-sm-9">
+            <input type="time" name="duration" step="1" required />
           </div>
         </div>
       </div>
