@@ -75,10 +75,13 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/header', 'HeaderController');
     Route::resource('/footer', 'FooterController');
     // cấu hình livestream từ nguồn khác
-    Route::get('/livestream/another_video', 'LivestreamAnotherVideoController@create');
-    Route::post('/livestream/another_video', 'LivestreamAnotherVideoController@store');
+    // Route::get('/livestream/another_video', 'LivestreamAnotherVideoController@create');
+    // Route::post('/livestream/another_video', 'LivestreamAnotherVideoController@store');
+    Route::resource('/livestream/another_video','LivestreamAnotherVideoController');
+    // Route::get('/livestream/another_video','LivestreamAnotherVideoController@edit');
     Route::get('/livestream/hocmai_video', 'LivestreamHocmaiVideoController@create');
     Route::post('/livestream/hocmai_video', 'LivestreamHocmaiVideoController@store');
+   
     //video_hocmai_videos
     Route::resource('/hocmaivideo','HocMaiVideoController');
     Route::resource('/videohocmaivideo','VideoHocMaiVideoController');

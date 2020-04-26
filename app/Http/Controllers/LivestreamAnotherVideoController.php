@@ -140,4 +140,8 @@ class LivestreamAnotherVideoController extends Controller
         $livestreamId->update($input);
         return Redirect::action('SchoolBlockController@index'); 
     }
+    public function show($id){
+        $livestream = Livestream::find($id);
+        return view('livestream_another_video.show')->with(compact('livestream'));
+    }
 }

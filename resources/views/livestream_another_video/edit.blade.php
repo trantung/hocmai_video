@@ -5,25 +5,7 @@
 <!-- main -content  -->
 {{ Form::open(array('action' => array('LivestreamAnotherVideoController@update'), 'method' => "PUT", 'multiple'=>true,'files' => true)) }}
 <div class="col-md-12">
-
     <div id="wizard_verticle" class="form_wizard wizard_verticle">
-        <ul class="list-unstyled wizard_steps">
-            <li>
-                <a href="#step-11">
-                    <span class="step_no">1</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-22">
-                    <span class="step_no">2</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-33">
-                    <span class="step_no">3</span>
-                </a>
-            </li>
-        </ul>
         <div id="step-11">
             <label class="StepTitle">Thêm ID video nguồn khác </label>
             @if (Session::has('message'))
@@ -46,7 +28,7 @@
                     <label class="StepTitle">Liên kết video </label>
                     <div class="row clearfix"></div>
                     <div id="video_source_detail" class="col-md-12">
-                        {{}}
+                        {{$data->video_source_id}}
                     </div>
                 </div>
                 <div class="form-group row">
