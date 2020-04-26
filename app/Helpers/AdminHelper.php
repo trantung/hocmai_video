@@ -240,3 +240,8 @@ function apiStatusLivestream($livestreamStartTime, $livestreamEndTime)
     return $data;
 }
 
+function formatClassByBlock($blockId)
+{
+    $data = HocMaiClass::where('schoolblock_id', $blockId)->all();
+    return $data;
+}
