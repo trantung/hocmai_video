@@ -242,6 +242,6 @@ function apiStatusLivestream($livestreamStartTime, $livestreamEndTime)
 
 function getListClassByBlock($blockId)
 {
-    $data = HocMaiClass::where('schoolblock_id', $blockId)->all();
+    $data = HocMaiClass::where('schoolblock_id', $blockId)->get();
     return $data;
 }
