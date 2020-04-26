@@ -4,7 +4,7 @@
   <div class="x_panel">
     <h2>Sửa {{ $anothervideo->title }}</h2>
     <div class="x_title">
-      <a href="{{ action('AnotherVideoController@index') }}" class="btn btn-danger">Trở lại</a>
+      <a href="{{ action('AnotherVideoController@index') }}" class="text-danger" title="trở lại"><i class="fa fa-backward"></i></a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -16,30 +16,24 @@
       <br>
       {{ Form::open(array('method'=>'PUT', 'action' => array('AnotherVideoController@update', $anothervideo->id))) }}
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="control-label col-md-2 col-sm-2">Tiêu đề</label>
-          <div class="col-md-11 col-sm-11">
-            {{ Form::text('title', $anothervideo->title, array('class' => 'form-control has-feedback-left','placeholder'=>'')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-md-2 col-sm-3 col-lg-3">Tiêu đề</label>
+          <div class="col-md-9 col-sm-9">
+            <input type="text" name="title" id="title" class="form-control" required value="{{$anothervideo->title}}">
           </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="control-label col-md-2 col-sm-2">url</label>
-          <div class="col-md-11 col-sm-11">
-            {{ Form::text('url', $anothervideo->url, array('class' => 'form-control has-feedback-left','placeholder'=>'')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-md-2 col-sm-3 col-lg-3">url</label>
+          <div class="col-md-9 col-sm-9">
+            <input type="text" name="url" id="url" class="form-control" required value="{{$anothervideo->url}}">
+          </div>
+        </div>
 
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4 col-lg-4">
-          <label class="col-lg-4 col-md-4 col-sm-4">Độ dài video</label>
-          <div class="col-md-10 col-sm-10">
-            <input type="time" name="duration" value="{{gmdate('H:i:s', $anothervideo->duration)}}" step="1"/>
-          </div>
-        </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-4 col-sm-4 ">
-          <label class="col-lg-6 col-md-6 col-sm-6">Kênh</label>
-          <div class="col-md-10 col-sm-10 ">
+        <div class="col-md-6 col-sm-6 col-lg-6 ">
+          <label class="col-lg-3">Kênh</label>
+          <div class="col-md-9 col-sm-9 ">
             @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control','id'=>'schoolblock_id')) }}
             @else
@@ -47,8 +41,8 @@
             @endif
           </div>
         </div>
-        <div class="col-md-4 col-sm-4" id="class_id">
-          <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+        <div class="col-md-6 col-sm-6 col-lg-6" id="class_id">
+          <label id="label_class1" class="col-lg-3">Lớp</label>
           <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
             <select class="form-control" name="class_id">
               <option value="1">Lớp 12</option>
@@ -57,10 +51,18 @@
             </select>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
-          <label class="col-lg-6 col-md-6 col-sm-6">Môn</label>
-          <div class="col-md-10 col-sm-10 ">
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-lg-3">Môn</label>
+          <div class="col-md-9 col-sm-9 ">
             {{ Form::select('subject_id', getListMon(),$anothervideo->subject_id, array('class' => 'form-control')) }}
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-lg-3">Độ dài video</label>
+          <div class="col-md-9 col-sm-9">
+            <input type="time" name="duration" value="{{gmdate('H:i:s', $anothervideo->duration)}}" step="1" required />
           </div>
         </div>
       </div>

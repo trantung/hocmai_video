@@ -7,7 +7,7 @@
       <h2>Quản lý header</h2>
       <div class="x_title">
         <div class="pull-left">
-          <a href="{{action('HeaderController@create')}}" class="btn btn-info" id="addVideo">
+          <a href="{{action('HeaderController@create')}}" class="btn btn-info" >
           <i class="fa fa-plus-circle"></i>Thêm mới header</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
@@ -43,10 +43,10 @@
                       <form action="{{ route('header.destroy',$header->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ action('HeaderController@edit', $header->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                        <a href="{{ action('HeaderController@edit', $header->id) }}" title="Sửa" class="text-info"><i class="fa fa-edit"></i></a>
+                        <button type="submit" class="text-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
                           <i class="fa fa-trash"></i>
-                          </a></button>
+                          </button>
                       </form>
                     </td>
                   </tr>

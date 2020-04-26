@@ -41,10 +41,10 @@
                       <form action="{{ route('footer.destroy',$footer->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ action('FooterController@edit', $footer->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                        <a href="{{ action('FooterController@edit', $footer->id) }}" title="Sửa" class="text-info"><i class="fa fa-edit"></i></a>
+                        <button type="submit" class="text-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
                           <i class="fa fa-trash"></i>
-                          </a></button>
+                          </button>
                       </form>
                     </td>
                   </tr>
