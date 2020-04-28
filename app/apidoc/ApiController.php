@@ -557,7 +557,7 @@ public function livestreamDetail(Request $request){
 }
 
 /**
- * @api {get} /header
+ * @api {get} /api_hocmai/header
  * @apiName GetHeader
  * @apiGroup Header
  *
@@ -588,7 +588,7 @@ public function getHeader()
 }
 
 /**
- * @api {get} /footer
+ * @api {get} /api_hocmai/footer
  * @apiName GetFooter
  * @apiGroup Footer
  *
