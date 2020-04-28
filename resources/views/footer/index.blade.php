@@ -27,7 +27,7 @@
                     <th>Ảnh </th>
                     <th>Thời gian hiển thị</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
+                    <th width="280px">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>

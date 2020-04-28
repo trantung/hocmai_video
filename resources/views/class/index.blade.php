@@ -34,7 +34,7 @@
                   <tr>
                     <td>{{ $class->id }}</td>
                     <td>{{ $class->name }}</td>
-                    <td>{{ $class->desc }}</td>
+                    <td>{!! $class->desc !!}</td>
                     <td>{{ getKhoiNameById($class->schoolblock_id) }}</td>
                     <td>
                       <form action="{{ route('class.destroy',$class->id) }}" method="POST">

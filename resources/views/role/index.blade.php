@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ $role->id }}</td>
                 <td>{{ $role->name }}</td>
-                <td>{{ $role->description }}</td>
+                <td>{!! $role->description !!}</td>
                 <td>
                     <i class="btn btn-warning">
                         <a href="{{ action('RoleController@edit', $role->id) }}">Edit</a>

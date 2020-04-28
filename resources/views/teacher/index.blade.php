@@ -27,7 +27,7 @@
                     <th>Tên giáo viên</th>
                     <th>Mô tả</th>
                     <th>Ảnh đại diện</th>
-                    <th>Hành động</th>
+                    <th width="280px">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>

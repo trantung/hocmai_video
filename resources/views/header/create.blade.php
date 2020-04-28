@@ -34,7 +34,7 @@
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="col-md-12">
-              <label class="col-lg-2"> Từ giờ</label>
+              <label class="col-lg-2"> Đến giờ</label>
               <div class="col-lg-8">
                 <input type="time" name="end_time" value="{{old('end_time')}}" class="form-control"/>
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif

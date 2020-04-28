@@ -28,14 +28,13 @@
                     <th>Ảnh</th>
                     <th>Thời gian hiển thị</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
-                  </tr>
+                    <th width="280px">Hành động</th>
                 </thead>
                 <tbody>
                   @foreach($data as $header)
                   <tr>
                     <td>{{ $header->id }}</td>
-                    <td>{{ $header->desc }}</td>
+                    <td>{!! $header->desc !!}</td>
                     <td><img src="{{ $header->image }}" alt="image"width ="100px" height="100px"></td>
                     <td>{!! $header->start_time !!} - {{$header->end_time}}</td>
                     <td>{{$header->status==1 ?"Active":"Deactivate"}}</td>

@@ -25,7 +25,7 @@
                     <th>Id</th>
                     <th>Tên môn</th>
                     <th>mô tả</th>
-                    <th>Hành động</th>
+                    <th width="280px">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,7 @@
                   <tr>
                     <td>{{ $subject->id }}</td>
                     <td>{{ $subject->name }}</td>
-                    <td>{{ $subject->desc }}</td>
+                    <td>{!! $subject->desc !!}</td>
                     <td>
                       <form action="{{ action('SubjectController@destroy',$subject->id) }}" method="POST">
                         @csrf
