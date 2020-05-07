@@ -11,6 +11,7 @@ use APV\User;
 use APV\User\Models\Role;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
+use App\UserFake;
 use Carbon\Carbon;
 
 function checkUserRole()
@@ -93,6 +94,9 @@ function getListMon(){
 function getListGv(){
     return Teacher::pluck('name','id')->toArray();
 }
+function getListUserFake(){
+    return UserFake::pluck('fullname','id')->toArray();
+}
 // lấy name
 function getClassNameById($id)
 {
@@ -126,6 +130,13 @@ function getGvNameById($id)
     }
     return null;
 }
+
+function getUrlSourceVideoId ($id){
+    $sourceId = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
+    $url = AnotherVideo::find($sourceId)->pluck('url');
+    return $url;
+}
+
  /* end livestream hoc mai*/
 function getRoleNameById($id)
 {
@@ -135,7 +146,14 @@ function getRoleNameById($id)
     }
     return null;
 }
-
+// name userfake
+function getUserFakeNameById($id){
+    $userFake = UserFake::find($id);
+    if ($userFake) {
+        return $userFake->fullname;
+    }
+    return null;
+}
 function getArrayStatus()
 {
     return [0 => 'Không đăng nhập', 1 => 'Đăng nhập'];
@@ -150,7 +168,19 @@ function getListRepeat()
     ];
     return $array;
 }
-
+function getNameRepeat($id)
+{
+    $repeat = Livestream::where('id',$id)->pluck('repeat');
+    //dd($repeat);
+    if ($repeat[0] == "1") {
+        return "Lặp lại 1 lần";
+    } else if ($repeat[0] == "2") {
+        return "Lặp lại 2 lần";
+    }else {
+        return "Lặp lại 3 lần";
+    }
+    return "không lặp";
+}
 function getArrayIsPublish()
 {
     $array = [

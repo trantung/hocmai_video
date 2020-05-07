@@ -66,7 +66,6 @@ js
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script>
   CKEDITOR.replace('editor1');
-  
   $(document).ready(function() {
     $('.star').on('click', function() {
       $(this).toggleClass('star-checked');

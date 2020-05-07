@@ -27,6 +27,7 @@
       <table class="table table-filter table-hover m-b-0" id="datatable">
         <thead>
           <tr>
+            <th>STT</th>
             <th>Id</th>
             <th>Tiêu đề</th>
             <th>Ngày tạo</th>
@@ -36,8 +37,10 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($data as $value)
+          <?php  $i = 1;?>
+          @foreach( $data as $value)
           <tr data-status="approved">
+            <td>{{$i++}}</td>
             <td>{{ $value->id }}</td>
             @if($value->livestream_status == PLAY_TIME_CLOCKER)
               <td><a href="{{action('LivestreamAnotherVideoController@show',$value->id)}}">{{ $value->name }}</a></td>

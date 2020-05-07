@@ -13,5 +13,6 @@ class HocMaiHeader extends Model
         'end_time',
         'desc',
         'status',
+        'color',
     ];
 }

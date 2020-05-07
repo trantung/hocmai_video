@@ -34,4 +34,7 @@ class Livestream extends Model
     {
         $this->attributes['timer_clock'] =  Carbon::parse($value);
     }
+    public function livestreamAnotherVideo(){
+        return $this->hasMany(LivestreamAnotherVideo::class,'livestream_id');
+    }
 }

@@ -1,62 +1,110 @@
 @extends('common.default')
 @section('content')
 <div class="col-md-12">
-    <div class="form-horizontal form-label-left">
-        <div class="form-group row">
-            <div class="col-lg-6">
-                <label class="col-lg-6 col-md-6 col-sm-6">Tiêu đề Livestream</label>
-                <div class="col-md-10 col-sm-10 col-lg-12">
-                    <input type="text" value="{{$livestream->name}}" disabled="true" class="form-control">
-                </div>
+    <div class="x_panel">
+        <div class="x_title">
+            <div class="pull-right">
+            <form action="{{ route('livestream.destroy',$livestream->id) }}" method="POST">
+                <a href="{{action('LivestreamAnotherVideoController@edit',$livestream->id)}}"  class="btn btn-info">Sửa</a>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
             </div>
-            <b>Nguồn video phát</b>
-            <div class="col-md-6 col-lg-6 col-sm-6">
-                <label class="col-md-6 col-sm-6 col-lg-6 ">ID video</label>
-                <div class="col-md-8 col-sm-8 col-lg-8">
-                   <input type="text" name="url" id="url" disabled = true> 
-                </div>
-            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="form-group row">
-            <div class="col-md-6 col-lg-6 col-sm-6">
-                <label class="col-md-6 col-sm-6 col-lg-6">Kênh phát</label>
-                <div class="col-md-8 col-sm-8 col-lg-12">
-                    @if(checkUserRole() == ADMIN)
-                    {{ Form::select('schoolblock_id', getListKhoi(), old('schoolblock_id'), array('class' => 'form-control','id'=>'schoolblock_id')) }}
-                    @else
-                    {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
-                    @endif
+        <div class="x-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label class="col-lg-6 col-md-6 col-sm-6">Tiêu đề Livestream</label>
+                            <div class="col-md-8 col-sm-8 col-lg-8">
+                                <input type="text" value="{{$livestream->name}}" disabled="true" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <label class="col-md-6 col-sm-6 col-lg-6 ">ID video</label>
+                            <div class="col-md-8 col-sm-8 col-lg-8">
+                            <input type="text" value="{{getUrlSourceVideoId($livestream->id)}}" disabled="true" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <label class="col-md-6 col-sm-6 col-lg-6">Kênh phát</label>
+                            <div class="col-md-8 col-sm-8 col-lg-8">
+                                <select name="schoolblock_id" id="schoolblock_id" disabled="disabled">
+                                    <option value="{{$livestream->schoolblock_id}}">{{ getKhoiNameById($livestream->schoolblock_id) }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select name="class_id" id="class_id" disabled="disabled">
+                                    <option value="{{$livestream->class_id}}">{{getClassNameById($livestream->class_id)}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <label class="col-md-6 col-sm-6 col-lg-6">Giáo viên</label>
+                            <div class="col-md-8 col-sm-8 col-lg-8">
+                                <select name="teacher_id" id="teacher_id" disabled="disabled">
+                                    <option value="{{$livestream->teacher_id}}">{{getGvNameById($livestream->teacher_id)}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <label class="col-md-6 col-sm-6 col-lg-6">Môn</label>
+                            <div class="col-md-8 col-sm-8 col-lg-8">
+                                <select name="subject_id" id="subject_id" disabled="disabled">
+                                    <option value="{{$livestream->subject_id}}">{{getMonNameById($livestream->subject_id)}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <label class="col-md-6 col-sm-6 col-lg-6">Cấu hình video stream</label>
+                            <div class="col-md-8 col-sm-8 col-lg-8">
+                                <select name="repeat" id="repeat" disabled="disabled">
+                                    <option value="$livestream->repeat">{{getNameRepeat($livestream->repeat)}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <div class="pull-left">
+                                <label for="image_small" class="col-lg-6">Cover Nhỏ</label>
+                                <div class="col-lg-8">
+                                <img src="{{$livestream->image_small}}" alt="image_small" width="100px">
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <label for="image_big" class="col-lg-6">Cover Lớn</label>
+                                <div class="col-lg-8">
+                                <img src="{{$livestream->image_big}}" alt="image_big" width="200px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label for="" class="col-lg-6">Thời gian đăng</label>
+                            <div class="col-lg-8">
+                            <span style="background-color: #e6ae11;color:floralwhite;margin:0 5px">Hẹn giờ phát</span><input type="text" value="{{$livestream->created_at}}" disabled style="width:78% !important;">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="" class="col-lg-6">Thời gian hiển thị</label>
+                            <div class="col-lg-8">
+                                <input type="text" value="{{$livestream->timer_clock}}" disabled>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
-                <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
-                <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
-                    <select class="form-control" name="class_id">
-                        <option value="1">Lớp 12</option>
-                        <option value="2">Lớp 10</option>
-                        <option value="3">Lớp 11</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-6 col-lg-6 col-sm-6">
-                <label class="col-md-6 col-sm-6 col-lg-6">Giáo viên</label>
-                <div class="col-md-8 col-sm-8 col-lg-12">
-                    {{ Form::select('teacher_id', getListGv(), old('teacher_id'), array('class' => 'form-control')) }}
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-sm-6">
-                <label class="col-md-6 col-sm-6 col-lg-6">Môn</label>
-                <div class="col-md-8 col-sm-8 col-lg-8">
-                    {{ Form::select('subject_id', getListMon(), old('subject_id'),array('class' => 'form-control')) }}
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="form-group col-md-12">
-                <label>Nội dung</label>
-                <textarea name="description" value="{{ old('description') }}" require="true" class="form-control " id="editor1"></textarea>
             </div>
         </div>
     </div>

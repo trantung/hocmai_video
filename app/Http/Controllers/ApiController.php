@@ -380,6 +380,7 @@ class ApiController extends Controller
             $result[$key]['header_image'] = getUrlFull($value->image);
             $result[$key]['header_start_time'] = $value->start_time;
             $result[$key]['header_end_time'] = $value->end_time;
+            $result[$key]['header_text_color'] = $value->color;
         }
         return $this->responseSuccess($result);
     }
@@ -404,5 +405,11 @@ class ApiController extends Controller
         $data = $input['data'];
         $id = LivestreamDetail::create(['livestream_id' => $livestreamId, 'data' => $data])->id;
         return $this->responseSuccess($id);
+    }
+    // api livestream xem lại
+    public function livestreamReview(){
+        $result = [];
+        $data = Livestream::where('status_time','0');
+
     }
 }

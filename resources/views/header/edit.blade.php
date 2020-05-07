@@ -50,18 +50,24 @@
           <div class="col-lg-6">
             <label class="col-md-2 col-sm-2 col-lg-2">ảnh đại diện</label>
             <div class="col-md-8 col-sm-8 col-lg-8">
-              <input type="file" name="image" id="image" class="form-control" required>
+              <input type="file" name="image" id="image" class="form-control">
               @if($header->image)
                 <img src="{{$header->image}}" alt="image" width="100px" height="100px">
               @endif
             </div>
           </div>
-          <div class="col-md-6 col-lg-6 ">
+          <div class="col-md-4 col-lg-4">
             <label class="col-md-2 col-sm-2 col-lg-2">Trạng thái</label>
             <div class="col-md-8 col-sm-8 col-lg-8">
               {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
             </div>
           </div>
+          <div class="col-lg-2">
+            {!! Form::label('color', 'Color', ['class' => 'control-label']) !!}
+            {!! Form::color('color', old('color'), ['class' => 'form-control', 'placeholder' => '']) !!}
+
+          </div>
+
         </div>
       </div>
       <div class="form-group row">
@@ -72,4 +78,10 @@
     </div>
   </div>
 </div>
+  @stop
+  @section('javascript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+    <script>
+        $('.colorpicker').colorpicker();
+    </script>
   @stop

@@ -6,6 +6,7 @@ use App\Livestream;
 use App\LivestreamAnotherVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Carbon\Carbon;
 
@@ -100,10 +101,10 @@ class LivestreamAnotherVideoController extends Controller
         return Redirect::action('LivestreamAnotherVideoController@create')->with('success', 'Thao tác thành công');
     }
     public function edit($id){
-        $livestream = Livestream::find($id);
+        $livestream= Livestream::find($id);
         return view('livestream_another_video.edit')->with(compact('livestream'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $input = $request->all();
         //check video_id
@@ -115,33 +116,42 @@ class LivestreamAnotherVideoController extends Controller
             return Redirect::action('LivestreamAnotherVideoController@create')->withInput()->with(compact('message'));
         }
         // dd($input);
-        $livestreamId = Livestream::create($input)->id;
+        $livestreamId = Livestream::find($id);
         $imageUrlSmall = $imageUrlBig = null;
         if (request()->file('file_image_small')) {
             $fileSmall = request()->file('file_image_small');
             $fileNameImage = $fileSmall->getClientOriginalName();
-            $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
-            $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
+            $fileSmall->move(public_path("/uploads/another_video/update/" . $id . '/small/'), $fileNameImage);
+            $imageUrlSmall = '/uploads/another_video/update/' . $id . '/small/' . $fileNameImage;
         }
         
         if (request()->file('file_image_big')) {
             $fileBig = request()->file('file_image_big');
             $fileNameImage = $fileBig->getClientOriginalName();
-            $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
-            $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+            $fileBig->move(public_path("/uploads/another_video/update/" . $id . '/big/'), $fileNameImage);
+            $imageUrlBig = '/uploads/another_video/update/' . $id . '/big/' . $fileNameImage;
         }
         
 
         Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
         //luu vao bang livestream_another_videos
         foreach ($input['video_source_id'] as $key => $value) {
-            LivestreamAnotherVideo::create(['livestream_id' => $livestreamId, 'another_video_id' => $value]);
+            LivestreamAnotherVideo::create(['livestream_id' => $id, 'another_video_id' => $value]);
         }
         $livestreamId->update($input);
-        return Redirect::action('SchoolBlockController@index'); 
+        return Redirect::action('LivestreamAnotherVideoController@create')->with('success', 'Cập nhật thành công');
     }
     public function show($id){
         $livestream = Livestream::find($id);
         return view('livestream_another_video.show')->with(compact('livestream'));
+    }
+    public function destroy($id){
+
+      $livestream = Livestream::find($id);
+      DB::transaction(function () use ($livestream) {
+        $livestream->livestreamAnotherVideo()->delete();
+        $livestream->delete();
+    });
+    return Redirect::action('LivestreamAnotherVideoController@create')->with('success', 'Xóa thành công');
     }
 }

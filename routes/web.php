@@ -75,13 +75,22 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/header', 'HeaderController');
     Route::resource('/footer', 'FooterController');
     // cấu hình livestream từ nguồn khác
-    // Route::get('/livestream/another_video', 'LivestreamAnotherVideoController@create');
-    // Route::post('/livestream/another_video', 'LivestreamAnotherVideoController@store');
-    Route::resource('/livestream/another_video','LivestreamAnotherVideoController');
-    // Route::get('/livestream/another_video','LivestreamAnotherVideoController@edit');
+    Route::get('/livestream/another_video/create', 'LivestreamAnotherVideoController@create')->name('livestream_another_video.create');
+    Route::post('/livestream/another_video', 'LivestreamAnotherVideoController@store');
+    // Route::resource('/livestream/another_video','LivestreamAnotherVideoController');
+    Route::get('/livestream/another_video/{id}/edit','LivestreamAnotherVideoController@edit');
+    Route::delete('/livestream/{id}','LivestreamAnotherVideoController@destroy')->name('livestream.destroy');
+    Route::get('/livestream/{id}/another_video','LivestreamAnotherVideoController@show');
+    Route::put('/livestream/another_video/{id}/update','LivestreamAnotherVideoController@update');
+
     Route::get('/livestream/hocmai_video', 'LivestreamHocmaiVideoController@create');
     Route::post('/livestream/hocmai_video', 'LivestreamHocmaiVideoController@store');
-   
+    //commentfake
+
+    Route::resource('/commentfake','CommentFakeController');
+    //userfake
+    Route::resource('/userfake','UserFakeController');
+
     //video_hocmai_videos
     Route::resource('/hocmaivideo','HocMaiVideoController');
     Route::resource('/videohocmaivideo','VideoHocMaiVideoController');

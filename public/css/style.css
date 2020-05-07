@@ -333,8 +333,10 @@ a:active {
     border: 1px solid;
     border-radius: 50%;
     font-size: 30px;
+    width: 35px;
     background: blue;
     color: #f1f1f1;
+    text-align: center;
 }
 
 

@@ -62,7 +62,11 @@ class AdminController extends Controller
     {
         $input = $request->all();
         $playStatus = array_key_first($input);
-        $data = $this->userService->getDashboard($playStatus);
+        if(array_key_first($input) != null){
+            $data = $this->userService->getDashboard($playStatus);
+        }else{
+            $data = $this->userService->getDashboard($playStatus)->sortByDesc('id');
+        }
         return view('admin.index')->with(compact('data'));
     }
     

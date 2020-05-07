@@ -51,10 +51,16 @@
               <input type="file" name="image" id="image" class="form-control" required>
             </div>
           </div>
-          <div class="col-md-6 col-lg-6 ">
-            <label class="col-md-2 col-sm-2 col-lg-2">Trạng thái</label>
-            <div class="col-md-8 col-sm-8 col-lg-8">
+          <div class="col-md-3 col-lg-3 ">
+            <label class="col-md-3 col-sm-3 col-lg-3">Trạng thái</label>
+            <div class="col-md-6 col-sm-8 col-lg-6">
               {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-3 ">
+            <label class="col-md-3 col-sm-3 col-lg-3">Mã màu</label>
+            <div class="col-md-6 col-sm-8 col-lg-6">
+              <input type="color" id="color" name="color" value="#ff0000">
             </div>
           </div>
         </div>

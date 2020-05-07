@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
-      <h2>Quản lý header</h2>
+      <h2>Quản lý người dùng fake</h2>
       <div class="x_title">
         <div class="pull-left">
-          <a href="{{action('HeaderController@create')}}" class="btn btn-info" >
-          <i class="fa fa-plus-circle"></i>Thêm mới header</a>
+          <a href="{{action('UserFakeController@create')}}" >
+          <i class="fa fa-plus-circle"></i>Thêm mới</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -24,27 +24,24 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Lời chào</th>
-                    <th>Ảnh</th>
-                    <th>Thời gian hiển thị</th>
-                    <th>Trạng thái</th>
-                    <Th>Mã màu</Th>
+                    <th>tên</th>
+                    <th>Họ & tên</th>
+                    <th>Ảnh đại diện</th>
                     <th width="280px">Hành động</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  @foreach($data as $header)
+                  @foreach($data as $userfake)
                   <tr>
-                    <td>{{ $header->id }}</td>
-                    <td>{!! $header->desc !!}</td>
-                    <td><img src="{{ $header->image }}" alt="image"width ="100px" height="100px"></td>
-                    <td>{!! $header->start_time !!} - {{$header->end_time}}</td>
-                    <td>{{$header->status==1 ?"Active":"Deactivate"}}</td>
-                    <td>{{$header->color}}</td>
+                    <td>{{ $userfake->id }}</td>
+                    <td>{{ $userfake->name }}</td>
+                    <td>{!! $userfake->fullname !!}</td>
+                    <td><img src="{{ $userfake->avatar }}" alt="avatar"width ="100px" height="100px"></td>
                     <td>
-                      <form action="{{ route('header.destroy',$header->id) }}" method="POST">
+                      <form action="{{ route('userfake.destroy',$userfake->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ action('HeaderController@edit', $header->id) }}" title="Sửa" class="text-info"><i class="fa fa-edit"></i></a>
+                        <a href="{{ action('UserFakeController@edit', $userfake->id) }}" title="Sửa" class="text-info"><i class="fa fa-edit"></i></a>
                         <button type="submit" class="text-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
                           <i class="fa fa-trash"></i>
                           </button>
