@@ -1,49 +1,30 @@
 js
-<script src="{{asset('build/js/jquery.validate.min.js')}}"></script>
 <script src="{{asset('build/js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{asset('build/js/custom.min.js')}}"></script>
+<script src="{{asset('build/js/jquery.inputmask.bundle.js')}}"></script>
 <script src="{{asset('build/js/ajax-jquery.min.js')}}"></script>
-<script src="{{asset('js/video.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/class.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/site.js')}}" type="text/javascript"></script>
+<!-- js colorpicker-->
+<script src="{{asset('js/libscripts.bundle.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/vendorscripts.bundle.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bootstrap-colorpicker.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/advanced-form-elements.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/jquery.inputmask.bundle.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/jquery.maskedinput.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/jquery.multi-select.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bootstrap-multiselect.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/mainscripts.bundle.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/morrisscripts.bundle.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/jquery.inputmask.js')}}" type="text/javascript"></script>
+<!-- jQuery -->
+<script src="{{asset('vendor/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
+<!-- Bootstrap -->
+<script src="{{asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 <!-- validation  -->
 <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.validate.js')}}" type="text/javascript"></script>
-<!-- steps -->
-<script type='text/javascript' src="{{asset('build/js/jquery.inputmask.bundle.js')}}"></script>
-<!-- jQuery -->
-<!-- <script src="{{asset('vendor/jquery/dist/jquery.min.js')}}" type="text/javascript"></script> -->
-<!-- Bootstrap -->
-<script src="{{asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
-<!-- FastClick -->
-<script src="{{asset('vendor/fastclick/lib/fastclick.js')}}" type="text/javascript"></script>
-<!-- NProgress -->
-<script src="{{asset('vendor/nprogress/nprogress.js')}}" type="text/javascript"></script>
-<!-- Chart.js -->
-<script src="{{asset('vendor/Chart.js/dist/Chart.min.js')}}" type="text/javascript"></script>
-<!-- gauge.js -->
-<script src="{{asset('vendor/gauge.js/dist/gauge.min.js')}}" type="text/javascript"></script>
-<!-- bootstrap-progressbar -->
-<script src="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}" type="text/javascript"></script>
-<!-- iCheck -->
-<script src="{{asset('vendor/iCheck/icheck.min.js')}}" type="text/javascript"></script>
-<!-- Skycons -->
-<script src="{{asset('vendor/skycons/skycons.js')}}" type="text/javascript"></script>
-<!-- Flot -->
-<script src="{{asset('vendor/Flot/jquery.flot.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/Flot/jquery.flot.pie.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/Flot/jquery.flot.time.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/Flot/jquery.flot.stack.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/Flot/jquery.flot.resize.js')}}" type="text/javascript"></script>
-<!-- Flot plugins -->
-<script src="{{asset('vendor/flot.orderbars/js/jquery.flot.orderBars.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/flot-spline/js/jquery.flot.spline.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/flot.curvedlines/curvedLines.js')}}" type="text/javascript"></script>
-<!-- DateJS -->
-<script src="{{asset('vendor/DateJS/build/date.js')}}" type="text/javascript"></script>
-<!-- JQVMap -->
-<script src="{{asset('vendor/jqvmap/dist/jquery.vmap.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/jqvmap/dist/maps/jquery.vmap.world.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/jqvmap/examples/js/jquery.vmap.sampledata.js')}}" type="text/javascript"></script>
 <!-- Custom Theme Scripts -->
 <script src="{{asset('build/js/custom.min.js')}}" type="text/javascript"></script>
 <!-- Datatables -->
@@ -59,10 +40,6 @@ js
 <script src="{{asset('vendor/datatables.net-responsive/js/dataTables.responsive.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/jszip/dist/jszip.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/pdfmake/build/pdfmake.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/pdfmake/build/vfs_fonts.js')}}" type="text/javascript"></script>
-<!-- jQuery Smart Wizard -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script>
   CKEDITOR.replace('editor1');

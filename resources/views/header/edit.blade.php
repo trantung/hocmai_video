@@ -29,16 +29,16 @@
             <div class="col-md-12">
               <label class="col-lg-2">Từ giờ</label>
               <div class="col-lg-8">
-              <input type="time" name="start_time" value="{{$header->start_time}}" step="1"/>
+                <input type="time" name="start_time" value="{{$header->start_time}}" class="form-control" step="1" />
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
               </div>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="col-md-12">
-              <label class="col-lg-2"> Từ giờ</label>
+              <label class="col-lg-2">Từ giờ</label>
               <div class="col-lg-8">
-                <input type="time" name="end_time" value="{{$header->end_time}}" class="form-control" step="1"/>
+                <input type="time" name="end_time" value="{{$header->end_time}}" class="form-control" step="1" />
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
               </div>
             </div>
@@ -46,42 +46,40 @@
         </div>
       </div>
       <div class="row form-group">
-        <div class="col-lg-12">
-          <div class="col-lg-6">
-            <label class="col-md-2 col-sm-2 col-lg-2">ảnh đại diện</label>
-            <div class="col-md-8 col-sm-8 col-lg-8">
-              <input type="file" name="image" id="image" class="form-control">
-              @if($header->image)
-                <img src="{{$header->image}}" alt="image" width="100px" height="100px">
-              @endif
+        <div class="col-md-6">
+          <label class="col-lg-2">mã code</label>
+          <div class="col-lg-8 colorpicker colorpicker-element">
+            <input type="text" class="form-control" name="color" value="#00AABB">
+            <div class="input-group-append">
+              <span class="input-group-text"><span class="input-group-addon"><i style="background-color: rgb(26, 103, 111);"></i></span></span>
             </div>
           </div>
-          <div class="col-md-4 col-lg-4">
-            <label class="col-md-2 col-sm-2 col-lg-2">Trạng thái</label>
-            <div class="col-md-8 col-sm-8 col-lg-8">
-              {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
-            </div>
-          </div>
-          <div class="col-lg-2">
-            {!! Form::label('color', 'Color', ['class' => 'control-label']) !!}
-            {!! Form::color('color', old('color'), ['class' => 'form-control', 'placeholder' => '']) !!}
+        </div>
 
+        <div class="col-md-6 col-lg-6">
+          <label class="col-lg-2">Trạng thái</label>
+          <div class="col-md-8 col-sm-8 col-lg-8">
+            {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
           </div>
-
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-6">
+          <label class=" col-lg-2">ảnh đại diện</label>
+          <div class="col-md-8 col-sm-8 col-lg-8">
+            <input type="file" name="image" id="image" class="form-control">
+            @if($header->image)
+            <img src="{{$header->image}}" alt="image" width="100px" height="100px">
+            @endif
+          </div>
         </div>
       </div>
       <div class="form-group row">
         {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
       </div>
       {{ Form::close() }}
-      </div>
     </div>
   </div>
 </div>
-  @stop
-  @section('javascript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
-    <script>
-        $('.colorpicker').colorpicker();
-    </script>
-  @stop
+</div>
+@stop

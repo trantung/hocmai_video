@@ -8,25 +8,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="Mplify Bootstrap 4.1.1 Admin Template">
+  <meta name="author" content="ThemeMakker, design by: ThemeMakker.com">
   <title>HocMai</title>
+   <!-- Load TensorFlow.js -->
   <link rel="stylesheet" type="text/css" href="{{url('../../css/style.css')}}">
-    <link href="{{asset('build/css/bootstrap-combined.min.css')}}" rel="stylesheet">
+  <link href="{{asset('build/css/bootstrap-combined.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('build/css/bootstrap-datetimepicker.min.css')}}">
   <!-- Bootstrap -->
   <link href="{{url('../../vendor/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="{{url('../../vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="{{url('../../vendor/nprogress/nprogress.css')}}" rel="stylesheet">
-  <!-- iCheck -->
-  <link href="{{url('../../vendor/iCheck/skins/flat/green.css')}}" rel="stylesheet">
-  <!-- bootstrap-progressbar -->
-  <link href="{{url('../../vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet">
-  <!-- JQVMap -->
-  <link href="{{url('../../vendor/jqvmap/dist/jqvmap.min.css" rel="stylesheet')}}" />
-  <!-- bootstrap-daterangepicker -->
-  <link href="{{url('../../vendor/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-  <!-- Custom Theme Style -->
   <link href="{{url('../../build/css/custom.min.css')}}" rel="stylesheet">
   <!-- datatable -->
   <link href="{{url('../../vendor/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
@@ -35,5 +28,9 @@
   <link href="{{url('../../vendor/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{url('../../vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
   <!-- Disables date picker: -->
-  
+  <link rel="stylesheet" href="{{asset('css/bootstrap-colorpicker.css')}}">
+  <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/color_skins.css')}}">
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
 </head>

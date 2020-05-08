@@ -1,6 +1,12 @@
-function deleted() {
-    confirm("Bạn có chắc muốn xóa không !");
-}
+$(function() {
+    // Basic instantiation:
+    $('#color').colorpicker();
+
+    // Example using an event, to change the color of the #demo div background:
+    $('#color').on('colorpickerChange', function(event) {
+        $('#colors').css('background-color', event.color.toString());
+    });
+});
 $(document).ready(function() {
     var current = 1;
     widget = $(".step");

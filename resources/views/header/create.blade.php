@@ -34,7 +34,7 @@
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="col-md-12">
-              <label class="col-lg-2"> Đến giờ</label>
+              <label class="col-lg-2">Đến giờ</label>
               <div class="col-lg-8">
                 <input type="time" name="end_time" value="{{old('end_time')}}" class="form-control"/>
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
@@ -45,22 +45,28 @@
       </div>
       <div class="row form-group">
         <div class="col-lg-12">
+         
+          <div class="col-md-6">
+            <label class="col-md-2 col-sm-2 col-lg-2">Trạng thái</label>
+            <div class="col-md-8 col-sm-8 col-lg-8">
+              {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="col-lg-2">mã code</label>
+            <div class="col-lg-8 colorpicker colorpicker-element">                                   
+                <input type="text" class="form-control" name="color" value="#00AABB">
+                <div class="input-group-append">
+                    <span class="input-group-text"><span class="input-group-addon"><i style="background-color: rgb(26, 103, 111);"></i></span></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
           <div class="col-lg-6">
             <label class="col-md-2 col-sm-2 col-lg-2">ảnh đại diện</label>
             <div class="col-md-8 col-sm-8 col-lg-8">
               <input type="file" name="image" id="image" class="form-control" required>
-            </div>
-          </div>
-          <div class="col-md-3 col-lg-3 ">
-            <label class="col-md-3 col-sm-3 col-lg-3">Trạng thái</label>
-            <div class="col-md-6 col-sm-8 col-lg-6">
-              {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
-            </div>
-          </div>
-          <div class="col-md-3 col-lg-3 ">
-            <label class="col-md-3 col-sm-3 col-lg-3">Mã màu</label>
-            <div class="col-md-6 col-sm-8 col-lg-6">
-              <input type="color" id="color" name="color" value="#ff0000">
             </div>
           </div>
         </div>

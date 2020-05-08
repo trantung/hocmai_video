@@ -22,7 +22,7 @@
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
     },
-    "apidoc":{
+    "apidoc": {
         "name": "API hocmai livestream",
         "version": "0.1.0",
         "description": "Api cho hocmai livestream",
@@ -46,5 +46,8 @@
             "withCompare": true,
             "withGenerator": true
         }
+    },
+    "dependencies": {
+        "bootstrap-colorpicker": "^3.2.0"
     }
 }

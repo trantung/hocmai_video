@@ -149,6 +149,20 @@ span.add-on {
     background-color: #bbbbbb;
 }
 
+.input-group-text {
+    padding: 2px 2px !important;
+    width: 100% !important;
+}
+
+.input-group-addon {
+    border: none !important;
+    width: 100% !important;
+}
+
+.colorpicker {
+    display: flex;
+}
+
 
 /* Make circles that indicate the steps of the form: */
 
@@ -231,12 +245,7 @@ div.actionBar.buttonDisabled {
 }
 
 .active a span.fa {
-    margin-right: 0 !important;
-    margin-top: 6px !important;
-}
-
-.main_menu span.fa {
-    margin-top: 0 !important;
+    display: none;
 }
 
 
