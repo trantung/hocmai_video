@@ -48,11 +48,8 @@
       <div class="row form-group">
         <div class="col-md-6">
           <label class="col-lg-2">mã code</label>
-          <div class="col-lg-8 colorpicker colorpicker-element">
-            <input type="text" class="form-control" name="color" value="#00AABB">
-            <div class="input-group-append">
-              <span class="input-group-text"><span class="input-group-addon"><i style="background-color: rgb(26, 103, 111);"></i></span></span>
-            </div>
+          <div class="col-lg-8 ">
+            <input id="color" type="text" value="rgb(255, 128, 0)" name="color" class="jscolor" />
           </div>
         </div>
 

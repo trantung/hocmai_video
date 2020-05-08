@@ -62,7 +62,11 @@ class HeaderController extends Controller
             $file->move(public_path("/uploads/admin/header/" . $headerId . '/image/'), $fileNameImage);
             $imageUrl = '/uploads/admin/header/' . $headerId . '/image/' . $fileNameImage;
         }
-        HocMaiHeader::where('id', $headerId)->update(['image' => $imageUrl]);
+        if(request()->input('color')){
+            $color = $request->input('color');
+            $colors = "#".$color;
+        }
+        HocMaiHeader::where('id', $headerId)->update(['image' => $imageUrl,'color'=>$colors]);
         return Redirect::action('HeaderController@index');
     }
 
@@ -121,7 +125,13 @@ class HeaderController extends Controller
             $file->move(public_path("/uploads/admin/header/" . $id . '/image/'), $fileNameImage);
             $imageUrl = '/uploads/admin/header/' . $id . '/image/' . $fileNameImage;
         }
+        if(request()->input('color')){
+            $color = $request->input('color');
+            $colors = "#".$color;
+            //dd($colors);
+        }
         $input['image'] = $imageUrl;
+        $input['color']=$colors;
         $header->update($input);
         return Redirect::action('HeaderController@index'); 
     }

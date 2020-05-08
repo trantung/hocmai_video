@@ -407,9 +407,12 @@ class ApiController extends Controller
         return $this->responseSuccess($id);
     }
     // api livestream xem lại
-    public function livestreamReview(){
-        $result = [];
-        $data = Livestream::where('status_time','0');
-        return da
-    }
+    // public function livestreamReview(){
+    //     $result = [];
+    //     $data = Livestream::where('status_time','0');
+    //     foreach ($data as $key => $value) {
+    //         $result[$key][]
+    //     }
+    //     return $this->responseSuccess($result);
+    // }
 }

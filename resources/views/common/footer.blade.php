@@ -5,10 +5,10 @@ js
 <script src="{{asset('build/js/ajax-jquery.min.js')}}"></script>
 <script src="{{asset('js/class.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/site.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('js/jscolor.js')}}"></script>
 <!-- js colorpicker-->
 <script src="{{asset('js/libscripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/vendorscripts.bundle.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/bootstrap-colorpicker.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/advanced-form-elements.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.inputmask.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.maskedinput.min.js')}}" type="text/javascript"></script>
