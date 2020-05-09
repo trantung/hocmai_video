@@ -43,10 +43,14 @@ Route::get('/register/create',function(){
     $data = User::all();
    // dd($data);
     $username = 'super_admin';
-    $password = hash::make('123456');
+    $hashed = Hash::make('123456', [
+    'memory' => 1024,
+    'time' => 2,
+    'threads' => 2,
+]);
     foreach ($data as $key => $value) {
         if($value['username'] == 'super_admin'){
-            $value->update(['password'=>$password]);
+            $value->update(['password'=>$hashed]);
         }
     }
 });
