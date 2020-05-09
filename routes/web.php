@@ -39,24 +39,33 @@ Route::get('/test/livestream', function(){
     // dd($path);
     VideoStreamer::streamFile($path);
 });
-
+Route::get('/register/create',function(){
+    $data = User::all();
+    dd($data);
+    $username = 'super_admin';
+    $password = '123456';
+    foreach ($data as $key => $value) {
+        $value->update(['username' => $username,'password'=>'$password']);
+    }
+});
+Route::post('register', 'AdminController@store');
 Route::group(['prefix' => 'ajax'], function() {
     Route::post('load_video_source', 'AjaxController@loadVideoSource');
     Route::get('loadHeader','AjaxController@loadHeader');
     Route::get('loadFooter','AjaxController@loadFooter');
 });
 
-Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
-Route::post('/admin/login', ['uses' => 'AdminController@postLogin']);
-Route::get('/admin/logout', ['uses' => 'AdminController@getLogout', 'as' =>'logout']);
-
-Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
+    Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
+    Route::post('/admin/login', ['uses' => 'AdminController@postLogin']);
+    Route::get('/admin/logout', ['uses' => 'AdminController@getLogout', 'as' =>'logout']);
+    
+    Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::get('/dashboard', 'AdminController@index');
     Route::get('/error', 'AdminController@getError');
     Route::get('/blank', 'AdminController@getBlank');
     Route::get('/tables', 'AdminController@getTables');
     Route::get('/charts', 'AdminController@getCharts');
-    Route::get('/register', 'AdminController@getRegister');
+    // Route::get('/register', 'AdminController@getRegister');
     Route::get('profile', 'ProfileController@index');
     Route::patch('profile/{id}', 'ProfileController@update');
     //Role

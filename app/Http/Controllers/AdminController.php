@@ -53,10 +53,10 @@ class AdminController extends Controller
     {
         return view('admin.charts');
     }
-    public function getRegister()
-    {
-        return view('admin.register');
-    }
+    // public function getRegister()
+    // {
+    //     return view('admin.register');
+    // }
     
     public function index(Request $request)
     {
@@ -69,5 +69,22 @@ class AdminController extends Controller
         }
         return view('admin.index')->with(compact('data'));
     }
-    
+    public function create()
+    {
+        return view('admin.register');
+    }
+    public function store()
+    {
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        
+        $user = User::create(request(['name', 'email', 'password']));
+        
+        auth()->login($user);
+        
+        return redirect()->to('admin.login');
+    }
 }

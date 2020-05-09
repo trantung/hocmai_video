@@ -31,6 +31,6 @@
   <link rel="stylesheet" href="{{asset('css/bootstrap-colorpicker.css')}}">
   <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/color_skins.css')}}">
-  <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('css/main.css')}}"> -->
   <link rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
 </head>

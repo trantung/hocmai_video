@@ -147,7 +147,7 @@
                 <button type="submit" name="submit" class="action btn-hot text-capitalize submit btn">lưu</button>
             </div>
         </div>
-        <div id="back-to-top"><a href="#"><i class="fa fa-arrow-up"></i></a></div>
+        <div id="back-to-top"><a href="#"><i class="fa fa-sort-up"></i></a></div>
     </div>
 </div>
 {{ Form::close() }}

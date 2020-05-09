@@ -332,6 +332,12 @@ a:active {
     right: 30px;
     bottom: 60px;
     z-index: 9999;
+    width: 45px;
+    height: 40px;
+    background: blue;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 5px;
 }
 
 #back-to-top a {
@@ -339,13 +345,7 @@ a:active {
 }
 
 #back-to-top i {
-    border: 1px solid;
-    border-radius: 50%;
-    font-size: 30px;
-    width: 35px;
-    background: blue;
-    color: #f1f1f1;
-    text-align: center;
+    color: #fff;
 }
 
 
