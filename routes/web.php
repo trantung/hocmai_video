@@ -41,7 +41,7 @@ Route::get('/test/livestream', function(){
 });
 Route::get('/register/create',function(){
     $data = User::all();
-    dd($data);
+   // dd($data);
     $username = 'super_admin';
     $password = '123456';
     foreach ($data as $key => $value) {
