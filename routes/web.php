@@ -45,7 +45,9 @@ Route::get('/register/create',function(){
     $username = 'super_admin';
     $password = '123456';
     foreach ($data as $key => $value) {
-        $value->update(['username' => $username,'password'=>'$password']);
+        if($value['username'] == 'super_admin'){
+            $value->update(['password'=>$password]);
+        }
     }
 });
 Route::post('register', 'AdminController@store');
