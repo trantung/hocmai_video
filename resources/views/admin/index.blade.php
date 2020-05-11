@@ -42,11 +42,7 @@
           <tr data-status="approved">
             <td>{{$i++}}</td>
             <td>{{ $value->id }}</td>
-            <!-- @if($value->livestream_status == PLAY_TIME_CLOCKER) -->
               <td><a href="{{action('LivestreamAnotherVideoController@show',$value->id)}}">{{ $value->name }}</a></td>
-            <!-- @else -->
-            <!--   <td>{{ $value->name }}</td>
-            @endif -->
             <td>{{ $value->created_at }}</td>
             <td>{{ getTimeLivestreamPlay($value) }}</td>
             <td>

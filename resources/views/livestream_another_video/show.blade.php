@@ -4,13 +4,14 @@
     <div class="x_panel">
         <div class="x_title">
             <div class="pull-right">
-                @if()
-            <form action="{{ route('livestream.destroy',$livestream->id) }}" method="POST">
-                <a href="{{action('LivestreamAnotherVideoController@edit',$livestream->id)}}"  class="btn btn-info">Sửa</a>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+                <?php if ($livestream->status_time == IS_PUBLISH_INACTIVE): ?>
+                    <form action="{{ route('livestream.destroy',$livestream->id) }}" method="POST">
+                        <a href="{{action('LivestreamAnotherVideoController@edit',$livestream->id)}}"  class="btn btn-info">Sửa</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                <?php endif ?>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -83,7 +84,7 @@
                                 <img src="{{$livestream->image_small}}" alt="image_small" width="100px">
                                 </div>
                             </div>
-                            <div class="pull-right">
+                            <div class="pull-right" style="position: relative;right: 105px">
                                 <label for="image_big" class="col-lg-6">Cover Lớn</label>
                                 <div class="col-lg-8">
                                 <img src="{{$livestream->image_big}}" alt="image_big" width="200px">
@@ -95,7 +96,20 @@
                         <div class="col-lg-6">
                             <label for="" class="col-lg-6">Thời gian đăng</label>
                             <div class="col-lg-8">
-                            <span style="background-color: #e6ae11;color:floralwhite;margin:0 5px">Hẹn giờ phát</span><input type="text" value="{{$livestream->created_at}}" disabled style="width:78% !important;">
+                            <span style="background-color: #e6ae11;color:floralwhite;margin:0 5px">
+                                <?php $dt = new DateTime(); ?>
+                                <?php 
+                                if ($livestream->status_time == IS_PUBLISH_INACTIVE): ?>
+
+                                hẹn giờ
+                            <?php endif ?>
+                                <?php if ($livestream->status_time != IS_PUBLISH_INACTIVE && $livestream->end_time < $dt ): ?>
+                                    phát xong
+                                <?php endif ?>
+                                <?php if ($livestream->status_time != IS_PUBLISH_INACTIVE && $livestream->end_time == $dt): ?>
+                                    đang phát
+                                <?php endif ?>
+                            </span><input type="text" value="{{$livestream->created_at}}" disabled style="width:78% !important;">
                             </div>
                         </div>
                         <div class="col-lg-6">
