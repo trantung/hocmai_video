@@ -38,7 +38,7 @@
                 <div class="col-lg-6">
                     <label class="col-lg-6 col-md-6 col-sm-6">Tiêu đề Livestream</label>
                     <div class="col-md-10 col-sm-10 col-lg-12">
-                        {{ Form::text('name', old('name'), array('class' => 'form-control')) }}
+                        {{ Form::text('name', $livestream->name, array('class' => 'form-control')) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-6">
@@ -87,7 +87,7 @@
             <div class="form-group row">
                 <div class="form-group col-md-12">
                     <label>Nội dung</label>
-                    <textarea name="description" value="{{ old('description') }}" require="true" class="form-control " id="editor1"></textarea>
+                    <textarea name="description" value="{{ $livestream->description }}" require="true" class="form-control " id="editor1"></textarea>
                 </div>
             </div>
         </div>
@@ -100,9 +100,15 @@
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
                     <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file">
+                    
                 </div>
                 <!-- Uploaded image area-->
-                <div class="col-md-12"><img id="imageResult" src="#" alt="" width="200px" height="100px"></div>
+                <div class="col-md-12">
+                    @if($livestream->image_small)
+                        <img src="{{$livestream->image_small }}" width="150px" height="auto"  />
+                    @endif
+                    <img id="imageResult" src="#" alt="" width="200px" height="100px">
+                </div>
             </div>
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover lớn liveStream</label>
@@ -110,7 +116,13 @@
                     <input id="upload1" type="file" name="file_image_big" id="file_image_big" onchange="readURL1(this);">
                 </div>
                 <!-- Upload image input-->
-                <div class="col-md-12"><img id="imageResult1" src="#" alt="" width="400px" height="200px"></div>
+                <div class="col-md-12">
+                     @if($livestream->image_big)
+                        <img src="{{$livestream->image_big}}" width="400px">
+                    @endif
+                    <img id="imageResult1" src="#" alt="" width="400px" height="200px">
+                </div>
+                
             </div>
         </div>
     </div>
@@ -132,7 +144,7 @@
                 <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
                 <div class="col-md-4 col-sm-4 ">
                         <!-- <input type="text" class="form-control" id="datetime" name="datetime" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy HH:MM" data-inputmask-placeholder="dd/mm/yyyy hh:mm"> -->
-                    <input type="text" class="form-control" data-inputmask="'alias': 'datetime'" id="end_time" name="end_time">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" value="{{$livestream->end_time}}">
                     
                 </div>
             </div>
@@ -146,7 +158,7 @@
                 <button type="submit" name="submit" class="action btn-hot text-capitalize submit btn">lưu</button>
             </div>
         </div>
-        <div id="back-to-top"><a href="#"><i class="fa fa-angle-double-up"></i></a></div>
+        <div id="back-to-top"><a href="#"><i class="fa fa-sort-up"></i></a></div>
     </div>
 </div>
 {{ Form::close() }}

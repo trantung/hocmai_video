@@ -99,7 +99,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
-                    <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file">
+                    <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file" required="true">
                 </div>
                 <!-- Uploaded image area-->
                 <div class="col-md-12"><img id="imageResult" src="#" alt="" width="200px" height="100px"></div>
@@ -107,7 +107,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover lớn liveStream</label>
                 <div class="col-sm-10 col-md-10">
-                    <input id="upload1" type="file" name="file_image_big" id="file_image_big" onchange="readURL1(this);">
+                    <input id="upload1" type="file" name="file_image_big" id="file_image_big" onchange="readURL1(this);" required="true">
                 </div>
                 <!-- Upload image input-->
                 <div class="col-md-12"><img id="imageResult1" src="#" alt="" width="400px" height="200px"></div>

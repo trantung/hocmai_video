@@ -118,6 +118,7 @@ $(function() {
         }
     });
 });
+//input time hẹn giờ
 function handleMask(event, mask) {
     with (event) {
         stopPropagation()

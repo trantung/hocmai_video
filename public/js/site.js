@@ -37,8 +37,6 @@ $(document).ready(function() {
         rules: {
             name: "required",
             description: "required",
-            file_image_small: "required",
-            file_image_big: 'required',
             end_time: 'required',
             time_clock: "required",
 
