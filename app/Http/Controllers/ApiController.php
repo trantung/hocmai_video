@@ -126,7 +126,7 @@ class ApiController extends Controller
                 $result[$value->id] = $this->formatLivestream($value);
             }
             if (isset($input['date_time']) && !empty($input['date_time'])) {
-                $keyDay = date('Y/m/d', strtotime($value->timer_clock));
+                $keyDay = date('d/m/Y', strtotime($value->timer_clock));
                 $keyHour = date('H:i', strtotime($value->timer_clock));
                 if (isset($input['date_time_day']) && !empty($input['date_time_day'])) {
                     $result[$keyDay][$keyHour][$value->id] = $this->formatLivestream($value);
@@ -336,7 +336,7 @@ class ApiController extends Controller
             return $this->responseSuccess($result);
         }
         //hiển thị group theo ngaỳ
-        $data = $data->whereDate('timer_clock', '>=', $dateNow)->get();
+        $data = $data->whereDate('timer_clock', '>=', $dateNow)->orderBy('timer_clock', 'ASC')->get();
         $result = array(
             'list_class' => $listClass,
             'list_livestream' => $this->commonFormatGetLivestream($data, $input),
