@@ -47,7 +47,7 @@ Route::get('/register/create',function(){
     'memory' => 1024,
     'time' => 2,
     'threads' => 2,
-]);
+    ]);
     foreach ($data as $key => $value) {
         if($value['username'] == 'super_admin'){
             $value->update(['password'=>$hashed]);

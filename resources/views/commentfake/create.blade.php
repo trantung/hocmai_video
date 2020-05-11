@@ -16,17 +16,17 @@
       {{ Form::open(array('method'=>'POST', 'action' => array('CommentFakeController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-12 col-sm-12">
-          <label class="col-md-2">Người comment</label>
-          <div class="col-md-3">
-            {{ Form::select('userFake_id', getListUserFake(), array('class' => 'form-control')) }}
+          <label class="col-md-2">Nội dung comment</label>
+          <div class="col-md-10">
+            <textarea type="text" name="name" id="name" cols="30" rows="5" style="width:100%"></textarea>
           </div>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-md-12 col-sm-12 ">
-          <label class="col-md-2">Nội dung comment</label>
+          <label class="col-md-2">Mô tả comment</label>
           <div class="col-md-10 col-lg-10">
-            <textarea type="text" name="desc" id="desc" cols="30" rows="5" style="width:100%"></textarea>
+            <textarea type="text" name="desc" id="editor1"></textarea>
           </div>
         </div>
       </div>

@@ -16,17 +16,16 @@
       <br>
       {{ Form::open(array('method'=>'PUT', 'action' => array('CommentFakeController@update', $data->id))) }}
       <div class="form-group row">
-        <div class="col-md-12 col-sm-12">
-          <label class="control-label col-md-2 col-sm-2">Người comment</label>
+        <div class="col-md-12 col-sm-12" style="margin: 5px 0">
+          <label class="control-label col-md-2 col-sm-2">Nội dung comment</label>
           <div class="col-md-10 col-sm-10">
-            {{ Form::select('userFake_id', getListUserFake(), array('class' => 'form-control')) }}
+            {{ Form::textarea('name', $data->name, array('class' => 'form-control','rows'=>'5')) }}
           </div>
         </div>
         <div class="col-md-12 col-sm-12">
-          <label class="control-label col-md-2 col-sm-2">Nội dung coment</label>
+          <label class="control-label col-md-2 col-sm-2"> Nô tả coment</label>
           <div class="col-md-10 col-sm-10">
-            {{ Form::textarea('desc', $data->desc, array('class' => 'form-control')) }}
-            
+            {{ Form::textarea('desc', $data->desc, array('class' => 'form-control','id'=>'editor1')) }}
           </div>
         </div>
       </div>

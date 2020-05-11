@@ -53,7 +53,7 @@
         <div class="col-lg-6 col-md-6">
           <label class="col-md-3 col-lg-3">Ảnh đại diện</label>
           <div class="col-md-9 col-col-lg-9">
-            <input type="file" name="avatar" id="avatar" class="form-control" required data-errormessage-value-missing="Please input something">
+            <input type="file" name="avatar" id="avatar" class="form-control">
           </div>
           <div class="clearfix row">
             <br>

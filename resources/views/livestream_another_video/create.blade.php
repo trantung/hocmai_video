@@ -131,8 +131,8 @@
             <div class="col-md-12">
                 <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
                 <div class="col-md-4 col-sm-4 ">
-                        <!-- <input type="text" class="form-control" id="datetime" name="datetime" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy HH:MM" data-inputmask-placeholder="dd/mm/yyyy hh:mm"> -->
-                    <input type="text" class="form-control" data-inputmask="'alias': 'datetime'" id="end_time" name="end_time">
+                       
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time">
                     <!-- <input type="datetime-local" data-date="" data-date-format="DD MMMM YYYY, h:mm:ss"> -->
                     <!-- <input type="dateTime-local" name="end_time" id="input_publish_time" class="form-control"> -->
                 </div>

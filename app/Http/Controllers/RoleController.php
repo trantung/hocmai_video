@@ -14,7 +14,7 @@ class RoleController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = Role::all();
         return view('role.index')->with(compact('data'));

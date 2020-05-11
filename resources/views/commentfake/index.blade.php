@@ -23,8 +23,8 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>người comment</th>
                     <th>Nội dung comment</th>
+                    <th>Mô tả comment</th>
                     <th width="280px">Hành động</th>
                   </tr>
                 </thead>
@@ -32,7 +32,8 @@
                   @foreach($data as $comment)
                   <tr>
                     <td>{{ $comment->id }}</td>
-                    <td>{{ getUserFakeNameById($comment->userFake_id) }}</td>
+                    <!-- <td>{{ getUserFakeNameById($comment->userFake_id) }}</td> -->
+                    <td>{!! $comment->name !!}</td>
                     <td>{!! $comment->desc !!}</td>
                     <td>
                       <form action="{{ action('CommentFakeController@destroy',$comment->id) }}" method="POST">

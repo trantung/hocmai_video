@@ -4,6 +4,7 @@
     <div class="x_panel">
         <div class="x_title">
             <div class="pull-right">
+                @if()
             <form action="{{ route('livestream.destroy',$livestream->id) }}" method="POST">
                 <a href="{{action('LivestreamAnotherVideoController@edit',$livestream->id)}}"  class="btn btn-info">Sửa</a>
                 @csrf

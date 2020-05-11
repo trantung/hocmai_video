@@ -11,6 +11,7 @@ js
 <script src="{{asset('js/vendorscripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/advanced-form-elements.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.inputmask.bundle.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/jquery.maskedinput.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.multi-select.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap-multiselect.js')}}" type="text/javascript"></script>
@@ -18,9 +19,11 @@ js
 <script src="{{asset('js/mainscripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/morrisscripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.inputmask.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/moment.js')}}" type="text/javascript"></script>
+
 <!-- jQuery -->
-<script src="{{asset('vendor/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
-<!-- Bootstrap -->
+<!-- <script src="{{asset('vendor/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
+ --><!-- Bootstrap -->
 <script src="{{asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 <!-- validation  -->
 <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
@@ -42,6 +45,8 @@ js
 <script src="{{asset('vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script>
+  $(":input").inputmask();
+
   CKEDITOR.replace('editor1');
   $(document).ready(function() {
     $('.star').on('click', function() {
@@ -64,10 +69,9 @@ js
     //dang 
     $('#selectTime').on('change', function() {
     if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
-        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</lable >' +
-            '<div id="timer_clock_add" class="col-md-4 col-sm-4">' +
-            '<input type="datetime-local" class="js-date" maxlength="16" id="time_clock" name="time_clock" placeholder="dd/mm/yyyy hh:mm" style="width:100%;"/>');
-
+        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</lable>' +
+            '<div class="col-md-4 col-sm-4" id="timer_clock_add">' +
+            '<input type="text" onkeypress="handleMask(event, \'99/99/9999 99:99\')" placeholder="" size=40, name="time_clock">');
     }
     if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
         $('#timer_clock_add_label').remove();
