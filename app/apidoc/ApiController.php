@@ -618,4 +618,25 @@ public function getFooter()
 {
 }
 
+/**
+ * @api {post} /api_hocmai/app/rate
+ * @apiName PostRateApp
+ * @apiGroup Rate
+ * @apiParam {Number} customer_id id của người dùng
+ * @apiParam {String} customer_name Tên của người dùng
+ * @apiParam {String} customer_comment Comment của người dùng về app
+ * @apiParam {Number} rate rating của người dùng cho app. Ví dụ : 1
+ * @apiSuccessExample Success-Response:
+ *  HTTP/1.1 200 OK
+    {
+        {
+            "status": "success",
+            "data": {
+                "id": 1,
+                "rate": "1"
+            }
+        }
+    }
+ */
+public function rateApp()
 

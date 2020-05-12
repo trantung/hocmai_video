@@ -13,7 +13,8 @@ use App\LivestreamAnotherVideo;
 use App\HocMaiHeader;
 use App\HocMaiFooter;
 use APV\User\Services\UserService;
-use APV\LivestreamDetail;
+use App\LivestreamDetail;
+use App\RateApp;
 use Carbon\Carbon;
 
 class ApiController extends Controller
@@ -406,13 +407,15 @@ class ApiController extends Controller
         $id = LivestreamDetail::create(['livestream_id' => $livestreamId, 'data' => $data])->id;
         return $this->responseSuccess($id);
     }
-    // api livestream xem lại
-    // public function livestreamReview(){
-    //     $result = [];
-    //     $data = Livestream::where('status_time','0');
-    //     foreach ($data as $key => $value) {
-    //         $result[$key][]
-    //     }
-    //     return $this->responseSuccess($result);
-    // }
+    // api rate app
+    public function rateApp(Request $request)
+    {
+        $input = $request->all();
+        $id = RateApp::create($input)->id;
+        $result = [
+            'id' => $id,
+            'rate' => $input['rate'],
+        ];
+        return $this->responseSuccess($result);
+    }
 }
