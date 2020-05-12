@@ -619,7 +619,7 @@ public function getFooter()
 }
 
 /**
- * @api {post} /api_hocmai/app/rate
+ * @api {post} /api_hocmai/app/rate Api nhận thông tin từ client về rate app gửi lên serve
  * @apiName PostRateApp
  * @apiGroup Rate
  * @apiParam {Number} customer_id id của người dùng
@@ -642,7 +642,7 @@ public function getFooter()
 public function rateApp()
 
 /**
- * @api {post} /api_hocmai/app/rate/current_rate
+ * @api {post} /api_hocmai/app/rate/current_rate Chi tiết rate của 1 người dùng
  * @apiName PostRateAppCurrentRate
  * @apiGroup Rate
  * @apiParam {Number} customer_id id của người dùng
@@ -660,5 +660,5 @@ public function rateApp()
         }
     }
  */
-public function rateApp()
+public function currentRate()
 
