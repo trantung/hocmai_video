@@ -19,6 +19,7 @@ $(document).ready(function() {
                 }
             }
             hideButtons(current);
+            window.scrollTo(0, 0);
         })
         // Back button click action
     btnback.click(function() {
@@ -31,6 +32,7 @@ $(document).ready(function() {
             }
         }
         hideButtons(current);
+        window.scrollTo(0, 0);
     })
     $('.form').validate({ // initialize plugin
         ignore: ":not(:visible)",

@@ -1,5 +1,11 @@
 @extends('common.default')
 @section('content')
+<?php use Carbon\Carbon;?>
+<?php 
+    $now = Carbon::now();
+    $now = $now->toDateTimeString();
+    $timeNow = strtotime($now);
+?>
 <div class="col-md-12">
     <div class="x_panel">
         <div class="x_title">
@@ -97,16 +103,16 @@
                             <label for="" class="col-lg-6">Thời gian đăng</label>
                             <div class="col-lg-8">
                             <span style="background-color: #e6ae11;color:floralwhite;margin:0 5px">
-                                <?php $dt = new DateTime(); ?>
+                                
                                 <?php 
                                 if ($livestream->status_time == IS_PUBLISH_INACTIVE): ?>
 
-                                hẹn giờ
-                            <?php endif ?>
-                                <?php if ($livestream->status_time != IS_PUBLISH_INACTIVE && $livestream->end_time < $dt ): ?>
-                                    phát xong
+                                    hẹn giờ
                                 <?php endif ?>
-                                <?php if ($livestream->status_time != IS_PUBLISH_INACTIVE && $livestream->end_time == $dt): ?>
+                                <?php
+                                 if($livestream->status_time != IS_PUBLISH_INACTIVE && $timeNow > $livestream->end_time ): ?>
+                                    Phát xong
+                                <?php else :?>
                                     đang phát
                                 <?php endif ?>
                             </span><input type="text" value="{{$livestream->created_at}}" disabled style="width:78% !important;">

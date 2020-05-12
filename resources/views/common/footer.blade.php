@@ -69,19 +69,18 @@ js
     //dang 
     $('#selectTime').on('change', function() {
     if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
-        $('#timeShow').append('<lable  id="timer_clock_add_label" class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</lable>' +
-            '<div class="col-md-4 col-sm-4" id="timer_clock_add">' +
-            '<input type="text" onkeypress="handleMask(event, \'99/99/9999 99:99\')" placeholder="" size=40, name="time_clock">');
+        $('#timeShow').show();
     }
     if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
-        $('#timer_clock_add_label').remove();
-        $('#timer_clock_add').remove();
+      $('#timeShow').hide();
     }
 });
     //input mask
     // remove link load video source
     $(document).on("click", "i.del", function() {
       $(this).parent().remove();
+      $('#load_video_source').attr('disabled',false);
+      $('#video_source_id').attr('disabled',false);
     });
     // end dang
     // loading content 
@@ -104,6 +103,10 @@ js
     //tung
     $('#load_video_source').click(function(e) {
       var video_source_id = $("#video_source_id").val();
+      if(video_source_id != null){
+        $('#load_video_source').attr('disabled',true);
+        $('#video_source_id').attr('disabled',true);
+      }
       var csrf = '{{csrf_token()}}';
       $.ajaxSetup({
         headers: {
@@ -120,18 +123,16 @@ js
         },
         dataType: 'json',
         success: function(data) {
-          // if (data.status == 'Fail') {
-          //   $('.error').html(response); 
-          //   // var error_load = '<div class="text-danger col-md-3">' + data.msg + '<i class="fa fa-times del"></i></div><br>';
-          //   // $("#error_load_video_source").append(error_load);
-          // }
           if (data.status == 'success') {
-            var hidden = '<input type="hidden" name="video_source_id[]" value="' + data.video_id + '">';
+            var hidden = '<input type="hidden" name="video_source_id" value="' + data.video_id + '">';
             var text = '<div class="col-md-12">' + '<div class="col-md-2">' + '<a href="/admin/preview/video/' + data.video_id + '"' + 'target="_blank">' +
               data.video_title + '</a>' + '<i class="fa fa-times del"></i></div><br>' + hidden;
             $("#video_source_detail").append(text);
+            
           } else {
             alert("ID Video không tồn tại. Xin vui lòng nhập ID khác!");
+            $('#load_video_source').attr('disabled',false);
+            $('#video_source_id').attr('disabled',false);
           }
         },
         error: function(data) {
