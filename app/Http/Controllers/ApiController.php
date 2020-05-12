@@ -283,6 +283,14 @@ class ApiController extends Controller
         return response($data, 200);
     }
 
+    public function responseNotFound($result)
+    {
+        $data = array(
+            'status' => 'Not found',
+            'data' => $result
+        );
+        return response($data, 404);
+    }
     // api đang phát
     public function livestreamPlayCurrent(Request $request)
     {
@@ -418,4 +426,37 @@ class ApiController extends Controller
         ];
         return $this->responseSuccess($result);
     }
+    public function currentRate(Request $request)
+    {
+        $input = $request->all();
+        $customerId = $customerUsername = null;
+        if (isset($input['customer_id']) && !empty($input['customer_id'])) {
+            $customerId = $input['customer_id'];
+        }
+        if (isset($input['customer_username']) && !empty($input['customer_username'])) {
+            $customerUsername = $input['customer_username'];
+        }
+        $dataByCustomerId = RateApp::where('customer_id', $customerId)->orderBy('id', 'DESC')->first();
+        if ($dataByCustomerId) {
+            $result = [
+                'customer_id' => $dataByCustomerId->customer_id,
+                'customer_username' => $dataByCustomerId->customer_username,
+                'rate' => $dataByCustomerId->rate,
+            ];
+            return $this->responseSuccess($result);
+        }
+        $dataByCustomerUsername = RateApp::where('customer_username', $customerUsername)->orderBy('id', 'DESC')->first();
+        if ($dataByCustomerUsername) {
+            $result = [
+                'customer_id' => $dataByCustomerUsername->customer_id,
+                'customer_username' => $dataByCustomerUsername->customer_username,
+                'rate' => $dataByCustomerUsername->rate,
+            ];
+            return $this->responseSuccess($result);
+        }
+        $result = [];
+        return $this->responseNotFound($result); 
+        
+    }
+
 }

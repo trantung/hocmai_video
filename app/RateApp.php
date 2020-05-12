@@ -12,6 +12,7 @@ class RateApp extends Model
         'customer_id',
         'customer_name',
         'customer_comment',
+        'customer_username',
         'rate',
     ];
 
