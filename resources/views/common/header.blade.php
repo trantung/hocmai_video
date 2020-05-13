@@ -13,6 +13,7 @@
   <meta name="author" content="ThemeMakker, design by: ThemeMakker.com">
   <title>HocMai</title>
    <!-- Load TensorFlow.js -->
+   <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{url('../../css/style.css')}}">
   <link href="{{asset('build/css/bootstrap-combined.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('build/css/bootstrap-datetimepicker.min.css')}}">

@@ -19,13 +19,13 @@
         <div class="col-md-6 col-sm-6 col-lg-6">
           <label for="name" class="col-md-3 col-lg-3"> Họ và tên</label>
           <div class="col-md-9 col-col-lg-9">
-            <input type="text" class="form-control" required data-errormessage-value-missing="Please input something" name="name" id="name" value="{{$user->name}}">
+            <input type="text" class="form-control" required="true" name="name" id="name" value="{{$user->name}}">
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
           <label for="email"class="col-md-3 col-lg-3">Email Address</label>
           <div class="col-md-9 col-col-lg-9">
-            <input type="email" class="form-control" required data-errormessage-value-missing="Please input something" name="email" id="email" value="{{$user->email}}">
+            <input type="email" class="form-control" required="true" name="email" id="email" value="{{$user->email}}">
           </div>
         </div>
       </div>
@@ -33,13 +33,13 @@
         <div class="col-md-6 col-sm-6 col-lg-6">
           <label for="username" class="col-md-3 col-lg-3">Tên đăng nhập</label>
           <div class="col-md-9 col-col-lg-9">
-            <input type="text" class="form-control" required data-errormessage-value-missing="Please input something" name="username" id="username" value="{{$user->username}}">
+            <input type="text" class="form-control" required="true" name="username" id="username" value="{{$user->username}}">
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
           <label for="" class="col-md-3 col-lg-3">Mật khẩu</label>
           <div class="col-md-9 col-col-lg-9">
-            <input type="password" class="form-control" required data-errormessage-value-missing="Please input something" name="password" id="password" value="{{$user->password}}">
+            <input type="password" class="form-control" required="true" name="password" id="password" value="{{$user->password}}">
           </div>
         </div>
       </div>

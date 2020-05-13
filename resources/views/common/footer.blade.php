@@ -1,4 +1,3 @@
-js
 <script src="{{asset('build/js/jquery-3.4.1.min.js')}}"></script>
 <script src="{{asset('build/js/custom.min.js')}}"></script>
 <script src="{{asset('build/js/jquery.inputmask.bundle.js')}}"></script>

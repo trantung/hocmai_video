@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\AdminController;
 use APV\User\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Nexmo\Message\Shortcode\Alert;
+use PHPUnit\Framework\Constraint\IsEmpty;
 use Session;
 
 class UserController extends AdminController
@@ -41,6 +43,15 @@ class UserController extends AdminController
     public function store(Request $request)
     {
         $input = $request->all();
+        $users = User::all();
+        $returl =[];
+        foreach($users as $value){
+            $returl[]=$value->username;
+        }
+        $username=$request->username;
+        if(in_array($username,$returl)){
+            return $this->sendBackWithError('tên đăng nhập tồn tại');
+        }
         $input['password'] = Hash::make($input['password']);
         $userId = User::create($input)->id;
         
@@ -50,6 +61,7 @@ class UserController extends AdminController
             $file->move(public_path("/uploads/admin/" . $userId . '/avatar/'), $fileNameImage);
             $imageUrl = '/uploads/admin/' . $userId . '/avatar/' . $fileNameImage;
         }
+        
         User::where('id', $userId)->update(['avatar' => $imageUrl]);
         return Redirect::action('UserController@index');
     }
