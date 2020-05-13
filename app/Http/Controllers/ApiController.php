@@ -148,7 +148,7 @@ class ApiController extends Controller
         foreach ($data as $key => $value) {
             $livestreamStartTime = getTimePlayLivestream($value);
             $livestreamEndTime = getEndTimeLivestream($value);
-            $keyDay = date('Y/m/d', strtotime($value->timer_clock));
+            $keyDay = date('d/m/Y', strtotime($value->timer_clock));
             $keyHour = date('H:i', strtotime($value->timer_clock));
             if ($timeNow > $livestreamEndTime) {
                 if (isset($input['date_time']) && !empty($input['date_time'])) {
@@ -254,8 +254,8 @@ class ApiController extends Controller
         $input['class_id'] = $classId;
         $listClass = $this->getListClassByParam($input);
         $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
-        $yesterday = date('Y/m/d', strtotime( '-1 days' ) );
-        $currentTitle = 'Hôm nay (' . $now .')';
+        $yesterday = date('d/m/Y', strtotime( '-1 days' ) );
+        $currentTitle = $now;
         $yesterdayTitle = $yesterday;
         $result = array(
             'list_class' => $listClass,
