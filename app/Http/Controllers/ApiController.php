@@ -101,7 +101,7 @@ class ApiController extends Controller
         $result['subject_name'] = getMonNameById($value->subject_id);
         $result['class_id'] = $value->class_id;
         $result['class_name'] = getClassNameById($value->class_id);
-        $result['description'] = $value->description;
+        $result['description'] = trim(preg_replace('/\s\s+/', ' ', $value->description));
         $result['start_time'] = $startTimeFormat;
         $result['end_time'] = $endTime;
         $result['expire_date'] = $value->end_time;
