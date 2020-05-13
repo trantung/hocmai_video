@@ -618,4 +618,47 @@ public function getFooter()
 {
 }
 
+/**
+ * @api {post} /api_hocmai/app/rate Api nhận thông tin từ client về rate app gửi lên serve
+ * @apiName PostRateApp
+ * @apiGroup Rate
+ * @apiParam {Number} customer_id id của người dùng
+ * @apiParam {String} customer_username Username của người dùng
+ * @apiParam {String} customer_name Tên của người dùng
+ * @apiParam {String} customer_comment Comment của người dùng về app
+ * @apiParam {Number} rate rating của người dùng cho app. Ví dụ : 1
+ * @apiSuccessExample Success-Response:
+ *  HTTP/1.1 200 OK
+    {
+        {
+            "status": "success",
+            "data": {
+                "id": 1,
+                "rate": "1"
+            }
+        }
+    }
+ */
+public function rateApp()
+
+/**
+ * @api {post} /api_hocmai/app/rate/current_rate Chi tiết rate của 1 người dùng
+ * @apiName PostRateAppCurrentRate
+ * @apiGroup Rate
+ * @apiParam {Number} customer_id id của người dùng
+ * @apiParam {String} customer_username username của người dùng
+ * @apiSuccessExample Success-Response:
+ *  HTTP/1.1 200 OK
+    {
+        {
+            "status": "success",
+            "data": {
+                "customer_id": 1,
+                "customer_username": trantung,
+                "rate": 1
+            }
+        }
+    }
+ */
+public function currentRate()
 

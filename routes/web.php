@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -138,5 +138,8 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     Route::get('/footer','ApiController@getFooter');
     //api nhan du lieu tu client day len
     Route::post('/livestream/data','ApiController@dataLivestream');
+    //api rate app: 
+    Route::post('/app/rate','ApiController@rateApp');
+    Route::post('/app/rate/current_rate','ApiController@currentRate');
 });
 
