@@ -222,7 +222,7 @@ class ApiController extends Controller
     {
         $classId = null;
         $result = [];
-        $now = date('Y/m/d');
+        $now = date('d/m/Y');
         $timeNow = date('Y-m-d');
 		$input = $request->all();
         if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
