@@ -15,7 +15,7 @@
                         <a href="{{action('LivestreamAnotherVideoController@edit',$livestream->id)}}"  class="btn btn-info">Sửa</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Xóa</button>
                     </form>
                 <?php endif ?>
             </div>
@@ -106,13 +106,14 @@
                                 
                                 <?php 
                                 if ($livestream->status_time == IS_PUBLISH_INACTIVE): ?>
-
                                     hẹn giờ
                                 <?php endif ?>
                                 <?php
                                  if($livestream->status_time != IS_PUBLISH_INACTIVE && $timeNow > $livestream->end_time ): ?>
                                     Phát xong
-                                <?php else :?>
+                                <?php endif?>
+                                <?php
+                                 if($livestream->status_time != IS_PUBLISH_INACTIVE && $livestream->create_at< $timeNow && $timeNow < $livestream->end_time ): ?>
                                     đang phát
                                 <?php endif ?>
                             </span><input type="text" value="{{$livestream->created_at}}" disabled style="width:78% !important;">

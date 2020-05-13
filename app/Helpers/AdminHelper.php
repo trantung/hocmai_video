@@ -130,13 +130,22 @@ function getGvNameById($id)
     }
     return null;
 }
-
 function getUrlSourceVideoId ($id){
     $sourceId = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
-    $url = AnotherVideo::find($sourceId)->pluck('url');
-    return $url;
+    $url = AnotherVideo::find($sourceId)->toArray();
+    foreach($url as $videoId){
+       return $videoId['id'];
+    }
+    return null;
 }
-
+function getUrlSourceVideoName ($id){
+    $sourceId = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
+    $url = AnotherVideo::find($sourceId)->toArray();
+    foreach($url as $videoName){
+        return $videoName['title'];
+     }
+     return null;
+}
  /* end livestream hoc mai*/
 function getRoleNameById($id)
 {
