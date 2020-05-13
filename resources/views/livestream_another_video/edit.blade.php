@@ -2,6 +2,7 @@
 @section('content')
 <!-- top tiles -->
 <h3>Cài đặt chung Livestream</h3>
+<p class="pull-left"><a href="{{action('AdminController@index')}}"><i class="fa fa-backward"></i></a></p>
 <!-- main -content  -->
 {{ Form::open(array('action' => array('LivestreamAnotherVideoController@update',$livestream->id), 'method' => "PUT", 'multiple'=>true,'class'=>'form','files' => true)) }}
 <div class="col-md-12">
@@ -32,6 +33,11 @@
                 <label class="StepTitle">Liên kết video </label>
                 <div class="row clearfix"></div>
                 <div id="video_source_detail" class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                        {{getUrlSourceVideoName($livestream->id)}}<i class="fa fa-times del"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -137,8 +143,12 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-md-12" id="timeShow">
-
+            <div class="col-md-12" id="timeShow" style="display: none">
+                <label class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</label>
+                <div class="col-md-4 col-sm-4 ">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" value="{{$livestream->timer_clock}}">
+                </div>
+            </div>
             </div>
             <div class="col-md-12">
                 <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>

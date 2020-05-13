@@ -31,6 +31,12 @@
                 <?php endif; ?>
 
             </div>
+            <div class="form-group row">
+                <label class="col-md-1 col-lg-1">Quyền</label>
+                <div class="col-md-3 col-col-lg-3">
+                    {{ Form::select('role_id', getListRole(),$user->role_id, array('class' => 'form-control')) }}
+                </div>
+            </div>
             <div class="form-group">
                 {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
             </div>

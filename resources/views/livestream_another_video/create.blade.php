@@ -128,7 +128,7 @@
             <div class="col-md-12" id="timeShow" style="display: none">
                 <label class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</label>
                 <div class="col-md-4 col-sm-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="time_clock">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" placeholder="dd/mm/yyyy hh:mm">
                 </div>
             </div>
             <div class="col-md-12">
