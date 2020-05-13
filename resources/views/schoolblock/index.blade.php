@@ -5,7 +5,7 @@
     <div class="x_panel">
       <h2>Quản lý Kênh</h2>
       <div class="x_title">
-        <a href="{{ action('SchoolBlockController@create') }}" class="btn btn-info"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+        <a href="{{ action('SchoolBlockController@create') }}"><i class="fa fa-plus-circle"></i> Thêm mới</a>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>

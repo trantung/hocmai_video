@@ -289,7 +289,7 @@ class ApiController extends Controller
             'status' => 'Not found',
             'data' => $result
         );
-        return response($data, 404);
+        return response($data, 200);
     }
     // api đang phát
     public function livestreamPlayCurrent(Request $request)
