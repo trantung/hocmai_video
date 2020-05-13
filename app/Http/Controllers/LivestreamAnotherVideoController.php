@@ -56,8 +56,8 @@ class LivestreamAnotherVideoController extends Controller
         }
 
         $timeClock = $endTime = null;
-        if (isset($input['time_clock'])) {
-            $timeClock = str_replace('/', '-', $input['time_clock']);
+        if (isset($input['timer_clock'])) {
+            $timeClock = str_replace('/', '-', $input['timer_clock']);
             if (date('Y/m/d H:i:s', strtotime($timeClock))) {
                 $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
             }
@@ -66,7 +66,6 @@ class LivestreamAnotherVideoController extends Controller
         if (date('Y/m/d H:i:s', strtotime($endTimeFormat))) {
             $endTime = date('Y/m/d H:i:s', strtotime($endTimeFormat));
         }
-
         $input['end_time'] = $endTime;
         $input['timer_clock'] = $timeClock;
         if (!isset($input['repeat'])) {

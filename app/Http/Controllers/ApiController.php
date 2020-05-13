@@ -148,7 +148,7 @@ class ApiController extends Controller
         foreach ($data as $key => $value) {
             $livestreamStartTime = getTimePlayLivestream($value);
             $livestreamEndTime = getEndTimeLivestream($value);
-            $keyDay = date('Y/m/d', strtotime($value->timer_clock));
+            $keyDay = date('d/m/Y', strtotime($value->timer_clock));
             $keyHour = date('H:i', strtotime($value->timer_clock));
             if ($timeNow > $livestreamEndTime) {
                 if (isset($input['date_time']) && !empty($input['date_time'])) {
@@ -222,7 +222,7 @@ class ApiController extends Controller
     {
         $classId = null;
         $result = [];
-        $now = date('Y/m/d');
+        $now = date('d/m/Y');
         $timeNow = date('Y-m-d');
 		$input = $request->all();
         if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
@@ -254,8 +254,8 @@ class ApiController extends Controller
         $input['class_id'] = $classId;
         $listClass = $this->getListClassByParam($input);
         $timeYesterday = date('Y-m-d', strtotime( '-1 days' ) );
-        $yesterday = date('Y/m/d', strtotime( '-1 days' ) );
-        $currentTitle = 'Hôm nay (' . $now .')';
+        $yesterday = date('d/m/Y', strtotime( '-1 days' ) );
+        $currentTitle = $now;
         $yesterdayTitle = $yesterday;
         $result = array(
             'list_class' => $listClass,
@@ -289,7 +289,7 @@ class ApiController extends Controller
             'status' => 'Not found',
             'data' => $result
         );
-        return response($data, 404);
+        return response($data, 200);
     }
     // api đang phát
     public function livestreamPlayCurrent(Request $request)
