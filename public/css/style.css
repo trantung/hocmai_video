@@ -34,12 +34,12 @@ input[type="password"] {
 /* ============================ end login ================================================== */
 
 .modal {
-    left: 763px !important;
-    width: 800px !important;
-    height: auto !important;
+    margin-left: 0 !important;
+    background-color: transparent !important;
 }
 
-.modal-dialog {
+
+/* .modal-dialog {
     max-width: 800px;
     margin: 30px auto;
 }
@@ -47,7 +47,7 @@ input[type="password"] {
 .modal-body {
     position: relative;
     padding: 0px;
-}
+} */
 
 .close {
     position: absolute;
