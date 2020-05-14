@@ -35,7 +35,31 @@
                   <tr>
                     <td>{{ $sourceVideo->id }}</td>
                     <td>{{ $sourceVideo->title }}</td>
-                    <td>{{ $sourceVideo->url }}</td>
+                    <td>
+                      <a type="button" style="color:blue" src="{{ $sourceVideo->url }}" data-toggle="modal" data-target="#myModal{{$sourceVideo->id}}">{{$sourceVideo->url}}</a>
+                       <!-- Modal -->
+                      <div class="modal" id="myModal{{$sourceVideo->id}}">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                            <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" data-setup='{}'>
+                                <source  type="application/x-mpegURL" src="{{$sourceVideo->url}}">
+                              </video>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td>{{gmdate('H:i:s', $sourceVideo->duration)}}</td>
                     <td>{{ getKhoiNameById($sourceVideo->schoolblock_id) }}</td>
                     <td>{{ getClassNameById($sourceVideo->class_id) }}</td>
@@ -63,4 +87,9 @@
     </div>
   </div>
 </div>
+@stop
+ @section('javascript')
+ 
+<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+ 
 @stop
