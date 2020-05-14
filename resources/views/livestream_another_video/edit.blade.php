@@ -24,7 +24,7 @@
         <div class="form-horizontal form-label-left">
             <div class="form-group row">
                 <div class="col-md-6 col-sm-6">
-                    <input type="text" name="video_another_source_id" id="video_source_id" value="{{ old('video_another_source_id') }}" required="required" class="form-control">
+                    <input type="text" name="video_another_source_id" id="video_source_id" value="{{ getUrlSourceVideoId($livestream->id) }}" required="required" class="form-control">
                 </div>
                 <button id="load_video_source" class="col-form-label col-md-2 col-sm-2">Load video
                 </button>
@@ -93,7 +93,7 @@
             <div class="form-group row">
                 <div class="form-group col-md-12">
                     <label>Nội dung</label>
-                    <textarea name="description" value="{{ $livestream->description }}" require="true" class="form-control " id="editor1"></textarea>
+                    {{ Form::textarea('description', $livestream->description, array('class' => 'form-control','id'=>'editor1')) }}
                 </div>
             </div>
         </div>

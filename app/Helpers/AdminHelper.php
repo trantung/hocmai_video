@@ -130,30 +130,31 @@ function getGvNameById($id)
     }
     return null;
 }
-// function getUrlSourceVideoId ($id){
-//     $sourceId = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
-//     //dd($sourceId);
-//     $url = AnotherVideo::find($sourceId);
-//     // dd($url);
-//     foreach($url as $videoId){
-//        return $videoId->id;
-//     }
-//     return null ;
-// }
 function getUrlSourceVideoId ($id){
-    $anotherVideoIds = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
-    $data = AnotherVideo::find($anotherVideoIds);
-    $result = [];
-    foreach ($data as $anotherVideo) {
-        $result[] = $anotherVideo->id;
+    $sourceId = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
+    //dd($sourceId);
+    $url = AnotherVideo::find($sourceId);
+    // dd($url);
+    foreach($url as $videoId){
+       return $videoId->id;
     }
+    return null ;
 }
+// function getUrlSourceVideoId ($id){
+//     $anotherVideoIds = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
+//     $data = AnotherVideo::find($anotherVideoIds);
+//     $result = [];
+//     foreach ($data as $anotherVideo) {
+//         $result[] = $anotherVideo->id;
+//     }
+// }
 function getUrlSourceVideoName ($id){
     $sourceId = LivestreamAnotherVideo::where('livestream_id',$id)->pluck('another_video_id');
     $url = AnotherVideo::find($sourceId);
-    foreach($url as $videoName){
-        return $videoName->title;
-     }
+    //$result = [];
+    foreach ($url as $anotherVideo) {
+        return $anotherVideo->title;
+    }
      return null;
 }
  /* end livestream hoc mai*/

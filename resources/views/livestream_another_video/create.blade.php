@@ -128,14 +128,14 @@
             <div class="col-md-12" id="timeShow" style="display: none">
                 <label class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</label>
                 <div class="col-md-4 col-sm-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" placeholder="Ex:dd/mm/yyyy hh:mm">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
                 </div>
             </div>
             <div class="col-md-12">
                 <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
                 <div class="col-md-4 col-sm-4 ">
                        
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" placeholder="Ex:dd/mm/yyyy hh:mm">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
                     <!-- <input type="datetime-local" data-date="" data-date-format="DD MMMM YYYY, h:mm:ss"> -->
                     <!-- <input type="dateTime-local" name="end_time" id="input_publish_time" class="form-control"> -->
                 </div>
