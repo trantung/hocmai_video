@@ -61,7 +61,8 @@
         <div class="col-lg-6">
           <label class="col-lg-3 col-md-4 col-sm-3">Độ dài video</label>
           <div class="col-md-9 col-sm-9">
-            <input type="time" name="duration" step="1" required />
+            <input type="text" name="duration" class="masked" placeholder="hh:mm:ss"  data-inputmask="'mask': '99:99:99'"  id="nortlmask"  required value="{{old('duration')}}"/>
+            <!-- <input type="text" name="duration" class="masked" placeholder="hh:mm"  id="nortlmask" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required /> -->
           </div>
         </div>
       </div>
@@ -73,3 +74,4 @@
   </div>
 </div>
 @stop
+

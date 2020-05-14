@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <label class="col-lg-2">Từ giờ</label>
               <div class="col-lg-8">
-                <input type="time" name="start_time" value="{{$header->start_time}}" class="form-control" step="1" />
+                <input type="text" name="start_time" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" class="masked form-control" placeholder="hh:mm"  data-inputmask="'mask': '99:99'"  id="nortlmask" value="{{$header->start_time}}" required="true"  />
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
               </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="col-md-12">
               <label class="col-lg-2">Từ giờ</label>
               <div class="col-lg-8">
-                <input type="time" name="end_time" value="{{$header->end_time}}" class="form-control" step="1" />
+                <input type="text" name="end_time" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" class="masked form-control" placeholder="hh:mm"  data-inputmask="'mask': '99:99'"  id="nortlmask" value="{{$header->end_time}}"  required="true"  />
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
               </div>
             </div>
@@ -49,7 +49,7 @@
         <div class="col-md-6">
           <label class="col-lg-2">mã code</label>
           <div class="col-lg-8 ">
-            <input id="color" type="text" value="rgb(255, 128, 0)" name="color" class="jscolor" />
+            <input id="color" type="text" value="{{$header->color}}" name="color" class="jscolor" />
           </div>
         </div>
 

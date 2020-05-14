@@ -43,7 +43,7 @@
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6" id="class_id">
           <label id="label_class1" class="col-lg-3">Lớp</label>
-          <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+          <div id="class1" class="col-md-9 col-sm-9 col-lg-9">
             <select class="form-control" name="class_id">
               <option value="1">Lớp 12</option>
               <option value="2">Lớp 10</option>
@@ -62,7 +62,8 @@
         <div class="col-md-6 col-sm-6 col-lg-6">
           <label class="col-lg-3">Độ dài video</label>
           <div class="col-md-9 col-sm-9">
-            <input type="time" name="duration" value="{{gmdate('H:i:s', $anothervideo->duration)}}" step="1" required />
+          <input type="text" name="duration" class="masked" placeholder="hh:mm:ss" value="{{gmdate('H:i:s', $anothervideo->duration)}}" data-inputmask="'mask': '99:99:99'"  id="nortlmask"  required />
+            <!-- <input type="time" name="duration" value="{{gmdate('H:i:s', $anothervideo->duration)}}" step="1" required /> -->
           </div>
         </div>
       </div>

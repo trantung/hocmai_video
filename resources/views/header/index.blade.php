@@ -7,7 +7,7 @@
       <h2>Quản lý header</h2>
       <div class="x_title">
         <div class="pull-left">
-          <a href="{{action('HeaderController@create')}}" class="btn btn-info" >
+          <a href="{{action('HeaderController@create')}}">
           <i class="fa fa-plus-circle"></i>Thêm mới header</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">

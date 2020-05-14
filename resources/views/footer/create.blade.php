@@ -33,7 +33,6 @@
               <div class="col-lg-8">
                 <!-- <input type="time" name="end_time" value="{{old('end_time')}}" class="form-control" /> -->
                 <input type="text" name="end_time" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" class="masked form-control" placeholder="hh:mm"  data-inputmask="'mask': '99:99'"  id="nortlmask" value="{{old('end_time')}}"  required="true"  />
-
                 @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
               </div>
             </div>

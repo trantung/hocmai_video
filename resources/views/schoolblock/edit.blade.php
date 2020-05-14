@@ -33,7 +33,7 @@
         <div class="col-md-12 col-sm-12 ">
           <label class="control-label col-md-2 col-sm-2">ảnh đại diện kênh</label>
           <div class="col-md-11 col-sm-11">
-            <input type="file" name="avatar" class="form-control" required><br>
+            <input type="file" name="avatar" class="form-control"><br>
               @if($schoolblock->avatar)
                   <img src="{{$schoolblock->avatar }}" width="150px" height="auto"  />
               @endif
