@@ -16,9 +16,9 @@
         </div>
         @endif
         @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
         @endif
         @csrf
         <div class="form-horizontal form-label-left">
@@ -35,7 +35,7 @@
                 <div id="video_source_detail" class="col-md-12">
                     <div class="col-md-12">
                         <div class="col-md-2">
-                        {{getUrlSourceVideoName($livestream->id)}}<i class="fa fa-times del"></i>
+                            {{getUrlSourceVideoName($livestream->id)}}<i class="fa fa-times del"></i>
                         </div>
                     </div>
                     <div class="col-md-12" style="display: block;margin:5px" id="edit_livestream">
@@ -104,17 +104,17 @@
     <div class="step">
         <h2 class="StepTitle">Cấu hình VideoStream</h2>
         <div class="form-horizontal form-label-left">
-            
+
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
                     <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file">
-                    
+
                 </div>
                 <!-- Uploaded image area-->
                 <div class="col-md-12">
                     @if($livestream->image_small)
-                        <img src="{{$livestream->image_small }}" width="150px" height="auto"  />
+                    <img src="{{$livestream->image_small }}" width="150px" height="auto" />
                     @endif
                     <img id="imageResult" src="#" alt="" width="200px" height="100px">
                 </div>
@@ -126,12 +126,12 @@
                 </div>
                 <!-- Upload image input-->
                 <div class="col-md-12">
-                     @if($livestream->image_big)
-                        <img src="{{$livestream->image_big}}" width="400px">
+                    @if($livestream->image_big)
+                    <img src="{{$livestream->image_big}}" width="400px">
                     @endif
                     <img id="imageResult1" src="#" alt="" width="400px" height="200px">
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -152,14 +152,13 @@
                     <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" value="{{Carbon\Carbon::parse($livestream->timer_clock)->format('d/m/Y H:i')}}">
                 </div>
             </div>
-            </div>
-            <div class="col-md-12">
-                <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
-                <div class="col-md-4 col-sm-4 ">
-                        <!-- <input type="text" class="form-control" id="datetime" name="datetime" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy HH:MM" data-inputmask-placeholder="dd/mm/yyyy hh:mm"> -->
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="aa" name="end_time" value="{{Carbon\Carbon::parse($livestream->end_time)->format('d/m/Y H:i')}}">
-                    
-                </div>
+        </div>
+        <div class="col-md-12">
+            <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
+            <div class="col-md-4 col-sm-4 ">
+                <!-- <input type="text" class="form-control" id="datetime" name="datetime" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy HH:MM" data-inputmask-placeholder="dd/mm/yyyy hh:mm"> -->
+                <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="aa" name="end_time" value="{{Carbon\Carbon::parse($livestream->end_time)->format('d/m/Y H:i')}}">
+
             </div>
         </div>
         <div class="form-group row">
@@ -190,11 +189,11 @@
                         <select name="timeComment" id="timeComment" class="form-control">
                             <option value="0">1 phút 1 commmet</option>
                             <!-- <option value="1">2 phút 1 commmet</option>
-                                <option value="2">3 phút 1 commmet</option>
-                                <option value="3">4 phút 1 commmet</option>
-                                <option value="4">5 phút 1 commmet</option>
-                                <option value="5">6 phút 1 commmet</option>
-                                <option value="6">ngẫu nhiêu thời gian</option> -->
+                                    <option value="2">3 phút 1 commmet</option>
+                                    <option value="3">4 phút 1 commmet</option>
+                                    <option value="4">5 phút 1 commmet</option>
+                                    <option value="5">6 phút 1 commmet</option>
+                                    <option value="6">ngẫu nhiêu thời gian</option> -->
                         </select>
                     </div>
                 </div>
@@ -211,7 +210,7 @@
                         <input type="number" name="startTimeComment" id="startTimeLivestream" min="0" class="form-control">
                     </div>
                 </div>
-                <span>Số lượng comment dự kiến ? <input id="quatity_comment" disabled ></span>
+                <span>Số lượng comment dự kiến ? <input id="quatity_comment" disabled></span>
             </div>
             <div class="clearfix row"></div>
             <div class="col-md-12">
