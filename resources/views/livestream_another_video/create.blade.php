@@ -15,9 +15,9 @@
         </div>
         @endif
         @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
         @endif
         @csrf
         <div class="form-horizontal form-label-left">
@@ -95,7 +95,6 @@
     <div class="step">
         <h2 class="StepTitle">Cấu hình VideoStream</h2>
         <div class="form-horizontal form-label-left">
-            
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
@@ -125,20 +124,110 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-md-12" id="timeShow" style="display: none">
-                <label class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</label>
-                <div class="col-md-4 col-sm-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
+            <div class="col-lg-12" id="timeShow" style="display: none">
+                <label class="col-lg-2 ">Thời gian hẹn giờ phát</label>
+                <div class="col-lg-4 ">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="cc" name="timer_clock" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
                 </div>
             </div>
-            <div class="col-md-12">
-                <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
-                <div class="col-md-4 col-sm-4 ">
-                       
+            <div class="col-lg-12">
+                <label class="col-lg-2 ">Thời hạn hiển thị</label>
+                <div class="col-lg-4 ">
                     <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
                     <!-- <input type="datetime-local" data-date="" data-date-format="DD MMMM YYYY, h:mm:ss"> -->
                     <!-- <input type="dateTime-local" name="end_time" id="input_publish_time" class="form-control"> -->
                 </div>
+            </div>
+        </div>
+        <!-- comment fack -->
+        <div class="form-group row">
+            <div class="col-12">
+                <label for="#" class="col-lg-2">Comment Fake</label>
+                <div class="col-lg-4">
+                    <select name="commnentFake" id="commnentFake">
+                        <option value="0">Không sử dụng</option>
+                        <option value="1">Có sử dụng</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" style="display:none" id="class_FormCommnet">
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-6 col-md-6">
+                    <label for="#" class="col-lg-4 col-md-4">Hình thức commentFake</label>
+                    <div class="col-lg-8 col-md-8">
+                        <select name="formCommnet" id="formCommnet" class="form-control">
+                            <!-- <option value="0">Thủ công</option> -->
+                            <option value="1">Tự động</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <label for="#" class="col-lg-4 col-md-4">Thời gian commentFake</label>
+                    <div class="col-lg-8 col-md-8">
+                        <select name="timeComment" id="timeComment" class="form-control">
+                            <option value="0">1 phút 1 commmet</option>
+                            <!-- <option value="1">2 phút 1 commmet</option>
+                                <option value="2">3 phút 1 commmet</option>
+                                <option value="3">4 phút 1 commmet</option>
+                                <option value="4">5 phút 1 commmet</option>
+                                <option value="5">6 phút 1 commmet</option>
+                                <option value="6">ngẫu nhiêu thời gian</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix row"></div>
+            <br>
+            <div class="col-md-12" style="margin: 10px 0">
+                <div class="col-md-4" id="durationComment">
+                    <!-- hiển thị tổng số phút video  -->
+                </div>
+                <div class="col-md-8">
+                    <label for="" class="col-md-6">Thời gian bắt đầu commnet(phút)</label>
+                    <div class="col-md-6">
+                        <input type="number" name="startTimeComment" id="startTimeLivestream" min="0" class="form-control">
+                    </div>
+                </div>
+                <span>Số lượng comment dự kiến ? <input id="quatity_comment" disabled></span>
+            </div>
+            <div class="clearfix row"></div>
+            <div class="col-md-12">
+                <button id="Load_user_comment" class="btn btn-info">Khởi tạo commnet</button>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên user</th>
+                            <th>Commnet</th>
+                            <th>Thời gian hiển thị</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>dangnv</td>
+                            <td>bài giảng hay</td>
+                            <td>03:12</td>
+                            <td><a href="#">Xóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>dangnv1</td>
+                            <td>bài giảng hay</td>
+                            <td>03:12</td>
+                            <td><a href="#">Xóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>dangnv2</td>
+                            <td>bài giảng hay</td>
+                            <td>03:12</td>
+                            <td><a href="#">Xóa</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

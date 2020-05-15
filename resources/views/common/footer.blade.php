@@ -3,6 +3,7 @@
 <script src="{{asset('build/js/jquery.inputmask.bundle.js')}}"></script>
 <script src="{{asset('build/js/ajax-jquery.min.js')}}"></script>
 <script src="{{asset('js/class.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/commentfake.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/site.js')}}" type="text/javascript"></script>
 <script type="text/javascript" src="{{asset('js/jscolor.js')}}"></script>
 <!-- js colorpicker-->
@@ -136,7 +137,7 @@
             var text = '<div class="col-md-12">' + '<div class="col-md-2">' + '<a href="/admin/preview/video/' + data.video_id + '"' + 'target="_blank">' +
               data.video_title + '</a>' + '<i class="fa fa-times del"></i></div><br>' + hidden;
             $("#video_source_detail").append(text);
-            
+            $("#durationComment").append('<span> Độ dài video dài '+data.duration+'phút</span>')
           } else {
             alert("ID Video không tồn tại. Xin vui lòng nhập ID khác!");
             $('#load_video_source').attr('disabled',false);

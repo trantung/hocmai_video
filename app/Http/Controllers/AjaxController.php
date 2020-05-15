@@ -26,6 +26,7 @@ class AjaxController extends Controller
           'video_title' => $anotherVideo->title,
           'source_id' => $anotherVideo->source_id,
           'video_id' => $anotherVideo->id,
+          'duration'=>$anotherVideo->duration
         );
         return response()->json($response); 
         

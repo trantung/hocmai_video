@@ -58,13 +58,13 @@ class LivestreamAnotherVideoController extends Controller
         $timeClock = $endTime = null;
         if (isset($input['timer_clock'])) {
             $timeClock = str_replace('/', '-', $input['timer_clock']);
-            if (date('d/m/Y H:i:s', strtotime($timeClock))) {
-                $timeClock = date('d/m/Y H:i:s', strtotime($timeClock));
+            if (date('Y/m/d H:i:s', strtotime($timeClock))) {
+                $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
             }
         }
         $endTimeFormat = str_replace('/', '-', $input['end_time']);
-        if (date('d/m/Y H:i:s', strtotime($endTimeFormat))) {
-            $endTime = date('d/m/Y H:i:s', strtotime($endTimeFormat));
+        if (date('Y/m/d H:i:s', strtotime($endTimeFormat))) {
+            $endTime = date('Y/m/d H:i:s', strtotime($endTimeFormat));
         }
         $input['end_time'] = $endTime;
         $input['timer_clock'] = $timeClock;
@@ -116,16 +116,16 @@ class LivestreamAnotherVideoController extends Controller
         $timeClock = $endTime = null;
         if (isset($input['timer_clock'])) {
             $timeClock = str_replace('/', '-', $input['timer_clock']);
-            if (date('d/m/Y H:i:s', strtotime($timeClock))) {
-                $timeClock = date('d/m/Y H:i:s', strtotime($timeClock));
+            if (date('Y/m/d H:i:s', strtotime($timeClock))) {
+                $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
             }
         }
         $endTimeFormat = str_replace('/', '-', $input['end_time']);
-        if (date('d/m/Y H:i:s', strtotime($endTimeFormat))) {
-            $endTime = date('d/m/Y H:i:s', strtotime($endTimeFormat));
+        if (date('Y/m/d H:i:s', strtotime($endTimeFormat))) {
+            $endTime = date('Y/m/d H:i:s', strtotime($endTimeFormat));
         }
-        $input['end_time'] = Carbon::createFromFormat('d/m/Y H:i:s' ,$endTime);
-        $input['timer_clock'] =Carbon::createFromFormat('d/m/Y H:i:s', $timeClock);
+        $input['end_time'] = Carbon::createFromFormat('Y/m/d H:i:s' ,$endTime);
+        $input['timer_clock'] =Carbon::createFromFormat('Y/m/d H:i:s', $timeClock);
         if (!isset($input['repeat'])) {
             $input['repeat'] = REPEAT_DEFAULT;
         }

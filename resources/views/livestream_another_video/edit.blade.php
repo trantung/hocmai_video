@@ -162,6 +162,96 @@
                 </div>
             </div>
         </div>
+        <div class="form-group row">
+            <div class="col-12">
+                <label for="#" class="col-lg-2">Comment Fake</label>
+                <div class="col-lg-4">
+                    <select name="commnentFake" id="commnentFake">
+                        <option value="0">Không sử dụng</option>
+                        <option value="1">Có sử dụng</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" style="display:none" id="class_FormCommnet">
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-6 col-md-6">
+                    <label for="#" class="col-lg-4 col-md-4">Hình thức commentFake</label>
+                    <div class="col-lg-8 col-md-8">
+                        <select name="formCommnet" id="formCommnet" class="form-control">
+                            <!-- <option value="0">Thủ công</option> -->
+                            <option value="1">Tự động</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <label for="#" class="col-lg-4 col-md-4">Thời gian commentFake</label>
+                    <div class="col-lg-8 col-md-8">
+                        <select name="timeComment" id="timeComment" class="form-control">
+                            <option value="0">1 phút 1 commmet</option>
+                            <!-- <option value="1">2 phút 1 commmet</option>
+                                <option value="2">3 phút 1 commmet</option>
+                                <option value="3">4 phút 1 commmet</option>
+                                <option value="4">5 phút 1 commmet</option>
+                                <option value="5">6 phút 1 commmet</option>
+                                <option value="6">ngẫu nhiêu thời gian</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix row"></div>
+            <br>
+            <div class="col-md-12" style="margin: 10px 0">
+                <div class="col-md-4" id="durationComment">
+                    <!-- hiển thị tổng số phút video  -->
+                </div>
+                <div class="col-md-8">
+                    <label for="" class="col-md-6">Thời gian bắt đầu commnet(phút)</label>
+                    <div class="col-md-6">
+                        <input type="number" name="startTimeComment" id="startTimeLivestream" min="0" class="form-control">
+                    </div>
+                </div>
+                <span>Số lượng comment dự kiến ? <input id="quatity_comment" disabled ></span>
+            </div>
+            <div class="clearfix row"></div>
+            <div class="col-md-12">
+                <button id="Load_user_comment" class="btn btn-info">Khởi tạo commnet</button>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên user</th>
+                            <th>Commnet</th>
+                            <th>Thời gian hiển thị</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>dangnv</td>
+                            <td>bài giảng hay</td>
+                            <td>03:12</td>
+                            <td><a href="#">Xóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>dangnv1</td>
+                            <td>bài giảng hay</td>
+                            <td>03:12</td>
+                            <td><a href="#">Xóa</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>dangnv2</td>
+                            <td>bài giảng hay</td>
+                            <td>03:12</td>
+                            <td><a href="#">Xóa</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
