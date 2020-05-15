@@ -79,7 +79,7 @@
                             <label class="col-md-6 col-sm-6 col-lg-6">Cấu hình video stream</label>
                             <div class="col-md-8 col-sm-8 col-lg-8">
                                 <select name="repeat" id="repeat" disabled="disabled">
-                                    <option value="$livestream->repeat">{{getNameRepeat($livestream->repeat)}}</option>
+                                    <option value="$livestream->repeat">Lặp 1 lần</option>
                                 </select>
                             </div>
                         </div>

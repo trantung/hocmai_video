@@ -36,7 +36,7 @@
                     <td>{{ $sourceVideo->id }}</td>
                     <td>{{ $sourceVideo->title }}</td>
                     <td>
-                      <a type="button" style="color:blue" src="{{ $sourceVideo->url }}" data-toggle="modal" data-target="#myModal{{$sourceVideo->id}}">{{$sourceVideo->url}}</a>
+                      <a type="button" style="color:blue !important" src="{{ $sourceVideo->url }}" data-toggle="modal" data-target="#myModal{{$sourceVideo->id}}">{{$sourceVideo->url}}</a>
                        <!-- Modal -->
                       <div class="modal" id="myModal{{$sourceVideo->id}}">
                         <div class="modal-dialog">
@@ -47,7 +47,7 @@
                             </div>
                             <!-- Modal body -->
                             <div class="modal-body">
-                            <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="false" data-setup='{}'>
+                              <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls  data-setup='{}'>
                                 <source  type="application/x-mpegURL" src="{{$sourceVideo->url}}">
                               </video>
                             </div>
@@ -87,9 +87,4 @@
     </div>
   </div>
 </div>
-@stop
- @section('javascript')
- 
-<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
- 
 @stop

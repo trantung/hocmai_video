@@ -24,9 +24,9 @@
         <div class="form-horizontal form-label-left">
             <div class="form-group row">
                 <div class="col-md-6 col-sm-6">
-                    <input type="text" name="video_another_source_id" id="video_source_id" value="{{ getUrlSourceVideoId($livestream->id) }}" required="required" class="form-control">
+                    <input type="text" name="video_another_source_id" id="video_source_id" value="{{ getUrlSourceVideoId($livestream->id) }}" disabled="true" required="required" class="form-control">
                 </div>
-                <button id="load_video_source" class="col-form-label col-md-2 col-sm-2">Load video
+                <button id="load_video_source" class="col-form-label col-md-2 col-sm-2" disabled='true'>Load video
                 </button>
             </div>
             <div class="form-group row">
@@ -37,6 +37,9 @@
                         <div class="col-md-2">
                         {{getUrlSourceVideoName($livestream->id)}}<i class="fa fa-times del"></i>
                         </div>
+                    </div>
+                    <div class="col-md-12" style="display: block;margin:5px" id="edit_livestream">
+                        <p class="text-danger">Quý khách vui lòng xóa liên kết video để load ID mới</p>
                     </div>
                 </div>
             </div>
@@ -146,7 +149,7 @@
             <div class="col-md-12" id="timeShow" style="display: none">
                 <label class="control-label col-md-2 col-sm-2 ">Thời gian hẹn giờ phát</label>
                 <div class="col-md-4 col-sm-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" value="{{$livestream->timer_clock}}">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="timer_clock" value="{{Carbon\Carbon::parse($livestream->timer_clock)->format('d/m/Y H:i')}}">
                 </div>
             </div>
             </div>
@@ -154,7 +157,7 @@
                 <label class="control-label col-md-2 col-sm-2 ">Thời hạn hiển thị</label>
                 <div class="col-md-4 col-sm-4 ">
                         <!-- <input type="text" class="form-control" id="datetime" name="datetime" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy HH:MM" data-inputmask-placeholder="dd/mm/yyyy hh:mm"> -->
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" value="{{$livestream->end_time}}">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="aa" name="end_time" value="{{Carbon\Carbon::parse($livestream->end_time)->format('d/m/Y H:i')}}">
                     
                 </div>
             </div>

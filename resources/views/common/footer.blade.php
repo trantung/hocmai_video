@@ -47,7 +47,7 @@
   <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
   <script>
     var player = videojs('my_video_1');
-    player.play();
+   // player.play();
   </script>
 <script>
   $(":input").inputmask();
@@ -86,6 +86,7 @@
       $(this).parent().remove();
       $('#load_video_source').attr('disabled',false);
       $('#video_source_id').attr('disabled',false);
+      $('#edit_livestream').hide();
     });
     // end dang
     // loading content 
@@ -106,11 +107,13 @@
       return false;
     });
     //tung
+    
     $('#load_video_source').click(function(e) {
       var video_source_id = $("#video_source_id").val();
       if(video_source_id != null){
         $('#load_video_source').attr('disabled',true);
         $('#video_source_id').attr('disabled',true);
+        $('#edit_livestream').show();
       }
       var csrf = '{{csrf_token()}}';
       $.ajaxSetup({

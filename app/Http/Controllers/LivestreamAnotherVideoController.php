@@ -58,13 +58,13 @@ class LivestreamAnotherVideoController extends Controller
         $timeClock = $endTime = null;
         if (isset($input['timer_clock'])) {
             $timeClock = str_replace('/', '-', $input['timer_clock']);
-            if (date('Y/m/d H:i:s', strtotime($timeClock))) {
-                $timeClock = date('Y/m/d H:i:s', strtotime($timeClock));
+            if (date('d/m/Y H:i:s', strtotime($timeClock))) {
+                $timeClock = date('d/m/Y H:i:s', strtotime($timeClock));
             }
         }
         $endTimeFormat = str_replace('/', '-', $input['end_time']);
-        if (date('Y/m/d H:i:s', strtotime($endTimeFormat))) {
-            $endTime = date('Y/m/d H:i:s', strtotime($endTimeFormat));
+        if (date('d/m/Y H:i:s', strtotime($endTimeFormat))) {
+            $endTime = date('d/m/Y H:i:s', strtotime($endTimeFormat));
         }
         $input['end_time'] = $endTime;
         $input['timer_clock'] = $timeClock;
@@ -106,13 +106,28 @@ class LivestreamAnotherVideoController extends Controller
     public function update(Request $request,$id)
     {
         $input = $request->all();
+        
         //check video_id
-        if (empty($input['video_source_id'])) {
-            $message = 'Không tìm thấy video load';
-            Session::flash('message', "Điền id video đúng và click vào load video");
-            return Redirect::back()->withInput();
-            // dd($input);
-            return Redirect::action('LivestreamAnotherVideoController@create')->withInput()->with(compact('message'));
+            if (request()->input['video_source_id'] == 'null') {
+                $message = 'Không tìm thấy video load';
+                Session::flash('message', "Điền id video đúng và click vào load video");
+                return Redirect::back()->withInput();
+            }
+        $timeClock = $endTime = null;
+        if (isset($input['timer_clock'])) {
+            $timeClock = str_replace('/', '-', $input['timer_clock']);
+            if (date('d/m/Y H:i:s', strtotime($timeClock))) {
+                $timeClock = date('d/m/Y H:i:s', strtotime($timeClock));
+            }
+        }
+        $endTimeFormat = str_replace('/', '-', $input['end_time']);
+        if (date('d/m/Y H:i:s', strtotime($endTimeFormat))) {
+            $endTime = date('d/m/Y H:i:s', strtotime($endTimeFormat));
+        }
+        $input['end_time'] = Carbon::createFromFormat('d/m/Y H:i:s' ,$endTime);
+        $input['timer_clock'] =Carbon::createFromFormat('d/m/Y H:i:s', $timeClock);
+        if (!isset($input['repeat'])) {
+            $input['repeat'] = REPEAT_DEFAULT;
         }
         // dd($input);
         $livestreamId = Livestream::find($id);
@@ -123,19 +138,18 @@ class LivestreamAnotherVideoController extends Controller
             $fileSmall->move(public_path("/uploads/another_video/update/" . $id . '/small/'), $fileNameImage);
             $imageUrlSmall = '/uploads/another_video/update/' . $id . '/small/' . $fileNameImage;
         }
-        
         if (request()->file('file_image_big')) {
             $fileBig = request()->file('file_image_big');
             $fileNameImage = $fileBig->getClientOriginalName();
             $fileBig->move(public_path("/uploads/another_video/update/" . $id . '/big/'), $fileNameImage);
             $imageUrlBig = '/uploads/another_video/update/' . $id . '/big/' . $fileNameImage;
         }
-        
-
         Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
         //luu vao bang livestream_another_videos
-        foreach ($input['video_source_id'] as $key => $value) {
-            LivestreamAnotherVideo::create(['livestream_id' => $id, 'another_video_id' => $value]);
+        if(request()->input['video_source_id']){
+            foreach ($input['video_source_id'] as $key => $value) {
+                LivestreamAnotherVideo::create(['livestream_id' => $id, 'another_video_id' => $value]);
+            }
         }
         $livestreamId->update($input);
         return Redirect::action('LivestreamAnotherVideoController@create')->with('success', 'Cập nhật thành công');
