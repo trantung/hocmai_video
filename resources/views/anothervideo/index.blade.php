@@ -47,7 +47,7 @@
                             </div>
                             <!-- Modal body -->
                             <div class="modal-body">
-                            <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" data-setup='{}'>
+                            <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="false" data-setup='{}'>
                                 <source  type="application/x-mpegURL" src="{{$sourceVideo->url}}">
                               </video>
                             </div>
