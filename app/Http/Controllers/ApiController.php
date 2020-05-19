@@ -105,6 +105,7 @@ class ApiController extends Controller
         $result['start_time'] = $startTimeFormat;
         $result['end_time'] = $endTime;
         $result['expire_date'] = $value->end_time;
+        $result['require_login'] = $value->require_login;
         $result['repeat'] = $value->repeat;
         $result['require_login'] = $value->require_login;
         $result['livestream_status'] = $status['livestream_status'];
