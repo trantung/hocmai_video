@@ -49,9 +49,16 @@ input[type="password"] {
     padding: 0px;
 } */
 
+#close_video {
+    color: #fff !important;
+    position: relative;
+    right: 13px;
+    border-radius: 12px;
+    background: red;
+}
+
 .close {
     position: absolute;
-    right: -30px;
     top: 0;
     z-index: 999;
     font-size: 2rem;

@@ -48,6 +48,9 @@
   <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
   <script>
     var player = videojs('my_video_1');
+    $("#close_video,#close_video1").click(function() {
+      player.pause();
+  });
    // player.play();
   </script>
 <script>

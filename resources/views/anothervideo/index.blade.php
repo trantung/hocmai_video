@@ -43,7 +43,7 @@
                           <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <button type="button" id="close_video" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <!-- Modal body -->
                             <div class="modal-body">
@@ -53,7 +53,7 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal" id="close_video1">Close</button>
                             </div>
                             
                           </div>
