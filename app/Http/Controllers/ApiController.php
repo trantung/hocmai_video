@@ -425,6 +425,8 @@ class ApiController extends Controller
         $result = [
             'id' => $id,
             'rate' => $input['rate'],
+            'version' => $input['version'],
+            'os' => $input['os'],
         ];
         return $this->responseSuccess($result);
     }
@@ -438,21 +440,17 @@ class ApiController extends Controller
         if (isset($input['customer_username']) && !empty($input['customer_username'])) {
             $customerUsername = $input['customer_username'];
         }
-        $dataByCustomerId = RateApp::where('customer_id', $customerId)->orderBy('id', 'DESC')->first();
+        $dataByCustomerId = RateApp::where('customer_id', $customerId)
+            ->where('os', $input['os'])
+            ->where('version', $input['version'])
+            ->orderBy('id', 'DESC')->first();
         if ($dataByCustomerId) {
             $result = [
                 'customer_id' => $dataByCustomerId->customer_id,
                 'customer_username' => $dataByCustomerId->customer_username,
                 'rate' => $dataByCustomerId->rate,
-            ];
-            return $this->responseSuccess($result);
-        }
-        $dataByCustomerUsername = RateApp::where('customer_username', $customerUsername)->orderBy('id', 'DESC')->first();
-        if ($dataByCustomerUsername) {
-            $result = [
-                'customer_id' => $dataByCustomerUsername->customer_id,
-                'customer_username' => $dataByCustomerUsername->customer_username,
-                'rate' => $dataByCustomerUsername->rate,
+                'version' => $dataByCustomerId->version,
+                'os' => $dataByCustomerId->os,
             ];
             return $this->responseSuccess($result);
         }
