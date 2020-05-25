@@ -448,6 +448,7 @@ class ApiController extends Controller
             $result = [
                 'customer_id' => $dataByCustomerId->customer_id,
                 'customer_username' => $dataByCustomerId->customer_username,
+                'customer_comment' => $dataByCustomerId->customer_comment,
                 'rate' => $dataByCustomerId->rate,
                 'version' => $dataByCustomerId->version,
                 'os' => $dataByCustomerId->os,
