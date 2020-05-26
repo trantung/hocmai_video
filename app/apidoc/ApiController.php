@@ -649,7 +649,6 @@ public function rateApp()
  * @apiGroup Rate
  * @apiParam {Number} customer_id id của người dùng
  * @apiParam {String} customer_username username của người dùng
- * @apiParam {String} customer_comment comment của người dùng
  * @apiParam {String} version phiên bản của app
  * @apiParam {String} os Hệ điều hành của thiết bị(1 là IOS, 2 là Android, 3 là hệ điều hành khác)
 
