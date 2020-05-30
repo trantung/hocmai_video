@@ -627,6 +627,8 @@ public function getFooter()
  * @apiParam {String} customer_name Tên của người dùng
  * @apiParam {String} customer_comment Comment của người dùng về app
  * @apiParam {Number} rate rating của người dùng cho app. Ví dụ : 1
+ * @apiParam {String} version phiên bản của app
+ * @apiParam {String} os Hệ điều hành của thiết bị(1 là IOS, 2 là Android, 3 là hệ điều hành khác)
  * @apiSuccessExample Success-Response:
  *  HTTP/1.1 200 OK
     {
@@ -647,6 +649,9 @@ public function rateApp()
  * @apiGroup Rate
  * @apiParam {Number} customer_id id của người dùng
  * @apiParam {String} customer_username username của người dùng
+ * @apiParam {String} version phiên bản của app
+ * @apiParam {String} os Hệ điều hành của thiết bị(1 là IOS, 2 là Android, 3 là hệ điều hành khác)
+
  * @apiSuccessExample Success-Response:
  *  HTTP/1.1 200 OK
     {
@@ -655,7 +660,9 @@ public function rateApp()
             "data": {
                 "customer_id": 1,
                 "customer_username": trantung,
-                "rate": 1
+                "rate": 5,
+                "version": 1.0.0,
+                "os": 1,
             }
         }
     }

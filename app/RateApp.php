@@ -14,6 +14,8 @@ class RateApp extends Model
         'customer_comment',
         'customer_username',
         'rate',
+        'os',
+        'version'
     ];
 
 }

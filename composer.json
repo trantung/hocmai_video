@@ -8,9 +8,9 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3.11",
+        "php": "^7.1",
         "barryvdh/laravel-debugbar": "^3.2",
-        "doctrine/dbal": "^2.10",
+        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.3",
