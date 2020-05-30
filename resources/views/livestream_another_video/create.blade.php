@@ -98,7 +98,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
-                    <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file" required="true">
+                    <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file" value="{{ old('file_image_small') }}" required="true">
                 </div>
                 <!-- Uploaded image area-->
                 <div class="col-md-12"><img id="imageResult" src="#" alt="" width="200px" height="100px"></div>
@@ -106,7 +106,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover lớn liveStream</label>
                 <div class="col-sm-10 col-md-10">
-                    <input id="upload1" type="file" name="file_image_big" id="file_image_big" onchange="readURL1(this);" required="true">
+                    <input id="upload1" type="file" name="file_image_big" id="file_image_big" value="{{ old('file_image_big') }}" onchange="readURL1(this);" required="true">
                 </div>
                 <!-- Upload image input-->
                 <div class="col-md-12"><img id="imageResult1" src="#" alt="" width="400px" height="200px"></div>
@@ -127,13 +127,13 @@
             <div class="col-lg-12" id="timeShow" style="display: none">
                 <label class="col-lg-2 ">Thời gian hẹn giờ phát</label>
                 <div class="col-lg-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="cc" name="timer_clock" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="timer_clock" name="timer_clock" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
                 </div>
             </div>
             <div class="col-lg-12">
                 <label class="col-lg-2 ">Thời hạn hiển thị</label>
                 <div class="col-lg-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="end_time" name="end_time" pattern="(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1\d|2\d|3[01])-(19|20)\d{2}\s+(0[0-9]|1[0-9]|2[0-3])\:(0[0-9]|[1-5][0-9])" placeholder="Ex:dd/mm/yyyy hh:mm" value="{{old('end_time')}}">
                     <!-- <input type="datetime-local" data-date="" data-date-format="DD MMMM YYYY, h:mm:ss"> -->
                     <!-- <input type="dateTime-local" name="end_time" id="input_publish_time" class="form-control"> -->
                 </div>
@@ -236,7 +236,7 @@
             <div class="pull-right">
                 <button type="button" class="action btn-sky text-capitalize back btn">Trở lại</button>
                 <button type="button" class="action btn-sky text-capitalize next btn">Tiếp</button>
-                <button type="submit" name="submit" class="action btn-hot text-capitalize submit btn">lưu</button>
+                <button type="submit" name="submit" class="action btn-hot text-capitalize submit btn" id="btnLivestreams">lưu</button>
             </div>
         </div>
         <div id="back-to-top"><a href="#"><i class="fa fa-sort-up"></i></a></div>

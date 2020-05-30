@@ -41,7 +41,6 @@ $(document).ready(function() {
             description: "required",
             end_time: 'required',
             time_clock: "required",
-
         }
     });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AnotherVideo;
 use App\Livestream;
 use App\LivestreamAnotherVideo;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Carbon\Carbon;
+use Illuminate\Mail\Message;
 
 class LivestreamAnotherVideoController extends Controller
 {
@@ -66,8 +68,23 @@ class LivestreamAnotherVideoController extends Controller
         if (date('Y/m/d H:i:s', strtotime($endTimeFormat))) {
             $endTime = date('Y/m/d H:i:s', strtotime($endTimeFormat));
         }
+        $videoSourceId = $input['video_source_id'];
         $input['end_time'] = $endTime;
         $input['timer_clock'] = $timeClock;
+       $anotherVideo = AnotherVideo::where('id',$videoSourceId)->sum('duration');
+       // cộng thời gian video
+       $time_stamp = date('Y/m/d H:i',strtotime($timeClock));
+       $time = strtotime($time_stamp);
+       $new = ($anotherVideo*60) + $time;
+       $newTimeClock = date('Y/m/d H:i',$new);
+       $endTime1 = date_parse_from_format('Y/m/d  H:i',$endTime);
+       $timeClock1 = date_parse_from_format('Y/m/d  H:i',$newTimeClock);
+       //dd($endTime1,$timeClock1);
+       // endtime1 là thời gian hiển thị còn timeclock thời gian phát , thời gian hiển thị lớn hơn thời gian phát cộng thời gian video
+        if($endTime1 < $timeClock1){
+            Session::flash('message', "Vui lòng điền Thời gian hẹn giờ phát nhỏ hơn thời gian hiển thị cộng với thời gian video!!!");
+            return Redirect::back()->withInput();
+        }
         if (!isset($input['repeat'])) {
             $input['repeat'] = REPEAT_DEFAULT;
         }
