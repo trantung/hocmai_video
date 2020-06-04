@@ -6,7 +6,6 @@
 <script src="{{asset('js/commentfake.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/site.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/livestreams.js')}}" type="text/javascript"></script>
-
 <script type="text/javascript" src="{{asset('js/jscolor.js')}}"></script>
 <!-- js colorpicker-->
 <script src="{{asset('js/libscripts.bundle.js')}}" type="text/javascript"></script>
