@@ -1,11 +1,12 @@
 <script>
-     $(document).ready(function(){
+$( document ).ready(function() {
         $('#upload').on('change', function() {
             readURL(input);
         });
         $('#upload1').on('change', function() {
             readURL1(input);
         });
+        
     });
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -17,6 +18,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     function readURL1(input1) {
         if (input1.files && input1.files[0]) {
             var reader = new FileReader();

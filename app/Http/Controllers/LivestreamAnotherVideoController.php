@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\AnotherVideo;
 use App\Livestream;
 use App\LivestreamAnotherVideo;
+use App\CommentFake;
+use App\UserFake;
+use App\UserCommentFake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +17,22 @@ use Illuminate\Mail\Message;
 
 class LivestreamAnotherVideoController extends Controller
 {
+    public function pushToFirebase($id, $input)
+    {
+        return true;
+    }
+
+    public function createComment($id, $input)
+    {
+        foreach ($input['user_fake_id'] as $key => $value) {
+            UserCommentFake::create([
+                'userfake_id' => $value,
+                'commentfake_id' => $input['comment_fake_id'][$key],
+                'livestream_id' => $id,
+            ]);
+        }
+        return true;
+    }
     /**
      * Display a listing of the resource.
      *

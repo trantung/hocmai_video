@@ -11,15 +11,15 @@
 <script src="{{asset('js/libscripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/vendorscripts.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/advanced-form-elements.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/jquery.inputmask.bundle.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('js/jquery.inputmask.bundle.js')}}" type="text/javascript"></script> -->
 <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/jquery.maskedinput.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/jquery.multi-select.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap-multiselect.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/mainscripts.bundle.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('js/mainscripts.bundle.js')}}" type="text/javascript"></script> -->
 <script src="{{asset('js/morrisscripts.bundle.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/jquery.inputmask.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('js/jquery.inputmask.js')}}" type="text/javascript"></script> -->
 <script src="{{asset('js/moment.js')}}" type="text/javascript"></script>
 
 <!-- jQuery -->
@@ -44,9 +44,10 @@
 <script src="{{asset('vendor/datatables.net-responsive/js/dataTables.responsive.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/jquery.inputmask/dist/inputmask/jquery.inputmask.js')}}" type="text/javascript"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
-<script src="https://unpkg.com/video.js/dist/video.js"></script>
-  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+<script src="{{asset('js/video.js')}}"></script>
+  <script src="{{asset('js/videojs-contrib-hls.js')}}"></script>
   <script>
     var player = videojs('my_video_1');
     $("#close_video,#close_video1").click(function() {
@@ -154,6 +155,54 @@
       });
     });
     //end tung
+    $('#load_user_comment').click(function(e) {
+        e.preventDefault();
+        var number = $("#timeComment :selected").val();
+        var video_source_id = $("#video_source_id").val();
+        var comment_start_time = $("#comment_start_time").val();
+        $.ajax({
+            type: "POST",
+            url: "/ajax/get_comment_fake",
+            data: {
+                number: number,
+                video_source_id: video_source_id,
+                comment_start_time: comment_start_time,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.status == 'success') {
+                    var a = data.result;
+                    var text_start = '<table class="table table-bordered"><thead><tr><th>STT</th><th>Tên user</th><th>Tên comment</th><th>Comment</th><th>Thời gian hiển thị</th><th>Thao tác</th></tr></thead><tbody>';
+                    var text_end = '</tbody></table>';
+
+                    var text_content = '';
+                    a.forEach(function(comment) {
+                        var hidden_user_fake = '<input type="hidden" name="user_fake_id[]" value="' + comment.user_fake_id + '">';
+                        var hidden_comment_fake = '<input type="hidden" name="comment_fake_id[]" value="' + comment.comment_fake_id + '">';
+
+                        text_content = text_content + '<tr id="tr_comment_id_' + comment.comment_fake_id + '">' +
+                            '<td>' + comment.order + '</td><td>' + comment.user_fake_name + '</td>' +
+                            '<td>' + comment.comment_fake_name + '</td><td>' + comment.comment_fake_des + '</td>' +
+                            '<td>' + comment.time + '</td>' +
+                            '<td>' + '<p id="comment_id_' + comment.comment_fake_id + '">Xóa</p>' + '</td>' +
+                            '</tr>' + hidden_user_fake + hidden_comment_fake;
+                    });
+                    text = text_start + text_content + text_end;
+                    $("#comment_fake_list").html(text);
+
+
+                } else {
+                    alert("8888888888888");
+                }
+            },
+            error: function(data) {
+                var errors = data.responseJSON;
+            }
+        });
+    });
+    //user_comment_fake end
+  
   });
 </script>
 </body>

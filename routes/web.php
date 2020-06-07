@@ -59,13 +59,14 @@ Route::group(['prefix' => 'ajax'], function() {
     Route::post('load_video_source', 'AjaxController@loadVideoSource');
     Route::get('loadHeader','AjaxController@loadHeader');
     Route::get('loadFooter','AjaxController@loadFooter');
+    Route::post('get_comment_fake','AjaxController@getCommentFake');
 });
 
-    Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
-    Route::post('/admin/login', ['uses' => 'AdminController@postLogin']);
-    Route::get('/admin/logout', ['uses' => 'AdminController@getLogout', 'as' =>'logout']);
-    
-    Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
+Route::get('/admin/login', ['uses' => 'AdminController@getLogin', 'as' =>'login']);
+Route::post('/admin/login', ['uses' => 'AdminController@postLogin']);
+Route::get('/admin/logout', ['uses' => 'AdminController@getLogout', 'as' =>'logout']);
+
+Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::get('/dashboard', 'AdminController@index');
     Route::get('/error', 'AdminController@getError');
     Route::get('/blank', 'AdminController@getBlank');

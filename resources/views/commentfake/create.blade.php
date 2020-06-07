@@ -18,7 +18,7 @@
         <div class="col-md-12 col-sm-12">
           <label class="col-md-2">Nội dung comment</label>
           <div class="col-md-10">
-            <textarea type="text" name="name" id="name" cols="30" rows="5" style="width:100%"></textarea>
+            <textarea type="text" name="name" id="name" cols="30" rows="5" style="width:100%" required></textarea>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
         <div class="col-md-12 col-sm-12 ">
           <label class="col-md-2">Mô tả comment</label>
           <div class="col-md-10 col-lg-10">
-            <textarea type="text" name="desc" id="editor1"></textarea>
+            <textarea type="text" name="desc" id="editor1" required></textarea>
           </div>
         </div>
       </div>
