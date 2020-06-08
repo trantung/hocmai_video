@@ -3,7 +3,7 @@ $(document).ready(function() {
     widget = $(".step");
     btnnext = $(".next");
     btnback = $(".back");
-    btnsubmit = $(".submit");
+    btnsubmit = $("#btnLivestreams");
     // Init buttons and UI
     widget.not(':eq(0)').hide();
     hideButtons(current);
@@ -41,7 +41,7 @@ $(document).ready(function() {
             description: "required",
             end_time: 'required',
             time_clock: "required",
-        }
+        },
     });
 });
 // Change progress bar action
@@ -81,3 +81,47 @@ $(document).on('keypress', 'input,select', function(e) {
         $canfocus.eq(index).focus();
     }
 });
+
+//Vui lòng điền Thời gian hẹn giờ phát nhỏ hơn thời gian hiển thị cộng với thời gian video endtime > timer_clock + duration
+function validate() {
+    var endTime = document.getElementById('dd').value;
+    var timer_clock = document.getElementById('cc').value;
+    var duration = document.getElementById('duration').value;
+    //check validate theo địh dạng 
+    var timeEnd = endTime,
+        dateArgs1 = timeEnd.match(/\d{2,4}/g),
+        year1 = dateArgs1[2],
+        month1 = parseInt(dateArgs1[1]) - 1,
+        day1 = dateArgs1[0],
+        hour1 = dateArgs1[3],
+        minutes1 = dateArgs1[4];
+    var timeEnds = new Date(year1, month1, day1, hour1, minutes1);
+    if (year1 != timeEnds.getFullYear() || month1 != timeEnds.getMonth() || day1 != timeEnds.getDate() || hour1 != timeEnds.getHours() || minutes1 != timeEnds.getMinutes()) {
+        alert('vui lòng điền đúng định dạng ngày tháng năm giờ(24h) phút!!');
+        return false;
+    }
+    var dateString = timer_clock,
+        dateArgs = dateString.match(/\d{2,4}/g),
+        year = dateArgs[2],
+        month = parseInt(dateArgs[1]) - 1,
+        day = dateArgs[0],
+        hour = dateArgs[3],
+        minutes = dateArgs[4],
+        newminutes = dateArgs[4] + duration;
+    var TimeClock = new(year, month, day, hour, minutes)
+    var newTime = new Date(year, month, day, hour, newminutes);
+    if (year != TimeClock.getFullYear() || month != TimeClock.getMonth() || day != TimeClock.getDate() || hour != TimeClock.getHours() || minutes != TimeClock.getMinutes()) {
+        alert('vui lòng điền đúng định dạng ngày tháng năm giờ(24h) phút!!');
+        return false;
+    }
+    // dt.setMinutes( dt.getMinutes() + 30 );
+    //console.log(dateTimeEnd, dateTimeClock, newTime);
+    var datetime = moment(newTime).format("DD/MM/YYYY HH:mm");
+    if (timeEnds < newTime) {
+        alert("Vui lòng điền Thời gian hiển thị lớn hơn " + datetime + " !!!");
+        //$("#cc").append("<span class='text-danger text-error'>Vui lòng điền Thời gian hẹn giờ phát nhỏ hơn" + datetime + "</span>");
+        return false;
+    }
+    return true;
+
+}

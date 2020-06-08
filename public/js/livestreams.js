@@ -1,5 +1,5 @@
 $(function() {
-    $("#kenh, #lop, #giaovien,#mon").append(new Option("Selectall", "all"));
+    $("#kenh, #lop, #giaovien,#mon").append(new Option("-Tất Cả-", "all"));
     $("#kenh option[value=all]").attr('selected', 'selected');
     $("#lop option[value=all]").attr('selected', 'selected');
     $("#giaovien option[value=all]").attr('selected', 'selected');
@@ -26,5 +26,4 @@ $(function() {
         if (subject_id != 'all')
             $('.filter-row td:nth-child(9):not(:contains(' + subject_id + '))').parent().hide();
     }
-
 });
