@@ -24,7 +24,8 @@
 
 <!-- jQuery -->
 <!-- <script src="{{asset('vendor/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
- --><!-- Bootstrap -->
+ -->
+<!-- Bootstrap -->
 <script src="{{asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 <!-- validation  -->
 <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
@@ -47,14 +48,14 @@
 <script src="{{asset('vendor/jquery.inputmask/dist/inputmask/jquery.inputmask.js')}}" type="text/javascript"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script src="{{asset('js/video.js')}}"></script>
-  <script src="{{asset('js/videojs-contrib-hls.js')}}"></script>
-  <script>
-    var player = videojs('my_video_1');
-    $("#close_video,#close_video1").click(function() {
-      player.pause();
+<script src="{{asset('js/videojs-contrib-hls.js')}}"></script>
+<script>
+  var player = videojs('my_video_1');
+  $("#close_video,#close_video1").click(function() {
+    player.pause();
   });
-   // player.play();
-  </script>
+  // player.play();
+</script>
 <script>
   $(":input").inputmask();
 
@@ -79,19 +80,19 @@
     $('#page-wrapper').scrollTop($('#page-wrapper')[0].scrollHeight);
     //dang 
     $('#selectTime').on('change', function() {
-    if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
+      if ($('#selectTime').val() == '{{ IS_PUBLISH_INACTIVE }}') {
         $('#timeShow').show();
-    }
-    if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
-      $('#timeShow').hide();
-    }
-});
+      }
+      if ($('#selectTime').val() == '{{ IS_PUBLISH_ACTIVE }}') {
+        $('#timeShow').hide();
+      }
+    });
     //input mask
     // remove link load video source
     $(document).on("click", "i.del", function() {
       $(this).parent().remove();
-      $('#load_video_source').attr('disabled',false);
-      $('#video_source_id').attr('disabled',false);
+      $('#load_video_source').attr('disabled', false);
+      $('#video_source_id').attr('disabled', false);
       $('#edit_livestream').hide();
     });
     // end dang
@@ -113,12 +114,12 @@
       return false;
     });
     //tung
-    
+
     $('#load_video_source').click(function(e) {
       var video_source_id = $("#video_source_id").val();
-      if(video_source_id != null){
-        $('#load_video_source').attr('disabled',true);
-        $('#video_source_id').attr('disabled',true);
+      if (video_source_id != null) {
+        $('#load_video_source').attr('disabled', true);
+        $('#video_source_id').attr('disabled', true);
         $('#edit_livestream').show();
       }
       var csrf = '{{csrf_token()}}';
@@ -142,11 +143,11 @@
             var text = '<div class="col-md-12">' + '<div class="col-md-2">' + '<a href="/admin/preview/video/' + data.video_id + '"' + 'target="_blank">' +
               data.video_title + '</a>' + '<i class="fa fa-times del"></i></div><br>' + hidden;
             $("#video_source_detail").append(text);
-            $("#durationComment").append('<lable> Độ dài video dài </lable>'+'<input type="text" id="duration" value="'+data.duration+'" disabled name ="duration"> phút')
+            $("#durationComment").append('<lable> Độ dài video dài </lable>' + '<input type="text" id="duration" value="' + data.duration + '" disabled name ="duration"> phút')
           } else {
             alert("ID Video không tồn tại. Xin vui lòng nhập ID khác!");
-            $('#load_video_source').attr('disabled',false);
-            $('#video_source_id').attr('disabled',false);
+            $('#load_video_source').attr('disabled', false);
+            $('#video_source_id').attr('disabled', false);
           }
         },
         error: function(data) {
@@ -156,53 +157,56 @@
     });
     //end tung
     $('#load_user_comment').click(function(e) {
-        e.preventDefault();
-        var number = $("#timeComment :selected").val();
-        var video_source_id = $("#video_source_id").val();
-        var comment_start_time = $("#comment_start_time").val();
-        $.ajax({
-            type: "POST",
-            url: "/ajax/get_comment_fake",
-            data: {
-                number: number,
-                video_source_id: video_source_id,
-                comment_start_time: comment_start_time,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function(data) {
-                if (data.status == 'success') {
-                    var a = data.result;
-                    var text_start = '<table class="table table-bordered"><thead><tr><th>STT</th><th>Tên user</th><th>Tên comment</th><th>Comment</th><th>Thời gian hiển thị</th><th>Thao tác</th></tr></thead><tbody>';
-                    var text_end = '</tbody></table>';
+      e.preventDefault();
+      var number = $("#timeComment :selected").val();
+      var video_source_id = $("#video_source_id").val();
+      var comment_start_time = $("#comment_start_time").val();
+      $.ajax({
+        type: "POST",
+        url: "/ajax/get_comment_fake",
+        data: {
+          number: number,
+          video_source_id: video_source_id,
+          comment_start_time: comment_start_time,
+          _token: '{{csrf_token()}}'
+        },
+        dataType: 'json',
+        success: function(data) {
+          if (data.status == 'success') {
+            var a = data.result;
+            var text_start = '<table class="table table-bordered" id="commentFakeTable"><thead><tr><th>STT</th><th>Tên user</th><th>Tên comment</th><th>Comment</th><th>Thời gian hiển thị</th><th>Thao tác</th></tr></thead><tbody>';
+            var text_end = '</tbody></table>';
 
-                    var text_content = '';
-                    a.forEach(function(comment) {
-                        var hidden_user_fake = '<input type="hidden" name="user_fake_id[]" value="' + comment.user_fake_id + '">';
-                        var hidden_comment_fake = '<input type="hidden" name="comment_fake_id[]" value="' + comment.comment_fake_id + '">';
+            var text_content = '';
+            a.forEach(function(comment) {
+              var hidden_user_fake = '<input type="hidden" name="user_fake_id[]" value="' + comment.user_fake_id + '">';
+              var hidden_comment_fake = '<input type="hidden" name="comment_fake_id[]" value="' + comment.comment_fake_id + '">';
 
-                        text_content = text_content + '<tr id="tr_comment_id_' + comment.comment_fake_id + '">' +
-                            '<td>' + comment.order + '</td><td>' + comment.user_fake_name + '</td>' +
-                            '<td>' + comment.comment_fake_name + '</td><td>' + comment.comment_fake_des + '</td>' +
-                            '<td>' + comment.time + '</td>' +
-                            '<td>' + '<p id="comment_id_' + comment.comment_fake_id + '">Xóa</p>' + '</td>' +
-                            '</tr>' + hidden_user_fake + hidden_comment_fake;
-                    });
-                    text = text_start + text_content + text_end;
-                    $("#comment_fake_list").html(text);
+              text_content = text_content + '<tr id="tr_comment_id_' + comment.comment_fake_id + '">' +
+                '<td>' + comment.order + '</td><td>' + comment.user_fake_name + '</td>' +
+                '<td>' + comment.comment_fake_name + '</td><td>' + comment.comment_fake_des + '</td>' +
+                '<td>' + comment.time + '</td>' +
+                '<td>' + '< id="comment_id_' + comment.comment_fake_id + '" class="deleteComment">Xóa</p>' + '</td>' +
+                '</tr>' + hidden_user_fake + hidden_comment_fake;
+            });
+            text = text_start + text_content + text_end;
+            $("#comment_fake_list").html(text);
 
-
-                } else {
-                    alert("8888888888888");
-                }
-            },
-            error: function(data) {
-                var errors = data.responseJSON;
-            }
-        });
+          } else {
+            alert("8888888888888");
+          }
+        },
+        error: function(data) {
+          var errors = data.responseJSON;
+        }
+      });
     });
     //user_comment_fake end
-  
+    //xoa comment fake
+    $(".deleteComment").click(function(e) {
+      e.preventDefault();
+      $(this).parent().remove();
+    });
   });
 </script>
 </body>
