@@ -1,10 +1,10 @@
 $(function() {
-    $("#kenh, #lop, #giaovien,#mon").append(new Option("-Tất Cả-", "all"));
+    $("#kenh, #lop, #giaovien ,#mon").append(new Option("Tất Cả", "all"));
     $("#kenh option[value=all]").attr('selected', 'selected');
     $("#lop option[value=all]").attr('selected', 'selected');
     $("#giaovien option[value=all]").attr('selected', 'selected');
     $("#mon option[value=all]").attr('selected', 'selected');
-    $("#kenh, #lop, #giaovien,#mon").change(function() {
+    $("#kenh, #lop, #giaovien ,#mon").change(function() {
         search();
     });
 
