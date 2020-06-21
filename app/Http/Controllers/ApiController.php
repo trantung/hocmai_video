@@ -172,7 +172,7 @@ class ApiController extends Controller
         $now = $now->toDateTimeString();
         $timeNow = strtotime($now);
         //danh sach livestream dang ngay
-        $data = Livestream::where('end_time', '>=', $now)->get();
+        $data = Livestream::where('end_time', '>=', $now);
         if (isset($input['class_id'])) {
             $data = $data->where('class_id', $input['class_id']);
         }
