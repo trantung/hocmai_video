@@ -10,30 +10,8 @@
         </li>
       </ul>
       <div class="clearfix"></div>
-
     </div>
     <div class="x_header">
-      <div class="row">
-        <div class="filters">
-          <div class="col-md-3">
-            <label for="schoolblock_id"> Lọc theo kênh</label>
-            {{ Form::select('schoolblock_id', getListKhoi(), old('schoolblock_id'), array('class' => 'form-control','id'=>'kenh','data-attribute'=>'schoolblock_id')) }}
-          </div>
-          <div class="col-md-3">
-            <label for="class_id"> Lọc theo Lớp</label>
-            {{ Form::select('class_id', getListClass(), old('class_id'), array('class' => 'form-control','id'=>'lop','data-attribute'=>'class_id')) }}
-
-          </div>
-          <div class="col-md-3">
-            <label for="teacher_id"> Lọc theo Giáo viên</label>
-            {{ Form::select('teacher_id', getListGv(), old('teacher_id'), array('class' => 'form-control','id'=>'giaovien','data-attribute'=>'teacher_id')) }}
-          </div>
-          <div class="col-md-3">
-            <label for="subject_id"> Lọc theo Môn</label>
-            {{ Form::select('subject_id', getListMon(), old('subject_id'), array('class' => 'form-control','id'=>'mon','data-attribute'=>'subject_id')) }}
-          </div>
-        </div>
-      </div>
     </div>
     <div class="body x_content">
       <div class="row" style="margin: 5px;display: block">
@@ -49,7 +27,7 @@
       </div>
 
       <div class="table-responsive m-t-20">
-        <table class="table table-filter table-hover m-b-0" id="datatable">
+        <table class="table table-bordered table-striped" id="datatable">
           <thead>
             <tr>
               <th>STT</th>
@@ -57,14 +35,10 @@
               <th>Tiêu đề</th>
               <th>Ngày tạo</th>
               <th>Thời gian phát</th>
-              <th class="hidden">Kênh</th>
-              <th class="hidden">Lớp</th>
-              <th class="hidden">Giáo viên</th>
-              <th class="hidden">Môn</th>
-              <th>Kênh</th>
-              <th>Lớp</th>
-              <th>Giáo viên</th>
-              <th>Môn</th>
+              <th style="width:100px">kênh</th>
+              <th style="width:100px"> Lớp</th>
+              <th style="width:100px"> Giáo viên</th>
+              <th style="width:100px"> Môn </th>
               <th>Trạng thái</th>
             </tr>
           </thead>
@@ -77,18 +51,6 @@
               <td><a href="{{action('LivestreamAnotherVideoController@show',$value->id)}}">{{ $value->name }}</a></td>
               <td>{{ $value->created_at }}</td>
               <td>{{ getTimeLivestreamPlay($value) }}</td>
-              <td class="hidden">
-                {{ $value->schoolblock_id }}
-              </td>
-              <td class="hidden">
-                {{ $value->class_id }}
-              </td>
-              <td class="hidden">
-                {{ $value->teacher_id }}
-              </td>
-              <td class="hidden">
-                {{ $value->subject_id }}
-              </td>
               <td>
                 {{ getKhoiNameById($value->schoolblock_id)}}
               </td>

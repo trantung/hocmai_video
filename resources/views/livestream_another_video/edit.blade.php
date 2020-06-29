@@ -161,7 +161,7 @@
 
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" style="display: none;">
             <div class="col-12">
                 <label for="#" class="col-lg-2">Comment Fake</label>
                 <div class="col-lg-4">
