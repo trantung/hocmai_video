@@ -145,7 +145,7 @@
         <!-- 1. is_comment cho biết có cần commentfake ko
         2. per_comment cho biết bao nhiêu comment cho 1 phút
         3. start_comment cho biết thời gian bắt đầu comment -->
-        <div class="form-group row">
+        <div class="form-group row" style="display: none;">
             <div class="col-12">
                 <label for="#" class="col-lg-2">Comment Fake</label>
                 <div class="col-lg-4">

@@ -1,29 +1,78 @@
-$(function() {
-    $("#kenh, #lop, #giaovien ,#mon").append(new Option("Tất Cả", "all"));
-    $("#kenh option[value=all]").attr('selected', 'selected');
-    $("#lop option[value=all]").attr('selected', 'selected');
-    $("#giaovien option[value=all]").attr('selected', 'selected');
-    $("#mon option[value=all]").attr('selected', 'selected');
-    $("#kenh, #lop, #giaovien ,#mon").change(function() {
-        search();
+$(document).ready(function() {
+    $('#datatable').DataTable({
+        initComplete: function() {
+            this.api().columns(5).every(function() {
+                var column = this;
+                var select = $('<select><option value="">Tất cả</option></select>')
+                    .appendTo($(column.header()).empty())
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+            this.api().columns(6).every(function() {
+                var column = this;
+                var select = $('<select><option value="">Tất cả</option></select>')
+                    .appendTo($(column.header()).empty())
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+            this.api().columns(7).every(function() {
+                var column = this;
+                var select = $('<select><option value="">Tất cả</option></select>')
+                    .appendTo($(column.header()).empty())
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+            this.api().columns(8).every(function() {
+                var column = this;
+                var select = $('<select><option value="">Tất cả</option></select>')
+                    .appendTo($(column.header()).empty())
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+        }
     });
-
-    function search() {
-        let schoolblock_id = $('#kenh').val(),
-            class_id = $('#lop').val(),
-            teacher_id = $('#giaovien').val(),
-            subject_id = $('#mon').val();
-        $('.filter-row').show(); //reset
-        if (schoolblock_id != 'all')
-            $('.filter-row td:nth-child(6):not(:contains(' + schoolblock_id + '))').parent().hide();
-
-        if (class_id != 'all')
-            $('.filter-row td:nth-child(7):not(:contains(' + class_id + '))').parent().hide();
-
-        if (teacher_id != 'all')
-            $('.filter-row td:nth-child(8):not(:contains(' + teacher_id + '))').parent().hide();
-
-        if (subject_id != 'all')
-            $('.filter-row td:nth-child(9):not(:contains(' + subject_id + '))').parent().hide();
-    }
 });
