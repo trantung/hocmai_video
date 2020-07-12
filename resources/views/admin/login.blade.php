@@ -35,6 +35,14 @@
               <label for="inputPassword">Password</label>
             </div>
           </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me">
+                Remember Password
+              </label>
+            </div>
+          </div>
           {{ Form::submit('Login', array('class' => 'btn btn-primary btn-block')) }}
         {{ Form::close() }}
       </div>
