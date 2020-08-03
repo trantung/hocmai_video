@@ -34,4 +34,7 @@ define('TIME_ERROR_3', 3);
 define('TIME_ERROR_4', 4);
 //SUCCESS
 define('TIME_DEFAULT', 'success');
+//OS
+define('IOS', 1);
+define('ANDROID', 2);
 

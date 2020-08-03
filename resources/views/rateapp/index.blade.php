@@ -25,7 +25,7 @@
             @foreach($data as $rate)
             <tr>
                 <td>{{$i++}}</td>
-              <td>{{ $rate->os }}</td>
+              <td>{{ getNameOS($rate->os) }}</td>
               <td>{{ $rate->version }}</td>
               <td>{{ $rate->total }}</td>
               <td>{{ round($rate->total_rate/$rate->total, 1) }}</td>
