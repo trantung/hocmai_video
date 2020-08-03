@@ -28933,7 +28933,7 @@
     var el = typeof id === 'string' ? $('#' + normalizeId(id)) : id;
 
     if (!isEl(el)) {
-      throw new TypeError('The element or ID supplied is not valid. (videojs)');
+     // throw new TypeError('The element or ID supplied is not valid. (videojs)');
     } // document.body.contains(el) will only check if el is contained within that one document.
     // This causes problems for elements in iframes.
     // Instead, use the element's ownerDocument instead of the global document.

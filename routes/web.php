@@ -86,7 +86,10 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/user', 'UserController')->middleware(CheckPermission::class);
     //lớp học
     Route::resource('/class', 'ClassController')->middleware(CheckPermission::class);
+    Route::GET('rateapp/os-detail','RateAppController@detail')->name('rateapp.os_detail')->middleware(CheckPermission::class);
+    Route::resource('rateapp','RateAppController')->middleware(CheckPermission::class);
     // giáo viên
+
     Route::resource('/teacher', 'TeacherController');
     Route::resource('/header', 'HeaderController');
     Route::resource('/footer', 'FooterController');

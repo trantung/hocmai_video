@@ -46,9 +46,14 @@ class AjaxController extends Controller
         return response()->json($end_time);
     }
 
-    private function getCommentFakeNotEnough()
+    private function getCommentFakeNotEnough($number)
     {
-        dd('Todo');
+        $listComment = CommentFake::all();
+        $a = $listComment->count();
+        for($i= 0 ;$i <= $number%$a;$i++){
+            
+        }
+        dd($a);
         return 123;
     }
 
@@ -74,17 +79,21 @@ class AjaxController extends Controller
         $number = $request->number;
         $videoId = $request->video_source_id;
         $start = $request->comment_start_time * 60;
-        $video = AnotherVideo::find(2);
+        dd($start);
+        $video = AnotherVideo::find($videoId);
         $duration = $video->duration - $start;
         $timeLoop = $number * 60;
         $commentNumber = (int) floor($duration/$timeLoop);
+        var_dump($commentNumber);
         $list = CommentFake::all();
+        var_dump($list);
         //nếu số lượng comment không đủ
         if ($list->count() < $commentNumber) {
             return $this->getCommentFakeNotEnough($commentNumber);
         }
         $result = [];
         $commentList = $list->random($commentNumber);
+        
         foreach ($commentList as $key => $value) {
             $userFake = $this->getUserFake();
             $result[$key]['order'] = $key + 1;
