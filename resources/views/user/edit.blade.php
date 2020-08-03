@@ -36,12 +36,6 @@
             <input type="text" class="form-control" required="true" name="username" id="username" value="{{$user->username}}">
           </div>
         </div>
-        <div class="col-md-6 col-sm-6 col-lg-6">
-          <label for="" class="col-md-3 col-lg-3">Mật khẩu</label>
-          <div class="col-md-9 col-col-lg-9">
-            <input type="password" class="form-control" required="true" name="password" id="password" value="{{$user->password}}">
-          </div>
-        </div>
       </div>
       <div class="form-group row">
         <div class="col-lg-6 col-md-6">
