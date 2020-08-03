@@ -108,11 +108,9 @@ class UserController extends AdminController
            $file->move(public_path("/uploads/admin/"),$fileNameImage);
            $imageUrl = '/uploads/admin/'.$fileNameImage;
         }
-        $password = Hash::make($input['password']);
         $user->name = request('name');
         $user->username = request('username');
         $user->email = request('email');
-        $user->password = $password;
         $user->avatar = $imageUrl;
         $user->role_id = request('role_id');
         $user->save();

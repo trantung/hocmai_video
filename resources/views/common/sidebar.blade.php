@@ -23,7 +23,8 @@
           <li><a href="{{action('SubjectController@index')}}">Quản lý Môn</a></li>
           <li><a href="{{action('ClassController@index')}}">Quản lý lớp</a></li>
            <li><a href="{{action('HeaderController@index')}}">Quản lý header</a></li>
-          <li><a href="{{action('FooterController@index')}}">Quản lý footer</a></li>
+           <li><a href="{{action('FooterController@index')}}">Quản lý footer</a></li>
+          <li><a href="{{action('RateAppController@index')}}">Quản lý RateApp</a></li>
           <!-- <li><a href="{{action('CommentFakeController@index')}}">Quản lý commentFake</a></li> -->
           <!-- <li><a href="{{action('UserFakeController@index')}}">Quản lý UserFake</a></li> -->
           @endif
