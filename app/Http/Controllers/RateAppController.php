@@ -11,12 +11,9 @@ class RateAppController extends Controller
     public function index()
     {
         $data = DB::table('rate_apps')->select(DB::raw('COUNT(*) as total') , 'os', 'version',DB::raw('sum(rate) as total_rate'))
-        ->groupBy(['os', 'version','rate'])
-        ->having('total', '>=', 0)
-        ->get();
-        //RateApp::all()->groupBy('os','version')->having('COUNT(1)', '>=', 0);
-        //dd($data);
-        
+            ->groupBy(['os', 'version'])
+            ->having('total', '>=', 0)
+            ->get();
         return view('rateapp.index')->with(compact('data'));
     }
 
