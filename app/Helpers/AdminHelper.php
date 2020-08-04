@@ -312,3 +312,14 @@ function getEndTimeLivestream($value)
     $livestreamEndTime = $livestreamStartTime + $duration;
     return $livestreamEndTime;
 }
+
+function getNameOS($os)
+{
+    if ($os == IOS) {
+        return 'IOS';
+    }
+    if ($os == ANDROID) {
+        return 'ANDROID';
+    }
+    return 'Hệ điều hành khác';
+}

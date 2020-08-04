@@ -25,10 +25,10 @@
             @foreach($data as $rate)
             <tr class="filter_rateapp">
                 <td>{{$i++}}</td>
-              <td>{{ ($rate->os == 3) ? 'khác' : ($rate->os ==1) ? 'IOS':'Android'}}</td>
+              <td>{{ getNameOS($rate->os) }}</td>
               <td>{{ $rate->version }}</td>
               <td>{{ $rate->total }}</td>
-              <td>{{ $rate->total_rate/$rate->total }}</td>
+              <td>{{ round($rate->total_rate/$rate->total, 1) }}</td>
               <td> <a href="{{route('rateapp.os_detail', ['os' => $rate->os, 'version' => $rate->version])}}"><i class="fa fa-eye" style="color:#ff00b4"></i>xem chi tiết</a></td>
             </tr>
             @endforeach

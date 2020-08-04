@@ -15,10 +15,9 @@
               <th>STT</th>
               <th>Tên đăng nhập</th>
               <th>Họ & tên</th>
-              <th>Tên OS</th>
-              <th>Version</th>
               <th>Comment</th>
               <th>Điểm đánh giá</th>
+              <th>Thời gian rate</th>
             </tr>
           </thead>
 
@@ -29,10 +28,9 @@
                 <td>{{$i++}}</td>
               <td>{{ $rate_details->customer_username }}</td>
               <td>{{ $rate_details->customer_name }}</td>
-              <td>{{ ($rate_details->os == 3) ? 'khác' : ($rate_details->os ==1) ? 'IOS':'Android' }}</td>
-              <td>{{ $rate_details->version }}</td>
               <td>{{ $rate_details->customer_comment }}</td>
               <td>{{ $rate_details->rate }}</td>
+              <td>{{ $rate_details->created_at }}</td>
             </tr>
             @endforeach
           </tbody>
