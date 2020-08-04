@@ -29,7 +29,7 @@
                 <td>{{$i++}}</td>
               <td>{{ $rate_details->customer_username }}</td>
               <td>{{ $rate_details->customer_name }}</td>
-              <td>{{ $rate_details->os }}</td>
+              <td>{{ ($rate_details->os == 3) ? 'khác' : ($rate_details->os ==1) ? 'IOS':'Android' }}</td>
               <td>{{ $rate_details->version }}</td>
               <td>{{ $rate_details->customer_comment }}</td>
               <td>{{ $rate_details->rate }}</td>

@@ -5,10 +5,11 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fas fa-table"></i>
+
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="fiterRateApp" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>STT</th>
@@ -19,13 +20,12 @@
               <th>Chi tiết</th>
             </tr>
           </thead>
-
           <tbody>
               <?php  $i = 1; ?>
             @foreach($data as $rate)
-            <tr>
+            <tr class="filter_rateapp">
                 <td>{{$i++}}</td>
-              <td>{{ $rate->os }}</td>
+              <td>{{ ($rate->os == 3) ? 'khác' : ($rate->os ==1) ? 'IOS':'Android'}}</td>
               <td>{{ $rate->version }}</td>
               <td>{{ $rate->total }}</td>
               <td>{{ $rate->total_rate/$rate->total }}</td>
@@ -33,6 +33,16 @@
             </tr>
             @endforeach
           </tbody>
+          <tfooter>
+            <tr>
+              <th>STT</th>
+              <th>Tên OS</th>
+              <th>Version</th>
+              <th>Số lượng</th>
+              <th>Điểm trung bình</th>
+              <th>Chi tiết</th>
+            </tr>
+          </tfooter>
         </table>
       </div>
     </div>
