@@ -10,10 +10,13 @@ class RateAppController extends Controller
 {
     public function index()
     {
-        $data = DB::table('rate_apps')->select(DB::raw('COUNT(*) as total') , 'os', 'version',DB::raw('sum(rate) as total_rate'))
-            ->groupBy(['os', 'version'])
-            ->having('total', '>=', 0)
-            ->get();
+        $data = DB::table('rate_apps')->select(DB::raw('COUNT(1) as total') , 'os', 'version',DB::raw('sum(rate) as total_rate'))
+        ->groupBy(['os', 'version'])
+        ->having('total', '>=', 0)
+        ->get();
+        //RateApp::all()->groupBy('os','version')->having('COUNT(1)', '>=', 0);
+        //dd($data);
+        
         return view('rateapp.index')->with(compact('data'));
     }
 
@@ -22,7 +25,5 @@ class RateAppController extends Controller
         //dd($data);
         return view('rateapp.detail')->with(compact('data'));
     }
-    public function show(){
-        dd(123);
-    }
+   
 }
