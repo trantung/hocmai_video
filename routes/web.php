@@ -17,6 +17,11 @@ use App\Http\Middleware\CheckPermission;
 use APV\User\Models\User;
 use App\Livestream;
 
+
+Route::get('/delete_livestream_trash', function(){
+    $data = Livestream::where('id','<', 106)->delete();
+    
+});
 Route::get('/format_db', function(){
     $data = Livestream::all();
     $timeEnd = date('Y-m-d', strtotime( '+14 days' ) );
