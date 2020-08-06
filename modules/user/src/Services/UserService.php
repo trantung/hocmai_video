@@ -42,7 +42,7 @@ class UserService
         $timeNow = strtotime($now);
         $roleId = checkUserRole();
         if ($roleId == ADMIN) {
-            $data = Livestream::all();
+            $data = Livestream::orderBy('id', 'desc')->get();
         } else {
             $schoolblockId = getSchoolblockByUser();
             $data = Livestream::where('schoolblock_id', $schoolblockId)
