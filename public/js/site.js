@@ -161,4 +161,50 @@ function validate() {
     }
     return true;
 
+    // function validate() {
+    //     var endTime = document.getElementById('dd').value;
+    //     var timer_clock = document.getElementById('cc').value;
+    //     var duration = document.getElementById('duration').value;
+    //     //check validate theo địh dạng 
+    //     var dateString = timer_clock,
+    //         dateArgs = dateString.match(/\d{2,4}/g),
+    //         year = dateArgs[2],
+    //         month = parseInt(dateArgs[1]) - 1,
+    //         day = dateArgs[0],
+    //         hour = dateArgs[3],
+    //         minutes = dateArgs[4],
+    //         newminutes = dateArgs[4] + duration;
+    //     var TimeClock = new Date(year, month, day, hour, minutes);
+
+    //     if (year != TimeClock.getFullYear() || month != TimeClock.getMonth() || day != TimeClock.getDate() || hour != TimeClock.getHours() || minutes != TimeClock.getMinutes()) {
+    //         $('#error_cc').show();
+    //         return false;
+    //     } else {
+    //         $('#error_cc').hide();
+    //         var newTime = new Date(year, month, day, hour, newminutes);
+    //     }
+    //     // end time Thời hạn hiển thị
+    //     var timeEnd = endTime,
+    //         dateArgs1 = timeEnd.match(/\d{2,4}/g),
+    //         year1 = dateArgs1[2],
+    //         month1 = parseInt(dateArgs1[1]) - 1,
+    //         day1 = dateArgs1[0],
+    //         hour1 = dateArgs1[3],
+    //         minutes1 = dateArgs1[4];
+    //     var timeEnds = new Date(year1, month1, day1, hour1, minutes1);
+    //     if (year1 != timeEnds.getFullYear() || month1 != timeEnds.getMonth() || day1 != timeEnds.getDate() || hour1 != timeEnds.getHours() || minutes1 != timeEnds.getMinutes()) {
+    //         $('#error_dd').show();
+    //         return false;
+    //     } else {
+    //         $('#error_dd').hide();
+    //     }
+
+    //     // dt.setMinutes( dt.getMinutes() + 30 );
+    //     //console.log(dateTimeEnd, dateTimeClock, newTime);
+    //     var datetime = moment(newTime).format("DD/MM/YYYY HH:mm");
+    //     if (timeEnds < newTime) {
+    //         alert("Vui lòng điền Thời gian hiển thị lớn hơn " + datetime + " !!!");
+    //         return false;
+    //     }
+    //     return true;
 }

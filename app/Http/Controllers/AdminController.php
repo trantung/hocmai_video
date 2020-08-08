@@ -60,6 +60,8 @@ class AdminController extends Controller
     
     public function index(Request $request)
     {
+       // $data = Livestream::all();
+        $data = Livestream::query();
         $input = $request->all();
         $playStatus = array_key_first($input);
         if(array_key_first($input) != null){
