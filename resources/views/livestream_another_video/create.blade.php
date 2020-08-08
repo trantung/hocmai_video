@@ -127,14 +127,14 @@
             <div class="col-lg-12" id="timeShow" style="display: none">
                 <label class="col-lg-2 ">Thời gian hẹn giờ phát</label>
                 <div class="col-lg-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="cc" name="timer_clock"  placeholder="Ex:dd/mm/yyyy hh:mm" value="{{old('time_clock')}}">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'"  name="timer_clock"  placeholder="Ex:dd/mm/yyyy hh:mm" value="{{old('time_clock')}}">
                     <span class='text-danger' id="error_cc"  style="display:none"> Vui lòng điền đúng định dạng ngày tháng năm giờ(24h) phút!!</span>
                 </div>
             </div>
             <div class="col-lg-12">
                 <label class="col-lg-2 ">Thời hạn hiển thị</label>
                 <div class="col-lg-4 ">
-                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'" id="dd" name="end_time" placeholder="Ex:dd/mm/yyyy hh:mm" value="{{old('end_time')}}">
+                    <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999 99:99'"  name="end_time" placeholder="Ex:dd/mm/yyyy hh:mm" value="{{old('end_time')}}">
                     <span class='text-danger' id="error_dd"  style="display:none"> Vui lòng điền đúng định dạng ngày tháng năm giờ(24h) phút!!</span>
                     <!-- <input type="datetime-local" data-date="" data-date-format="DD MMMM YYYY, h:mm:ss"> -->
                     <!-- <input type="dateTime-local" name="end_time" id="input_publish_time" class="form-control"> -->
