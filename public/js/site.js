@@ -88,43 +88,74 @@ function validate() {
     var timer_clock = document.getElementById('cc').value;
     var duration = document.getElementById('duration').value;
     //check validate theo địh dạng 
-    var dateString = timer_clock,
-        dateArgs = dateString.match(/\d{2,4}/g),
-        year = dateArgs[2],
-        month = parseInt(dateArgs[1]) - 1,
-        day = dateArgs[0],
-        hour = dateArgs[3],
-        minutes = dateArgs[4],
-        newminutes = dateArgs[4] + duration;
-    var TimeClock = new Date(year, month, day, hour, minutes);
-
-    if (year != TimeClock.getFullYear() || month != TimeClock.getMonth() || day != TimeClock.getDate() || hour != TimeClock.getHours() || minutes != TimeClock.getMinutes()) {
-        $('#error_cc').show();
-        return false;
-    } else {
-        $('#error_cc').hide();
-        var newTime = new Date(year, month, day, hour, newminutes);
-    }
-    // end time Thời hạn hiển thị
-    var timeEnd = endTime,
-        dateArgs1 = timeEnd.match(/\d{2,4}/g),
-        year1 = dateArgs1[2],
-        month1 = parseInt(dateArgs1[1]) - 1,
-        day1 = dateArgs1[0],
-        hour1 = dateArgs1[3],
-        minutes1 = dateArgs1[4];
-    var timeEnds = new Date(year1, month1, day1, hour1, minutes1);
-    if (year1 != timeEnds.getFullYear() || month1 != timeEnds.getMonth() || day1 != timeEnds.getDate() || hour1 != timeEnds.getHours() || minutes1 != timeEnds.getMinutes()) {
+    //  var startdate = document.getElementById('pickupdate').value; //03-11-2015 15:49
+    var someParts = endTime.split(" ");
+    var theDate = someParts[0];
+    var theTime = someParts[1];
+    var dateParts = theDate.split("/");
+    var timeParts = theTime.split(":");
+    var theDay = dateParts[0];
+    var theMonth = (parseInt(dateParts[1] - 1));
+    var theYear = dateParts[2];
+    var theHours = timeParts[0];
+    var theMinutes = timeParts[1];
+    var someDateTimeObject = new Date(theYear, theMonth, theDay, theHours, theMinutes, 0);
+    var someDateTimeObjectMillis = someDateTimeObject.getTime();
+    //var someDateTimeObjectMinutes = someDateTimeObjectMillis / (1000 * 60);
+    var someDateTimeObjectMinutes = someDateTimeObjectMillis / (1000 * 60);
+    if (theYear != someDateTimeObject.getFullYear() || theMonth != someDateTimeObject.getMonth() || theDay != someDateTimeObject.getDate() || theHours != someDateTimeObject.getHours() || theMinutes != someDateTimeObject.getMinutes()) {
         $('#error_dd').show();
         return false;
     } else {
         $('#error_dd').hide();
     }
+    //  alert(someDateTimeObjectMinutes);
+
+    var somePartsClock = timer_clock.split(" ");
+    var theDateClock = somePartsClock[0];
+    var theTimeClock = somePartsClock[1];
+    var datePartsClock = theDateClock.split("/");
+    var timePartsClock = theTimeClock.split(":");
+    var theDayClock = datePartsClock[0];
+    var theMonthClock = (parseInt(datePartsClock[1]) - 1);
+    var theYearClock = datePartsClock[2];
+    var theHoursClock = timePartsClock[0];
+    var theMinutesClock1 = (timePartsClock[1]);
+    var theMinutesClock2 = (parseInt(timePartsClock[1]) + parseInt(duration));
+    var someDateTimeObject1 = new Date(theYearClock, theMonthClock, theDayClock, theHoursClock, theMinutesClock1, 0);
+    var someDateTimeObject2 = new Date(theYearClock, theMonthClock, theDayClock, theHoursClock, theMinutesClock2, 0);
+    //var someDateTimeObjectMinutes = someDateTimeObjectMillis / (1000 * 60);
+    if (theYearClock != someDateTimeObject1.getFullYear() || theMonthClock != someDateTimeObject1.getMonth() || theDayClock != someDateTimeObject1.getDate() || theHoursClock != someDateTimeObject1.getHours() || theMinutesClock1 != someDateTimeObject1.getMinutes()) {
+        $('#error_cc').show();
+        return false;
+    } else {
+        $('#error_cc').hide();
+        var newTime = new Date(someDateTimeObject2);
+    }
+    var someDateTimeObjectMillis1 = newTime.getTime();
+
+    var someDateTimeObjectMinutes1 = someDateTimeObjectMillis1 / (1000 * 60);
+
+    // end time Thời hạn hiển thị
+    // var timeEnd = endTime,
+    //     dateArgs1 = timeEnd.match(/\d{2,4}/g),
+    //     year1 = dateArgs1[2],
+    //     month1 = parseInt(dateArgs1[1]) - 1,
+    //     day1 = dateArgs1[0],
+    //     hour1 = dateArgs1[3],
+    //     minutes1 = dateArgs1[4];
+    // var timeEnds = new Date(year1, month1, day1, hour1, minutes1);
+    // if (year1 != timeEnds.getFullYear() || month1 != timeEnds.getMonth() || day1 != timeEnds.getDate() || hour1 != timeEnds.getHours() || minutes1 != timeEnds.getMinutes()) {
+    //     $('#error_dd').show();
+    //     return false;
+    // } else {
+    //     $('#error_dd').hide();
+    // }
 
     // dt.setMinutes( dt.getMinutes() + 30 );
     //console.log(dateTimeEnd, dateTimeClock, newTime);
     var datetime = moment(newTime).format("DD/MM/YYYY HH:mm");
-    if (timeEnds < newTime) {
+    if (someDateTimeObjectMinutes < someDateTimeObjectMinutes1) {
         alert("Vui lòng điền Thời gian hiển thị lớn hơn " + datetime + " !!!");
         return false;
     }
