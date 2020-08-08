@@ -333,6 +333,9 @@ class ApiController extends Controller
         $now = $now->toDateTimeString();
         $dateNow = date('Y-m-d');
         $data = Livestream::where('end_time', '>=', $now);
+        if (isset($input['schoolblock_id'])) {
+            $data = $data->where('schoolblock_id', $input['schoolblock_id']);
+        }
         $listClass = $this->getListClassByParam($input);
         $input['date_time'] = FILTER_DAY;
         //hiển thị là group theo giờ
