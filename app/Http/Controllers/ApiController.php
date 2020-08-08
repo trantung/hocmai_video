@@ -336,6 +336,9 @@ class ApiController extends Controller
         if (isset($input['schoolblock_id'])) {
             $data = $data->where('schoolblock_id', $input['schoolblock_id']);
         }
+        if (isset($input['class_id'])) {
+            $data = $data->where('class_id', $input['class_id']);
+        }
         $listClass = $this->getListClassByParam($input);
         $input['date_time'] = FILTER_DAY;
         //hiển thị là group theo giờ
