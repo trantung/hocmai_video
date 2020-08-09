@@ -120,9 +120,15 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <label for="" class="col-lg-6">Thời gian hiển thị</label>
+                            <label for="" class="col-lg-6">Thời gian phát</label>
                             <div class="col-lg-8">
                                 <input type="text" value="{{$livestream->timer_clock}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="" class="col-lg-6">Thời gian hiển thị</label>
+                            <div class="col-lg-8">
+                                <input type="text" value="{{$livestream->end_time}}" disabled>
                             </div>
                         </div>
                     </div>
