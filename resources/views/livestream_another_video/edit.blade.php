@@ -257,7 +257,7 @@
             <div class="pull-right">
                 <button type="button" class="action btn-sky text-capitalize back btn">Trở lại</button>
                 <button type="button" class="action btn-sky text-capitalize next btn">Tiếp</button>
-                <button type="submit" name="submit" class="action btn-hot text-capitalize submit btn">lưu</button>
+                <button type="submit" name="submit" class="action btn-hot text-capitalize submit btn" id="btnLivestreams">lưu</button>
             </div>
         </div>
         <div id="back-to-top"><a href="#"><i class="fa fa-sort-up"></i></a></div>

@@ -64,6 +64,8 @@ hideButtons = function(current) {
             btnnext.hide();
             btnsubmit.show();
         }
+        console.log(limit);
+        console.log(current, 'adjdj');
     }
     // jquery
 jQuery.extend(jQuery.expr[':'], {
