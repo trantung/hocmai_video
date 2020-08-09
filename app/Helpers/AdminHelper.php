@@ -323,3 +323,9 @@ function getNameOS($os)
     }
     return 'Hệ điều hành khác';
 }
+
+function convertTimeFormat($string)
+{
+    $res = date("d-m-Y H:i:s", strtotime($string));
+    return $res;
+}
