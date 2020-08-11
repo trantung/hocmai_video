@@ -16,6 +16,7 @@ use APV\User\Services\UserService;
 use App\LivestreamDetail;
 use App\RateApp;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -227,6 +228,7 @@ class ApiController extends Controller
         $now = date('d/m/Y');
         $timeNow = date('Y-m-d');
 		$input = $request->all();
+
         if (!isset($input['schoolblock_id']) || empty($input['schoolblock_id'])) {
             $response = array(
                 'status' => 'Fail',
@@ -259,13 +261,21 @@ class ApiController extends Controller
         $yesterday = date('d/m/Y', strtotime( '-1 days' ) );
         $currentTitle = $now;
         $yesterdayTitle = $yesterday;
+
+        // dd($this->getListLivestreamGroupDate($input));
+
         $result = array(
             'list_class' => $listClass,
-            'list_livestream' => [
-                $currentTitle => $this->getLivestreamShort($timeNow, $input),
-                $yesterday => $this->getLivestreamShort($timeYesterday, $input),
-            ]
+            'list_livestream' => $this->getListLivestreamGroupDate($input),
         );
+        // $result = array(
+        //     'list_class' => $listClass,
+        //     'list_livestream' => [
+        //         $currentTitle => $this->getLivestreamShort($timeNow, $input),
+        //         $yesterday => $this->getLivestreamShort($timeYesterday, $input),
+        //     ]
+        // );
+
         if (isset($date_time_day)) {
             $result['list_livestream_date'] = $listLivestreamDate;
         }
@@ -274,6 +284,34 @@ class ApiController extends Controller
             'data' => $result
         );
         return response()->json($response);
+    }
+    public function getListLivestreamGroupDate($input)
+    {
+        $listTime = $this->getCommonLivestream();
+        $res = array();
+        foreach ($listTime as $key => $value) {
+            $newKey = date("d/m/Y", strtotime($value));
+            $res[$newKey] = $this->getLivestreamShort($value, $input);
+        }
+        return $res;
+    }
+
+    public function getCommonLivestream()
+    {
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        $data = Livestream::where('end_time', '>=', $now)
+            ->select(DB::raw('DATE(timer_clock) as time_key'))
+            ->groupBy('time_key')
+            ->orderBy('time_key', 'DESC')
+            ->pluck('time_key');
+        foreach ($data as $key => $value) {
+            if (!$value) {
+                unset($data[$key]);
+            }
+        }
+        return $data;
+
     }
 
     public function responseSuccess($result)
