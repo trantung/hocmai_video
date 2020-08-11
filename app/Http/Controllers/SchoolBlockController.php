@@ -46,7 +46,9 @@ class SchoolBlockController extends Controller
         $schoolblock = SchoolBlock::create($input)->id;
         if (request()->file('avatar')) {
             $file = $request->file('avatar');
-            $fileNameImage = $schoolblock . '_' . $file->getClientOriginalName();
+            $date = date('Y-m-d H:i:s');
+            $prefix = strtotime($date);
+            $fileNameImage = $prefix. $file->getClientOriginalName();
             $file->move(public_path("/uploads/block/" . $schoolblock . '/avatar/'), $fileNameImage);
             $imageUrl = '/uploads/block/' . $schoolblock . '/avatar/' . $fileNameImage;
         }
@@ -95,7 +97,9 @@ class SchoolBlockController extends Controller
         $imageUrl = $schoolblock->avatar;
         if (request()->file('avatar')) {
             $file = $request->file('avatar');
-            $fileNameImage = $id . '_' . $file->getClientOriginalName();
+            $date = date('Y-m-d H:i:s');
+            $prefix = strtotime($date);
+            $fileNameImage = $prefix . $file->getClientOriginalName();
             $file->move(public_path("/uploads/block/" . $id . '/avatar/'), $fileNameImage);
             $imageUrl = '/uploads/block/' . $id . '/avatar/' . $fileNameImage;
         }
