@@ -114,16 +114,18 @@ class LivestreamAnotherVideoController extends Controller
             $livestream->update(['timer_clock' => $livestream->created_at]);
         }
         $imageUrlSmall = $imageUrlBig = null;
+        $date = date('Y-m-d H:i:s');
+        $prefix = strtotime($date);
         if (request()->file('file_image_small')) {
             $fileSmall = request()->file('file_image_small');
-            $fileNameImage = $fileSmall->getClientOriginalName();
+            $fileNameImage = $prefix . $fileSmall->getClientOriginalName();
             $fileSmall->move(public_path("/uploads/another_video/" . $livestreamId . '/small/'), $fileNameImage);
             $imageUrlSmall = '/uploads/another_video/' . $livestreamId . '/small/' . $fileNameImage;
         }
         
         if (request()->file('file_image_big')) {
             $fileBig = request()->file('file_image_big');
-            $fileNameImage = $fileBig->getClientOriginalName();
+            $fileNameImage = $prefix . $fileBig->getClientOriginalName();
             $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
             $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
         }
@@ -169,15 +171,17 @@ class LivestreamAnotherVideoController extends Controller
         // dd($input);
         $livestreamId = Livestream::find($id);
         $imageUrlSmall = $imageUrlBig = null;
+        $date = date('Y-m-d H:i:s');
+        $prefix = strtotime($date);
         if (request()->file('file_image_small')) {
             $fileSmall = request()->file('file_image_small');
-            $fileNameImage = $fileSmall->getClientOriginalName();
+            $fileNameImage = $prefix . $fileSmall->getClientOriginalName();
             $fileSmall->move(public_path("/uploads/another_video/update/" . $id . '/small/'), $fileNameImage);
             $imageUrlSmall = '/uploads/another_video/update/' . $id . '/small/' . $fileNameImage;
         }
         if (request()->file('file_image_big')) {
             $fileBig = request()->file('file_image_big');
-            $fileNameImage = $fileBig->getClientOriginalName();
+            $fileNameImage = $prefix . $fileBig->getClientOriginalName();
             $fileBig->move(public_path("/uploads/another_video/update/" . $id . '/big/'), $fileNameImage);
             $imageUrlBig = '/uploads/another_video/update/' . $id . '/big/' . $fileNameImage;
         }
