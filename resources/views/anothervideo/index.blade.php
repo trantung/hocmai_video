@@ -14,29 +14,31 @@
       </div>
       <div class="x_content">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="card-box table-responsive">
-              <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+          <div class="col-sm-12 col-md-12">
+          <table id="datatable" class="table table-striped table-bordered filterAnother" style="width:100%">
                 <thead>
                   <tr>
-                    <th>STT</th>
-                    <th>Tiêu đề video</th>
-                    <th>link video</th>
-                    <th>Độ dài video</th>
-                    <th>Kênh</th>
-                    <th>Lớp</th>
-                    <th>Môn</th>
-                    <th>Ngày tải lên</th>
-                    <th width="280px">Hành động</th>
+                    <th >STT</th>
+                    <th >mã code</th>
+                    <th >Tiêu đề video</th>
+                    <th >link video</th>
+                    <th >Độ dài video</th>
+                    <th style="width:100px !important">Kênh</th>
+                    <th style="width:100px !important">Lớp</th>
+                    <th style="width:100px !important">Môn</th>
+                    <th >Ngày tải lên</th>
+                    <th >Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php $i = 1 ?>
                   @foreach($data as $sourceVideo)
                   <tr>
-                    <td>{{ $sourceVideo->id }}</td>
-                    <td>{{ $sourceVideo->title }}</td>
-                    <td>
-                      <a type="button" style="color:blue !important" src="{{ $sourceVideo->url }}" data-toggle="modal" data-target="#myModal{{$sourceVideo->id}}">{{$sourceVideo->url}}</a>
+                    <td style="width:5%">{{$i++}}</td>
+                    <td style="width:5%">{{ $sourceVideo->id }}</td>
+                    <td style="width:5%">{{ $sourceVideo->title }}</td>
+                    <td style="width:200px !important">
+                      <a type="button" style="color:blue !important;max-width: 100px;word-break: break-all;" src="{{ $sourceVideo->url }}" data-toggle="modal" data-target="#myModal{{$sourceVideo->id}}">{{$sourceVideo->url}}</a>
                        <!-- Modal -->
                       <div class="modal" id="myModal{{$sourceVideo->id}}">
                         <div class="modal-dialog">
@@ -60,12 +62,12 @@
                         </div>
                       </div>
                     </td>
-                    <td>{{gmdate('H:i:s', $sourceVideo->duration)}}</td>
-                    <td>{{ getKhoiNameById($sourceVideo->schoolblock_id) }}</td>
-                    <td>{{ getClassNameById($sourceVideo->class_id) }}</td>
-                    <td>{{ getMonNameById($sourceVideo->subject_id) }}</td>
-                    <td>{{ $sourceVideo->created_at }}</td>
-                    <td>
+                    <td style="width:5%">{{gmdate('H:i:s', $sourceVideo->duration)}}</td>
+                    <td width="10%">{{ getKhoiNameById($sourceVideo->schoolblock_id) }}</td>
+                    <td width="10%">{{ getClassNameById($sourceVideo->class_id) }}</td>
+                    <td width="10%">{{ getMonNameById($sourceVideo->subject_id) }}</td>
+                    <td width="10%">{{ $sourceVideo->created_at }}</td>
+                    <td width="15%">
                       <form action="{{ action('AnotherVideoController@destroy',$sourceVideo->id) }}" method="POST">
                         <a href="{{ action('AnotherVideoController@edit',$sourceVideo->id) }}" title="Sửa"><i class="fa fa-edit"></i></a>
                         <a href="{{ action('AnotherVideoController@show',$sourceVideo->id) }}" title="xem chi tiết"><i class="fa fa-eye"></i></a>
@@ -79,8 +81,21 @@
                   </tr>
                   @endforeach
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th >STT</th>
+                    <th >mã code</th>
+                    <th >Tiêu đề video</th>
+                    <th >link video</th>
+                    <th >Độ dài video</th>
+                    <th style="width:100px !important">Kênh</th>
+                    <th style="width:100px !important">Lớp</th>
+                    <th style="width:100px !important">Môn</th>
+                    <th >Ngày tải lên</th>
+                    <th >Hành động</th>
+                  </tr>
+                </tfoot>
               </table>
-            </div>
           </div>
         </div>
       </div>

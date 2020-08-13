@@ -27,7 +27,7 @@
       </div>
 
       <div class="table-responsive m-t-20">
-        <table class="table table-bordered table-striped" id="datatable">
+        <table class="table table-bordered table-striped filterTable" id="datatable ">
           <thead>
             <tr>
               <th>STT</th>
@@ -69,6 +69,20 @@
             </tr>
             @endforeach
           </tbody>
+          <tfoot>
+            <tr>
+              <th>STT</th>
+              <th>Id</th>
+              <th>Tiêu đề</th>
+              <th>Ngày tạo</th>
+              <th>Thời gian phát</th>
+              <th style="width:100px">kênh</th>
+              <th style="width:100px"> Lớp</th>
+              <th style="width:100px"> Giáo viên</th>
+              <th style="width:100px"> Môn </th>
+              <th>Trạng thái</th>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
