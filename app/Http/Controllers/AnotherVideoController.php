@@ -72,7 +72,6 @@ class AnotherVideoController extends Controller
     public function edit($id)
     {
         $anothervideo = AnotherVideo::find($id);
-        dd(12435);
         return view('anothervideo.edit')->with(compact('anothervideo'));
     }
 
@@ -87,7 +86,6 @@ class AnotherVideoController extends Controller
     {
         $input = $request->all();
         $videoanother = AnotherVideo::find($id);
-        dd(123);
         $duration = getDurationVideoFromText($input['duration']);
         $input['duration'] = $duration;
         $input['source_id'] = $input['url'];
