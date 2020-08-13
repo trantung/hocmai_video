@@ -212,13 +212,14 @@ function validate() {
 }
 // update hình ảnh 
 $(document).ready(function() {
-    $('#upload').on('change', function() {
+    $('.upload').on('change', function() {
+        $("#image_small").remove();
         readURL(input);
 
     });
-    $('#upload1').on('change', function() {
-        $("#image_big").removeAttr('src');
-        readURL1(input);
+    $('.upload1').on('change', function() {
+        $("#image_big").remove();
+        readURL1(input1);
     });
 
 });
@@ -227,7 +228,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            $("#image_small").removeAttr('src');
+
             $('#imageResult')
                 .attr('src', e.target.result);
 
@@ -236,12 +237,11 @@ function readURL(input) {
     }
 }
 
-function readURL1(input) {
-    if (input.files && input.files[0]) {
+function readURL1(input1) {
+    if (input1.files && input1.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-
-            $('#imageResult1').removeAttr('src')
+            $('#imageResult1')
                 .attr('src', e.target.result);
         };
         reader.readAsDataURL(input1.files[0]);
