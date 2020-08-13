@@ -213,5 +213,5 @@
     </div>
 </div>
 {{ Form::close() }}
-@include('livestream_hocmai_video.script')
+<!-- @include('livestream_hocmai_video.script') -->
 @stop

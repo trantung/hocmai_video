@@ -109,12 +109,11 @@
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
                     <input type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file">
-
                 </div>
                 <!-- Uploaded image area-->
                 <div class="col-md-12">
                     @if($livestream->image_small)
-                    <img src="{{$livestream->image_small }}" width="150px" height="auto" />
+                    <img id="image_small" src="{{$livestream->image_small }}" width="150px" height="auto" />
                     @endif
                     <img id="imageResult" src="#" alt="" width="200px" height="100px">
                 </div>
@@ -127,7 +126,7 @@
                 <!-- Upload image input-->
                 <div class="col-md-12">
                     @if($livestream->image_big)
-                    <img src="{{$livestream->image_big}}" width="400px">
+                    <img id="image_big" src="{{$livestream->image_big}}" width="400px">
                     @endif
                     <img id="imageResult1" src="#" alt="" width="400px" height="200px">
                 </div>
@@ -264,5 +263,5 @@
     </div>
 </div>
 {{ Form::close() }}
-@include('livestream_hocmai_video.script')
+<!-- @include('livestream_another_video.script') -->
 @stop
