@@ -94,6 +94,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                <div class="col-md-6">
+                    <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
+                    {{ Form::select('is_livestreams', getLiveStreamsStatus(), old('is_livestreams'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="form-group col-md-12">
                     <label>Nội dung</label>
                     {{ Form::textarea('description', $livestream->description, array('class' => 'form-control','id'=>'editor1')) }}

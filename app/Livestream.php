@@ -26,6 +26,7 @@ class Livestream extends Model
         'is_comment',
         'per_comment',
         'start_comment',
+        'is_livestreams',
     ];
 
     public function setEndTimeAttribute($value)

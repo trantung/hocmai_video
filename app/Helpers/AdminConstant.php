@@ -37,4 +37,6 @@ define('TIME_DEFAULT', 'success');
 //OS
 define('IOS', 1);
 define('ANDROID', 2);
-
+//livestreams: 1: livestream su dung video co san, 0:livestream su dung link truc tiep
+define('IS_LIVESTREAM_TEST',1);
+define('IS_LIVESTREAM_DIRECT',0);

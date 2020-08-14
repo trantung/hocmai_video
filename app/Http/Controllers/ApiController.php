@@ -116,7 +116,7 @@ class ApiController extends Controller
         $result['teacher_image'] = $teacher['avatar'];
         $result['like_number'] = $this->getLikeNumber($value->id);
         $result['view_number'] = $this->getViewNumber($value->id);
-
+        $result['is_livestreams'] = $value->is_livestreams;
         return $result;
     }
 
