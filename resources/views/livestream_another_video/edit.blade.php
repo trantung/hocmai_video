@@ -96,10 +96,7 @@
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
-                    <select class="form-control col-md-8 col-sm-8 col-lg-12" id="is_livestreams" name="is_livestreams">
-                        <option value="0">Livestream trực tiếp</option>
-                        <option value="1">Livestream video</option>
-                    </select>
+                    {{ Form::select('is_livestreams', getLiveStreamsStatus(), old('is_livestreams'), array('class' => 'form-control')) }}
                 </div>
             </div>
             <div class="form-group row">

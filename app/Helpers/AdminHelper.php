@@ -178,7 +178,9 @@ function getArrayStatus()
 {
     return [0 => 'Không đăng nhập', 1 => 'Đăng nhập'];
 }
-
+function getLiveStreamsStatus(){
+    return [0 => 'Livestream trực tiếp','Livestream video'];
+}
 function getListRepeat()
 {
     $array = [
