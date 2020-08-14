@@ -85,6 +85,15 @@
                 </div>
             </div>
             <div class="form-group row">
+                <div class="col-md-6">
+                    <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
+                    <select class="form-control col-md-8 col-sm-8 col-lg-12" id="is_livestreams" name="is_livestreams">
+                        <option value="0">Livestream trực tiếp</option>
+                        <option value="1">Livestream video</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="form-group col-md-12">
                     <label>Nội dung</label>
                     <textarea name="description" value="{{ old('description') }}" require="true" class="form-control " id="editor1"></textarea>

@@ -94,6 +94,13 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label for="">Hình thức liveStream</label>
+                <select class="form-control" id="is_liveStreams" name="is_liveStream">
+                    <option value="0">Livestream trực tiếp</option>
+                    <option value="1">Livestream video</option>
+                </select>
+            </div>
+            <div class="form-group row">
                 <div class="form-group col-md-12">
                     <label>Nội dung</label>
                     {{ Form::textarea('description', $livestream->description, array('class' => 'form-control','id'=>'editor1')) }}
