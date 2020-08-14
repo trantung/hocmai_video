@@ -19,7 +19,7 @@
         <div class="col-md-12 col-sm-12">
           <label class="control-label col-md-2 col-sm-2">Tên lớp</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::text('name', old($subject->name), array('class' => 'form-control ','placeholder'=>'Tên lớp')) }}
+            {{ Form::text('name', $subject->name, array('class' => 'form-control ','placeholder'=>'Tên lớp')) }}
             @if (Session::has('message'))
             <span class="text-danger">{{ Session::get('message') }}</span>
             @endif

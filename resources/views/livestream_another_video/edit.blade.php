@@ -146,7 +146,7 @@
             <div class="col-md-12">
                 <label class="control-label col-md-2 col-sm-2 ">Thời điểm đăng Livestream</label>
                 <div class="col-md-4 col-sm-4 ">
-                    {{ Form::select('status_time', getArrayIsPublish(), old('is_publish'),array('class' => 'form-control','id'=>'selectTime')) }}
+                    {{ Form::select('status_time', getArrayIsPublish(), $livestream->status_time,array('class' => 'form-control','id'=>'selectTime')) }}
                 </div>
             </div>
         </div>
