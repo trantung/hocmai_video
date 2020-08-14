@@ -33,7 +33,7 @@
         <div class="col-md-12 col-sm-12">
           <label class="col-md-3 col-sm-3">Mô tả</label>
           <div class="col-md-11 col-sm-11">
-            {{ Form::textarea('desc', old($class->desc), array('class' => 'form-control','id'=>'editor1')) }}
+            {{ Form::textarea('desc', $class->desc, array('class' => 'form-control','id'=>'editor1')) }}
           </div>
         </div>
       </div>

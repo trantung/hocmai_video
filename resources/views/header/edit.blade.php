@@ -56,7 +56,7 @@
         <div class="col-md-6 col-lg-6">
           <label class="col-lg-2">Trạng thái</label>
           <div class="col-md-8 col-sm-8 col-lg-8">
-            {{ Form::select('status', getStatusHeaderFooter(), old('status'),array('class' => 'form-control')) }}
+            {{ Form::select('status', getStatusHeaderFooter(), $header->status,array('class' => 'form-control')) }}
           </div>
         </div>
       </div>

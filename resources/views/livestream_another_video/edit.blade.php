@@ -53,7 +53,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-6">
                     <label class="col-md-6 col-sm-6 col-lg-6 ">Yêu cầu đăng nhập</label>
                     <div class="col-md-8 col-sm-8 col-lg-8">
-                        {{ Form::select('require_login', getArrayStatus(), old('require_login'), array('class' => 'form-control')) }}
+                        {{ Form::select('require_login', getArrayStatus(), $livestream->require_login, array('class' => 'form-control')) }}
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     <label class="col-md-6 col-sm-6 col-lg-6">Kênh phát</label>
                     <div class="col-md-8 col-sm-8 col-lg-12">
                         @if(checkUserRole() == ADMIN)
-                        {{ Form::select('schoolblock_id', getListKhoi(), old('schoolblock_id'), array('class' => 'form-control','id'=>'schoolblock_id')) }}
+                        {{ Form::select('schoolblock_id', getListKhoi(), $livestream->schoolblock_id, array('class' => 'form-control','id'=>'schoolblock_id')) }}
                         @else
                         {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
                         @endif
@@ -83,20 +83,20 @@
                 <div class="col-md-6 col-lg-6 col-sm-6">
                     <label class="col-md-6 col-sm-6 col-lg-6">Giáo viên</label>
                     <div class="col-md-8 col-sm-8 col-lg-12">
-                        {{ Form::select('teacher_id', getListGv(), old('teacher_id'), array('class' => 'form-control')) }}
+                        {{ Form::select('teacher_id', getListGv(), $livestream->teacher_id, array('class' => 'form-control')) }}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-6">
                     <label class="col-md-6 col-sm-6 col-lg-6">Môn</label>
                     <div class="col-md-8 col-sm-8 col-lg-8">
-                        {{ Form::select('subject_id', getListMon(), old('subject_id'),array('class' => 'form-control')) }}
+                        {{ Form::select('subject_id', getListMon(), $livestream->subject_id,array('class' => 'form-control')) }}
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
-                    {{ Form::select('is_livestreams', getLiveStreamsStatus(), old('is_livestreams'), array('class' => 'form-control')) }}
+                    {{ Form::select('is_livestreams', getLiveStreamsStatus(), $livestream->is_livestreams, array('class' => 'form-control')) }}
                 </div>
             </div>
             <div class="form-group row">
@@ -146,7 +146,7 @@
             <div class="col-md-12">
                 <label class="control-label col-md-2 col-sm-2 ">Thời điểm đăng Livestream</label>
                 <div class="col-md-4 col-sm-4 ">
-                    {{ Form::select('status_time', getArrayIsPublish(), old('is_publish'),array('class' => 'form-control','id'=>'selectTime')) }}
+                    {{ Form::select('status_time', getArrayIsPublish(), $livestream->status_time,array('class' => 'form-control','id'=>'selectTime')) }}
                 </div>
             </div>
         </div>
