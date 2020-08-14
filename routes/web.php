@@ -17,10 +17,16 @@ use App\Http\Middleware\CheckPermission;
 use APV\User\Models\User;
 use App\Livestream;
 
-
 Route::get('/delete_livestream_trash', function(){
     $data = Livestream::where('id','<', 106)->delete();
     
+});
+Route::get('/is_livestream_update_livestream', function(){
+    $data = Livestream::all();
+    foreach ($data as $key => $value) {
+        $value->update(['is_livestreams' => IS_LIVESTREAM_TEST]);
+    }
+    dd(11);
 });
 Route::get('/format_db', function(){
     $data = Livestream::all();
