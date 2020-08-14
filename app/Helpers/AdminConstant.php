@@ -37,4 +37,7 @@ define('TIME_DEFAULT', 'success');
 //OS
 define('IOS', 1);
 define('ANDROID', 2);
-
+//livestreams
+define('is_livestreams_test',1);
+// is_livestreams trực tiếp
+define('is_livestreams_direct',0);
