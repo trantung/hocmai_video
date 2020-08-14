@@ -179,7 +179,10 @@ function getArrayStatus()
     return [0 => 'Không đăng nhập', 1 => 'Đăng nhập'];
 }
 function getLiveStreamsStatus(){
-    return [0 => 'Livestream trực tiếp','Livestream video'];
+    return [
+        IS_LIVESTREAM_TEST =>'Livestream video có sẵn'
+        IS_LIVESTREAM_DIRECT => 'Livestream trực tiếp', 
+    ];
 }
 function getListRepeat()
 {
