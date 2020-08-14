@@ -180,7 +180,7 @@ function getArrayStatus()
 }
 function getLiveStreamsStatus(){
     $res = [
-        IS_LIVESTREAM_TEST =>'Livestream video có sẵn'
+        IS_LIVESTREAM_TEST => 'Livestream video có sẵn',
         IS_LIVESTREAM_DIRECT => 'Livestream trực tiếp', 
     ];
     return $res;
