@@ -517,6 +517,7 @@ public function livestreamCalendar(Request $request)
             "name": "dfdff",
             "video_url": [],
             "small_cover": {},
+            "medium_cover": {},
             "big_cover": {},
             "subject_id": null,
             "subject_name": null,
