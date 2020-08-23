@@ -98,6 +98,7 @@ class ApiController extends Controller
         $result['video_url'] = $this->getVideoUrlByLivestream($value->id, ['start_time' => $startTimeFormat, 'end_time' => $endTime]);
         $result['small_cover'] = getUrlFull($value->image_small);
         $result['big_cover'] = getUrlFull($value->image_big);
+        $result['medium_cover'] = getUrlFull($value->image_medium);
         $result['subject_id'] = $value->subject_id;
         $result['subject_name'] = getMonNameById($value->subject_id);
         $result['class_id'] = $value->class_id;

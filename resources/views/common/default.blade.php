@@ -16,9 +16,9 @@
           <!-- menu profile quick info -->
           <!-- avatar -->
           <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="{{$userInfo->avatar}}" alt="..." class="img-circle profile_img">
-            </div>
+            <!-- <div class="profile_pic">
+              <img src="{{$userInfo->avatar}}" alt="..." class="profile_img">
+            </div> -->
             <div class="profile_info">
               <span>Welcome,</span>
               @if($userInfo = getInforUser())
