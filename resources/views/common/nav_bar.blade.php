@@ -10,9 +10,7 @@
       <ul class=" navbar-right">
       <div class="dropdown" style="float:right;">
         <button class="dropbtn"> 
-          @if($userInfo)
-              {{ $userInfo->name }}
-            @endif
+          <img src="{{$userInfo->avatar}}" height="50px" width="50px">
           </button>
           <div class="dropdown-content" style="left:0;">
             <a href="{{ action('ProfileController@index')}}">Profile</a>

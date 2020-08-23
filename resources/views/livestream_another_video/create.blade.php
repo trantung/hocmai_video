@@ -85,9 +85,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-6 col-sm-6">
                     <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
-                    {{ Form::select('is_livestreams', getLiveStreamsStatus(), old('is_livestreams'), array('class' => 'form-control')) }}
+                    <div class="col-md-8 col-sm-8 col-lg-12">
+                        {{ Form::select('is_livestreams', getLiveStreamsStatus(), old('is_livestreams'), array('class' => 'form-control')) }}
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -110,9 +112,17 @@
                 <div class="col-md-12"><img id="imageResult" src="#" alt="" width="200px" height="100px"></div>
             </div>
             <div class="row form-group">
+                <label class="control-label col-md-2 col-sm-2">Cover vừa liveStream</label>
+                <div class="col-sm-10 col-md-10">
+                    <input type="file"  onchange="readURL2(this);" id="image_medium" name="image_medium" class="form-control-file" value="{{ old('image_medium') }}" required="true">
+                </div>
+                <!-- Uploaded image area-->
+                <div class="col-md-12"><img id="imageResult2" src="#" alt="" width="250px" height="150px"></div>
+            </div>
+            <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover lớn liveStream</label>
                 <div class="col-sm-10 col-md-10">
-                    <input id="upload1" type="file" name="file_image_big" id="file_image_big" value="{{ old('file_image_big') }}" onchange="readURL1(this);" required="true">
+                    <input id="upload1" type="file" name="file_image_big"  value="{{ old('file_image_big') }}" onchange="readURL1(this);" required="true">
                 </div>
                 <!-- Upload image input-->
                 <div class="col-md-12"><img id="imageResult1" src="#" alt="" width="400px" height="200px"></div>

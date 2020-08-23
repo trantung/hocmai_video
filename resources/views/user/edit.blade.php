@@ -53,7 +53,7 @@
             <br>
             <br>
             @if($user->avatar)
-            <img src="{{$user->avatar }}" width="150px" height="auto" style="margin: 10px 0" />
+            <img src="{{$user->avatar }}" width="150px" height="auto" id="avatar1" style="margin: 10px 0" />
             @endif
           </div>
         </div>

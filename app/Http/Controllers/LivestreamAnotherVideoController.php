@@ -113,7 +113,7 @@ class LivestreamAnotherVideoController extends Controller
         if ($livestream->status_time == IS_PUBLISH_ACTIVE) {
             $livestream->update(['timer_clock' => $livestream->created_at]);
         }
-        $imageUrlSmall = $imageUrlBig = null;
+        $imageUrlSmall = $imageUrlBig = $imageUrlMedium = null;
         $date = date('Y-m-d H:i:s');
         $prefix = strtotime($date);
         if (request()->file('file_image_small')) {
@@ -129,8 +129,13 @@ class LivestreamAnotherVideoController extends Controller
             $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
             $imageUrlBig = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
         }
-
-        Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
+        if (request()->file('image_medium')) {
+            $fileBig = request()->file('image_medium');
+            $fileNameImage = $prefix . $fileBig->getClientOriginalName();
+            $fileBig->move(public_path("/uploads/another_video/" . $livestreamId . '/big/'), $fileNameImage);
+            $imageUrlMedium = '/uploads/another_video/' . $livestreamId . '/big/' . $fileNameImage;
+        }
+        Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig,'image_medium'=>$imageUrlMedium]);
         //luu vao bang livestream_another_videos
         foreach ($input['video_source_id'] as $key => $value) {
             LivestreamAnotherVideo::create(['livestream_id' => $livestreamId, 'another_video_id' => $value]);
@@ -145,13 +150,14 @@ class LivestreamAnotherVideoController extends Controller
     public function update(Request $request,$id)
     {
         $input = $request->all();
-        
+      // dd($input);
         //check video_id
-            if (request()->input['video_source_id'] == 'null') {
-                $message = 'Không tìm thấy video load';
-                Session::flash('message', "Điền id video đúng và click vào load video");
-                return Redirect::back()->withInput();
-            }
+
+        if (empty($input['video_source_id'])) {
+            $message = 'Không tìm thấy video load';
+            Session::flash('message', "Điền id video đúng và click vào load video");
+            return Redirect::back()->withInput();
+        }
         $timeClock = $endTime = null;
         if (isset($input['timer_clock'])) {
             $timeClock = str_replace('/', '-', $input['timer_clock']);
@@ -170,7 +176,7 @@ class LivestreamAnotherVideoController extends Controller
         }
         // dd($input);
         $livestreamId = Livestream::find($id);
-        $imageUrlSmall = $imageUrlBig = null;
+        $imageUrlSmall = $imageUrlBig = $imageUrlMedium = null;
         $date = date('Y-m-d H:i:s');
         $prefix = strtotime($date);
         if (request()->file('file_image_small')) {
@@ -185,11 +191,18 @@ class LivestreamAnotherVideoController extends Controller
             $fileBig->move(public_path("/uploads/another_video/update/" . $id . '/big/'), $fileNameImage);
             $imageUrlBig = '/uploads/another_video/update/' . $id . '/big/' . $fileNameImage;
         }
-        Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig]);
+        if (request()->file('image_medium')) {
+            $fileBig = request()->file('image_medium');
+            $fileNameImage = $prefix . $fileBig->getClientOriginalName();
+            $fileBig->move(public_path("/uploads/another_video/update/" . $id . '/big/'), $fileNameImage);
+            $imageUrlMedium = '/uploads/another_video/update/' . $id . '/big/' . $fileNameImage;
+        }
+
+        Livestream::where('id', $livestreamId)->update(['image_small' => $imageUrlSmall, 'image_big' => $imageUrlBig, 'image_medium' => $imageUrlMedium]);
         //luu vao bang livestream_another_videos
-        if(request()->input['video_source_id']){
+        if(empty($input['video_source_id'])){
             foreach ($input['video_source_id'] as $key => $value) {
-                LivestreamAnotherVideo::create(['livestream_id' => $id, 'another_video_id' => $value]);
+                LivestreamAnotherVideo::update(['livestream_id' => $id, 'another_video_id' => $value]);
             }
         }
         $livestreamId->update($input);

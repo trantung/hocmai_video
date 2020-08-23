@@ -108,6 +108,7 @@ class UserController extends AdminController
            $file->move(public_path("/uploads/admin/"),$fileNameImage);
            $imageUrl = '/uploads/admin/'.$fileNameImage;
         }
+        
         $user->name = request('name');
         $user->username = request('username');
         $user->email = request('email');

@@ -35,7 +35,8 @@
                 <div id="video_source_detail" class="col-md-12">
                     <div class="col-md-12">
                         <div class="col-md-2">
-                            {{getUrlSourceVideoName($livestream->id)}}<i class="fa fa-times del"></i>
+                            {{getUrlSourceVideoName($livestream->id)}}
+                            <i class="fa fa-times del"></i>
                         </div>
                     </div>
                     <div class="col-md-12" style="display: block;margin:5px" id="edit_livestream">
@@ -114,14 +115,27 @@
             <div class="row form-group">
                 <label class="control-label col-md-2 col-sm-2">Cover nhỏ liveStream</label>
                 <div class="col-sm-10 col-md-10">
-                    <input class="upload" type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small" class="form-control-file">
+                    <input  type="file" onchange="readURL(this);" id="file_image_small" name="file_image_small upload" class="form-control-file">
                 </div>
                 <!-- Uploaded image area-->
                 <div class="col-md-12">
                     @if($livestream->image_small)
-                    <img id="image_small" src="{{$livestream->image_small }}" width="150px" height="auto" />
+                    <img id="image_small" src="{{$livestream->image_small }}" name="file_image_small" width="150px" height="auto" />
                     @endif
-                    <img id="imageResult" src="#" alt="" width="200px" height="100px">
+                    <img id="imageResult" src="#" alt="" width="200px" height="100px" name="file_image_small">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-md-2 col-sm-2">Cover vừa liveStream</label>
+                <div class="col-sm-10 col-md-10">
+                    <input  type="file" onchange="readURL2(this);" id="image_medium" name="image_medium" class="form-control-file image_medium">
+                </div>
+                <!-- Uploaded image area-->
+                <div class="col-md-12">
+                    @if($livestream->image_medium)
+                    <img id="image_medium1" src="{{$livestream->image_small }}" width="150px" height="auto" name="image_medium" />
+                    @endif
+                    <img id="imageResult2" src="#" alt="" width="250px" height="150px" name="image_medium">
                 </div>
             </div>
             <div class="row form-group">
@@ -132,9 +146,9 @@
                 <!-- Upload image input-->
                 <div class="col-md-12">
                     @if($livestream->image_big)
-                    <img id="image_big" src="{{$livestream->image_big}}" width="400px">
+                    <img id="image_big" src="{{$livestream->image_big}}" width="400px" name="file_image_big">
                     @endif
-                    <img id="imageResult1" src="#" alt="" width="400px" height="200px">
+                    <img id="imageResult1" src="#" alt="" width="400px" height="200px" name="file_image_big">
                 </div>
 
             </div>

@@ -221,7 +221,14 @@ $(document).ready(function() {
         $("#image_big").remove();
         readURL1(input1);
     });
-
+    $('.image_medium').on('change', function() {
+        $("#image_medium1").remove();
+        readURL1(input1);
+    });
+    //delete edit user 
+    $('#avatarUpdate').on('change', function() {
+        $("#avatar1").remove();
+    });
 });
 
 function readURL(input) {
@@ -237,14 +244,25 @@ function readURL(input) {
     }
 }
 
-function readURL1(input1) {
-    if (input1.files && input1.files[0]) {
+function readURL1(input) {
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
             $('#imageResult1')
                 .attr('src', e.target.result);
         };
-        reader.readAsDataURL(input1.files[0]);
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function readURL2(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imageResult2')
+                .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
     }
 }
 /*  ==========================================
@@ -253,10 +271,13 @@ function readURL1(input1) {
 
 var input = document.getElementById('upload');
 var infoArea = document.getElementById('upload-label');
-var input1 = document.getElementById('upload1');
+var input = document.getElementById('upload1');
 var infoArea1 = document.getElementById('upload-label1');
+var input = document.getElementById('upload2');
+var infoArea1 = document.getElementById('upload-label2');
 input.addEventListener('change', showFileName);
-input1.addEventListener('change', showFileName1);
+input.addEventListener('change', showFileName1);
+input.addEventListener('change', showFileName2);
 
 function showFileName(event) {
     var input = event.srcElement;
@@ -268,4 +289,10 @@ function showFileName1(event) {
     var input1 = event.srcElement;
     var fileName1 = input1.file[0].name;
     infoArea1.textContent = 'File name: ' + fileName1;
+}
+
+function showFileName2(event) {
+    var input2 = event.srcElement;
+    var fileName2 = input2.file[0].name;
+    infoArea1.textContent = 'File name: ' + fileName2;
 }
