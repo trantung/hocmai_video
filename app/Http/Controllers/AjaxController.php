@@ -9,6 +9,7 @@ use App\HocMaiFooter;
 use App\HocMaiHeader;
 use App\CommentFake;
 use App\UserFake;
+use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
@@ -79,14 +80,14 @@ class AjaxController extends Controller
         $number = $request->number;
         $videoId = $request->video_source_id;
         $start = $request->comment_start_time * 60;
-        dd($start);
+      //  dd($start);
         $video = AnotherVideo::find($videoId);
         $duration = $video->duration - $start;
         $timeLoop = $number * 60;
         $commentNumber = (int) floor($duration/$timeLoop);
-        var_dump($commentNumber);
+        //var_dump($commentNumber);
         $list = CommentFake::all();
-        var_dump($list);
+        //var_dump($list);
         //nếu số lượng comment không đủ
         if ($list->count() < $commentNumber) {
             return $this->getCommentFakeNotEnough($commentNumber);
@@ -110,5 +111,4 @@ class AjaxController extends Controller
         );
         return response()->json($response);
     }
-
 }

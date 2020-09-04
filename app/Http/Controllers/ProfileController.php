@@ -18,30 +18,29 @@ class ProfileController extends Controller{
     public function update(Request $request, $id) {
             $input = $request -> all();
           $user = Auth::user();
-          $this->validate($request, [
-              'name' => 'required|max:255|unique:users,name,'.$user->id,
-              'email' => 'required|email|max:255|unique:users,email,'.$user->id,
-          ]);
+          // $this->validate($request, [
+          //     'name' => 'required|max:255|unique:users,name,'.$user->id,
+          //     'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+          // ]);
             $user->name = $request->name;
             $user->email = $request->email;
           //  dd($user->email);
-        
           $userId = User::find($id);
-          $imageUrl = $userId->avatar;
-          $file = request()->file('avatar');
           if($request->password != $userId->password){
             $user->password = Hash::make($request->password);
             $user->save();
           }
-          if (request()->file('avatar')) {
-            $file = $request->file('avatar');
+          if (isset($input['avatar'])) {
+            $file = $input['avatar'];
             $fileNameImage = $file->getClientOriginalName();
-            $file->move(public_path("/uploads/admin/" . $userId . '/avatar/'), $fileNameImage);
-            $imageUrl = '/uploads/admin/' . $userId . '/avatar/' . $fileNameImage;
+            $file->move(public_path("/uploads/admin/" . $id . '/avatar/'), $fileNameImage);
+            $imageUrl = '/uploads/admin/' . $id . '/avatar/' . $fileNameImage;
+            $user->avatar = $imageUrl;
+            $user->save();
         }
-        
-        User::where('id', $userId)->update(['avatar' => $imageUrl]);
+        // User::where('id', $id)->update(['avatar' => $imageUrl]);
           $input = $request->only('name','email','role_id','avatar');
+         // dd($input);
           $user->update($input);
           return Redirect::action('AdminController@index'); 
       }

@@ -16,14 +16,14 @@
       {{ Form::open(array('method'=>'POST', 'action' => array('AnotherVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6 col-lg-6">
-          <label class="col-lg-4">Tiêu đề</label>
+          <label class="col-md-5 col-sm-5 col-lg-5">Tiêu đề</label>
           <div class="col-lg-9">
             <input type="text" name="title" id="title" class="form-control" required>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
-          <label class="col-lg-4">url</label>
-          <div class="col-lg-9">
+          <label class="col-md-5 col-sm-5 col-lg-5">url</label>
+          <div class="col-md-8 col-sm-8 col-lg-8">
             <input type="text" name="url" id="url" class="form-control" required>
           </div>
         </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="form-group row">
         <div class="col-lg-6">
-          <label class="col-md-4 col-sm-4 col-lg-4">Kênh</label>
+          <label class="col-md-5 col-sm-5 col-lg-5">Kênh</label>
           <div class="col-md-9 col-sm-9 ">
             @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), null, array('class' => 'form-control','id'=>'schoolblock_id')) }}
@@ -41,8 +41,8 @@
           </div>
         </div>
         <div class="col-lg-6" id="class_id">
-          <label id="label_class1" class="col-lg-4 col-md-4 col-sm-4">Lớp</label>
-          <div id="class1" class="col-md-9 col-sm-9 col-lg-9">
+          <label id="label_class1" class="col-md-5 col-sm-5 col-lg-5">Lớp</label>
+          <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
             <select class="form-control" name="class_id">
               <option value="1">Lớp 12</option>
               <option value="2">Lớp 10</option>
@@ -59,8 +59,8 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <label class="col-lg-4 col-md-4 col-sm-3">Độ dài video</label>
-          <div class="col-md-9 col-sm-9">
+          <label class="col-md-5 col-sm-5 col-lg-5">Độ dài video</label>
+          <div class="col-md-8 col-sm-8 col-lg-8">
             <input type="text" name="duration" class="masked" placeholder="hh:mm:ss"  data-inputmask="'mask': '99:99:99'"  id="nortlmask"  required value="{{old('duration')}}"/>
             <!-- <input type="text" name="duration" class="masked" placeholder="hh:mm"  id="nortlmask" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required /> -->
           </div>

@@ -23,8 +23,8 @@
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
-          <label class="col-md-4 col-sm-4 col-lg-4">url</label>
-          <div class="col-md-9 col-sm-9">
+          <label class="col-md-8 col-sm-8 col-lg-8">url</label>
+          <div class="col-md-8 col-sm-8 col-lg-8">
             <input type="text" name="url" id="url" class="form-control" required value="{{$anothervideo->url}}">
           </div>
         </div>
@@ -35,19 +35,33 @@
           <label class="col-lg-4">Kênh</label>
           <div class="col-md-9 col-sm-9 ">
             @if(checkUserRole() == ADMIN)
-            {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control','id'=>'schoolblock_id')) }}
+              <select name="schoolblock_id" id="schoolblock_id" class="form-control">
+                <option value="1" {{ $anothervideo->schoolblock_id == 1 ? 'selected' : '' }}>Trung học phổ thông</option>
+                <option value="2" {{ $anothervideo->schoolblock_id == 2 ? 'selected' : '' }}>Trung học cơ sở</option>
+                <option value="3" {{ $anothervideo->schoolblock_id == 3 ? 'selected' : '' }}>Tiểu học</option>
+              </select>
+            <!-- {{ Form::select('schoolblock_id', getListKhoi(), $anothervideo->schoolblock_id, array('class' => 'form-control','id'=>'schoolblock_id')) }} -->
             @else
             {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
             @endif
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6" id="class_id">
-          <label id="label_class1" class="col-lg-4">Lớp</label>
-          <div id="class1" class="col-md-9 col-sm-9 col-lg-9">
+          <label id="label_class1_edit" class="col-md-8 col-sm-8 col-lg-8">Lớp</label>
+          <div id="class1_edit" class="col-md-8 col-sm-8 col-lg-8">
             <select class="form-control" name="class_id">
-              <option value="1">Lớp 12</option>
-              <option value="2">Lớp 10</option>
-              <option value="3">Lớp 11</option>
+              <option value="1"{{ $anothervideo->class_id == 1 ? 'selected' : '' }}>Lớp 12</option>
+              <option value="2" {{ $anothervideo->class_id == 2 ? 'selected' : '' }}>Lớp 11</option>
+              <option value="3"{{ $anothervideo->class_id == 3 ? 'selected' : '' }}>Lớp 10</option>
+              <option value="4"{{ $anothervideo->class_id == 4 ? 'selected' : '' }}>Lớp 9</option>
+              <option value="5"{{ $anothervideo->class_id == 5 ? 'selected' : '' }}>Lớp 8</option>
+              <option value="6"{{ $anothervideo->class_id == 6 ? 'selected' : '' }}>Lớp 7</option>
+              <option value="7" {{ $anothervideo->class_id == 7 ? 'selected' : '' }}>Lớp 6</option>
+              <option value="8" {{ $anothervideo->class_id == 8 ? 'selected' : '' }}>Lớp 5</option>
+              <option value="9" {{ $anothervideo->class_id == 9 ? 'selected' : '' }}>Lớp 4</option>
+              <option value="10" {{ $anothervideo->class_id == 10 ? 'selected' : '' }}>Lớp 3</option>
+              <option value="11" {{ $anothervideo->class_id == 11 ? 'selected' : '' }}>Lớp 2</option>
+              <option value="12"{{ $anothervideo->class_id == 12 ? 'selected' : '' }}>Lớp 1</option>
             </select>
           </div>
         </div>
@@ -60,8 +74,8 @@
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
-          <label class="col-lg-4">Độ dài video</label>
-          <div class="col-md-9 col-sm-9">
+          <label class="col-md-8 col-sm-8 col-lg-8">Độ dài video</label>
+          <div class="col-md-8 col-sm-8 col-lg-8">
           <input type="text" name="duration" class="masked" placeholder="hh:mm:ss" value="{{gmdate('H:i:s', $anothervideo->duration)}}" data-inputmask="'mask': '99:99:99'"  id="nortlmask"  required />
             <!-- <input type="time" name="duration" value="{{gmdate('H:i:s', $anothervideo->duration)}}" step="1" required /> -->
           </div>

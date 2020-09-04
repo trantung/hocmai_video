@@ -20,7 +20,7 @@ class UserController extends AdminController
      */
     public function index(Request $request)
     {
-        $data = User::all();
+        $data = User::all()->sortByDesc('id');
         return view('user.index')->with(compact('data'));
     }
 

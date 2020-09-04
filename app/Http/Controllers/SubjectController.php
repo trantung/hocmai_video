@@ -17,7 +17,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $data = Subject::all();
+        $data = Subject::all()->sortByDesc('id');
         return view('subject.index')->with(compact('data'));
     }
 
