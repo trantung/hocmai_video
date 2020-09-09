@@ -664,6 +664,7 @@ public function rateApp()
                 "rate": 5,
                 "version": 1.0.0,
                 "os": 1,
+                "durationTimeRate": "676:22:19",
             }
         }
     }
