@@ -11,7 +11,7 @@
 
 .dropbtn img,
 .profile_img {
-    width: 60px;
+    width: 42px;
     border-radius: 50%;
     height: 40px;
     clip-path: circle(50px at 50% 50%);
@@ -370,7 +370,7 @@ i.del {
 }
 
 .profile {
-    background-color: #1689ca;
+    /* background-color: #1689ca; */
 }
 
 .nav.side-menu>li.active>a {

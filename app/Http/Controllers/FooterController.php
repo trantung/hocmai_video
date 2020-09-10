@@ -15,7 +15,7 @@ class FooterController extends Controller
      */
     public function index()
     {
-         $data = HocMaiFooter::all();
+         $data = HocMaiFooter::all()->sortByDesc('id');
         return view('footer.index')->with(compact('data'));
     }
 

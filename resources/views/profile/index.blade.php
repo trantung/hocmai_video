@@ -4,7 +4,7 @@
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">Yous Profile</div>
         <div class="card-body">
-            {{ Form::open(array('method'=>'PUT', 'action' => array('ProfileController@update', $user->id))) }}
+            {{ Form::open(array('method'=>'PUT', 'files'=>true,'action' => array('ProfileController@update', $user->id))) }}
             <div class="form-group hidden">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PATCH">

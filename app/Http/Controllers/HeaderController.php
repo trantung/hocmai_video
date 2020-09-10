@@ -16,7 +16,7 @@ class HeaderController extends Controller
      */
     public function index()
     {
-         $data = HocMaiHeader::all();
+         $data = HocMaiHeader::all()->sortByDesc('id');
         return view('header.index')->with(compact('data'));
     }
 

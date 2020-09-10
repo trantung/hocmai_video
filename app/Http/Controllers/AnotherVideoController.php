@@ -17,7 +17,7 @@ class AnotherVideoController extends Controller
     {
         $roleId = checkUserRole();
         if ($roleId == ADMIN) {
-            $data = AnotherVideo::all();
+            $data = AnotherVideo::all()->sortByDesc('id');
         } else {
             $schoolblockId = getSchoolblockByUser();
             $data = AnotherVideo::where('schoolblock_id', $schoolblockId)->get();

@@ -16,7 +16,7 @@ class SchoolBlockController extends Controller
      */
     public function index()
     {
-        $data = SchoolBlock::all();
+        $data = SchoolBlock::all()->sortByDesc('id');
         return view('schoolblock.index')->with(compact('data'));
     }
 

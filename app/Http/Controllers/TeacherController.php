@@ -14,7 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $data = Teacher::all();
+        $data = Teacher::all()->sortByDesc('id');
         return view('teacher.index')->with(compact('data'));
     }
 

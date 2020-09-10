@@ -64,8 +64,8 @@ hideButtons = function(current) {
             btnnext.hide();
             btnsubmit.show();
         }
-        console.log(limit);
-        console.log(current, 'adjdj');
+        // console.log(limit);
+        // console.log(current, 'adjdj');
     }
     // jquery
 jQuery.extend(jQuery.expr[':'], {
@@ -213,7 +213,7 @@ function validate() {
 // update hình ảnh 
 $(document).ready(function() {
     $('.upload').on('change', function() {
-        $("#image_small").remove();
+
         readURL(input);
 
     });
@@ -235,7 +235,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-
+            $("#image_small").remove();
             $('#imageResult')
                 .attr('src', e.target.result);
 
@@ -248,6 +248,7 @@ function readURL1(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
+            $("#image_big").remove();
             $('#imageResult1')
                 .attr('src', e.target.result);
         };
@@ -259,6 +260,7 @@ function readURL2(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
+            $("#image_medium1").remove();
             $('#imageResult2')
                 .attr('src', e.target.result);
         };
