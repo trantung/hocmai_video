@@ -485,11 +485,36 @@ class ApiController extends Controller
         if (isset($input['customer_username']) && !empty($input['customer_username'])) {
             $customerUsername = $input['customer_username'];
         }
+       
         $dataByCustomerId = RateApp::where('customer_id', $customerId)
             ->where('os', $input['os'])
             ->where('version', $input['version'])
             ->orderBy('id', 'DESC')->first();
         if ($dataByCustomerId) {
+            $CurrentTimeServer = Carbon::now('Asia/Ho_Chi_Minh');
+            $stamp = strtotime($CurrentTimeServer); // get unix timestamp
+            $time_in_ms =(int) $stamp*1000;
+            $curentTimeCreate = RateApp::where('customer_id', $customerId)->pluck('created_at');
+            //$date = $this->curentTimeCreate->format('Y-m-d hh:ii:ss',$curentTimeCreate);
+            foreach ($curentTimeCreate as $key => $value) {
+                $date = $value->format('Y-m-d H:i:s');
+            }
+            $stamp1 = strtotime($date);
+            //dd($stamp1);
+            $time_in_ms_create = (int)$stamp1*1000;
+           // dd($curentTimeCreate,'vs' ,$CurrentTimeServer);
+            $milliseconds =(int)($time_in_ms - $time_in_ms_create);
+            //dd($duration); 
+            //convert in time
+            $seconds = floor($milliseconds / 1000);
+            $minutes = floor($seconds / 60);
+            $hours = floor($minutes / 60);
+           // $milliseconds = $milliseconds % 1000;
+            $seconds = $seconds % 60;
+            $minutes = $minutes % 60;
+        
+            $format = '%u:%02u:%02u';
+            $time = sprintf($format, $hours, $minutes, $seconds);
             $result = [
                 'customer_id' => $dataByCustomerId->customer_id,
                 'customer_username' => $dataByCustomerId->customer_username,
@@ -497,6 +522,7 @@ class ApiController extends Controller
                 'rate' => $dataByCustomerId->rate,
                 'version' => $dataByCustomerId->version,
                 'os' => $dataByCustomerId->os,
+                'durationTimeRate'=> $time,
             ];
             return $this->responseSuccess($result);
         }
