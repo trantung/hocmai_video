@@ -104,6 +104,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/teacher', 'TeacherController');
     Route::resource('/header', 'HeaderController');
     Route::resource('/footer', 'FooterController');
+    //events
+    Route::resource('/event', 'EventController');
     // cấu hình livestream từ nguồn khác
     Route::get('/livestream/another_video/create', 'LivestreamAnotherVideoController@create')->name('livestream_another_video.create');
     Route::post('/livestream/another_video', 'LivestreamAnotherVideoController@store');
@@ -156,5 +158,7 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     //api rate app: 
     Route::post('/app/rate','ApiController@rateApp');
     Route::post('/app/rate/current_rate','ApiController@currentRate');
+    // api events app
+    Route::get('/event','ApiController@getEvent');
 });
 
