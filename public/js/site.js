@@ -298,3 +298,10 @@ function showFileName2(event) {
     var fileName2 = input2.file[0].name;
     infoArea1.textContent = 'File name: ' + fileName2;
 }
+$(document).ready(function() {
+    $('.DateTimeTextBox').datetimepicker({
+        mask: '39.19.9999 29:59',
+        format: 'd.m.Y H:i'
+    })
+
+});

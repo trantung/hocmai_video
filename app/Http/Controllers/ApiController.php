@@ -15,6 +15,7 @@ use App\HocMaiFooter;
 use APV\User\Services\UserService;
 use App\LivestreamDetail;
 use App\RateApp;
+use App\Event;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -530,5 +531,22 @@ class ApiController extends Controller
         return $this->responseNotFound($result); 
         
     }
-
+    // api events
+    public function getEvent(Request $request){
+        $result = [];
+        $data = Event::all();
+        foreach ($data as $key => $value) {
+            $result[$key]['event_id'] = $value->id;
+            $result[$key]['event_name'] = $value->name;
+            $result[$key]['event_banner'] = getUrlFull($value->banner);
+            $result[$key]['event_start_time'] = $value->start_time;
+            $result[$key]['event_end_time'] = $value->end_time;
+            $result[$key]['event_UrlWebNew'] = $value->urlWebView;
+            $result[$key]['event_fullScreen'] = $value->fullScreen;
+            $result[$key]['event_login_require'] = $value->login_require;
+            $result[$key]['event_is_public'] = $value->is_public;
+            $result[$key]['event_deep_link'] = $value->deep_link;
+        }
+        return $this->responseSuccess($result);
+    }   
 }
