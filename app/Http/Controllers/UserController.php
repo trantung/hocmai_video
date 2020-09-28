@@ -102,6 +102,10 @@ class UserController extends AdminController
         $user = User::find($id);
         $imageUrl = $user->avatar;
         //dd($imageUrl);
+        if($request->password != $user->password){
+            $user->password = Hash::make($request->password);
+            $user->save();
+          }
         $file = request()->file('avatar');
         if ($file) {
             $fileNameImage = $file->getClientOriginalName();

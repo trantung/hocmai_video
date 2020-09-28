@@ -66,9 +66,11 @@
                         {{ Form::select('schoolblock_id', getListKhoi(), $livestream->schoolblock_id, array('class' => 'form-control','id'=>'schoolblock_id')) }}
                         @else
                         {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
+                        <input type="hidden" name="schoolblock_id" value="{{getSchoolblockByUser()}}">
                         @endif
                     </div>
                 </div>
+                @if(checkUserRole() == ADMIN)
                 <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
                     <label id="label_class1_edit" class="col-md-8 col-sm-8 col-lg-8">Lớp</label>
                     <div id="class1_edit" class="col-md-8 col-sm-8 col-lg-8">
@@ -88,6 +90,47 @@
                         </select>
                     </div>
                 </div>
+                @else
+                    @if(getSchoolblockByUser() == 1)
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select class="form-control" name="class_id">
+                                    <option value="1" {{ $livestream->class_id == 1 ? 'selected' : '' }}>Lớp 12</option>
+                                    <option value="2" {{ $livestream->class_id == 2 ? 'selected' : '' }}>Lớp 10</option>
+                                    <option value="3" {{ $livestream->class_id == 3 ? 'selected' : '' }}>Lớp 11</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                    @if(getSchoolblockByUser() == 2)
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select class="form-control" name="class_id">
+                                    <option value="4" {{ $livestream->class_id == 4 ? 'selected' : '' }}>Lớp 9</option>
+                                    <option value="5" {{ $livestream->class_id == 5 ? 'selected' : '' }}>Lớp 8</option>
+                                    <option value="6" {{ $livestream->class_id == 6 ? 'selected' : '' }}>Lớp 7</option>
+                                    <option value="7" {{ $livestream->class_id == 7 ? 'selected' : '' }}>Lớp 6</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                    @if(getSchoolblockByUser() == 3)
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select class="form-control" name="class_id">
+                                    <option value="8"{{ $livestream->class_id == 8 ? 'selected' : '' }}>Lớp 5</option>
+                                    <option value="9"{{ $livestream->class_id == 9 ? 'selected' : '' }}>Lớp 4</option>
+                                    <option value="10"{{ $livestream->class_id == 10 ? 'selected' : '' }}>Lớp 3</option>
+                                    <option value="11"{{ $livestream->class_id == 11 ? 'selected' : '' }}>Lớp 2</option>
+                                    <option value="12"{{ $livestream->class_id == 12 ? 'selected' : '' }}>Lớp 1</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                @endif
             </div>
             <div class="form-group row">
                 <div class="col-md-6 col-lg-6 col-sm-6">
