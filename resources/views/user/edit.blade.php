@@ -36,6 +36,17 @@
             <input type="text" class="form-control" required="true" name="username" id="username" value="{{$user->username}}">
           </div>
         </div>
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <label for="password" class="text-label col-md-3 col-lg-3"><b>password:</b></label>
+            <div class="col-md-9">
+              <input type="password" name="password" placeholder="Please enter your pass here" class="form-control" value="{{ $user->password}}" />
+              <?php if ($errors->has('password')) : ?>
+                  <span class="help-block">
+                      <strong>{{$errors->first('password')}}</strong>
+                  </span>
+              <?php endif; ?>
+            </div>
+        </div>
       </div>
       <div class="form-group row">
         <div class="col-lg-6 col-md-6">

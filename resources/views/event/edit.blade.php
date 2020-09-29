@@ -66,7 +66,21 @@
           </div>
         </div>
       </div>
-      
+      <div class="row">
+        <div class="col-md-12">
+            <h4>Người tham gia</h4>
+            <div class="radio_button" style="display:flex">
+                <div class="text-left" style="margin-right: 25px;"> 
+                    <input type="radio" id="male" name="is_public" value="1" style="margin-bottom: 6px;"{{$event->is_public == 1 ? "checked": ""}}>
+                    <label for="male">Công khai</label><br>
+                </div>
+                <div class="text-righ">
+                    <input type="radio" id="female" name="is_public" value="0" style="margin-bottom: 6px;"{{$event->is_public == 0 ? "checked": ""}}>
+                    <label for="female">Tester</label><br>
+                </div>
+            </div>
+        </div>
+      </div>
       <div class="form-group row">
         {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
       </div>
