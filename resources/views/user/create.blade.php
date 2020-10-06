@@ -47,7 +47,7 @@
         <div class="col-lg-6 col-md-6">
           <label class="col-lg-2">Quyền <span class="text-error text-danger">*</span></label>
           <div class="col-lg-10">
-            {!! Form::select('role_id', getListRole(), old('role_id'), ['multiple'=>'multiple','class' => 'form-control selectpicker w-100','id' =>'dates-field2','data-style'=>'bg-white rounded-pill px-4 py-3 shadow-sm']) !!}
+            {{ Form::select('role_id', getListRole(),'', array('class' => 'form-control','id'=>'list_role')) }}
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
