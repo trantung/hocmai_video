@@ -15,6 +15,8 @@ class Event  extends Model
         'is_public',
         'start_time',
         'end_time',
+        'event_adjust', 
+        'deep_link',
     ];
 
 }

@@ -16,7 +16,7 @@
    <!-- <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet"> -->
 <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="{{url('../../css/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
   <link href="{{asset('build/css/bootstrap-combined.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('build/css/bootstrap-datetimepicker.min.css')}}">
   <!-- Bootstrap -->
@@ -36,4 +36,6 @@
   <link rel="stylesheet" href="{{asset('css/color_skins.css')}}">
   <!-- <link rel="stylesheet" href="{{asset('css/main.css')}}"> -->
   <link rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
 </head>

@@ -23,7 +23,7 @@
               <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    <th>STT</th>
                     <th>Tiêu đề</th>
                     <th>banner</th>
                     <th>Thời gian hiển thị</th>
@@ -31,9 +31,10 @@
                     <th width="280px">Hành động</th>
                 </thead>
                 <tbody>
+                  <?php $i = 1;?>
                   @foreach($data as $event)
                   <tr>
-                    <td>{{ $event->id }}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{!! $event->name !!}</td>
                     <td><img src="{{ $event->banner }}" alt="banner"width ="100px" height="100px"></td>
                     <td>{!! $event->start_time !!} - {{$event->end_time}}</td>

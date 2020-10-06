@@ -303,5 +303,9 @@ $(document).ready(function() {
         mask: '39.19.9999 29:59',
         format: 'd.m.Y H:i'
     })
-
+});
+$(document).ready(function() {
+    $('.multiselect-ui').multiselect({
+        includeSelectAllOption: true
+    });
 });

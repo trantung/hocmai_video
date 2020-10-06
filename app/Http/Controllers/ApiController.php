@@ -546,7 +546,28 @@ class ApiController extends Controller
             $result[$key]['event_login_require'] = $value->login_require;
             $result[$key]['event_is_public'] = $value->is_public;
             $result[$key]['event_deep_link'] = $value->deep_link;
+            $result[$key]['event_adjust'] = $value->deep_link;
         }
         return $this->responseSuccess($result);
+    }
+    public function getEventDetail(Request $request){
+        $result = [];
+        $input = $request->all();
+        $id = $input['id'];
+        $event = Event::find($id);
+        if (!$event) {
+            return $result;
+        }
+            $result['event_name'] = $event->name;
+            $result['event_banner'] = getUrlFull($event->banner);
+            $result['event_start_time'] = $event->start_time;
+            $result['event_end_time'] = $event->end_time;
+            $result['event_UrlWebNew'] = $event->urlWebView;
+            $result['event_fullScreen'] = $event->fullScreen;
+            $result['event_login_require'] = $event->login_require;
+            $result['event_is_public'] = $event->is_public;
+            $result['event_deep_link'] = $event->deep_link;
+            $result['event_adjust'] = $event->event_adjust;
+        return $result;
     }   
 }

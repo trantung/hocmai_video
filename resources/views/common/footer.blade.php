@@ -50,6 +50,7 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script src="{{asset('js/video.js')}}"></script>
 <script src="{{asset('js/videojs-contrib-hls.js')}}"></script>
+<script src="{{asset('js/mutiple-select.js')}}"></script>
 <script>
   var player = videojs('my_video_1');
   $("#close_video,#close_video1").click(function() {
