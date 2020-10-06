@@ -534,7 +534,12 @@ class ApiController extends Controller
     // api events
     public function getEvent(Request $request){
         $result = [];
-        $data = Event::all();
+        $now = Carbon::now();
+        $now = $now->toDateTimeString();
+        //start_time <= now <= end_time
+        $data= Event::whereDate('start_time', '<=', $now)
+            ->whereDate('end_time', '>=', $now)
+            ->get();
         foreach ($data as $key => $value) {
             $result[$key]['event_id'] = $value->id;
             $result[$key]['event_name'] = $value->name;
