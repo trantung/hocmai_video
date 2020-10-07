@@ -36,20 +36,63 @@
             @if(checkUserRole() == ADMIN)
             {{ Form::select('schoolblock_id', getListKhoi(), null, array('class' => 'form-control','id'=>'schoolblock_id')) }}
             @else
-            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(), array('class' => 'form-control', 'disabled' => true)) }}
+            {{ Form::select('schoolblock_id', getListKhoi(), getSchoolblockByUser(),array('class' => 'form-control', 'disabled' => true)) }}
+            <input type="hidden" name="schoolblock_id" value="{{ getSchoolblockByUser() }}">
             @endif
           </div>
         </div>
-        <div class="col-lg-6" id="class_id">
-          <label id="label_class1" class="col-md-5 col-sm-5 col-lg-5">Lớp</label>
-          <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
-            <select class="form-control" name="class_id">
-              <option value="1">Lớp 12</option>
-              <option value="2">Lớp 10</option>
-              <option value="3">Lớp 11</option>
-            </select>
-          </div>
-        </div>
+        @if(checkUserRole() == ADMIN)
+                <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                    <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                    <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                        <select class="form-control" name="class_id">
+                            <option value="1">Lớp 12</option>
+                            <option value="2">Lớp 10</option>
+                            <option value="3">Lớp 11</option>
+                        </select>
+                    </div>
+                </div>
+                @else
+                    @if(getSchoolblockByUser() == 1)
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select class="form-control" name="class_id">
+                                    <option value="1">Lớp 12</option>
+                                    <option value="2">Lớp 10</option>
+                                    <option value="3">Lớp 11</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                    @if(getSchoolblockByUser() == 2)
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select class="form-control" name="class_id">
+                                    <option value="4">Lớp 9</option>
+                                    <option value="5">Lớp 8</option>
+                                    <option value="6">Lớp 7</option>
+                                    <option value="7">Lớp 6</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                    @if(getSchoolblockByUser() == 3)
+                        <div class="col-md-6 col-lg-6 col-sm-6" id="class_id">
+                            <label id="label_class1" class="col-lg-6 col-md-6 col-sm-6">Lớp</label>
+                            <div id="class1" class="col-md-8 col-sm-8 col-lg-8">
+                                <select class="form-control" name="class_id">
+                                    <option value="8">Lớp 5</option>
+                                    <option value="9">Lớp 4</option>
+                                    <option value="10">Lớp 3</option>
+                                    <option value="11">Lớp 2</option>
+                                    <option value="12">Lớp 1</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                @endif
       </div>
       <div class="row form-group">
         <div class="col-lg-6">

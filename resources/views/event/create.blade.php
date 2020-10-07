@@ -34,6 +34,10 @@
             <input type="text" name="deep_link" id="deep_link" class="form-control" >
         </div>
         <div class="col-md-12">
+            <label class="text-label"> Event Adjust</label>
+            {{ Form::text('event_adjust', old('event_adjust'), array('class' => 'form-control')) }}
+        </div>
+        <div class="col-md-12">
             <input type="checkbox" name="fullScreen" style="margin-bottom: 6px;" value="0">
             <label>Hiển thị full màn hình</label><br/><br/>
             <input type="checkbox" name="login_require" style="margin-bottom: 6px;" value="1">

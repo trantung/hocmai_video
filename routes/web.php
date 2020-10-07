@@ -160,5 +160,6 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     Route::post('/app/rate/current_rate','ApiController@currentRate');
     // api events app
     Route::get('/event','ApiController@getEvent');
+    Route::post('/eventDetail','ApiController@getEventDetail');
 });
 
