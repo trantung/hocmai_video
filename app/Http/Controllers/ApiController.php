@@ -551,7 +551,7 @@ class ApiController extends Controller
             $result[$key]['event_login_require'] = $value->login_require;
             $result[$key]['event_is_public'] = $value->is_public;
             $result[$key]['event_deep_link'] = $value->deep_link;
-            $result[$key]['event_adjust'] = $value->deep_link;
+            $result[$key]['event_adjust'] = $value->event_adjust;
         }
         return $this->responseSuccess($result);
     }
