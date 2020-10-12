@@ -42,7 +42,7 @@
       <div class="form-group row">
         <div class="form-group col-md-12">
           <label>Nội dung</label>
-          <textarea name="desc" value="{{ $appVersion->desc }}" require="true" class="form-control " id="editor1"></textarea>
+          {{ Form::textarea('desc', $appVersion->desc, array('class' => 'form-control','id'=>'editor1')) }}
         </div>
       </div>
       <div class="form-group row">

@@ -133,7 +133,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     /* end livestream hm */
 
     //app version
-    Route::resource('/manager/app','HocmaiAppController');
+    Route::resource('/manager/app','ManagerAppController');
 
 });
 

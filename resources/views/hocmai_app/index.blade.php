@@ -5,7 +5,8 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Quản lý App version<small> <a href="{{action('ManagerAppController@create')}}"><i class="fa fa-plus-circle"></i> Thêm mới</a></small></h2>
+        <h2>Quản lý App version</h2>
+        <small> <a href="{{action('ManagerAppController@create')}}"><i class="fa fa-plus-circle"></i> Thêm mới</a></small>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -35,7 +36,7 @@
                     <td>{{ $hocmaiApp->app_id }}</td>
                     <td>{{ $hocmaiApp->os_id }}</td>
                     <td>{{ $hocmaiApp->app_version }}</td>
-                    <td>{{ $hocmaiApp->status }}</td>
+                    <td>{{ getNameStatusAppVersion($hocmaiApp->status) }}</td>
                     <td>{{ $hocmaiApp->adjust_event }}</td>
                     <td>
                         <form action="{{ action('ManagerAppController@destroy',$hocmaiApp->id) }}" method="POST">

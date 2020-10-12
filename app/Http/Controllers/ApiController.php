@@ -581,12 +581,12 @@ class ApiController extends Controller
     {
         $res = [];
         $input = $request->all();
-        $appId = $input['app_id'];
-        $data = HocMaiAppVersion::where('app_id', $appId)->where('status', APP_ACTIVE)->first();
+        $osId = $input['os_id'];
+        $data = HocMaiAppVersion::where('os_id', $osId)->where('status', APP_ACTIVE)->first();
         if ($data) {
             return $this->responseSuccess($res);
         }
-        $res['app_id'] = $data->app_id;
+        // $res['app_id'] = $data->app_id;
         $res['os_id'] = $data->ios;
         $res['app_version'] = $data->app_version;
         $res['adjust_event'] = $data->adjust_event;

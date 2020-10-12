@@ -38,6 +38,9 @@ class ManagerAppController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        if ($input['status'] == APP_ACTIVE) {
+            HocMaiAppVersion::whereNull('deleted_at')->update(['status' => APP_INACTIVE]);
+        }
         $appVersionId = HocMaiAppVersion::create($input)->id;
         return Redirect::action('ManagerAppController@index');
     }

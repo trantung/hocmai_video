@@ -48,6 +48,19 @@
                     </div>
                 </div>
             </div>
+
+            @if(!empty(checkUserRole()))
+                <select class="form-control" name="class_id">
+                @foreach(checkUserRole() as $blockId => $arrayClass)
+                    @foreach($arrayClass as $classId => $className)
+                    <option value="{{$classId}}">{{$className}}</option>
+                    @endforeach
+                @endforeach
+                </select>
+            @endif()
+
+
+
             <div class="form-group row">
                 <div class="col-md-6 col-lg-6 col-sm-6">
                     <label class="col-md-6 col-sm-6 col-lg-6">Kênh phát</label>

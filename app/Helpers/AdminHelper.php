@@ -242,8 +242,8 @@ function getSchoolblockByUser()
 function getStatusHeaderFooter()
 {
     return [
-        1 => 'Active',
-        0 => 'Deactive',
+        APP_ACTIVE => 'Active',
+        APP_INACTIVE => 'Inactive',
     ];
 }
 
@@ -343,4 +343,13 @@ function getAppOs()
         APP_ANDROID_ID => 'ANDROID',
     ];
     return $data;
+}
+
+function getNameStatusAppVersion($status)
+{
+    $data = getStatusHeaderFooter();
+    if (isset($data[$status])) {
+        return $data[$status];
+    }
+    return null;
 }

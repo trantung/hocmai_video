@@ -1,46 +1,64 @@
 @extends('common.default')
 @section('content')
-<div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Hiện thị danh sách video</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('hocmaivideo.index') }}"><i class="fa fa-backward" style="color:aliceblue"></i></a>
-            </div>
-        </div>
+<div class="col-md-12 col-sm-12  ">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2 class="navbar-left"><a class="btn btn-danger" href="{{ action('ManagerAppController@index') }}"><i class="fa fa-backward"></i></a></h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li>
+          <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
     </div>
-   
-    <div class="row">
-        <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="form-group">
-                <label>Tiêu đề:</label>
-                {{ $hocmaivideo->title }}
-            </div>
+    <div class="x_content">
+      <br>
+      {{ Form::open(array('method'=>'PUT', 'action' => array('ManagerAppController@update', $appVersion->id))) }}
+      <div class="form-group row">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-md-2 col-sm-2">Hệ điều hành</label>
+          <div class="col-md-10 col-sm-10 ">
+            {{ Form::select('os_id', getAppOs(), $appVersion->os_id, array('class' => 'form-control')) }}
+          </div>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="form-group">
-                <label>url:</label>
-                {{ $hocmaivideo->url }}
-            </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="scorm_id" class="col-md-2 col-sm-2">Phiên bản ứng dụng</label>
+          <div class="col-md-10 col-sm-10 ">
+            {{$appVersion->adjust_event}}
+          </div>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="form-group">
-                <label>Khối :</label>
-                {{ getKhoiNameById($hocmaivideo->schoolblock_id) }}
-            </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="scorm_id" class="col-md-6 col-sm-6 col-lg-6">Adjust_event</label>
+          <div class="col-md-10 col-sm-10 ">
+            <input type="text" name="adjust_event" id="adjust_event" class="form-control" value="{{$appVersion->adjust_event}}" >
+          </div>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="form-group">
-                <label>Lớp:</label>
-                {{ getClassNameById($hocmaivideo->class_id) }}
-            </div>
+      </div>
+      <div class="form-group row">
+        <div class="form-group col-md-12">
+          <label>Nội dung</label>
+          {{ Form::textarea('desc', $appVersion->desc, array('class' => 'form-control','id'=>'editor1')) }}
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="form-group">
-                <label>Môn:</label>
-                {{ getMonNameById($hocmaivideo->schoolsubject_id) }}
-            </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label class="col-md-2 col-sm-2">Trạng thái</label>
+          <div class="col-md-10 col-sm-10 ">
+            {{ Form::select('status', getStatusHeaderFooter(), $appVersion->status, array('class' => 'form-control')) }}
+          </div>
         </div>
+      </div>
+      <div class="form-group row">
+        {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
+        {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
+      </div>
+      {{ Form::close() }}
     </div>
-    @stop
+  </div>
+</div>
+@stop
