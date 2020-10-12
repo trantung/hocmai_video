@@ -335,3 +335,12 @@ function convertTimeFormat($string)
     $res = date("d-m-Y H:i:s", strtotime($string));
     return $res;
 }
+
+function getAppOs()
+{
+    $data = [
+        APP_IOS_ID => 'IOS',
+        APP_ANDROID_ID => 'ANDROID',
+    ];
+    return $data;
+}

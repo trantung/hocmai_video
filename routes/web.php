@@ -132,6 +132,9 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::get('/preview/video/{id}', 'PreviewController@show');
     /* end livestream hm */
 
+    //app version
+    Route::resource('/manager/app','HocmaiAppController');
+
 });
 
 //api cho hocmai video
@@ -161,5 +164,7 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     // api events app
     Route::get('/event','ApiController@getEvent');
     Route::post('/eventDetail','ApiController@getEventDetail');
+    //api get app version. Param: app_id = 1, (2)
+    Route::post('/app/version/detail','ApiController@postAppVersionDetail');
 });
 

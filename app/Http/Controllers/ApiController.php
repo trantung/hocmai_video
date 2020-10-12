@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\SchoolBlock;
 use App\HocMaiClass;
+use App\HocMaiAppVersion;
 use App\Livestream;
 use App\AnotherVideo;
 use App\Teacher;
@@ -574,5 +575,22 @@ class ApiController extends Controller
             $result['event_deep_link'] = $event->deep_link;
             $result['event_adjust'] = $event->event_adjust;
         return $result;
-    }   
+    }
+
+    public function postAppVersionDetail(Request $request)
+    {
+        $res = [];
+        $input = $request->all();
+        $appId = $input['app_id'];
+        $data = HocMaiAppVersion::where('app_id', $appId)->where('status', APP_ACTIVE)->first();
+        if ($data) {
+            return $this->responseSuccess($res);
+        }
+        $res['app_id'] = $data->app_id;
+        $res['os_id'] = $data->ios;
+        $res['app_version'] = $data->app_version;
+        $res['adjust_event'] = $data->adjust_event;
+        $res['desc'] = $data->desc;
+        return $res;
+    }
 }

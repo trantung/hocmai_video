@@ -3,7 +3,7 @@
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2 class="navbar-left"><a class="text-danger" href="{{ action('AnotherVideoController@index') }}" title="trở lại"><i class="fa fa-backward"></i></a></h2>
+      <h2 class="navbar-left"><a class="text-danger" href="{{ action('HocMaiAppController@index') }}" title="trở lại"><i class="fa fa-backward"></i></a></h2>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -13,7 +13,7 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'POST', 'action' => array('AnotherVideoController@store'),'class'=>'form-horizontal form-label-left')) }}
+      {{ Form::open(array('method'=>'POST', 'action' => array('HocMaiAppController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6 col-lg-6">
           <label class="col-md-5 col-sm-5 col-lg-5">Tiêu đề</label>
