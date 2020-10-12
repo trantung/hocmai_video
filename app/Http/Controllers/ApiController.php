@@ -583,14 +583,14 @@ class ApiController extends Controller
         $input = $request->all();
         $osId = $input['os_id'];
         $data = HocMaiAppVersion::where('os_id', $osId)->where('status', APP_ACTIVE)->first();
-        if ($data) {
+        if (!$data) {
             return $this->responseSuccess($res);
         }
         // $res['app_id'] = $data->app_id;
-        $res['os_id'] = $data->ios;
+        $res['os_id'] = $data->os_id;
         $res['app_version'] = $data->app_version;
         $res['adjust_event'] = $data->adjust_event;
         $res['desc'] = $data->desc;
-        return $res;
+        return $this->responseSuccess($res);
     }
 }
