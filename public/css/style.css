@@ -629,3 +629,6 @@ a:active {
 .btn.dropdown-toggle:focus {
     outline: none !important;
 }
+.select_app{
+  height: 41px !important;  
+}
