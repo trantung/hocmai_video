@@ -13,12 +13,30 @@ class ManagerAppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     $data = HocMaiAppVersion::all();
+    //     return view('hocmai_app.index')->with(compact('data'));
+    // }
+    public function index(Request $request )
     {
         $data = HocMaiAppVersion::all();
+        //dd($request);
+        if ($request->has('os_id')) {
+            $data->where('os_id' ,$request->os_id);
+          //  dd($data,'1');
+        }
+        if ($request->has('status')) {
+            $data->where('status', $request->status);
+           // dd($data,'2');
+        }
+        if ($request->has('app_version')) {
+            $data->where('app_version', 'LIKE', '%' . $request->app_version . '%');
+           // dd($data,'3');
+        }
+        // $data = HocMaiAppVersion::all();
         return view('hocmai_app.index')->with(compact('data'));
     }
-
     /**
      * Show the form for creating a new resource.
      *

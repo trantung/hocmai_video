@@ -13,7 +13,8 @@ use App\HocmaiHeader;
 use App\HocmaiFooter;
 use App\UserFake;
 use Carbon\Carbon;
-
+use App\HocMaiAppVersion;
+use Illuminate\Support\Facades\DB;
 function checkUserRole()
 {
     $user = getInforUser();
@@ -352,4 +353,12 @@ function getNameStatusAppVersion($status)
         return $data[$status];
     }
     return null;
+}
+function getVersion()
+{
+    $result = DB::table('app_versions')->select(DB::raw('app_version '))
+    ->groupBy('app_version')
+    ->havingRaw('COUNT(app_version)>= 1')
+    ->get();
+    return $result;
 }
