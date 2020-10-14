@@ -134,6 +134,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
 
     //app version
     Route::resource('/manager/app','ManagerAppController');
+    
     Route::get('/manager/app','ManagerAppController@index');
 });
 
