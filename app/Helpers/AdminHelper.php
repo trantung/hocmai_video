@@ -7,12 +7,14 @@ use App\HocMaiClass;
 use App\Livestream;
 use App\LivestreamAnotherVideo;
 use App\AnotherVideo;
+use App\HocMaiAppVersion;
 use APV\User;
 use APV\User\Models\Role;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
 use App\UserFake;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 function checkUserRole()
 {
@@ -352,4 +354,12 @@ function getNameStatusAppVersion($status)
         return $data[$status];
     }
     return null;
+}
+function getVersion()
+{
+    $result = DB::table('app_versions')->select(DB::raw('app_version '))
+    ->groupBy('app_version')
+    ->havingRaw('COUNT(app_version)>= 1')
+    ->get();
+    return $result;
 }
