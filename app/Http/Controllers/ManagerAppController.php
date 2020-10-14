@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\HocMaiAppVersion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class ManagerAppController extends Controller
@@ -13,11 +14,7 @@ class ManagerAppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $data = HocMaiAppVersion::all();
-    //     return view('hocmai_app.index')->with(compact('data'));
-    // }
+
     public function index(Request $request )
     {
         $data = HocMaiAppVersion::all();

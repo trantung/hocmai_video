@@ -7,14 +7,15 @@ use App\HocMaiClass;
 use App\Livestream;
 use App\LivestreamAnotherVideo;
 use App\AnotherVideo;
+use App\HocMaiAppVersion;
 use APV\User;
 use APV\User\Models\Role;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
 use App\UserFake;
 use Carbon\Carbon;
-use App\HocMaiAppVersion;
 use Illuminate\Support\Facades\DB;
+
 function checkUserRole()
 {
     $user = getInforUser();
