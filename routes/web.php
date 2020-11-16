@@ -167,5 +167,10 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     Route::post('/eventDetail','ApiController@getEventDetail');
     //api get app version. Param: app_id = 1, (2)
     Route::post('/app/version/detail','ApiController@postAppVersionDetail');
+    //api cho danh sách ngân hàng
+    Route::get('/bank/list','ApiController@getBankList');
+    //api nhan thong tin cod
+    Route::post('/cod','ApiController@postCod');
+
 });
 

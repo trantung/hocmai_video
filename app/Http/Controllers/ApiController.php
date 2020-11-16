@@ -13,6 +13,10 @@ use App\Teacher;
 use App\LivestreamAnotherVideo;
 use App\HocMaiHeader;
 use App\HocMaiFooter;
+use App\BankBranch;
+use App\Bank;
+use App\HocmaiBank;
+use App\HocmaiCod;
 use APV\User\Services\UserService;
 use App\LivestreamDetail;
 use App\RateApp;
@@ -592,5 +596,40 @@ class ApiController extends Controller
         $res['adjust_event'] = $data->adjust_event;
         $res['desc'] = $data->desc;
         return $this->responseSuccess($res);
+    }
+
+    public function getBankList(Request $request)
+    {
+        //Id Bank, Bank image, Bank Name, Account holder, Account number, Branch
+        $res = [];
+        $hocmaiBank = HocmaiBank::all();
+        foreach ($hocmaiBank as $key => $value)
+        {
+            $bank_image = $bank_name = $branch_name = null;
+            $bank = Bank::find($value->bank_id);
+            $branch = BankBranch::find($value->branch_id);
+            if ($branch) {
+                $branch_name = $branch->branch_name;
+            }
+            if ($bank) {
+                $bank_image = $bank->bank_image;
+                $bank_name = $bank->bank_name;
+            }
+            $res[$key]['bank_id'] = $value->bank_id;
+            $res[$key]['bank_image'] = url($bank_image);
+            $res[$key]['bank_name'] = $bank_name;
+            $res[$key]['account_holder'] = $value->account_holder;
+            $res[$key]['account_number'] = $value->account_number;
+            $res[$key]['branch_id'] = $value->branch_id;
+            $res[$key]['branch_name'] = $branch_name;
+        }
+        return $this->responseSuccess($res);
+    }
+
+    public function postCod(Request $request)
+    {
+        $input = $request->all();
+        $hocmaiCodId = HocmaiCod::create($input)->id;
+        return $this->responseSuccess(['hocmai_cod_id' => $hocmaiCodId]);
     }
 }
