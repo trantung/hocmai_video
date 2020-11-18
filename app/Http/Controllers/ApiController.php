@@ -641,9 +641,9 @@ class ApiController extends Controller
         }
         $list = HocmaiCod::orderBy('id', 'DESC');
         if (isset($input['limit'])) {
-            $limit = $limit->skip(0)->take($input['limit']);
+            $list = $list->skip(0)->take($input['limit']);
         }
-        $list = $limit->get();
+        $list = $list->get();
         $result = array();
         foreach ($list as $key => $value) {
             $result[$key]['user_id'] = $value->user_id;
