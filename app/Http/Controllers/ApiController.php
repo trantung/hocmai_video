@@ -633,11 +633,11 @@ class ApiController extends Controller
         return $this->responseSuccess(['hocmai_cod_id' => $hocmaiCodId]);
     }
 
-    public function getCodList(Request $request)
+    public function postCodList(Request $request)
     {
         $input = $request->all();
         if (!isset($input['token']) || $input['token'] != 'cavoisatthu2016') {
-            return false;
+            $this->responseSuccess(['data' => 'no permission']);
         }
         $list = HocmaiCod::orderBy('id', 'DESC')->get();
         $result = array();
