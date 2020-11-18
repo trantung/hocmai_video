@@ -637,8 +637,9 @@ class ApiController extends Controller
     {
         $input = $request->all();
         if (!isset($input['token']) || $input['token'] != 'cavoisatthu2016') {
-            $this->responseSuccess(['data' => 'no permission']);
+            return $this->responseSuccess(['data' => 'no permission']);
         }
+
         $list = HocmaiCod::orderBy('id', 'DESC')->get();
         $result = array();
         foreach ($list as $key => $value) {
