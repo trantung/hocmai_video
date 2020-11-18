@@ -632,4 +632,25 @@ class ApiController extends Controller
         $hocmaiCodId = HocmaiCod::create($input)->id;
         return $this->responseSuccess(['hocmai_cod_id' => $hocmaiCodId]);
     }
+
+    public function getCodList(Request $request)
+    {
+        $input = $request->all();
+        $list = HocmaiCod::orderBy('id', 'DESC')->get();
+        foreach ($list as $key => $value) {
+            $result[$key]['user_id'] = $value->user_id;
+            $result[$key]['user_name'] = $value->user_name;
+            $result[$key]['user_phone_account'] = $value->user_phone_account;
+            $result[$key]['user_phone_cod'] = $value->user_phone_cod;
+            $result[$key]['email'] = $value->email;
+            $result[$key]['course_id_register'] = $value->course_id_register;
+            $result[$key]['course_name_register'] = $value->course_name_register;
+            $result[$key]['package_time_id_register'] = $value->package_time_id_register;
+            $result[$key]['package_time_name_register'] = $value->package_time_name_register;
+            $result[$key]['base_price'] = $value->base_price;
+            $result[$key]['sale_price'] = $value->sale_price;
+            $result[$key]['address'] = $value->address;
+        }
+        return $this->responseSuccess($result);
+    }
 }
