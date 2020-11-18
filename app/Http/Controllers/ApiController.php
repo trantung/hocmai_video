@@ -636,7 +636,11 @@ class ApiController extends Controller
     public function getCodList(Request $request)
     {
         $input = $request->all();
+        if (!isset($input['token']) || $input['token'] != 'cavoisatthu2016') {
+            return false;
+        }
         $list = HocmaiCod::orderBy('id', 'DESC')->get();
+        $result = array();
         foreach ($list as $key => $value) {
             $result[$key]['user_id'] = $value->user_id;
             $result[$key]['user_name'] = $value->user_name;
