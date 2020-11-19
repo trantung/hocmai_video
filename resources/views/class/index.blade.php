@@ -6,8 +6,7 @@
       <h2>Quản lý Lớp</h2>
       <div class="x_title">
         <div class="pull-left">
-          <a href="{{action('ClassController@create')}}" class="btn btn-info" >
-          <i class="fa fa-plus-circle"></i>Thêm lớp mới</a>
+        <a href="{{action('ClassController@create')}}"><i class="fa fa-plus-circle"></i> Thêm mới</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

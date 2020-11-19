@@ -22,5 +22,7 @@ class HocmaiCod extends Model
         'package_time_name_register',
         'base_price',
         'sale_price',
+        'status',
+        'note',
     ];
 }

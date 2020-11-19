@@ -248,6 +248,16 @@ function getStatusHeaderFooter()
         APP_INACTIVE => 'Inactive',
     ];
 }
+function getStatusHocMaiCod($status){
+    if ($status == 1) {
+        return 'Chưa liên hệ';
+    }
+    else if($status == 2) {
+        return 'Đã liên hệ';
+    }else{
+    return 'Khách hàng hủy';
+    }
+}
 
 function getLivestreamUrl($sourceId)
 {

@@ -33,6 +33,7 @@ return [
      */
     'storage' => [
         'enabled'    => true,
+        'disable'    => true,
         'driver'     => 'file', // redis, file, pdo, custom
         'path'       => storage_path('debugbar'), // For file driver
         'connection' => null,   // Leave null for default connection (Redis/PDO)

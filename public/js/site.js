@@ -1,4 +1,11 @@
 $(document).ready(function() {
+    $('#example11').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+
     var current = 1;
     widget = $(".step");
     btnnext = $(".next");

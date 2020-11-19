@@ -27,6 +27,7 @@
           <li><a href="{{action('RateAppController@index')}}">Quản lý RateApp</a></li>
           <li><a href="{{action('EventController@index')}}">Quản lý Sự kiện app</a></li>
           <li><a href="{{action('ManagerAppController@index')}}">Quản lý app version</a></li>
+          <li><a href="{{action('HocMaiCodController@index')}}">Quản lý đơn hàng </a></li>
           <!-- <li><a href="{{action('CommentFakeController@index')}}">Quản lý commentFake</a></li> -->
           <!-- <li><a href="{{action('UserFakeController@index')}}">Quản lý UserFake</a></li> -->
           @endif

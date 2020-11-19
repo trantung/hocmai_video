@@ -1,5 +1,12 @@
 /* ======================== login =================================================== */
 
+
+/* style search */
+
+.search {
+    border-radius: 5px;
+}
+
 .dropbtn {
     background-color: #ededed;
     color: white;

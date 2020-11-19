@@ -104,6 +104,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth:web'], function () {
     Route::resource('/teacher', 'TeacherController');
     Route::resource('/header', 'HeaderController');
     Route::resource('/footer', 'FooterController');
+    //hocmaiCod
+    Route::resource('/hocmaicod','HocMaiCodController');
     //events
     Route::resource('/event', 'EventController');
     // cấu hình livestream từ nguồn khác
