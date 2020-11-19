@@ -632,4 +632,34 @@ class ApiController extends Controller
         $hocmaiCodId = HocmaiCod::create($input)->id;
         return $this->responseSuccess(['hocmai_cod_id' => $hocmaiCodId]);
     }
+
+    public function postCodList(Request $request)
+    {
+        $input = $request->all();
+        if (!isset($input['token']) || $input['token'] != 'cavoisatthu2016') {
+            return $this->responseSuccess(['data' => 'no permission']);
+        }
+        $list = HocmaiCod::orderBy('id', 'DESC');
+        if (isset($input['limit'])) {
+            $list = $list->skip(0)->take($input['limit']);
+        }
+        $list = $list->get();
+        $result = array();
+        foreach ($list as $key => $value) {
+            $result[$key]['user_id'] = $value->user_id;
+            $result[$key]['user_name'] = $value->user_name;
+            $result[$key]['user_phone_account'] = $value->user_phone_account;
+            $result[$key]['user_phone_cod'] = $value->user_phone_cod;
+            $result[$key]['email'] = $value->email;
+            $result[$key]['course_id_register'] = $value->course_id_register;
+            $result[$key]['course_name_register'] = $value->course_name_register;
+            $result[$key]['package_time_id_register'] = $value->package_time_id_register;
+            $result[$key]['package_time_name_register'] = $value->package_time_name_register;
+            $result[$key]['base_price'] = $value->base_price;
+            $result[$key]['sale_price'] = $value->sale_price;
+            $result[$key]['address'] = $value->address;
+            $result[$key]['created_at'] = $value->created_at;
+        }
+        return $this->responseSuccess($result);
+    }
 }

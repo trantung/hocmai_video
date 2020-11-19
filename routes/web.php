@@ -173,6 +173,7 @@ Route::group(['prefix' => '/api_hocmai'], function () {
     Route::get('/bank/list','ApiController@getBankList');
     //api nhan thong tin cod
     Route::post('/cod','ApiController@postCod');
+    Route::post('/cod_list','ApiController@postCodList');
 
 });
 
