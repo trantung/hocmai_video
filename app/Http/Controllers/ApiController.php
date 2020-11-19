@@ -658,6 +658,7 @@ class ApiController extends Controller
             $result[$key]['base_price'] = $value->base_price;
             $result[$key]['sale_price'] = $value->sale_price;
             $result[$key]['address'] = $value->address;
+            $result[$key]['created_at'] = $value->created_at;
         }
         return $this->responseSuccess($result);
     }
