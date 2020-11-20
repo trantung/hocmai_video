@@ -12,6 +12,7 @@ use APV\User;
 use APV\User\Models\Role;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
+use App\mdl_city;
 use App\UserFake;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -258,7 +259,12 @@ function getStatusHocMaiCod($status){
     return 'Khách hàng hủy';
     }
 }
-
+// lấy tên tỉnh tp
+function getCityId($city_id){
+    $data = DB::table('mdl_city')->select('name')->where('id', $city_id)->first();
+    $name = $data->name;
+    return $name;
+}
 function getLivestreamUrl($sourceId)
 {
     return url($sourceId);

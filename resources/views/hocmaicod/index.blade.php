@@ -14,13 +14,13 @@
         <div class="row">
           <div id="search_header" class="col-md-12">
             {{ Form::open(array('method'=>'get', 'action' => array('HocMaiCodController@index','multiple' => 'multiple'))) }}
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <label class="text-label">Từ ngày</label>
             </div>
             <div class="col-md-2">
                 <input type="date" class="form-control search" name="formto">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <label class="text-label">đến ngày</label>
             </div>
             <div class="col-md-2">
@@ -58,7 +58,7 @@
                     <td>{{ $hocmaiCod->id }}</td>
                     <td>{{ $hocmaiCod->email }}</td>
                     <td>{{ $hocmaiCod->user_phone_cod == null ?$hocmaiCod->user_phone_account  :$hocmaiCod->user_phone_cod }}</td>
-                    <td>{{ $hocmaiCod->city_id == 1 ? "Hà Nội": "" }}</td>
+                    <td>{{ getCityId($hocmaiCod->city_id)}}</td>
                     <td>{{ $hocmaiCod->course_name_register }}</td>
                     <td>{{ $hocmaiCod->sale_price }}</td>
                     <td>{{ $hocmaiCod->created_at }}</td>

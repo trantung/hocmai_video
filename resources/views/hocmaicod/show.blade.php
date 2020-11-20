@@ -4,7 +4,6 @@
   <div class="x_panel">
     <div class="x_title">
         <h4>Đơn hàng COD/ chi tiết</h4>
-        <a class="text-danger" href="{{ action('HocMaiCodController@index') }}" title="trở lại"><i class="fa fa-backward"></i></a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -34,7 +33,7 @@
             <tr>
                 <td colspan="2">
                     <label class="text-label">Số điện thoại: </label>
-                    {{getStatusHocMaiCod($data->user_phone_cod == null ? $data->user_phone_account:$data->user_phone_cod)}}
+                    {{$data->user_phone_cod == null ? $data->user_phone_account:$data->user_phone_cod}}
                 </td>
             </tr>
             <tr>
@@ -75,7 +74,7 @@
         {{ Form::open(array('method'=>'PUT', 'action' => array('HocMaiCodController@update', $data->id))) }}
             <div class="col-md-12">
                 <label class="text-label">Ghi Chú </label>
-                {!! Form::textarea('note', null, ['id' => 'note', 'rows' => 4, 'cols' => 200,'style'=>'width:100%']) !!}
+                {!! Form::textarea('note', $data->note, ['id' => 'note', 'rows' => 4, 'cols' => 200,'style'=>'width:100%']) !!}
             </div>
             <div class="col-md-12">
                 <label class="text-label">trạng thái </label>
