@@ -35,7 +35,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="card-box table-responsive">
-              <table id="datatable" class="table table-striped table-bordered example" style="width:100%" >
+              <table id="example"  class="table table-striped table-bordered" cellspacing="0" width="100%" >
                 <thead>
                   <tr>
                     <th>Stt</th>
@@ -77,4 +77,17 @@
     </div>
   </div>
   @stop
-
+  @section('scripts')
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+  <script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ]
+    } );
+} );
+</script>
+@stop

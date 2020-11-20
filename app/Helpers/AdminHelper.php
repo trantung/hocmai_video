@@ -262,7 +262,10 @@ function getStatusHocMaiCod($status){
 // lấy tên tỉnh tp
 function getCityId($city_id){
     $data = MdlCity::where('id', $city_id)->pluck('name','id');
-    return $data[1];
+    foreach($data as $key => $value){
+        return $value;
+    }
+    
 }
 function getLivestreamUrl($sourceId)
 {

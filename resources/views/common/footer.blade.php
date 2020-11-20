@@ -34,23 +34,28 @@
 <!-- Custom Theme Scripts -->
 <script src="{{asset('build/js/custom.min.js')}}" type="text/javascript"></script>
 <!-- Datatables -->
-<script src="{{asset('vendor/datatables.net/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-bs/js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-buttons/js/dataTables.buttons.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-buttons/js/buttons.flash.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-buttons/js/buttons.html5.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-buttons/js/buttons.print.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-keytable/js/dataTables.keyTable.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-responsive/js/dataTables.responsive.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}" type="text/javascript"></script>
-<script src="{{asset('vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('vendor/jquery.inputmask/dist/inputmask/jquery.inputmask.js')}}" type="text/javascript"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 <script src="{{asset('js/video.js')}}"></script>
 <script src="{{asset('js/videojs-contrib-hls.js')}}"></script>
 <script src="{{asset('js/mutiple-select.js')}}"></script>
+
+<script src="{{asset('vendor/datatables.net/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/datatables.net-bs/js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/datatables.net-keytable/js/dataTables.keyTable.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/datatables.net-responsive/js/dataTables.responsive.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/export/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('js/export/buttons.flash.min.js')}}"></script>
+<script src="{{asset('js/export/jszip.min.js')}}"></script>
+<script src="{{asset('js/export/pdfmake.min.js')}}"></script>
+<script src="{{asset('js/export/vfs_fonts.js')}}"></script>
+<script src="{{asset('js/export/buttons.html5.min.js')}}"></script>
+<script src="{{asset('js/export/buttons.print.min.js')}}"></script>
+
 <script>
   var player = videojs('my_video_1');
   $("#close_video,#close_video1").click(function() {
