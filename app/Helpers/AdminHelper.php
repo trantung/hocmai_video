@@ -12,7 +12,7 @@ use APV\User;
 use APV\User\Models\Role;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
-use App\mdl_city;
+use App\MdlCity;
 use App\UserFake;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -261,9 +261,8 @@ function getStatusHocMaiCod($status){
 }
 // lấy tên tỉnh tp
 function getCityId($city_id){
-    $data = DB::table('mdl_city')->select('name')->where('id', $city_id)->first();
-    $name = $data->name;
-    return $name;
+    $data = MdlCity::where('id', $city_id)->pluck('name','id');
+    return $data[1];
 }
 function getLivestreamUrl($sourceId)
 {

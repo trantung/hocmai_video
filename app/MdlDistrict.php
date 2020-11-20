@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class mdl_district extends Model
+class MdlDistrict extends Model
 {
     //
     protected $table = 'mdl_district';
