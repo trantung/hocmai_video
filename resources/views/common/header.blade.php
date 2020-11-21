@@ -38,5 +38,6 @@
   <link rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
- 
+  <link href="{{asset('css/jquery.dataTables.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('css/buttons.dataTables.min.css')}}" rel="stylesheet" />
 </head>
