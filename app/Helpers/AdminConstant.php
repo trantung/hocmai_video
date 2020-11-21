@@ -48,3 +48,5 @@ define('APP_ANDROID_ID', 2);
 define('APP_ACTIVE', 1);
 define('APP_INACTIVE', 0);
 // status hocmaicod
+define('COD_INACTIVE', 0);
+define('COD_ACTIVE', 1);

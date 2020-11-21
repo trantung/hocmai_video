@@ -662,4 +662,23 @@ class ApiController extends Controller
         }
         return $this->responseSuccess($result);
     }
+
+    public function postCodPer(Request $request)
+    {
+        $input = $request->all();
+        if (!isset($input['token']) || $input['token'] != 'cavoisatthu2016') {
+            dd('sai token');
+        }
+        if (!isset($input['is_cod']) || !isset($input['user_id'])) {
+            dd('thieu is_cod, user_id');
+        }
+        if (!in_array($input['is_cod'], [COD_INACTIVE, COD_ACTIVE])) {
+            dd('cod is must be 0 or 1');
+        }
+        $cod = $input['is_cod'];
+        $userId = $input['user_id'];
+        
+        $result = $this->userService->updateUser(['is_cod' => $cod, 'user_id' => $userId]);
+        return $this->responseSuccess($result);
+    }
 }

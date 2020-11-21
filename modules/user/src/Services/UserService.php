@@ -80,4 +80,13 @@ class UserService
         return $data;
     }
 
+    public function updateUser($updateData)
+    {
+       $user = User::find($updateData['user_id']);
+       if (!$user) {
+           dd('sai user_id');
+       }
+       $user->update(['is_cod' => $updateData['is_cod']]);
+       return ['user_id' => $updateData['user_id'], 'is_cod' => $input['is_cod'], 'updated' => 'success'];
+    }
 }
