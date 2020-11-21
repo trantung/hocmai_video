@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MdlDistrict extends Model
 {
     //
-    protected $table = 'mdl_district';
+    protected $table = 'hocmai_districts';
     protected $fillable =[
         'id',
         'name',
