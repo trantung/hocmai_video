@@ -87,6 +87,6 @@ class UserService
            dd('sai user_id');
        }
        $user->update(['is_cod' => $updateData['is_cod']]);
-       return ['user_id' => $updateData['user_id'], 'is_cod' => $input['is_cod'], 'updated' => 'success'];
+       return ['user_id' => $updateData['user_id'], 'is_cod' => $updateData['is_cod'], 'updated' => 'success'];
     }
 }
