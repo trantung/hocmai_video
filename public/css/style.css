@@ -3,7 +3,7 @@
 
 /* style search */
 
-.buttons-excel {
+.dt-buttons button.buttons-excel {
     background: #26b99a;
     border-radius: 3px;
 }
