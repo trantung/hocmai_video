@@ -30,12 +30,12 @@
             <li><a href="{{action('RateAppController@index')}}">Quản lý RateApp</a></li>
             <li><a href="{{action('EventController@index')}}">Quản lý Sự kiện app</a></li>
             <li><a href="{{action('ManagerAppController@index')}}">Quản lý app version</a></li>
-            @if($user->is_cod  == 1)
-              <li><a href="{{action('HocMaiCodController@index')}}">Quản lý đơn hàng </a></li>
-            @endif
           <!-- <li><a href="{{action('CommentFakeController@index')}}">Quản lý commentFake</a></li> -->
           <!-- <li><a href="{{action('UserFakeController@index')}}">Quản lý UserFake</a></li> -->
           @endif
+          @if($user->is_cod  == 1)
+              <li><a href="{{action('HocMaiCodController@index')}}">Quản lý đơn hàng </a></li>
+            @endif
           <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
          
         </ul>

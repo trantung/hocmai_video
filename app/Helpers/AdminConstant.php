@@ -41,7 +41,9 @@ define('ANDROID', 2);
 define('IS_LIVESTREAM_TEST',1);
 // is_livestreams trực tiếp
 define('IS_LIVESTREAM_DIRECT',0);
-
+// livestreams test 
+define('IS_NOT_TEST',1);
+define('IS_TEST',2);
 //app
 define('APP_IOS_ID', 1);
 define('APP_ANDROID_ID', 2);

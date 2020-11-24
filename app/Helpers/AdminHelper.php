@@ -188,6 +188,14 @@ function getLiveStreamsStatus(){
     ];
     return $res;
 }
+//test 
+function getLiveStreamsTest(){
+    $res = [
+        IS_TEST => 'Livestream test',
+        IS_NOT_TEST => 'Livestream Thật', 
+    ];
+    return $res;
+}
 function getListRepeat()
 {
     $array = [

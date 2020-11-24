@@ -135,6 +135,12 @@
                         {{ Form::select('is_livestreams', getLiveStreamsStatus(), old('is_livestreams'), array('class' => 'form-control')) }}
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                    <label class="col-md-6 col-sm-6 col-lg-6">Test</label>
+                    <div class="col-md-8 col-sm-8 col-lg-8">
+                        {{ Form::select('is_public', getLiveStreamsTest(), old('is_public'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="form-group col-md-12">

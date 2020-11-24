@@ -151,6 +151,10 @@
                     <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
                     {{ Form::select('is_livestreams', getLiveStreamsStatus(), $livestream->is_livestreams, array('class' => 'form-control')) }}
                 </div>
+                <div class="col-md-6">
+                    <label for=""  class="col-md-6 col-sm-6 col-lg-6">Hình thức liveStream</label>
+                    {{ Form::select('is_public', getLiveStreamsTest(), $livestream->is_public, array('class' => 'form-control')) }}
+                </div>
             </div>
             <div class="form-group row">
                 <div class="form-group col-md-12">
