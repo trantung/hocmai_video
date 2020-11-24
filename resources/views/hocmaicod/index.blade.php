@@ -14,21 +14,33 @@
         <div class="row">
           <div id="search_header" class="col-md-12">
             {{ Form::open(array('method'=>'get', 'action' => array('HocMaiCodController@index','multiple' => 'multiple'))) }}
-            <div class="col-md-1">
-                <label class="text-label">Từ ngày</label>
-            </div>
-            <div class="col-md-2">
-                <input type="date" class="form-control search" name="formto">
-            </div>
-            <div class="col-md-1">
-                <label class="text-label">đến ngày</label>
-            </div>
-            <div class="col-md-2">
-                <input type="date" class="form-control search" name="to">
-            </div>
-            <div class="col-md-2">
-                {{ Form::submit('tìm kiếm', array('class' => 'btn btn-success')) }}
-            </div>
+              <div class="col-md-1">
+                <label class="text-label">Trạng thái</label>
+              </div>
+              <div class="col-md-2">
+                <select class="form-control" name="status">
+                  <option value=""></option>
+                  <option value="1">Chưa liên hệ</option>
+                  <option value="2">Đã liên hệ</option>
+                  <option value="3">Khách hủy</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                  <label class="text-label">Từ ngày</label>
+              </div>
+              <div class="col-md-2">
+                  <input type="date" class="form-control search" name="formto">
+              </div>
+              <div class="col-md-1">
+                  <label class="text-label">đến ngày</label>
+              </div>
+              <div class="col-md-2">
+                  <input type="date" class="form-control search" name="to">
+              </div>
+            
+              <div class="col-md-2">
+                  {{ Form::submit('tìm kiếm', array('class' => 'btn btn-success')) }}
+              </div>
             {{ Form::close() }}
           </div>
         </div>
@@ -61,7 +73,7 @@
                     <td>{{ getCityId($hocmaiCod->city_id)}}</td>
                     <td>{{ $hocmaiCod->course_name_register }}</td>
                     <td>{{ $hocmaiCod->sale_price }}</td>
-                    <td>{{ $hocmaiCod->created_at }}</td>
+                    <td>{{date('d-m-Y H:i:s', strtotime($hocmaiCod->created_at)) }}</td>
                     <td>{{ getStatusHocMaiCod($hocmaiCod->status)}}</td>
                     <td>
                         <a href="{{ action('HocMaiCodController@show',$hocmaiCod->id) }}" title="Xem" class="text-info"><i class="fa fa-eye" style="color:#ff00b4"></i></a>

@@ -31,10 +31,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td >
                     <label class="text-label">Số điện thoại: </label>
                     {{$data->user_phone_cod == null ? $data->user_phone_account:$data->user_phone_cod}}
                 </td>
+                <td><label class="text-label">Họ & tên: </label> {{$data->user_name}}</td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -45,7 +46,7 @@
             <tr>
                 <td colspan="2">
                 <label class="text-label">Thời gian: </label>
-                {{$data->created_at->toDateTimeString()}}
+                {{date('d-m-Y H:i:s', strtotime($data->created_at)) }}
                 </td>
             </tr>
          </table>

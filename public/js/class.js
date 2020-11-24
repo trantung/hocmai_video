@@ -187,7 +187,7 @@ jQuery(document).ready(function($) {
 //validate hẹn giờ phát vs phát ngay
 
 $(document).ready(function() {
-    $('#example').DataTable({
+    $('.example').DataTable({
         dom: 'Bfrtip',
         buttons: [{
             extend: 'excelHtml5',

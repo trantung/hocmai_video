@@ -19,10 +19,23 @@ class HocMaiCodController extends Controller
     {
          $fromTo = $request['formto'];
          $to = $request['to'];
-        $data = HocmaiCod::all();
-        if($fromTo !=null && $to !=null){
-            $data = DB::table('hocmai_cods')->where('created_at', '>=', $fromTo)->where('created_at',"<=", $to)->get();
+         $status = $request['status'];
+        $data = HocmaiCod::all()->sortByDesc('id');
+        if($fromTo !=null && $to !=null && $status != null){
+            $data = DB::table('hocmai_cods')->where('created_at', '>=', $fromTo)
+            ->where('created_at',"<=", $to)
+            ->where('status',$status)
+            ->get();
             //dd($data);
+        }
+         if($fromTo !=null && $to !=null && $status == null){
+            $data = DB::table('hocmai_cods')->where('created_at', '>=', $fromTo)
+            ->where('created_at',"<=", $to)
+            ->get();
+        }
+        if($fromTo == null && $to == null && $status != null){
+            $data = DB::table('hocmai_cods') ->where('status',$status)
+            ->get();
         }
         return view('hocmaicod.index')->with(compact('data'));
     }

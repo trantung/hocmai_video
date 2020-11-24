@@ -339,6 +339,7 @@ class ApiController extends Controller
         return response($data, 200);
     }
     // api đang phát
+    // is_public  = 2 là test is_public  = 1 là mặc định
     public function livestreamPlayCurrent(Request $request)
     {
         $input = $request->all();
@@ -351,6 +352,10 @@ class ApiController extends Controller
         }
         if (isset($input['schoolblock_id'])) {
             $data = $data->where('schoolblock_id', $input['schoolblock_id']);
+        }
+        if(isset($input['is_public']))
+        {
+            $data = $data->where('is_public',$input['is_public']);
         }
         $data = $data->get();
         $result = [];
@@ -383,6 +388,10 @@ class ApiController extends Controller
         }
         if (isset($input['class_id'])) {
             $data = $data->where('class_id', $input['class_id']);
+        }
+        if(isset($input['is_public']))
+        {
+            $data = $data->where('is_public',$input['is_public']);
         }
         $listClass = $this->getListClassByParam($input);
         $input['date_time'] = FILTER_DAY;
