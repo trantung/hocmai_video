@@ -4,7 +4,7 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
   <div class="menu_section">
     <ul class="nav side-menu">
-      <li><a class="tab-content" href="{{action('AdminController@index')}}"><i class="fa fa-home"></i> LiveStream của tôi</a>
+      <li><a class="tab-content" href="{{action('AdminController@index')}}"><i class="fa fa-home"></i> LiveStream của tôi </a>
       </li>
       <li><a><i class="fa fa-play"></i></i> Livestream nguồn video </a>
         <ul class="nav child_menu">
@@ -35,7 +35,7 @@
           @endif
           @if($user->is_cod  == 1)
               <li><a href="{{action('HocMaiCodController@index')}}">Quản lý đơn hàng </a></li>
-            @endif
+          @endif
           <li><a href="{{action('TeacherController@index')}}">Quản lý Giáo viên</a></li>
          
         </ul>
