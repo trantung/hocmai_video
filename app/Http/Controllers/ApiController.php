@@ -353,7 +353,7 @@ class ApiController extends Controller
         if (isset($input['schoolblock_id'])) {
             $data = $data->where('schoolblock_id', $input['schoolblock_id']);
         }
-        if(isset($input['is_public']))
+        if(isset($input['is_public']) && in_array($input['is_public'], [IS_NOT_TEST, IS_TEST]))
         {
             $data = $data->where('is_public',$input['is_public']);
         }
@@ -389,7 +389,7 @@ class ApiController extends Controller
         if (isset($input['class_id'])) {
             $data = $data->where('class_id', $input['class_id']);
         }
-        if(isset($input['is_public']))
+        if(isset($input['is_public']) && in_array($input['is_public'], [IS_NOT_TEST, IS_TEST]))
         {
             $data = $data->where('is_public',$input['is_public']);
         }
