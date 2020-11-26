@@ -57,13 +57,25 @@
 <script src="{{asset('js/export/buttons.print.min.js')}}"></script>
 
 <script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Hoa_don'+ Date.now(),
+            },
+            
+        ]
+    } );
+} );
+
   var player = videojs('my_video_1');
   $("#close_video,#close_video1").click(function() {
     player.pause();
   });
   // player.play();
-</script>
-<script>
+
   $(":input").inputmask();
 
   CKEDITOR.replace('editor1');

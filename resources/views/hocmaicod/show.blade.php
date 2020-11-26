@@ -40,7 +40,7 @@
             <tr>
                 <td colspan="2">
                 <label class="text-label">Địa chỉ: </label>
-                {{$data->address}}
+                {{$data->address }} -{{getDistrictId($data->district_id)}} - {{ getCityId($data->city_id)}} 
                 </td>
             </tr>
             <tr>
