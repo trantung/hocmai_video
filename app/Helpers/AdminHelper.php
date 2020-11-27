@@ -278,7 +278,7 @@ function getCityId($city_id){
 }
 // lấy tên quận tp
 function getDistrictId($district_id){
-    $data = MdlDistrict::find($city_id);
+    $data = MdlDistrict::find($district_id);
     if (!$data) {
         return '';
     }
