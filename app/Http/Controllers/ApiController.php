@@ -30,6 +30,21 @@ class ApiController extends Controller
     {
         $this->userService = $userService;
     }
+
+    public function getDataTestByParam($data, $input)
+    {
+        if (!isset($input['is_public'])) {
+            $data = $data->where('is_public', IS_NOT_TEST);
+            return $data;
+        }
+        if (in_array($input['is_public'], [IS_NOT_TEST, IS_TEST])) {
+            $data = $data->where('is_public', $input['is_public']);
+            return $data;
+        }
+        if ($input['is_public'] == ALL) {
+            return $data;
+        }
+    }
     public function formatClassByBlock($data)
     {
         $result = [];
@@ -353,10 +368,7 @@ class ApiController extends Controller
         if (isset($input['schoolblock_id'])) {
             $data = $data->where('schoolblock_id', $input['schoolblock_id']);
         }
-        if(isset($input['is_public']) && in_array($input['is_public'], [IS_NOT_TEST, IS_TEST]))
-        {
-            $data = $data->where('is_public',$input['is_public']);
-        }
+        $data = $this->getDataTestByParam($data, $input);
         $data = $data->get();
         $result = [];
         foreach ($data as $key => $value) {
@@ -389,10 +401,7 @@ class ApiController extends Controller
         if (isset($input['class_id'])) {
             $data = $data->where('class_id', $input['class_id']);
         }
-        if(isset($input['is_public']) && in_array($input['is_public'], [IS_NOT_TEST, IS_TEST]))
-        {
-            $data = $data->where('is_public',$input['is_public']);
-        }
+        $data = $this->getDataTestByParam($data, $input);
         $listClass = $this->getListClassByParam($input);
         $input['date_time'] = FILTER_DAY;
         //hiển thị là group theo giờ
@@ -667,6 +676,8 @@ class ApiController extends Controller
             $result[$key]['base_price'] = $value->base_price;
             $result[$key]['sale_price'] = $value->sale_price;
             $result[$key]['address'] = $value->address;
+            $result[$key]['city_id'] = $value->city_id;
+            $result[$key]['district_id'] = $value->district_id;
             $result[$key]['created_at'] = $value->created_at;
         }
         return $this->responseSuccess($result);
