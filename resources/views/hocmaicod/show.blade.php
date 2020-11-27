@@ -46,7 +46,7 @@
             <tr>
                 <td colspan="2">
                 <label class="text-label">Thời gian: </label>
-                {{ $data->created_at->format(Y-m-d H:i:s) }}
+                {{ $data->created_at->format('Y-m-d H:i:s') }}
                 </td>
             </tr>
          </table>
