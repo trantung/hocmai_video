@@ -270,19 +270,21 @@ function getStatusHocMaiCod($status){
 }
 // lấy tên tỉnh tp
 function getCityId($city_id){
-    $data = MdlCity::where('id', $city_id)->pluck('name','id');
-    foreach($data as $key => $value){
-        return $value;
+    $data = MdlCity::find($city_id);
+    if (!$data) {
+        return '';
     }
-    
+    return $data->name;
 }
 // lấy tên quận tp
 function getDistrictId($district_id){
-    $data = MdlDistrict::where('id', $district_id)->pluck('fullname','id');
-    foreach($data as $value){
-        return $value;
+    $data = MdlDistrict::find($city_id);
+    if (!$data) {
+        return '';
     }
+    return $data->name;
 }
+
 function getLivestreamUrl($sourceId)
 {
     return url($sourceId);
