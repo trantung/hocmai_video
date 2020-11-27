@@ -185,14 +185,3 @@ jQuery(document).ready(function($) {
     });
 });
 //validate hẹn giờ phát vs phát ngay
-
-$(document).ready(function() {
-    $('.example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [{
-            extend: 'excelHtml5',
-            autoFilter: true,
-            sheetName: 'Exported data'
-        }]
-    });
-});

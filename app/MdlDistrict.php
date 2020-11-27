@@ -13,6 +13,6 @@ class MdlDistrict extends Model
         'name',
         'fullname',
         'type',
-        'city_id',
+        'city',
     ];
 }

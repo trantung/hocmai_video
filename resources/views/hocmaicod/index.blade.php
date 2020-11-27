@@ -89,15 +89,3 @@
     </div>
   </div>
   @stop
-  @section('scripts')
-  <script>
-  $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'csv', 'excel', 'pdf'
-        ]
-    } );
-} );
-</script>
-@stop

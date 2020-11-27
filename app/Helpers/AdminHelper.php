@@ -13,6 +13,7 @@ use APV\User\Models\Role;
 use App\HocmaiHeader;
 use App\HocmaiFooter;
 use App\MdlCity;
+use App\MdlDistrict;
 use App\UserFake;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -274,6 +275,13 @@ function getCityId($city_id){
         return $value;
     }
     
+}
+// lấy tên quận tp
+function getDistrictId($district_id){
+    $data = MdlDistrict::where('id', $district_id)->pluck('fullname','id');
+    foreach($data as $value){
+        return $value;
+    }
 }
 function getLivestreamUrl($sourceId)
 {

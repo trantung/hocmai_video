@@ -354,7 +354,7 @@ class ApiController extends Controller
         return response($data, 200);
     }
     // api đang phát
-    // is_public  = 2 là test is_public  = 1 là mặc định
+    // is_public  = 2 là test is_public  = 1 là mặc định 
     public function livestreamPlayCurrent(Request $request)
     {
         $input = $request->all();
