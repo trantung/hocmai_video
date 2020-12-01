@@ -14,7 +14,7 @@
   <title>HocMai</title>
    <!-- Load TensorFlow.js -->
    <!-- <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet"> -->
-<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+<link href="{{asset('css/video-js.css')}}" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
   <link href="{{asset('build/css/bootstrap-combined.min.css')}}" rel="stylesheet">
@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="{{asset('css/bootstrap-colorpicker.css')}}">
   <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/color_skins.css')}}">
-  <!-- <link rel="stylesheet" href="{{asset('css/main.css')}}"> -->
-  <!-- <link rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('css/nouislider.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/bootstrap-multiselect.css')}}" />
   <link href="{{asset('css/jquery.dataTables.min.css')}}" rel="stylesheet" />
   <link href="{{asset('css/buttons.dataTables.min.css')}}" rel="stylesheet" /> -->
