@@ -81,7 +81,23 @@
                 </div>
             </div>
         </div>
+      </div><div class="row">
+        <div class="col-md-6 col-lg-6">
+            <label class="col-lg-2">Màn hình dọc, ngang</label>
+            <div class="col-md-8 col-sm-8 col-lg-8">
+                {{ Form::select('is_screen', getIsScreen(), old('is_screen'),array('class' => 'form-control')) }}
+            </div>
+        </div>
       </div>
+      </div><div class="row">
+        <div class="col-md-6 col-lg-6">
+            <label class="col-lg-2">Yêu cầu active</label>
+            <div class="col-md-8 col-sm-8 col-lg-8">
+                {{ Form::select('is_active', getIsActive(), old('is_active'),array('class' => 'form-control')) }}
+            </div>
+        </div>
+      </div>
+        
       <div class="form-group row">
         {{ Form::submit('Submit', array('class' => 'btn btn-success submit_time')) }}
         {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}

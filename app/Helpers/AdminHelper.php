@@ -399,3 +399,21 @@ function getVersion()
     ->get();
     return $result;
 }
+
+function getIsScreen()
+{
+    $res = array(
+        1 => 'Dọc',
+        2 => 'Ngang',
+    );
+    return $res;
+}
+
+function getIsActive()
+{
+    $res = array(
+        1 => 'Không yêu cầu',
+        2 => 'Yêu cầu active',
+    );
+    return $res;
+}

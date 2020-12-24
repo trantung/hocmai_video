@@ -17,6 +17,8 @@ class Event  extends Model
         'end_time',
         'event_adjust', 
         'deep_link',
+        'is_screen',
+        'is_active',
     ];
 
 }
