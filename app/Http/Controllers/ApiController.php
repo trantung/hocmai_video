@@ -575,6 +575,8 @@ class ApiController extends Controller
             $result[$key]['event_is_public'] = $value->is_public;
             $result[$key]['event_deep_link'] = $value->deep_link;
             $result[$key]['event_adjust'] = $value->event_adjust;
+            $result[$key]['event_adjust'] = $value->is_screen;
+            $result[$key]['event_adjust'] = $value->is_active;
         }
         return $this->responseSuccess($result);
     }
