@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SchoolBlock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class SchoolBlockController extends Controller
 {
@@ -15,7 +16,7 @@ class SchoolBlockController extends Controller
      */
     public function index()
     {
-        $data = SchoolBlock::all();
+        $data = SchoolBlock::all()->sortByDesc('id');
         return view('schoolblock.index')->with(compact('data'));
     }
 
@@ -38,10 +39,16 @@ class SchoolBlockController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        if (empty($input['name'])) {
+            Session::flash('message', "Quý khách vui lòng điền tên kênh !");
+            return Redirect::back()->withInput();
+        }
         $schoolblock = SchoolBlock::create($input)->id;
         if (request()->file('avatar')) {
             $file = $request->file('avatar');
-            $fileNameImage = $file->getClientOriginalName();
+            $date = date('Y-m-d H:i:s');
+            $prefix = strtotime($date);
+            $fileNameImage = $prefix. $file->getClientOriginalName();
             $file->move(public_path("/uploads/block/" . $schoolblock . '/avatar/'), $fileNameImage);
             $imageUrl = '/uploads/block/' . $schoolblock . '/avatar/' . $fileNameImage;
         }
@@ -82,11 +89,17 @@ class SchoolBlockController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        if (empty($input['name'])) {
+            Session::flash('message', "Quý khách vui lòng điền tên kênh !");
+            return Redirect::back()->withInput();
+        }
         $schoolblock = SchoolBlock::find($id);
         $imageUrl = $schoolblock->avatar;
         if (request()->file('avatar')) {
             $file = $request->file('avatar');
-            $fileNameImage = $file->getClientOriginalName();
+            $date = date('Y-m-d H:i:s');
+            $prefix = strtotime($date);
+            $fileNameImage = $prefix . $file->getClientOriginalName();
             $file->move(public_path("/uploads/block/" . $id . '/avatar/'), $fileNameImage);
             $imageUrl = '/uploads/block/' . $id . '/avatar/' . $fileNameImage;
         }

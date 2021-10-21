@@ -6,8 +6,7 @@
       <h2>Quản lý Lớp</h2>
       <div class="x_title">
         <div class="pull-left">
-          <a href="{{action('ClassController@create')}}" class="btn btn-info" id="addVideo">
-          <i class="fa fa-plus-circle"></i>Thêm lớp mới</a>
+        <a href="{{action('ClassController@create')}}"><i class="fa fa-plus-circle"></i> Thêm mới</a>
         </div>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -34,16 +33,16 @@
                   <tr>
                     <td>{{ $class->id }}</td>
                     <td>{{ $class->name }}</td>
-                    <td>{{ $class->desc }}</td>
+                    <td>{!! $class->desc !!}</td>
                     <td>{{ getKhoiNameById($class->schoolblock_id) }}</td>
                     <td>
                       <form action="{{ route('class.destroy',$class->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ action('ClassController@edit', $class->id) }}" title="Sửa" class="btn btn-info"><i class="fa fa-edit" ></i></a>
-                        <button type="submit" class="btn btn-danger"><a onclick="return confirm('Bạn có chắc chắn muốn xóa?');" title="xóa">
+                        <a href="{{ action('ClassController@edit', $class->id) }}" title="Sửa" class="text-info"><i class="fa fa-edit" ></i></a>
+                        <button type="submit" class="text-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');" title="xóa">
                           <i class="fa fa-trash"></i>
-                          </a></button>
+                          </button>
                       </form>
                     </td>
                   </tr>

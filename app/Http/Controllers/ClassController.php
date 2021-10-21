@@ -15,7 +15,7 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $data = HocMaiClass::all();
+        $data = HocMaiClass::all()->sortByDesc('id');
         return view('class.index')->with(compact('data'));
     }
 

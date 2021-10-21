@@ -4,7 +4,7 @@
   <div class="x_panel">
     <h2>Sửa người dùng {{ $user->username }}</h2>
     <div class="x_title">
-      <a href="{{ action('UserController@index') }}" class="btn btn-danger">Trở lại</a></h2>
+      <a href="{{ action('UserController@index') }}" class="text-danger"><i class="fa fa-backward"></i></a></h2>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -14,70 +14,66 @@
     </div>
     <div class="x_content">
       <br>
-      {{ Form::open(array('method'=>'PUT', 'files'=>true, 'action' => array('UserController@update', $user->id))) }}
+      {{ Form::open(array('action' => array('UserController@update', $user->id), 'method' => "PUT", 'files' => true,'id'=>'upload_form')) }}
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6">
-          <b>Họ và tên</b>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div>
-            {{ Form::text('name', $user->name, array('class' => 'form-control has-feedback-left','placeholder'=>'họ & tên')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="name" class="col-md-3 col-lg-3"> Họ và tên</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="text" class="form-control" required="true" name="name" id="name" value="{{$user->name}}">
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-          <b>Email Address</b>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
-            </div>
-            {{ Form::text('email', $user->email, array('class' => 'form-control has-feedback-left','placeholder'=>'email')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="email"class="col-md-3 col-lg-3">Email Address</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="email" class="form-control" required="true" name="email" id="email" value="{{$user->email}}">
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-6 col-sm-6">
-          <b>Tên đăng nhập</b>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div>
-            {{ Form::text('username', $user->username, array('class' => 'form-control has-feedback-left','placeholder'=>'username')) }}
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <label for="username" class="col-md-3 col-lg-3">Tên đăng nhập</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="text" class="form-control" required="true" name="username" id="username" value="{{$user->username}}">
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-          <b>Mật khẩu</b>
-          <br>
-          <div class="input-group mb-3">
-          {{ Form::password('password', null, array('class' => 'form-control','placeholder'=>'nhập mật khẩu')) }}
-          </div>
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <label for="password" class="text-label col-md-3 col-lg-3"><b>password:</b></label>
+            <div class="col-md-9">
+              <input type="password" name="password" placeholder="Please enter your pass here" class="form-control" value="{{ $user->password}}" />
+              <?php if ($errors->has('password')) : ?>
+                  <span class="help-block">
+                      <strong>{{$errors->first('password')}}</strong>
+                  </span>
+              <?php endif; ?>
+            </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-lg-6 col-md-12">
-            <label>Quyền</label>
-            <div class="multiselect_div">
+        <div class="col-lg-6 col-md-6">
+          <label class="col-md-3 col-lg-3">Quyền</label>
+          <div class="col-md-9 col-col-lg-9">
             {{ Form::select('role_id', getListRole(),$user->role_id, array('class' => 'form-control')) }}
-            </div>
+          </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-            <label>Ảnh đại diện</label>
-            <div class="col-lg-12">
-              <input type="file" name="avatar" class="form-control"><br>
-              <div class="clearfix row">
-                  @if($user->avatar)
-                      <img src="{{$user->avatar }}" width="150px" height="auto"  />
-                  @endif
-              </div>
-            </div>
+        <div class="col-lg-6 col-md-6">
+          <label class="col-md-3 col-lg-3">Ảnh đại diện</label>
+          <div class="col-md-9 col-col-lg-9">
+            <input type="file" name="avatar" id="avatarUpdate" class="form-control">
+          </div>
+          <div class="clearfix row">
+            <br>
+            <br>
+            @if($user->avatar)
+            <img src="{{$user->avatar }}" width="150px" height="auto" id="avatar1" style="margin: 10px 0" />
+            @endif
+          </div>
         </div>
       </div>
       <div class="form-group row">
-          {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
+        {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
       </div>
       {{ Form::close() }}
     </div>
   </div>
 </div>
-
 @stop

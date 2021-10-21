@@ -17,7 +17,7 @@ class AnotherVideoController extends Controller
     {
         $roleId = checkUserRole();
         if ($roleId == ADMIN) {
-            $data = AnotherVideo::all();
+            $data = AnotherVideo::all()->sortByDesc('id');
         } else {
             $schoolblockId = getSchoolblockByUser();
             $data = AnotherVideo::where('schoolblock_id', $schoolblockId)->get();
@@ -86,6 +86,9 @@ class AnotherVideoController extends Controller
     {
         $input = $request->all();
         $videoanother = AnotherVideo::find($id);
+        $duration = getDurationVideoFromText($input['duration']);
+        $input['duration'] = $duration;
+        $input['source_id'] = $input['url'];
         $videoanother->update($input);
         return Redirect::action('AnotherVideoController@index'); 
     }

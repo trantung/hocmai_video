@@ -16,7 +16,7 @@ class UserService
         // $now = Carbon::now();
         // $now = $now->toDateTimeString();
         // if (!$playStatus) {
-        //     $data = Livestream::where('publish_time', '>=', $now)->get();
+        //     $data = Livestream::where('end_time', '>=', $now)->get();
         //     return $data;
         // }
         //status là trạng thái livestream được quy định. Ví dụ livestream dai 60 phút và ở trạng thái hẹn giờ từ 15h-16h, now = 22h thì tức là đã phát xong, nếu now = 15h30 thì tức là đang phát, now = 12h tức là hẹn giờ. Tương tự nếu livestream là ở chế độ đăng ngay thì so sanh now với thời điểm created_at của livestream
@@ -42,19 +42,19 @@ class UserService
         $timeNow = strtotime($now);
         $roleId = checkUserRole();
         if ($roleId == ADMIN) {
-            $data = Livestream::where('publish_time', '>=', $now)->get();
+            $data = Livestream::orderBy('id', 'desc')->get();
         } else {
             $schoolblockId = getSchoolblockByUser();
             $data = Livestream::where('schoolblock_id', $schoolblockId)
-                ->where('publish_time', '>=', $now)
+                // ->where('end_time', '>=', $now)
                 ->get();
         }
         $resultPlaying = $resultPlayClock = $resultPlayFinish = [];
         foreach ($data as $key => $value) {
             //tinh thoi gian livestream
-            $duration = getDurationLivestream($value->id);
-            $livestreamStartTime = $this->getTimePlay($value);
-            $livestreamEndTime = $livestreamStartTime + $duration * 60;
+            $livestreamStartTime = getTimePlayLivestream($value);
+            $livestreamEndTime = getEndTimeLivestream($value);
+            
             if ($livestreamStartTime < $timeNow && $timeNow < $livestreamEndTime) {
                 $value->livestream_status = PLAYING;
                 $resultPlaying[$key] = $value;
@@ -80,4 +80,13 @@ class UserService
         return $data;
     }
 
+    public function updateUser($updateData)
+    {
+       $user = User::find($updateData['user_id']);
+       if (!$user) {
+           dd('sai user_id');
+       }
+       $user->update(['is_cod' => $updateData['is_cod']]);
+       return ['user_id' => $updateData['user_id'], 'is_cod' => $updateData['is_cod'], 'updated' => 'success'];
+    }
 }

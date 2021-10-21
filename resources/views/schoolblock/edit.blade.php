@@ -2,9 +2,9 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
-    <h2>Sửa {{ $schoolblock->name }}</h2>
+    <h2>Sửa kênh {{ $schoolblock->name }}</h2>
     <div class="x_title">
-       <a href="{{ action('SchoolBlockController@index') }}" title="trở lại" class="btn btn-danger">trở lại</a>
+       <a href="{{ action('SchoolBlockController@index') }}" title="trở lại" class="text-danger"><i class="fa fa-backward"></i></a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -17,9 +17,10 @@
       {{ Form::open(array('action' => array('SchoolBlockController@update', $schoolblock->id), 'method' => "PUT", 'files' => true)) }}
       <div class="form-group row">
         <div class="col-md-12 col-sm-12  ">
-        <label class="control-label col-md-2 col-sm-2">Tên lớp</label>
+        <label class="control-label col-md-2 col-sm-2">Tên Kênh</label>
           <div class="col-md-11 col-sm-11">
             {{ Form::text('name', $schoolblock->name, array('class' => 'form-control','placeholder'=>'Tên lớp')) }}
+            @if(Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span> @endif     
           </div>
         </div>
         <div class="col-md-12 col-sm-12 ">

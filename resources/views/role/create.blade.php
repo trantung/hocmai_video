@@ -6,23 +6,25 @@
     <div class="card-header">Register a role</div>
     <div class="card-body">
       {{ Form::open(['action' => 'RoleController@store']) }}
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <div class="form-label-group">
-                <input type="text" name="name" class="form-control" autofocus="autofocus">
-                <label>Role name</label>
-              </div>
+        <div class="row form-group">
+          <div class="col-md-6">
+            <label>Role name</label>
+            <div class="form-label-group">
+              <input type="text" name="name" class="form-control" autofocus="autofocus">
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="form-label-group">
-            <input type="text" name="description" class="form-control">
+        <div class="row form-group">
+          <div class="col-md-6">
             <label>Decription</label>
+            <div class="form-label-group">
+              <input type="text" name="description" class="form-control">
+            </div>
           </div>
         </div>
-        {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-block')) }}
+        <div class="row form-group">
+          {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+        </div>
       {{ Form::close() }}
     </div>
   </div>

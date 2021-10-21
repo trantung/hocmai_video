@@ -2,9 +2,8 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
-    <h2>Thêm lớp học mới</h2>
     <div class="x_title">
-      <a href="{{ action('ClassController@index') }}" class="btn btn-danger" title="trở lại">Trở lại</a>
+      <a href="{{ action('ClassController@index') }}" class="text-danger" title="trở lại"><i class="fa fa-backward"></i></a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -17,21 +16,24 @@
       {{ Form::open(array('method'=>'POST', 'action' => array('ClassController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <label>Tên lớp học</label>
-          {{ Form::text('name', null, array('class' => 'form-control ','placeholder'=>'tên lớp')) }}
+          <label class="col-lg-3">Tên lớp học</label>
+          <div class="col-lg-10">
+            <input type="text" name="name" id="name" required data-errormessage-value-missing="Please input something" placeholder ="tên lớp">
+          </div>
         </div>
         <div class="col-md-6 col-sm-6">
-            <label class="control-label col-md-2 col-sm-2">Khối</label>
-            <div class="col-md-11 col-sm-11 ">
+            <label class="col-lg-3">Khối</label>
+            <div class="col-lg-10 ">
               {{ Form::select('schoolblock_id', getListKhoi(), array('class' => 'form-control')) }}
             </div>
-          
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-md-12 col-sm-12">
-          <label>Mô tả</label>
-          {{ Form::textarea('desc', null, array('class' => 'form-control ','id'=>'editor1')) }}
+        <div class="col-md-12 col-sm-12 ">
+          <label class="col-md-3 col-sm-3">Mô tả</label>
+          <div class="col-md-11 col-sm-11">
+            <textarea name="desc" id="editor1" class="form-control" required data-errormessage-value-missing="Please input something"></textarea>
+          </div>
         </div>
       </div>
       <div class="form-group row">

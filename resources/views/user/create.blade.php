@@ -2,9 +2,8 @@
 @section('content')
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
-    <h2>Thêm mới người dùng</h2>
     <div class="x_title">
-      <a href="{{ action('UserController@index') }}" class="btn btn-danger" title="Trở lại">Trở lại</a>
+      <a href="{{ action('UserController@index') }}" class="text-danger" title="Trở lại"><i class="fa fa-backward"></i></a>
       <ul class="nav navbar-right panel_toolbox">
         <li>
           <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -13,63 +12,54 @@
       <div class="clearfix"></div>
     </div>
     <div class="x_content">
-      <br>
       {{ Form::open(array('method'=>'POST','files'=>true, 'action' => array('UserController@store'),'class'=>'form-horizontal form-label-left')) }}
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <b>Họ và tên</b>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div>
-            {{ Form::text('name', null, array('class' => 'form-control name','placeholder'=>'họ & tên')) }}
+          <label class="col-lg-2 col-md-2" for="username">Tên đăng nhập <span class="text-error text-danger">*</span></label>
+          <div class="col-md-10 col-lg-10">
+            <input type="text" class="form-control" minlength="4" required ='true' name="username" id="username" value="{{old('username')}}" >
+            @if (Session::has('message'))<span class="text-danger">{{ Session::get('message') }}</span>@endif
           </div>
         </div>
+
         <div class="col-md-6 col-sm-6">
-          <b>Email Address</b>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
-            </div>
-            {{ Form::text('email', null, array('class' => 'form-control email','placeholder'=>'Ex: example@example.com')) }}
+          <label class="col-lg-2 col-md-2" for="name">Họ & tên <span class="text-error text-danger">*</span></label>
+          <div class="col-md-10 col-lg-10">
+            <input type="text" class="form-control" required ="true" name="name" id="name" value="{{old('name')}}">
           </div>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-md-6 col-sm-6">
-          <b>Tên đăng nhập</b>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div>
-            {{ Form::text('username', null, array('class' => 'form-control username','placeholder'=>'username')) }}
+          <label class="col-lg-2 col-md-2" for="email">Email <span class="text-error text-danger">*</span></label>
+          <div class="col-md-10 col-lg-10">
+            <input type="email" class="form-control" required ="true" name="email" id="email"  value="{{old('email')}}">
           </div>
         </div>
         <div class="col-md-6 col-sm-6">
-          <b>Mật khẩu</b>
-          <br>
-          <div class="input-group mb-3">
-            {{ Form::password('password', null, array('class' => 'form-control password_get_info','placeholder'=>'nhập mật khẩu')) }}
+          <label class="col-lg-2 col-md-2" for="password">Mật khẩu <span class="text-error text-danger">*</span></label>
+          <div class="col-md-10 col-lg-10">
+            <input type="password" class="form-control" required ="true" name="password" id="password" minlength="6" value="{{old('password')}}">
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-lg-6 col-md-12">
-            <label>Quyền</label>
-            <div class="multiselect_div">
-              {{ Form::select('role_id', getListRole(), array('class' => 'form-control')) }}
-            </div>
+        <div class="col-lg-6 col-md-6">
+          <label class="col-lg-2">Quyền <span class="text-error text-danger">*</span></label>
+          <div class="col-lg-10">
+            {{ Form::select('role_id', getListRole(),'', array('class' => 'form-control','id'=>'list_role')) }}
+          </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-            <label>ảnh đại diện</label>
-            <div class="multiselect_div">
-              <input type="file" name="avatar" id="avatar" class="form-control">
-            </div>
+        <div class="col-lg-6 col-md-6">
+          <label class="col-lg-2">ảnh đại diện <span class="text-error text-danger">*</span></label>
+          <div class="col-lg-10">
+            <input type="file" name="avatar" id="avatar" class="form-control" required ="true" value="{{old('avatar')}}">
+          </div>
         </div>
       </div>
       <div class="form-group row">
-          {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
-          {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
+        {{ Form::submit('Lưu', array('class' => 'btn btn-success')) }}
+        {{ Form::reset('Reset', array('class' => 'btn btn-info')) }}
       </div>
       {{ Form::close() }}
     </div>

@@ -2,10 +2,11 @@
 
 @section('code', '404')
 @section('title', __('Page Not Found'))
+<a href="http://localhost:8000/admin/dashboard" class="btn btn-info"> Go Home</a>
 
 @section('image')
     <div style="background-image: url({{ asset('/svg/404.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
     </div>
-@endsection
 
+@endsection
 @section('message', __('Sorry, the page you are looking for could not be found.'))

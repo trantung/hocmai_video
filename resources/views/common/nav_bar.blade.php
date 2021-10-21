@@ -8,18 +8,24 @@
     </div>
     <nav class="nav navbar-nav">
       <ul class=" navbar-right">
-        <li class="nav-item dropdown" style="padding-left: 15px;">
+      <div class="dropdown" style="float:right;margin-right:25px">
+        <button class="dropbtn"> 
+          <img src="{{$userInfo->avatar}}" height="50px" width="50px">
+          </button>
+          <div class="dropdown-content" style="left:0;">
+            <a href="{{ action('ProfileController@index')}}">Thông tin cá nhân</a>
+            <a href="{{action('AdminController@getLogout')}}">Đăng xuất</a>
+          </div>
+      </div>
+        <!-- <li class="nav-item dropdown" style="padding-left: 15px;">
           <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
             <img src="{{$userInfo->avatar}}" alt="avatar">
-            @if($userInfo)
-              {{ $userInfo->name }}
-            @endif
+           
           </a>
           <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ action('ProfileController@index')}}">Profile</a>
-            <a class="dropdown-item" href="{{action('AdminController@getLogout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+            
           </div>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </div>

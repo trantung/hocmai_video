@@ -38,4 +38,5 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'domain' => env('SESSION_DOMAIN', null),
 ];

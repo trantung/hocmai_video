@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\AdminController;
 use APV\User\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Nexmo\Message\Shortcode\Alert;
+use PHPUnit\Framework\Constraint\IsEmpty;
+use Session;
 
 class UserController extends AdminController
 {
@@ -17,7 +20,7 @@ class UserController extends AdminController
      */
     public function index(Request $request)
     {
-        $data = User::all();
+        $data = User::all()->sortByDesc('id');
         return view('user.index')->with(compact('data'));
     }
 
@@ -40,14 +43,25 @@ class UserController extends AdminController
     public function store(Request $request)
     {
         $input = $request->all();
+        $users = User::all();
+        $returl =[];
+        foreach($users as $value){
+            $returl[]=$value->username;
+        }
+        $username=$request->username;
+        if(in_array($username,$returl)){
+            return $this->sendBackWithError('tên đăng nhập tồn tại');
+        }
         $input['password'] = Hash::make($input['password']);
         $userId = User::create($input)->id;
+        
         if (request()->file('avatar')) {
             $file = $request->file('avatar');
             $fileNameImage = $file->getClientOriginalName();
             $file->move(public_path("/uploads/admin/" . $userId . '/avatar/'), $fileNameImage);
             $imageUrl = '/uploads/admin/' . $userId . '/avatar/' . $fileNameImage;
         }
+        
         User::where('id', $userId)->update(['avatar' => $imageUrl]);
         return Redirect::action('UserController@index');
     }
@@ -60,8 +74,7 @@ class UserController extends AdminController
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('user.show')->with(compact('user'));
+        
     }
 
     /**
@@ -83,38 +96,31 @@ class UserController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request ,$id)
     {
-        $input = $request->all();
+        $input = $request -> all();
         $user = User::find($id);
         $imageUrl = $user->avatar;
-        if (request()->file('avatar')) {
-            $file = $request->file('avatar');
+        //dd($imageUrl);
+        if($request->password != $user->password){
+            $user->password = Hash::make($request->password);
+            $user->save();
+          }
+        $file = request()->file('avatar');
+        if ($file) {
             $fileNameImage = $file->getClientOriginalName();
-            $file->move(public_path("/uploads/admin/" . $id . '/avatar/'), $fileNameImage);
-            $imageUrl = '/uploads/admin/' . $id . '/avatar/' . $fileNameImage;
-        }
-        $input['avatar'] = $imageUrl;
-        if ($input['password']) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            unset($input['password']);
+           $file->move(public_path("/uploads/admin/"),$fileNameImage);
+           $imageUrl = '/uploads/admin/'.$fileNameImage;
         }
         
-        $user->update($input);
-        // dd($user);
+        $user->name = request('name');
+        $user->username = request('username');
+        $user->email = request('email');
+        $user->avatar = $imageUrl;
+        $user->role_id = request('role_id');
+        $user->save();
         return Redirect::action('UserController@index'); 
     }
-    
-    public function updateProfile(Request $request, $id)
-    {
-        $input = User::all();
-        $profile = User::find($id);
-        $profile->update($input);
-        // dd($user);
-        return Redirect::action('AdminController@index'); 
-    }
-
     /**
      * Remove the specified resource from storage.
      *

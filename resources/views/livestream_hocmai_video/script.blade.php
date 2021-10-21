@@ -1,27 +1,33 @@
 <script>
-     $(document).ready(function(){
+$( document ).ready(function() {
         $('#upload').on('change', function() {
             readURL(input);
+            console.log("comme may");
         });
         $('#upload1').on('change', function() {
             readURL1(input);
         });
+        
     });
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
+                $("image_small").removeAttr('src');
                 $('#imageResult')
                     .attr('src', e.target.result);
+
             };
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     function readURL1(input1) {
         if (input1.files && input1.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                $('#imageResult1')
+                $("image_big").removeAttr('src');
+                $('#imageResult1').removeAttr('src')
                     .attr('src', e.target.result);
             };
             reader.readAsDataURL(input1.files[0]);
